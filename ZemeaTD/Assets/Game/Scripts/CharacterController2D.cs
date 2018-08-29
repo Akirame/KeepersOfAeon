@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
 
     public float speed = 10f;
     private bool onDoor = false;
+    private bool canMove = true;
     private Door lastDoorTouched;
 
     private void Start()
@@ -28,6 +29,12 @@ public class CharacterController2D : MonoBehaviour
         lastDoorTouched = null;
     }
     private void Update()
+    {
+        if(canMove)
+        Movement();
+    }
+
+    private void Movement()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -45,7 +52,10 @@ public class CharacterController2D : MonoBehaviour
             }
         }
     }
-
+    public void SetCanMove(bool setMove)
+    {
+        canMove = setMove;
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Door")

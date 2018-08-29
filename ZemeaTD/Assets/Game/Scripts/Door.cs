@@ -5,9 +5,10 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public GameObject ObjectiveToGo;
-    private GameObject nose;
+    private GameObject goPlayer;    
     public float transitionTime = 3f;
     public bool fadeToBlack = true;
+    public Animator doorDisplay;
     private bool transitionOn = false;
     private float startTime;
     private float timer;
@@ -20,10 +21,10 @@ public class Door : MonoBehaviour
     {
         if (transitionOn)
         {
-            SpriteRenderer goSprite = nose.gameObject.GetComponent<SpriteRenderer>();
+            SpriteRenderer goSprite = goPlayer.gameObject.GetComponent<SpriteRenderer>();
             if (timer < transitionTime)
-            {
-                if(fadeToBlack)
+            {                
+                if (fadeToBlack)
                 goSprite.color = new Color(Mathf.SmoothStep(1f, 0f, (timer / transitionTime)), Mathf.SmoothStep(1f, 0f, (timer / transitionTime)), Mathf.SmoothStep(1f, 0f, (timer / transitionTime)), 1f);
                 else
                 goSprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, (timer / transitionTime)));
@@ -31,11 +32,12 @@ public class Door : MonoBehaviour
             }
             else
             {
-                nose.transform.position = ObjectiveToGo.transform.position;
+                goPlayer.transform.position = ObjectiveToGo.transform.position;
                 goSprite.color = Color.white;
                 timer = 0;
                 transitionOn = false;
-                nose = null;
+                goPlayer.GetComponent<CharacterController2D>().SetCanMove(true);
+                goPlayer = null;
             }
         }
     }
@@ -44,8 +46,23 @@ public class Door : MonoBehaviour
     /// </summary>
     /// <param name="go"></param>
     public void GotoObjective(GameObject go)
-    {
+    {        
         transitionOn = true;
-        nose = go;        
+        goPlayer = go;
+        go.GetComponent<CharacterController2D>().SetCanMove(false);        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            doorDisplay.SetBool("Appear", true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            doorDisplay.SetBool("Appear", false);
+        }
     }
 }
