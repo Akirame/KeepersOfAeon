@@ -60,8 +60,7 @@ public class CharacterController2D : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Door")
-        {
-            Debug.Log("holi");
+        {            
             onDoor = false;
             lastDoorTouched = null;
         }
