@@ -40,6 +40,7 @@ public class CharacterController2D : MonoBehaviour
     }
     private void Update()
     {
+        DoorControl();
         StateController();
         StateBehaviour();
     }
@@ -52,13 +53,11 @@ public class CharacterController2D : MonoBehaviour
                 Movement();
                 GroundControl();
                 JumpBehaviour();
-                DoorControl();
                 break;
             case PLAYER_STATES.RUNNING:
                 Movement();
                 GroundControl();
                 JumpBehaviour();
-                DoorControl();
                 break;
             case PLAYER_STATES.JUMP:
                 Movement();
