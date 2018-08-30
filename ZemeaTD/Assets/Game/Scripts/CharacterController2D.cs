@@ -126,7 +126,7 @@ public class CharacterController2D : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                lastDoorTouched.GotoObjective(this.gameObject);
+                lastDoorTouched.GotoObjective(this.gameObject);                
             }
         }
     }

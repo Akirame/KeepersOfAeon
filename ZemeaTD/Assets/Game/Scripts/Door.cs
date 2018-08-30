@@ -49,7 +49,7 @@ public class Door : MonoBehaviour
     {        
         transitionOn = true;
         goPlayer = go;
-        go.GetComponent<CharacterController2D>().SetCanMove(false);        
+        go.GetComponent<CharacterController2D>().SetCanMove(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
