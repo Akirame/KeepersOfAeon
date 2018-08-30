@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,37 +20,108 @@ public class CharacterController2D : MonoBehaviour
     }
     #endregion  
 
-    public float speed = 10f;
+    public enum PLAYER_STATES {IDLE,RUNNING,JUMP,ATTACK,ON_ACTION};
+    public float speed = 200f;
+    public float airSpeed = 150f;
+    public float jumpForce = 5f;
     private bool onDoor = false;
     private bool canMove = true;
     private Door lastDoorTouched;
-    private bool canJump = false;
+    private bool onFloor = false;
+    private bool onAttackMode = false;
     public LayerMask floorLayer;
-
+    public PLAYER_STATES currentState;
+    private Rigidbody2D rig;
     private void Start()
     {
         lastDoorTouched = null;
+        currentState = PLAYER_STATES.IDLE;
+        rig = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        if(canMove)
-            Movement();
-        GroundControl();
-        JumpBehaviour();
+        StateController();
+        StateBehaviour();
     }
 
-    private void Movement()
+    public void StateBehaviour()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        switch (currentState)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-            transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+            case PLAYER_STATES.IDLE:
+                Movement();
+                GroundControl();
+                JumpBehaviour();
+                DoorControl();
+                break;
+            case PLAYER_STATES.RUNNING:
+                Movement();
+                GroundControl();
+                JumpBehaviour();
+                DoorControl();
+                break;
+            case PLAYER_STATES.JUMP:
+                Movement();
+                GroundControl();
+                break;
+            case PLAYER_STATES.ATTACK:
+                break;
+            default:
+                break;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+    }
+
+    private void StateController()
+    {
+        switch (currentState)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-            transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+            case PLAYER_STATES.IDLE:
+                if (onFloor)
+                {
+                    if (rig.velocity.x != 0)
+                        currentState = PLAYER_STATES.RUNNING;
+                }
+                else
+                {
+                    currentState = PLAYER_STATES.JUMP;
+                }
+                break;
+            case PLAYER_STATES.RUNNING:
+                if (onFloor)
+                {
+                    if (rig.velocity.x == 0)
+                        currentState = PLAYER_STATES.IDLE;
+                }
+                else
+                {
+                    currentState = PLAYER_STATES.JUMP;
+                }
+                break;
+            case PLAYER_STATES.JUMP:
+                if (onFloor)
+                {
+                    currentState = PLAYER_STATES.IDLE;
+                }
+                break;
+            case PLAYER_STATES.ATTACK:
+                break;
+            case PLAYER_STATES.ON_ACTION:
+                break;
+            default:
+                break;
         }
+    }
+
+    private void AttackControl()
+    {
+        if (onAttackMode)
+        {
+            canMove = false;
+        }
+    }
+
+    private void DoorControl()
+    {
         if (onDoor)
         {
             if (Input.GetKeyDown(KeyCode.Z))
@@ -59,22 +131,60 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    private void Movement()
+    {
+        if (canMove)
+        {
+            float movSpeed;
+            if (onFloor)
+            {
+                movSpeed = speed;
+            }
+            else
+            {
+                movSpeed = airSpeed;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+                rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+                rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
+            }
+            else
+            {
+                if (onFloor)
+                {
+                    rig.velocity = new Vector2(0, rig.velocity.y);
+                }
+            }
+        }
+
+    }
+
     public void GroundControl()
     {
         Vector2 minSpriteSize = new Vector2(0, -GetComponent<SpriteRenderer>().size.y / 2);
         Vector2 floorContact = (Vector2)transform.position + minSpriteSize;
         if (Physics2D.Raycast(floorContact, Vector2.down, 0.1f, floorLayer))
-            canJump = true;
+        {
+            onFloor = true;
+        }
         else
-            canJump = false;
+        {
+            onFloor = false;
+        }
     }
 
     public void JumpBehaviour()
     {
-        if (canJump && Input.GetKeyDown(KeyCode.UpArrow))
+        if (onFloor && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            canJump = false;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+            onFloor = false;
+            rig.velocity = new Vector2(0, jumpForce);
         }
     }
 
@@ -101,4 +211,10 @@ public class CharacterController2D : MonoBehaviour
             lastDoorTouched = null;
         }
     }
+
+    public void SetAttackMode(bool val)
+    {
+        onAttackMode = val;
+    }
+
 }

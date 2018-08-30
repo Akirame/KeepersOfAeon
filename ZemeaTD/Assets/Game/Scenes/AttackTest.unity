@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610276375}
   - component: {fileID: 610276374}
+  - component: {fileID: 610276376}
   m_Layer: 0
   m_Name: AttackTrigger
   m_TagString: Untagged
@@ -365,6 +366,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610276376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 610276373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf8eacb69fb6ca439e3c8eeda77fd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &935971022
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +497,16 @@ Prefab:
         type: 2}
       propertyPath: floorLayer.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 114270635492922286, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+        type: 2}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114270635492922286, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+        type: 2}
+      propertyPath: airSpeed
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8, type: 2}
