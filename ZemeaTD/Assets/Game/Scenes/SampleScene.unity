@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 567785201}
   - component: {fileID: 567785200}
   - component: {fileID: 567785199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,6 +745,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1606985093884936, guid: e99e7e1ce7d0c0a4083504f733a228dd, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e99e7e1ce7d0c0a4083504f733a228dd, type: 2}
   m_IsPrefabAsset: 0
@@ -786,6 +790,21 @@ Prefab:
     - target: {fileID: 4207466104450856, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114270635492922286, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+        type: 2}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114270635492922286, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+        type: 2}
+      propertyPath: airSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114270635492922286, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+        type: 2}
+      propertyPath: floorLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8, type: 2}
