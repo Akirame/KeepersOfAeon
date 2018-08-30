@@ -7,6 +7,7 @@ TagManager:
   - Door
   - Tower
   - Enemy
+  - Crosshair
   layers:
   - Default
   - TransparentFX

@@ -29,14 +29,23 @@ public class CharacterController2D : MonoBehaviour
     private Door lastDoorTouched;
     private bool onFloor = false;
     private bool onAttackMode = false;
+    public float maxAngleAttack = 65f;
+    private Vector3 angleAttack;
+    public float angleAttackSpeed = 10f;
+    public GameObject crosshair;
     public LayerMask floorLayer;
     public PLAYER_STATES currentState;
     private Rigidbody2D rig;
+    public GameObject bullet;
+    public GameObject crossPos;
+
+
     private void Start()
     {
         lastDoorTouched = null;
         currentState = PLAYER_STATES.IDLE;
         rig = GetComponent<Rigidbody2D>();
+        crosshair = GameObject.FindGameObjectWithTag("Crosshair");
     }
     private void Update()
     {
@@ -65,6 +74,7 @@ public class CharacterController2D : MonoBehaviour
                 GroundControl();
                 break;
             case PLAYER_STATES.ATTACK:
+                AttackControl();
                 break;
             default:
                 break;
@@ -114,10 +124,31 @@ public class CharacterController2D : MonoBehaviour
 
     private void AttackControl()
     {
-        if (onAttackMode)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            canMove = false;
+            angleAttack.z -= Time.deltaTime * angleAttackSpeed;
         }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            angleAttack.z += Time.deltaTime * angleAttackSpeed;
+        }
+        if (angleAttack.z > maxAngleAttack)
+        {
+            angleAttack.z = maxAngleAttack;
+        }
+        else if (angleAttack.z < -maxAngleAttack)
+        {
+            angleAttack.z = -maxAngleAttack;
+        }
+        crosshair.transform.eulerAngles = angleAttack;
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject b = Instantiate(bullet, transform.position, transform.rotation, transform.parent);
+            Vector2 bulletDirection = crossPos.transform.position - transform.position;
+            b.GetComponent<TestBullet>().SetDir(bulletDirection.normalized);
+        }
+
     }
 
     private void DoorControl()
@@ -146,12 +177,12 @@ public class CharacterController2D : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                GetComponent<SpriteRenderer>().flipX = true;
+                transform.localScale = new Vector3(-1, 1, 1);
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                transform.localScale = new Vector3(1, 1, 1);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else
@@ -215,6 +246,7 @@ public class CharacterController2D : MonoBehaviour
     public void SetAttackMode(bool val)
     {
         onAttackMode = val;
+        currentState = PLAYER_STATES.ATTACK;
     }
 
 }
