@@ -32,6 +32,7 @@ public class CharacterController2D : MonoBehaviour
     public float maxAngleAttack = 65f;
     private Vector3 angleAttack;
     public float angleAttackSpeed = 10f;
+    public bool facingRight = true;
     public GameObject crosshair;
     public LayerMask floorLayer;
     public PLAYER_STATES currentState;
@@ -126,11 +127,26 @@ public class CharacterController2D : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            angleAttack.z -= Time.deltaTime * angleAttackSpeed;
+            if (facingRight)
+            {
+                angleAttack.z += Time.deltaTime * angleAttackSpeed;
+            }
+            else
+            {
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
+            }
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            angleAttack.z += Time.deltaTime * angleAttackSpeed;
+            if (facingRight)
+            {
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
+
+            }
+            else
+            {
+                angleAttack.z += Time.deltaTime * angleAttackSpeed;
+            }
         }
         if (angleAttack.z > maxAngleAttack)
         {
@@ -178,10 +194,12 @@ public class CharacterController2D : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.localScale = new Vector3(-1, 1, 1);
+                facingRight = false;
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
+                facingRight = true;
                 transform.localScale = new Vector3(1, 1, 1);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
             }
@@ -246,7 +264,16 @@ public class CharacterController2D : MonoBehaviour
     public void SetAttackMode(bool val)
     {
         onAttackMode = val;
-        currentState = PLAYER_STATES.ATTACK;
+        if (onAttackMode)
+        {
+            currentState = PLAYER_STATES.ATTACK;
+            crossPos.SetActive(true);
+        }
+        else
+        {
+            currentState = PLAYER_STATES.IDLE;
+            crossPos.SetActive(false);
+        }
     }
 
 }
