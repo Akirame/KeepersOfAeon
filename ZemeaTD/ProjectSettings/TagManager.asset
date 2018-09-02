@@ -8,6 +8,7 @@ TagManager:
   - Tower
   - Enemy
   - Crosshair
+  - Bullet
   layers:
   - Default
   - TransparentFX

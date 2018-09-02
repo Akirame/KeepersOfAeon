@@ -11,8 +11,12 @@ public class UIManager : MonoBehaviour
     {
         if (waveTextAux != EnemyManager.GetInstance().wave.name)
         {
-            waveTextAux = EnemyManager.GetInstance().wave.name;
-            waveText.text = waveTextAux;
+            GetComponent<Animator>().SetTrigger("wave");
+            waveTextAux = EnemyManager.GetInstance().wave.name;            
         }
+    }
+    private void UpdateText()
+    {
+        waveText.text = waveTextAux;
     }
 }
