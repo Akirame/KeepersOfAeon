@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
+    public delegate void EnemyActions(Enemy e);
+    public static EnemyActions Hitted;
     public enum Dir { LEFT,RIGHT}
     public float speed = 10;
-    public Dir direction;
+    private Dir direction;
 
+    private void Awake()
+    {
+        SetDirection();
+    }
     private void Update()
     {
         switch (direction)
@@ -20,11 +26,20 @@ public class EnemyTest : MonoBehaviour
                 break;            
         }
     }
+    public void SetDirection()
+    {
+        if (transform.position.x > 0)
+            direction = Dir.LEFT;
+        else 
+            direction = Dir.RIGHT;        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Tower")
-        {            
-            Destroy(this.gameObject);
+        {
+            Hitted(this);
         }
-    }
+        if (collision.gameObject.tag == "Bullet")
+            Hitted(this);
+    }    
 }
