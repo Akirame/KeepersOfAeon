@@ -157,12 +157,11 @@ public class CharacterController2D : MonoBehaviour
             angleAttack.z = -maxAngleAttack;
         }
         crosshair.transform.eulerAngles = angleAttack;
-
         if (Input.GetKeyDown(KeyCode.X))
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, transform.parent);
             Vector2 bulletDirection = crossPos.transform.position - transform.position;
-            b.GetComponent<TestBullet>().SetDir(bulletDirection.normalized);
+            b.GetComponent<TestBullet>().Shoot(bulletDirection.normalized, angleAttack);
         }
 
     }

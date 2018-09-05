@@ -12,9 +12,10 @@ public class TestBullet : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;
 	}
 
-    public void SetDir(Vector2 dir)
+    public void Shoot(Vector2 dir, Vector2 angleAttack)
     {
         direction = dir;
+        transform.eulerAngles = angleAttack;
     }
 
 }
