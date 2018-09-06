@@ -39,4 +39,11 @@ public class Rampart : MonoBehaviour
         else
             return false;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.parent.tag != "Player")
+        {
+            Attacked(collision.GetComponent<Enemy>().damage);
+        }
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBullet : MonoBehaviour {
+public class Bullet : MonoBehaviour {
 
     public float speed = 200f;
     public Vector2 direction;

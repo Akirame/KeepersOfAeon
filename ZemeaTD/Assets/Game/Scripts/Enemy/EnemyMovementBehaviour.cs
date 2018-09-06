@@ -8,12 +8,10 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public float speed = 200;
     public enum Dir { LEFT, RIGHT }
     private Dir direction;
-    private SpriteRenderer sprite;
 
     private void Start()
     {
-        rig = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        rig = GetComponent<Rigidbody2D>();        
     }
     private void Awake()
     {

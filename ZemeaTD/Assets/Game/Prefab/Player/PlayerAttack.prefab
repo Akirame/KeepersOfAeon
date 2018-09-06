@@ -182,6 +182,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   currentState: 0
+  inputControl: {fileID: 0}
 --- !u!212 &212569016862743058
 SpriteRenderer:
   m_ObjectHideFlags: 1

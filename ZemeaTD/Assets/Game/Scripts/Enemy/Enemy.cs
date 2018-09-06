@@ -6,7 +6,9 @@ public class Enemy : MonoBehaviour
 {
     public delegate void EnemyActions(Enemy e);
     public static EnemyActions Hitted;
-    public EnemyMovementBehaviour movementBehaviour;    
+    public EnemyMovementBehaviour movementBehaviour;
+    public int damage;
+    protected Rampart rampart;
 
     protected virtual void Start()
     {        

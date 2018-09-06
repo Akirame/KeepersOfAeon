@@ -187,9 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7165d1c330717148b8726e693ba7660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectiveToGo: {fileID: 0}
-  transitionTime: 3
-  fadeToBlack: 1
+  nextDoor: {fileID: 0}
   doorDisplay: {fileID: 95678244797486910}
 --- !u!114 &114546930321070062
 MonoBehaviour:
