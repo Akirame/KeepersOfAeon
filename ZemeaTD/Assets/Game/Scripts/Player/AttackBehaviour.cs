@@ -10,10 +10,16 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
+    private InputControl inputPlayer;
+
+    private void Start()
+    {
+        inputPlayer = GetComponent<InputControl>();
+    }
 
     public void AttackControl()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(inputPlayer.jump))
         {
             if (IsFacingRight())
             {
@@ -24,7 +30,7 @@ public class AttackBehaviour : MonoBehaviour {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed;
             }
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(inputPlayer.moveDown))
         {
             if (IsFacingRight())
             {
@@ -45,7 +51,7 @@ public class AttackBehaviour : MonoBehaviour {
             angleAttack.z = -maxAngleAttack;
         }
         crosshair.transform.eulerAngles = angleAttack;
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(inputPlayer.attack))
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, transform.parent);
             Vector2 bulletDirection = crossPos.position - transform.position;

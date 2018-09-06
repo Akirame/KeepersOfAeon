@@ -7,7 +7,7 @@ public class AttackTrigger : MonoBehaviour {
 
     public enum EXIT_DIRECTION {RIGHT, LEFT}
     public GameObject player;
-    public CharacterController2D characterPlayer;
+    public InputControl inputPlayer;
     public EXIT_DIRECTION exitDirection;
     private bool isActivated = false;
 
@@ -21,11 +21,11 @@ public class AttackTrigger : MonoBehaviour {
 
     private void ExitControl()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && exitDirection == EXIT_DIRECTION.LEFT || Input.GetKeyDown(KeyCode.RightArrow) && exitDirection == EXIT_DIRECTION.RIGHT)
+        if (Input.GetKeyDown(inputPlayer.moveLeft) && exitDirection == EXIT_DIRECTION.LEFT || Input.GetKeyDown(inputPlayer.moveRight) && exitDirection == EXIT_DIRECTION.RIGHT)
         {
-            characterPlayer.SetAttackMode(false);
-            characterPlayer = null;
+            player.GetComponent<CharacterController2D>().SetAttackMode(false);
             player = null;
+            inputPlayer = null;
         }
     }
 
@@ -35,8 +35,8 @@ public class AttackTrigger : MonoBehaviour {
         {
             isActivated = true;
             player = collision.gameObject;
-            characterPlayer = player.GetComponent<CharacterController2D>();
-            characterPlayer.SetAttackMode(true);
+            inputPlayer = player.GetComponent<InputControl>();
+            player.GetComponent<CharacterController2D>().SetAttackMode(true);
         }
     }
 
@@ -47,5 +47,4 @@ public class AttackTrigger : MonoBehaviour {
             isActivated = false;
         }
     }
-
 }

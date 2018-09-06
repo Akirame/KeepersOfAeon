@@ -5,21 +5,6 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour    
 {
-    #region singleton
-    private static CharacterController2D instance;
-    public static CharacterController2D GetInstance()
-    {
-        return instance;
-    }
-    private void Awake()
-    {
-        if (!instance)
-            instance = this;
-        else
-            Destroy(instance.gameObject);
-    }
-    #endregion  
-
     public enum PLAYER_STATES {IDLE,RUNNING,JUMP,ATTACK,ON_ACTION};
     public float speed = 200f;
     public float airSpeed = 150f;
@@ -29,12 +14,14 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask floorLayer;
     public PLAYER_STATES currentState;
     private Rigidbody2D rig;
+    public InputControl inputControl;
 
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         SetAttackMode(false);
+        inputControl = GetComponent<InputControl>();
     }
 
     private void Update()
@@ -128,12 +115,12 @@ public class CharacterController2D : MonoBehaviour
             {
                 movSpeed = airSpeed;
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(inputControl.moveLeft))
             {
                 transform.localScale = new Vector3(-1, 1, 1);
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(inputControl.moveRight))
             {
                 transform.localScale = new Vector3(1, 1, 1);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
@@ -165,7 +152,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if (onFloor && Input.GetKeyDown(KeyCode.UpArrow))
+        if (onFloor && Input.GetKeyDown(inputControl.jump))
         {
             onFloor = false;
             rig.velocity = new Vector2(0, jumpForce);
@@ -188,6 +175,14 @@ public class CharacterController2D : MonoBehaviour
         {
             currentState = PLAYER_STATES.IDLE;
             GetComponent<AttackBehaviour>().SetVisibilityCrosshair(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(inputControl.openDoor) && collision.tag == "Door")
+        {
+            collision.GetComponent<Door>().GoToNextDoor(gameObject);
         }
     }
 
