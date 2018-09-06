@@ -29,9 +29,11 @@ public class EnemyManager : MonoBehaviour
     public GameObject wave;
     private int currentWave;
     private int currentEnemies;
+    private int enemyConta;
     private float timeBetweenWaves;
+    private float timeBetweenEnemies;
     private float timer;
-    private bool nextWave;
+    private bool nextWave;    
 
     private void Start()
     {
@@ -40,6 +42,8 @@ public class EnemyManager : MonoBehaviour
         currentWave = 1;
         wave = new GameObject();
         timeBetweenWaves = 5;
+        timeBetweenEnemies = 1.5f;
+        enemyConta = 0;
         timer = 0;
         currentEnemies = 0;        
     }
@@ -50,7 +54,6 @@ public class EnemyManager : MonoBehaviour
             if (nextWave)
             {
                 SpawnWave();
-                nextWave = false;
             }
             if (currentEnemies <= 0)
             {
@@ -63,22 +66,42 @@ public class EnemyManager : MonoBehaviour
                 else
                     timer += Time.deltaTime;
             }
-        }                    
+        }
     }
     private void SpawnWave()
     {
         wave.name = "Wave " + currentWave;
-        for (int i = 0; i < EnemyWaves[currentWave - 1].enemies.Count; i++)
+        if ((enemyConta < EnemyWaves[currentWave - 1].enemies.Count))
         {
-            Enemy e = EnemyWaves[currentWave - 1].enemies[i];
-            Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);                                    
+            if (timer >= timeBetweenEnemies)
+            {
+                Enemy e = EnemyWaves[currentWave - 1].enemies[enemyConta];
+                Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);
+                enemyConta++;
+                timer = 0;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
         }
-        currentEnemies = EnemyWaves[currentWave - 1].enemies.Count;
+        else
+        {
+            currentEnemies = enemyConta;
+            nextWave = false;
+            enemyConta = 0;
+            timer = 0;
+        }
+
     }
     private void EnemyKilled(Enemy e)
     {
         Destroy(e.gameObject);
         currentEnemies--;
+    }
+    private void OnDestroy()
+    {
+        Enemy.Hitted -= EnemyKilled;
     }
 }
