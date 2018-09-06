@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 61636046299073358}
   - component: {fileID: 50515188319582844}
   - component: {fileID: 114513684358692162}
+  - component: {fileID: 114400890996336136}
   m_Layer: 0
   m_Name: PlayerAttack
   m_TagString: Player
@@ -147,6 +148,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &114400890996336136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188257985725356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056d4ac7fcbad7f49b231c804552c4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleAttack: 65
+  angleAttackSpeed: 10
+  crosshair: {fileID: 0}
+  bullet: {fileID: 0}
+  crossPos: {fileID: 0}
 --- !u!114 &114513684358692162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,15 +178,10 @@ MonoBehaviour:
   speed: 200
   airSpeed: 150
   jumpForce: 5
-  maxAngleAttack: 65
-  angleAttackSpeed: 50
-  crosshair: {fileID: 0}
   floorLayer:
     serializedVersion: 2
     m_Bits: 256
   currentState: 0
-  bullet: {fileID: 1405494552224080, guid: 5ebb78861756a07478330cacb93f257c, type: 2}
-  crossPos: {fileID: 1998772396376016}
 --- !u!212 &212569016862743058
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 123416709}
   - component: {fileID: 123416711}
+  - component: {fileID: 123416712}
   - component: {fileID: 123416710}
   m_Layer: 0
   m_Name: rampart (1)
@@ -218,6 +219,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &123416712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123416708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3fbca9dc7ce6d4baf9184638505148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &131650289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1039988127199700, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+    type: 2}
+  m_PrefabInternal: {fileID: 414854222}
 --- !u!1001 &414854222
 Prefab:
   m_ObjectHideFlags: 0
@@ -267,6 +284,22 @@ Prefab:
       propertyPath: airSpeed
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 114400890996336136, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+        type: 2}
+      propertyPath: crossPos
+      value: 
+      objectReference: {fileID: 682863329}
+    - target: {fileID: 114400890996336136, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+        type: 2}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 131650289}
+    - target: {fileID: 114400890996336136, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1405494552224080, guid: 5ebb78861756a07478330cacb93f257c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce4a040a688e6fd49b8db88d54d3bf53, type: 2}
   m_IsPrefabAsset: 0
@@ -419,12 +452,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - enemies:
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
+    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
+    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
   - enemies:
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
+    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
+    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
+    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
   spawnPoints:
   - {fileID: 1021590092}
   - {fileID: 553728169}
@@ -491,6 +524,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &682863329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4823114892541050, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+    type: 2}
+  m_PrefabInternal: {fileID: 414854222}
 --- !u!1 &1021590091
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321114182}
   - component: {fileID: 1321114184}
+  - component: {fileID: 1321114185}
   - component: {fileID: 1321114183}
   m_Layer: 0
   m_Name: rampart
@@ -848,6 +887,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1321114185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321114181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3fbca9dc7ce6d4baf9184638505148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1326641369 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114690814927575952, guid: c0f8ec4101b128f4f9fa7cfe9909b780,

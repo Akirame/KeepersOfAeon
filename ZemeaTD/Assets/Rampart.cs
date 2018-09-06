@@ -5,29 +5,31 @@ using UnityEngine;
 public class Rampart : MonoBehaviour
 {
     private int health;
-    private SpriteRenderer renderer;
+    private SpriteRenderer rend;
+    private BoxCollider2D coll;
 
 	void Start ()
     {
         health = 100;
-        renderer = GetComponent<SpriteRenderer>();
+        rend = GetComponent<SpriteRenderer>();
+        coll = GetComponent<BoxCollider2D>();
 	}
     private void Update()
     {
         if (IsAlive())
-        {
-
+        {            
         }
         else
         {
+            coll.enabled = false;
             Color c = new Vector4(0, 0, 0, 0);
-            renderer.color = c;
+            rend.color = c;
         }
     }
     public void Attacked(int damage)
     {
         health -= damage;        
-        renderer.color = Color.red;
+        rend.color = Color.red;
         Debug.Log(health + "---" + gameObject.name);
     }
     private bool IsAlive()
