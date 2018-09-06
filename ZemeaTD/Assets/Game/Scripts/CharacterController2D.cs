@@ -24,11 +24,8 @@ public class CharacterController2D : MonoBehaviour
     public float speed = 200f;
     public float airSpeed = 150f;
     public float jumpForce = 5f;
-    private bool onDoor = false;
     private bool canMove = true;
-    private Door lastDoorTouched;
     private bool onFloor = false;
-    public bool facingRight = true;
     public LayerMask floorLayer;
     public PLAYER_STATES currentState;
     private Rigidbody2D rig;
@@ -36,9 +33,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
-        lastDoorTouched = null;
-        currentState = PLAYER_STATES.IDLE;
         rig = GetComponent<Rigidbody2D>();
+        SetAttackMode(false);
     }
 
     private void Update()
@@ -55,13 +51,11 @@ public class CharacterController2D : MonoBehaviour
                 Movement();
                 GroundControl();
                 JumpBehaviour();
-                DoorControl();
                 break;
             case PLAYER_STATES.RUNNING:
                 Movement();
                 GroundControl();
                 JumpBehaviour();
-                DoorControl();
                 break;
             case PLAYER_STATES.JUMP:
                 Movement();
@@ -77,7 +71,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void AttackMode()
     {
-        GetComponent<AttackBehaviour>().SetEnabled(true);
+        GetComponent<AttackBehaviour>().AttackControl();
     }
 
     private void StateController()
@@ -121,17 +115,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void DoorControl()
-    {
-        if (onDoor)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                lastDoorTouched.GotoObjective(this.gameObject);                
-            }
-        }
-    }
-
     private void Movement()
     {
         if (canMove)
@@ -148,12 +131,10 @@ public class CharacterController2D : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                facingRight = false;
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                facingRight = true;
                 transform.localScale = new Vector3(1, 1, 1);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
             }
@@ -195,36 +176,18 @@ public class CharacterController2D : MonoBehaviour
     {
         canMove = setMove;
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Door")
-        {            
-            if (!onDoor)
-            {
-                onDoor = true;
-                lastDoorTouched = collision.gameObject.GetComponent<Door>();
-            }
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Door")
-        {            
-            onDoor = false;
-            lastDoorTouched = null;
-        }
-    }
 
     public void SetAttackMode(bool val)
     {
-        if (currentState != PLAYER_STATES.IDLE)
+        if (val)
         {
             currentState = PLAYER_STATES.ATTACK;
+            GetComponent<AttackBehaviour>().SetVisibilityCrosshair(true);
         }
         else
         {
             currentState = PLAYER_STATES.IDLE;
-            GetComponent<AttackBehaviour>().SetEnabled(true);
+            GetComponent<AttackBehaviour>().SetVisibilityCrosshair(false);
         }
     }
 
