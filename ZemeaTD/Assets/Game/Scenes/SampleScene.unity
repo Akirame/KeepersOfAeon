@@ -113,6 +113,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &245707883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1188257985725356, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+    type: 2}
+  m_PrefabInternal: {fileID: 414854222}
+--- !u!114 &245707884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245707883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056d4ac7fcbad7f49b231c804552c4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleAttack: 65
+  angleAttackSpeed: 10
+  crosshair: {fileID: 981077784}
+  bullet: {fileID: 1405494552224080, guid: 5ebb78861756a07478330cacb93f257c, type: 2}
+  crossPos: {fileID: 293433860}
+--- !u!4 &293433860 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4823114892541050, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+    type: 2}
+  m_PrefabInternal: {fileID: 414854222}
 --- !u!1001 &414854222
 Prefab:
   m_ObjectHideFlags: 0
@@ -386,6 +412,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &876140613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670833101517898, guid: 5bf3303b1b0435141909eda359108017,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293422971}
+--- !u!1 &902331446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1107963753659812, guid: 5bf3303b1b0435141909eda359108017,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293422971}
+--- !u!1 &981077784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1039988127199700, guid: ce4a040a688e6fd49b8db88d54d3bf53,
+    type: 2}
+  m_PrefabInternal: {fileID: 414854222}
 --- !u!1 &1021590091
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +676,42 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114844123524279928, guid: 5bf3303b1b0435141909eda359108017,
+        type: 2}
+      propertyPath: nextDoor
+      value: 
+      objectReference: {fileID: 902331446}
+    - target: {fileID: 4020583326056994, guid: 5bf3303b1b0435141909eda359108017, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689055448168468, guid: 5bf3303b1b0435141909eda359108017, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585593949619000, guid: 5bf3303b1b0435141909eda359108017, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826025329676996, guid: 5bf3303b1b0435141909eda359108017, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069046468268974, guid: 5bf3303b1b0435141909eda359108017,
+        type: 2}
+      propertyPath: nextDoor
+      value: 
+      objectReference: {fileID: 1486556289}
+    - target: {fileID: 114846949097468692, guid: 5bf3303b1b0435141909eda359108017,
+        type: 2}
+      propertyPath: nextDoor
+      value: 
+      objectReference: {fileID: 876140613}
+    - target: {fileID: 114321319923019552, guid: 5bf3303b1b0435141909eda359108017,
+        type: 2}
+      propertyPath: nextDoor
+      value: 
+      objectReference: {fileID: 1717145048}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf3303b1b0435141909eda359108017, type: 2}
   m_IsPrefabAsset: 0
@@ -684,6 +761,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1486556289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1942201992048238, guid: 5bf3303b1b0435141909eda359108017,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293422971}
 --- !u!1 &1704291419
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +841,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1704291419}
   m_CullTransparentMesh: 0
+--- !u!1 &1717145048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1539323638862924, guid: 5bf3303b1b0435141909eda359108017,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293422971}
 --- !u!1 &1794222143
 GameObject:
   m_ObjectHideFlags: 0
