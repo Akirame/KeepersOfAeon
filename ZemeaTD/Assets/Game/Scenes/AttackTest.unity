@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &81740213
 Transform:
   m_ObjectHideFlags: 0
@@ -270,6 +270,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1594752310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716656834712064, guid: 6bd8e1ad1f744dd40bbc79aef7f9ceb8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1688127085}
+--- !u!114 &1594752311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594752310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056d4ac7fcbad7f49b231c804552c4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleAttack: 65
+  angleAttackSpeed: 10
+  facingRight: 1
+  crosshair: {fileID: 0}
+  bullet: {fileID: 1405494552224080, guid: 5ebb78861756a07478330cacb93f257c, type: 2}
+  crossPos: {fileID: 0}
 --- !u!1001 &1598077879
 Prefab:
   m_ObjectHideFlags: 0

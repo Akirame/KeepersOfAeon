@@ -28,17 +28,10 @@ public class CharacterController2D : MonoBehaviour
     private bool canMove = true;
     private Door lastDoorTouched;
     private bool onFloor = false;
-    private bool onAttackMode = false;
-    public float maxAngleAttack = 65f;
-    private Vector3 angleAttack;
-    public float angleAttackSpeed = 10f;
     public bool facingRight = true;
-    public GameObject crosshair;
     public LayerMask floorLayer;
     public PLAYER_STATES currentState;
     private Rigidbody2D rig;
-    public GameObject bullet;
-    public GameObject crossPos;
 
 
     private void Start()
@@ -46,8 +39,8 @@ public class CharacterController2D : MonoBehaviour
         lastDoorTouched = null;
         currentState = PLAYER_STATES.IDLE;
         rig = GetComponent<Rigidbody2D>();
-        crosshair = GameObject.FindGameObjectWithTag("Crosshair");
     }
+
     private void Update()
     {
         StateController();
@@ -75,11 +68,16 @@ public class CharacterController2D : MonoBehaviour
                 GroundControl();
                 break;
             case PLAYER_STATES.ATTACK:
-                AttackControl();
+                AttackMode();
                 break;
             default:
                 break;
         }
+    }
+
+    private void AttackMode()
+    {
+        GetComponent<AttackBehaviour>().SetEnabled(true);
     }
 
     private void StateController()
@@ -121,49 +119,6 @@ public class CharacterController2D : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    private void AttackControl()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            if (facingRight)
-            {
-                angleAttack.z += Time.deltaTime * angleAttackSpeed;
-            }
-            else
-            {
-                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
-            }
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            if (facingRight)
-            {
-                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
-
-            }
-            else
-            {
-                angleAttack.z += Time.deltaTime * angleAttackSpeed;
-            }
-        }
-        if (angleAttack.z > maxAngleAttack)
-        {
-            angleAttack.z = maxAngleAttack;
-        }
-        else if (angleAttack.z < -maxAngleAttack)
-        {
-            angleAttack.z = -maxAngleAttack;
-        }
-        crosshair.transform.eulerAngles = angleAttack;
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            GameObject b = Instantiate(bullet, transform.position, transform.rotation, transform.parent);
-            Vector2 bulletDirection = crossPos.transform.position - transform.position;
-            b.GetComponent<TestBullet>().Shoot(bulletDirection.normalized, angleAttack);
-        }
-
     }
 
     private void DoorControl()
@@ -262,16 +217,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void SetAttackMode(bool val)
     {
-        onAttackMode = val;
-        if (onAttackMode)
+        if (currentState != PLAYER_STATES.IDLE)
         {
             currentState = PLAYER_STATES.ATTACK;
-            crossPos.SetActive(true);
         }
         else
         {
             currentState = PLAYER_STATES.IDLE;
-            crossPos.SetActive(false);
+            GetComponent<AttackBehaviour>().SetEnabled(true);
         }
     }
 
