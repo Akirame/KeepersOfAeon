@@ -9,7 +9,6 @@ TagManager:
   - Enemy
   - Crosshair
   - Bullet
-  - Rampart
   layers:
   - Default
   - TransparentFX

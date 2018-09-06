@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 123416709}
   - component: {fileID: 123416711}
   - component: {fileID: 123416710}
+  - component: {fileID: 123416712}
   m_Layer: 0
   m_Name: rampart (1)
   m_TagString: Rampart
@@ -218,6 +219,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &123416712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123416708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3fbca9dc7ce6d4baf9184638505148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  renderer: {fileID: 0}
 --- !u!1001 &414854222
 Prefab:
   m_ObjectHideFlags: 0
@@ -419,12 +433,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - enemies:
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   - enemies:
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   spawnPoints:
   - {fileID: 1021590092}
   - {fileID: 553728169}
@@ -754,6 +768,7 @@ GameObject:
   - component: {fileID: 1321114182}
   - component: {fileID: 1321114184}
   - component: {fileID: 1321114183}
+  - component: {fileID: 1321114185}
   m_Layer: 0
   m_Name: rampart
   m_TagString: Rampart
@@ -848,6 +863,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1321114185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321114181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3fbca9dc7ce6d4baf9184638505148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  renderer: {fileID: 0}
 --- !u!114 &1326641369 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114690814927575952, guid: c0f8ec4101b128f4f9fa7cfe9909b780,
@@ -1091,12 +1119,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1823524133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.1179984, y: 1.8948067, z: 0.1732212}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1321114182}
   - {fileID: 123416709}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1940660972}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1940660972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4977053364655726, guid: 5bf3303b1b0435141909eda359108017,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293422971}
