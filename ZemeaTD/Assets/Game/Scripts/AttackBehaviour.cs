@@ -7,23 +7,15 @@ public class AttackBehaviour : MonoBehaviour {
     public float maxAngleAttack = 65f;
     private Vector3 angleAttack;
     public float angleAttackSpeed = 10f;
-    public bool facingRight = true;
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
 
-
-    private void Start()
-    {
-        crosshair = GameObject.FindGameObjectWithTag("Crosshair");
-        crossPos = crosshair.GetComponentInChildren<Transform>();
-    }
-
-    private void AttackControl()
+    public void AttackControl()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (facingRight)
+            if (IsFacingRight())
             {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed;
             }
@@ -34,7 +26,7 @@ public class AttackBehaviour : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (facingRight)
+            if (IsFacingRight())
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed;
 
@@ -59,12 +51,18 @@ public class AttackBehaviour : MonoBehaviour {
             Vector2 bulletDirection = crossPos.position - transform.position;
             b.GetComponent<TestBullet>().Shoot(bulletDirection.normalized, angleAttack);
         }
+    }
+
+    private bool IsFacingRight()
+    {
+        return transform.localScale.x == 1;
 
     }
 
-    public void SetEnabled(bool val)
+    public void SetVisibilityCrosshair(bool val)
     {
         crossPos.gameObject.SetActive(val);
+        angleAttack = Vector3.zero;
     }
 
 }

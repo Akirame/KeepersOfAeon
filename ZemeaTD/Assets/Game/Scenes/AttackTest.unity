@@ -287,11 +287,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngleAttack: 65
-  angleAttackSpeed: 10
+  angleAttackSpeed: 40
   facingRight: 1
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 2036967304}
   bullet: {fileID: 1405494552224080, guid: 5ebb78861756a07478330cacb93f257c, type: 2}
-  crossPos: {fileID: 0}
+  crossPos: {fileID: 81740213}
 --- !u!1001 &1598077879
 Prefab:
   m_ObjectHideFlags: 0
