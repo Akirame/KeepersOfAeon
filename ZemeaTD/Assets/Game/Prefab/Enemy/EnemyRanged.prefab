@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114668749071737600}
   - component: {fileID: 50111911320401406}
   - component: {fileID: 58974399126272128}
+  - component: {fileID: 61789606270115362}
   m_Layer: 9
   m_Name: EnemyRanged
   m_TagString: Enemy
@@ -73,12 +74,37 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13.96678
+--- !u!61 &61789606270115362
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347248784181244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.25, y: 2.25}
+    newSize: {x: 2.25, y: 2.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.25, y: 2.25}
+  m_EdgeRadius: 0
 --- !u!114 &114608272000057322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 0}
-  timeToAttack: 2
   damage: 10
+  timeToAttack: 2
   sprite: {fileID: 0}
   bullet: {fileID: 114058871533682056, guid: 8819a96739fe36746b2b0b7a86d5226a, type: 2}
 --- !u!114 &114668749071737600
