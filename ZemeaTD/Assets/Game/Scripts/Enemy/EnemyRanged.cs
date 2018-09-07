@@ -7,6 +7,7 @@ public class EnemyRanged : Enemy
     public float timeToAttack;    
     private float timer;    
     private bool isAttacking;
+    public RangeDetector detector;
     public SpriteRenderer sprite;
     public Bullet bullet;
 
@@ -15,6 +16,13 @@ public class EnemyRanged : Enemy
         base.Start();
         timer = 0;
         sprite = GetComponent<SpriteRenderer>();
+        detector.RampartOnRange += OnRange;
+        detector.RampartOffRange += OffRange;
+    }
+    private void OnDestroy()
+    {
+        detector.RampartOnRange -= OnRange;
+        detector.RampartOffRange -= OffRange;
     }
     private void Update()
     {
@@ -29,7 +37,9 @@ public class EnemyRanged : Enemy
             {
                 GameObject b = Instantiate(bullet.gameObject, transform.position,Quaternion.identity);
                 Vector2 bulletDirection = rampart.transform.position - transform.position;
-                b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, transform.eulerAngles);
+                b.GetComponent<Bullet>().SetDamage(damage);
+                b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
+                b.GetComponent<Bullet>().Shoot(bulletDirection.normalized,Vector3.right);
                 timer = 0;
             }
         }
@@ -39,22 +49,15 @@ public class EnemyRanged : Enemy
             timer = 0;
         }
     }
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnRange(RangeDetector d)
     {
-        base.OnTriggerEnter2D(collision);
-        if (collision.gameObject.tag == "Rampart")
-        {
-            rampart = collision.GetComponent<Rampart>();
-            movementBehaviour.Deactivate();
-        }
+        rampart = d.GetRampart();
+        movementBehaviour.Deactivate();
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OffRange(RangeDetector d)
     {
-        if (collision.gameObject.tag == "Rampart")
-        {
-            rampart = null;
-            movementBehaviour.enabled = true;
-        }
+        rampart = d.GetRampart();
+        movementBehaviour.enabled = true;
     }
 }
 

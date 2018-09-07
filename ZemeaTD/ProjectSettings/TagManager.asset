@@ -10,6 +10,8 @@ TagManager:
   - Crosshair
   - Bullet
   - Rampart
+  - EnemyBullet
+  - Range
   layers:
   - Default
   - TransparentFX

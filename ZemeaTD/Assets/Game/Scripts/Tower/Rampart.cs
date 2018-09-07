@@ -29,8 +29,7 @@ public class Rampart : MonoBehaviour
     public void Attacked(int damage)
     {
         health -= damage;        
-        rend.color = Color.red;
-        Debug.Log(health + "---" + gameObject.name);
+        rend.color = Color.red;        
     }
     private bool IsAlive()
     {
@@ -41,9 +40,16 @@ public class Rampart : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.parent.tag != "Player")
+        if (collision.gameObject.tag == "Enemy")
         {
-            Attacked(collision.GetComponent<Enemy>().damage);
+            if (!collision.GetComponent<EnemyRanged>())
+            {
+                Attacked(collision.GetComponent<Enemy>().damage);                
+            }
+        }
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            Attacked(collision.GetComponent<Bullet>().GetDamage());            
         }
     }
 }

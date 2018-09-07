@@ -55,6 +55,7 @@ public class AttackBehaviour : MonoBehaviour {
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, transform.parent);
             Vector2 bulletDirection = crossPos.position - transform.position;
+            b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Ally);
             b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, angleAttack);
         }
     }
