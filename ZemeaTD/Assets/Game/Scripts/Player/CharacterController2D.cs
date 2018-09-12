@@ -6,9 +6,7 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour    
 {
     public enum PLAYER_STATES {IDLE,RUNNING,JUMP,ATTACK,ON_ACTION};
-    public float speed = 200f;
-    public float airSpeed = 150f;
-    public float jumpForce = 5f;
+    public CharacterData playerData;
     private bool canMove = true;
     private bool onFloor = false;
     public LayerMask floorLayer;
@@ -109,11 +107,11 @@ public class CharacterController2D : MonoBehaviour
             float movSpeed;
             if (onFloor)
             {
-                movSpeed = speed;
+                movSpeed = playerData.floorSpeed;
             }
             else
             {
-                movSpeed = airSpeed;
+                movSpeed = playerData.airSpeed;
             }
             if (Input.GetKey(inputControl.moveLeft))
             {
@@ -155,7 +153,7 @@ public class CharacterController2D : MonoBehaviour
         if (onFloor && Input.GetKeyDown(inputControl.jump))
         {
             onFloor = false;
-            rig.velocity = new Vector2(0, jumpForce);
+            rig.velocity = new Vector2(0, playerData.jumpForce);
         }
     }
 
