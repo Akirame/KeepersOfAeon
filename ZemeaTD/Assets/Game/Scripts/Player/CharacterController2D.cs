@@ -3,23 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController2D : MonoBehaviour    
+public class CharacterController2D : MonoBehaviour
 {
-    public enum PLAYER_STATES {IDLE,RUNNING,JUMP,ATTACK,ON_ACTION};
+    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };
     public CharacterData playerData;
+    public PLAYER_STATES currentState;
+    public LayerMask floorLayer;
+    public InputControl inputControl;
     private bool canMove = true;
     private bool onFloor = false;
-    public LayerMask floorLayer;
-    public PLAYER_STATES currentState;
     private Rigidbody2D rig;
-    public InputControl inputControl;
-
+    private AttackBehaviour attackComponent;
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         SetAttackMode(false);
         inputControl = GetComponent<InputControl>();
+        attackComponent = GetComponent<AttackBehaviour>();
     }
 
     private void Update()
@@ -32,21 +33,21 @@ public class CharacterController2D : MonoBehaviour
     {
         switch (currentState)
         {
-            case PLAYER_STATES.IDLE:
+            case PLAYER_STATES.Idle:
                 Movement();
                 GroundControl();
                 JumpBehaviour();
                 break;
-            case PLAYER_STATES.RUNNING:
+            case PLAYER_STATES.Running:
                 Movement();
                 GroundControl();
                 JumpBehaviour();
                 break;
-            case PLAYER_STATES.JUMP:
+            case PLAYER_STATES.Jump:
                 Movement();
                 GroundControl();
                 break;
-            case PLAYER_STATES.ATTACK:
+            case PLAYER_STATES.Attack:
                 AttackMode();
                 break;
             default:
@@ -56,44 +57,44 @@ public class CharacterController2D : MonoBehaviour
 
     private void AttackMode()
     {
-        GetComponent<AttackBehaviour>().AttackControl();
+        attackComponent.AttackControl();
     }
 
     private void StateController()
     {
         switch (currentState)
         {
-            case PLAYER_STATES.IDLE:
+            case PLAYER_STATES.Idle:
                 if (onFloor)
                 {
                     if (rig.velocity.x != 0)
-                        currentState = PLAYER_STATES.RUNNING;
+                        currentState = PLAYER_STATES.Running;
                 }
                 else
                 {
-                    currentState = PLAYER_STATES.JUMP;
+                    currentState = PLAYER_STATES.Jump;
                 }
                 break;
-            case PLAYER_STATES.RUNNING:
+            case PLAYER_STATES.Running:
                 if (onFloor)
                 {
                     if (rig.velocity.x == 0)
-                        currentState = PLAYER_STATES.IDLE;
+                        currentState = PLAYER_STATES.Idle;
                 }
                 else
                 {
-                    currentState = PLAYER_STATES.JUMP;
+                    currentState = PLAYER_STATES.Jump;
                 }
                 break;
-            case PLAYER_STATES.JUMP:
+            case PLAYER_STATES.Jump:
                 if (onFloor)
                 {
-                    currentState = PLAYER_STATES.IDLE;
+                    currentState = PLAYER_STATES.Idle;
                 }
                 break;
-            case PLAYER_STATES.ATTACK:
+            case PLAYER_STATES.Attack:
                 break;
-            case PLAYER_STATES.ON_ACTION:
+            case PLAYER_STATES.OnAction:
                 break;
             default:
                 break;
@@ -166,12 +167,12 @@ public class CharacterController2D : MonoBehaviour
     {
         if (val)
         {
-            currentState = PLAYER_STATES.ATTACK;
+            currentState = PLAYER_STATES.Attack;
             GetComponent<AttackBehaviour>().SetVisibilityCrosshair(true);
         }
         else
         {
-            currentState = PLAYER_STATES.IDLE;
+            currentState = PLAYER_STATES.Idle;
             GetComponent<AttackBehaviour>().SetVisibilityCrosshair(false);
         }
     }

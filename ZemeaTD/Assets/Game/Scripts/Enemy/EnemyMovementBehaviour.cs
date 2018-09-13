@@ -5,16 +5,16 @@ using UnityEngine;
 public class EnemyMovementBehaviour : MonoBehaviour
 {
     private Rigidbody2D rig;
-    public float speed = 200;
-    public enum Dir { LEFT, RIGHT }
     private Dir direction;
+    private SpriteRenderer rend;
+    public float speed = 200;
+    public enum Dir { Left, Right }
+
 
     private void Start()
-    {
-        rig = GetComponent<Rigidbody2D>();        
-    }
-    private void Awake()
-    {
+    {        
+        rig = GetComponent<Rigidbody2D>();
+        rend = GetComponent<SpriteRenderer>();
         SetDirection();
     }
     private void Update()
@@ -22,10 +22,10 @@ public class EnemyMovementBehaviour : MonoBehaviour
         {
             switch (direction)
             {
-                case Dir.LEFT:
+                case Dir.Left:
                     rig.velocity = new Vector2(-speed * Time.deltaTime, rig.velocity.y);
                     break;
-                case Dir.RIGHT:
+                case Dir.Right:
                     rig.velocity = new Vector2(speed * Time.deltaTime, rig.velocity.y);
                     break;
             }
@@ -34,9 +34,15 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public void SetDirection()
     {
         if (transform.position.x > 0)
-            direction = Dir.LEFT;
+        {
+            direction = Dir.Left;
+            rend.flipX = true;
+        }
         else
-            direction = Dir.RIGHT;
+        {
+            direction = Dir.Right;
+            rend.flipX = false;
+        }
     }
     public void Deactivate()
     {

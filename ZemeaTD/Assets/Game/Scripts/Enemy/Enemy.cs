@@ -1,6 +1,7 @@
 ﻿    using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+    using System.Security;
+    using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class Enemy : MonoBehaviour
     public EnemyMovementBehaviour movementBehaviour;
     public int damage;
     protected Rampart rampart;
+    protected bool syncroAttackWithAnim;
 
     protected virtual void Start()
     {        
-        movementBehaviour = GetComponent<EnemyMovementBehaviour>();        
+        movementBehaviour = GetComponent<EnemyMovementBehaviour>();
+        syncroAttackWithAnim = false;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,5 +26,10 @@ public class Enemy : MonoBehaviour
         }
         if (collision.gameObject.tag == "Bullet")
             Hitted(this);
-    }        
+    }
+
+    public bool AttackAnimEnd()
+    {
+        syncroAttackWithAnim = true;
+    }
 }

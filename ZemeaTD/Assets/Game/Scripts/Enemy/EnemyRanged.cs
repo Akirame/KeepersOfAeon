@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemyRanged : Enemy
 {
-    public float timeToAttack;    
-    private float timer;    
-    private bool isAttacking;
-    public RangeDetector detector;
-    public SpriteRenderer sprite;
+    public float timeToAttack;        
+    public RangeDetector detector;    
     public Bullet bullet;
+    private float timer;
+    private bool isAttacking;
+    private Animator anim;
 
     protected override void Start()
     {
         base.Start();
-        timer = 0;
-        sprite = GetComponent<SpriteRenderer>();
+        timer = 0;        
         detector.RampartOnRange += OnRange;
         detector.RampartOffRange += OffRange;
+        anim = GetComponent<Animator>();
     }
     private void OnDestroy()
     {
@@ -27,8 +27,7 @@ public class EnemyRanged : Enemy
     private void Update()
     {
         if (rampart)
-        {
-            sprite.color = Color.red;
+        {            
             if (timer < timeToAttack)
             {
                 timer += Time.deltaTime;
@@ -44,8 +43,7 @@ public class EnemyRanged : Enemy
             }
         }
         else
-        {
-            sprite.color = Color.white;
+        {            
             timer = 0;
         }
     }
@@ -53,11 +51,13 @@ public class EnemyRanged : Enemy
     {
         rampart = d.GetRampart();
         movementBehaviour.Deactivate();
+        anim.SetBool("AttackOn", true);
     }
     private void OffRange(RangeDetector d)
     {
         rampart = d.GetRampart();
         movementBehaviour.enabled = true;
+        anim.SetBool("AttackOn", false);
     }
 }
 

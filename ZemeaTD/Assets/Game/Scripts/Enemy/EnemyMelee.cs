@@ -7,19 +7,19 @@ public class EnemyMelee : Enemy
     public float timeToAttack;    
     private float timer;    
     private bool isAttacking;
-    public SpriteRenderer sprite;
+    private Animator anim;
+    
 
     protected override void Start()
     {
         base.Start();
-        timer = 0;
-        sprite = GetComponent<SpriteRenderer>();
+        timer = 0;        
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {        
         if (rampart)
-        {
-            sprite.color = Color.red;
+        {            
             if (timer < timeToAttack)
             {
                 timer += Time.deltaTime;
@@ -31,8 +31,7 @@ public class EnemyMelee : Enemy
             }
         }
         else
-        {
-            sprite.color = Color.white;
+        {            
             timer = 0;
         }        
     }
@@ -44,6 +43,7 @@ public class EnemyMelee : Enemy
         {
             rampart = collision.GetComponent<Rampart>();
             movementBehaviour.Deactivate();
+            anim.SetBool("AttackOn",true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -52,6 +52,7 @@ public class EnemyMelee : Enemy
         {
             rampart = null;
             movementBehaviour.enabled = true;
+            anim.SetBool("AttackOn",false);
         }
     }
 }
