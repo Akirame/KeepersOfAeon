@@ -24,10 +24,11 @@ public class EnemyMelee : Enemy
             {
                 timer += Time.deltaTime;
             }
-            else
+            else if (syncroAttackWithAnim)
             {
                 rampart.Attacked(damage);
                 timer = 0;
+                syncroAttackWithAnim = false;                
             }
         }
         else

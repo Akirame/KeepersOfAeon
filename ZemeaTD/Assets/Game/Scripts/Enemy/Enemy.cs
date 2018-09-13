@@ -28,8 +28,8 @@ public class Enemy : MonoBehaviour
             Hitted(this);
     }
 
-    public bool AttackAnimEnd()
+    public void AttackAnimEnd()
     {
-        syncroAttackWithAnim = true;
+        syncroAttackWithAnim = true;        
     }
 }

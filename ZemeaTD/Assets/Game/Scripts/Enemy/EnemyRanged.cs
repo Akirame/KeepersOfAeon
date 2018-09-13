@@ -30,9 +30,9 @@ public class EnemyRanged : Enemy
         {            
             if (timer < timeToAttack)
             {
-                timer += Time.deltaTime;
+                timer += Time.deltaTime;                                    
             }
-            else
+            else if(syncroAttackWithAnim)
             {
                 GameObject b = Instantiate(bullet.gameObject, transform.position,Quaternion.identity);
                 Vector2 bulletDirection = rampart.transform.position - transform.position;
@@ -40,6 +40,8 @@ public class EnemyRanged : Enemy
                 b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
                 b.GetComponent<Bullet>().Shoot(bulletDirection.normalized,Vector3.right);
                 timer = 0;
+                syncroAttackWithAnim = false;
+                
             }
         }
         else
