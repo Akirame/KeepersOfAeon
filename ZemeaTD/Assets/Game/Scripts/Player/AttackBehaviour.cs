@@ -9,14 +9,19 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
+    public ElementalArcanum.ORBS currentElement = ElementalArcanum.ORBS.WATER;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
+    private int playerDamage;
+    private CharacterController2D player;
 
     private void Start()
     {
         inputPlayer = GetComponent<InputControl>();
         bulletsContainer = new GameObject("BulletsContainer");
+        player = GetComponent<CharacterController2D>();
+        playerDamage = player.playerData.maxDamage;
     }
 
     public void AttackControl()
@@ -57,8 +62,7 @@ public class AttackBehaviour : MonoBehaviour {
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
-            b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Ally);
-            b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, angleAttack);
+            b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement);
         }
     }
 
@@ -72,6 +76,11 @@ public class AttackBehaviour : MonoBehaviour {
     {
         crossPos.gameObject.SetActive(val);
         angleAttack = Vector3.zero;
+    }
+
+    public void ChangeElement(ElementalArcanum.ORBS element)
+    {
+        currentElement = element;
     }
 
 }
