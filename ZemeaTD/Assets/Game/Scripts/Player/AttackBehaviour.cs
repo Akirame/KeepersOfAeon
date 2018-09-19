@@ -35,6 +35,7 @@ public class AttackBehaviour : MonoBehaviour {
             else
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed;
+
             }
         }
         else if (Input.GetKey(inputPlayer.moveDown))
@@ -42,7 +43,6 @@ public class AttackBehaviour : MonoBehaviour {
             if (IsFacingRight())
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed;
-
             }
             else
             {
@@ -68,7 +68,7 @@ public class AttackBehaviour : MonoBehaviour {
 
     private bool IsFacingRight()
     {
-        return transform.localScale.x == 1;
+        return transform.localScale.x > 0;
 
     }
 

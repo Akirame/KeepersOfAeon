@@ -116,12 +116,12 @@ public class CharacterController2D : MonoBehaviour
             }
             if (Input.GetKey(inputControl.moveLeft))
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-2,2, 1);
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else if (Input.GetKey(inputControl.moveRight))
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(2, 2, 1);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else
@@ -139,7 +139,7 @@ public class CharacterController2D : MonoBehaviour
     {
         Vector2 minSpriteSize = new Vector2(0, -GetComponent<SpriteRenderer>().size.y / 2);
         Vector2 floorContact = (Vector2)transform.position + minSpriteSize;
-        if (Physics2D.Raycast(floorContact, Vector2.down, 0.1f, floorLayer))
+        if (Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer))
         {
             onFloor = true;
         }
