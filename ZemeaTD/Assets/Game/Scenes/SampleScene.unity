@@ -2334,6 +2334,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114636696753579976, guid: 5af252f5c0806a540ac56c3c7920365d,
+        type: 2}
+      propertyPath: facingDirection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af252f5c0806a540ac56c3c7920365d, type: 2}
   m_IsPrefabAsset: 0

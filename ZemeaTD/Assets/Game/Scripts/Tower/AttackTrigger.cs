@@ -5,38 +5,55 @@ using UnityEngine;
 
 public class AttackTrigger : MonoBehaviour {
 
-    public enum EXIT_DIRECTION {RIGHT, LEFT}
+    public enum FACING_DIRECTION {RIGHT, LEFT}
     public GameObject player;
     public InputControl inputPlayer;
-    public EXIT_DIRECTION exitDirection;
+    public FACING_DIRECTION facingDirection;
     private bool isActivated = false;
 
     private void Update()
     {
-        if (player)
-        {
-            ExitControl();
-        }
     }
 
     private void ExitControl()
     {
-        if (Input.GetKeyDown(inputPlayer.moveLeft) && exitDirection == EXIT_DIRECTION.LEFT || Input.GetKeyDown(inputPlayer.moveRight) && exitDirection == EXIT_DIRECTION.RIGHT)
+        if (Input.GetKeyDown(inputPlayer.openDoor))
         {
-            player.GetComponent<CharacterController2D>().SetAttackMode(false);
-            player = null;
-            inputPlayer = null;
+            ExitAttackInstance();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !isActivated)
+        if (collision.tag == "Player")
         {
-            isActivated = true;
             player = collision.gameObject;
             inputPlayer = player.GetComponent<InputControl>();
-            player.GetComponent<CharacterController2D>().SetAttackMode(true);
+            if (!isActivated && Input.GetKeyDown(inputPlayer.openDoor))
+            {
+                isActivated = true;
+                player.GetComponent<CharacterController2D>().SetAttackMode(true);
+                FacingClamp();
+            }
+            else if (isActivated && Input.GetKeyDown(inputPlayer.openDoor))
+            {
+                ExitControl();
+            }
+        }
+    }
+
+    private void FacingClamp()
+    {
+        switch (facingDirection)
+        {
+            case FACING_DIRECTION.RIGHT:
+                player.GetComponent<CharacterController2D>().SetFacing(true);
+                break;
+            case FACING_DIRECTION.LEFT:
+                player.GetComponent<CharacterController2D>().SetFacing(false);
+                break;
+            default:
+                break;
         }
     }
 
@@ -44,7 +61,15 @@ public class AttackTrigger : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            isActivated = false;
+            ExitAttackInstance();
         }
+    }
+
+    private void ExitAttackInstance()
+    {
+        isActivated = false;
+        player.GetComponent<CharacterController2D>().SetAttackMode(false);
+        player = null;
+        inputPlayer = null;
     }
 }

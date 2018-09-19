@@ -116,12 +116,12 @@ public class CharacterController2D : MonoBehaviour
             }
             if (Input.GetKey(inputControl.moveLeft))
             {
-                transform.localScale = new Vector3(-2,2, 1);
+                SetFacing(false);
                 rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else if (Input.GetKey(inputControl.moveRight))
             {
-                transform.localScale = new Vector3(2, 2, 1);
+                SetFacing(true);
                 rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
             }
             else
@@ -182,6 +182,18 @@ public class CharacterController2D : MonoBehaviour
         if (Input.GetKeyDown(inputControl.openDoor) && collision.tag == "Door")
         {
             collision.GetComponent<Door>().GoToNextDoor(gameObject);
+        }
+    }
+
+    public void SetFacing(bool faceRight)
+    {
+        if (faceRight)
+        {
+            transform.localScale = new Vector2(2, 2);
+        }
+        else
+        {
+            transform.localScale = new Vector2(-2, 2);
         }
     }
 
