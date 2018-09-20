@@ -176,6 +176,26 @@ Prefab:
     - {fileID: 212554071995046158, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &33957636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1441377581298454, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1087558969}
+--- !u!114 &33957639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33957636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12697717ca785e24bab365b036f0e618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 1
+  elementSprite: {fileID: 0}
+  c: {r: 0, g: 0, b: 0, a: 0}
+  used: 0
 --- !u!1001 &82222351
 Prefab:
   m_ObjectHideFlags: 0
@@ -270,6 +290,26 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3fce02648a62343952ff160cb49779, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &146354978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1783441369258336, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1087558969}
+--- !u!114 &146354981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 146354978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12697717ca785e24bab365b036f0e618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 2
+  elementSprite: {fileID: 0}
+  c: {r: 0, g: 0, b: 0, a: 0}
+  used: 0
 --- !u!1 &151428853
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,11 +457,6 @@ Prefab:
     - target: {fileID: 1136233606573308, guid: 5a3fce02648a62343952ff160cb49779, type: 2}
       propertyPath: m_Name
       value: Trampolin (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114221871314178322, guid: 5a3fce02648a62343952ff160cb49779,
-        type: 2}
-      propertyPath: jumpForce
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3fce02648a62343952ff160cb49779, type: 2}
@@ -626,7 +661,7 @@ Prefab:
     - target: {fileID: 50743353031755614, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212837881798680476, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
@@ -1290,6 +1325,26 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758339419}
   m_CullTransparentMesh: 0
+--- !u!1 &798634636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1940957681697100, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1087558969}
+--- !u!114 &798634639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798634636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12697717ca785e24bab365b036f0e618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 0
+  elementSprite: {fileID: 0}
+  c: {r: 0, g: 0, b: 0, a: 0}
+  used: 0
 --- !u!1 &864300164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2066,11 @@ Prefab:
       propertyPath: orbs.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114934636270486326, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: orbsSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4128227804455244, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.3
@@ -2105,15 +2165,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4145243991345828, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.8870109
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4145243991345828, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.46174863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4145243991345828, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4145243991345828, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_LocalRotation.y
@@ -2172,6 +2232,45 @@ Prefab:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4145243991345828, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212235358040005234, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212235358040005234, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212235358040005234, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212235358040005234, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114934636270486326, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: orbsSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 798634639}
+    - target: {fileID: 114934636270486326, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: orbsSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 33957639}
+    - target: {fileID: 114934636270486326, guid: 9c1f15b5bf536ec419a9d37b09a2aa03,
+        type: 2}
+      propertyPath: orbsSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 146354981}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
   m_IsPrefabAsset: 0

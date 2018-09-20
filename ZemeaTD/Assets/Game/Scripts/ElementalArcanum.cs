@@ -6,11 +6,13 @@ using UnityEngine;
 public class ElementalArcanum : MonoBehaviour {
 
     public GameObject[] orbs;
+    public ElementalOrb[] orbsSprites;
     private GameObject player;
     public ElementalOrb orbSelected;
     private InputControl inputPlayer;
     private int orbIndex = 0;
     public GameObject orbPivot;
+    private int rotation = 120;
 
     private void Start()
     {
@@ -34,7 +36,21 @@ public class ElementalArcanum : MonoBehaviour {
 
     private void ChooseOrb()
     {
-        player.GetComponent<AttackBehaviour>().ChangeElement(orbSelected);
+        AttackBehaviour attackPlayer = player.GetComponent<AttackBehaviour>();
+        if (!orbsSprites[(int)orbSelected.elementType].used)
+        {
+            if (!attackPlayer.currentElement)
+            {
+                orbsSprites[(int)orbSelected.elementType].SetActive(false);
+                attackPlayer.currentElement = orbSelected;
+            }
+            if (attackPlayer.currentElement != orbSelected)
+            {
+                orbsSprites[(int)attackPlayer.currentElement.elementType].SetActive(true);
+                attackPlayer.currentElement = orbSelected;
+                orbsSprites[(int)orbSelected.elementType].SetActive(false);
+            }
+        }
     }
 
     private void NextOrb()
@@ -42,14 +58,15 @@ public class ElementalArcanum : MonoBehaviour {
         orbIndex++;
         if (orbIndex > orbs.Length - 1)
         {
-            orbIndex = 0;
+            orbIndex = 0;            
         }
         orbSelected = orbs[orbIndex].GetComponent<ElementalOrb>();
         ChangeOrbsOrder();
     }
 
     private void ChangeOrbsOrder()
-    {
+    {        
+        orbPivot.transform.eulerAngles = new Vector3(0, 0, rotation * orbIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -51,9 +51,12 @@ public class EnemyManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Enemy e = EnemyWaves[currentWave - 1].enemies[Random.Range(0,EnemyWaves[currentWave-1].enemies.Count)];
-            Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);
+            for (int i = 0; i < 5; i++)
+            {
+                Enemy e = EnemyWaves[0].enemies[Random.Range(0, EnemyWaves[0].enemies.Count)];
+                Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);
+            }
         }
         if (currentWave <= EnemyWaves.Count)
         {
