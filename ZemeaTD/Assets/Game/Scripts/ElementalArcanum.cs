@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class ElementalArcanum : MonoBehaviour {
 
-    public enum ORBS {WATER,FIRE,EARTH, LAST };
-    public ORBS currentOrb = ORBS.WATER;
+    public GameObject[] orbs;
     private GameObject player;
+    public ElementalOrb orbSelected;
     private InputControl inputPlayer;
     private int orbIndex = 0;
     public GameObject orbPivot;
+
+    private void Start()
+    {
+        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb>();
+    }
 
     private void Update()
     {
@@ -29,38 +34,22 @@ public class ElementalArcanum : MonoBehaviour {
 
     private void ChooseOrb()
     {
-        player.GetComponent<AttackBehaviour>().ChangeElement(currentOrb);
+        player.GetComponent<AttackBehaviour>().ChangeElement(orbSelected);
     }
 
     private void NextOrb()
     {
         orbIndex++;
-        if (orbIndex != 0 && orbIndex % (int)ORBS.LAST == 0)
+        if (orbIndex > orbs.Length - 1)
         {
             orbIndex = 0;
         }
-        currentOrb = (ORBS)orbIndex;
+        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb>();
         ChangeOrbsOrder();
     }
 
     private void ChangeOrbsOrder()
     {
-        switch (currentOrb)
-        {
-            case ORBS.WATER:
-                orbPivot.transform.eulerAngles = new Vector3(0, 0, 0);
-                break;
-            case ORBS.FIRE:
-                orbPivot.transform.eulerAngles = new Vector3(0, 0, 128);
-                break;
-            case ORBS.EARTH:
-                orbPivot.transform.eulerAngles = new Vector3(0, 0, 235);
-                break;
-            case ORBS.LAST:
-                break;
-            default:
-                break;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

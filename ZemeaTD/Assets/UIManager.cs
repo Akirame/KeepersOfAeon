@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
 
     private void ChangeOrbImage()
     {
-        orbPlayer1.sprite = orbSprites[(int)player1.currentElement];
-        orbPlayer2.sprite = orbSprites[(int)player2.currentElement];
+        //orbPlayer1.sprite = orbSprites[(int)player1.currentElement];
+        //orbPlayer2.sprite = orbSprites[(int)player2.currentElement];
     }
 
     private void UpdateText()

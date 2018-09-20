@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElementalProyectile : MonoBehaviour {
 
-    public ElementalArcanum.ORBS element;
+    public ElementalOrb element;
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
@@ -30,7 +30,7 @@ public class ElementalProyectile : MonoBehaviour {
         transform.right = rigid.velocity;
     }
 
-    public void Shoot(Vector2 dir,int _damage, ElementalArcanum.ORBS _element)
+    public void Shoot(Vector2 dir,int _damage, ElementalOrb _element)
     {
         direction = dir;
         damage = _damage;
@@ -41,20 +41,20 @@ public class ElementalProyectile : MonoBehaviour {
 
     private void ChangeElementColor()
     {
-        switch (element)
-        {
-            case ElementalArcanum.ORBS.WATER:
-                spriteRenderer.color = Color.blue;
-                break;
-            case ElementalArcanum.ORBS.FIRE:
-                spriteRenderer.color = Color.red;
-                break;
-            case ElementalArcanum.ORBS.EARTH:
-                spriteRenderer.color = Color.green;
-                break;
-            default:
-                break;
-        }
+        //switch (element)
+        //{
+        //    case ElementalArcanum.ORBS.WATER:
+        //        spriteRenderer.color = Color.blue;
+        //        break;
+        //    case ElementalArcanum.ORBS.FIRE:
+        //        spriteRenderer.color = Color.red;
+        //        break;
+        //    case ElementalArcanum.ORBS.EARTH:
+        //        spriteRenderer.color = Color.green;
+        //        break;
+        //    default:
+        //        break;
+        //}
         main.startColor = new ParticleSystem.MinMaxGradient(spriteRenderer.color);
     }
 

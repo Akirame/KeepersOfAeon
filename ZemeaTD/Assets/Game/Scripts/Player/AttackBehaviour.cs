@@ -9,7 +9,7 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
-    public ElementalArcanum.ORBS currentElement = ElementalArcanum.ORBS.WATER;
+    public ElementalOrb currentElement;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
@@ -78,7 +78,7 @@ public class AttackBehaviour : MonoBehaviour {
         angleAttack = Vector3.zero;
     }
 
-    public void ChangeElement(ElementalArcanum.ORBS element)
+    public void ChangeElement(ElementalOrb element)
     {
         currentElement = element;
     }

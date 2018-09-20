@@ -6,38 +6,42 @@ using UnityEngine;
 public class AttackTrigger : MonoBehaviour {
 
     public enum FACING_DIRECTION {RIGHT, LEFT}
+    public FACING_DIRECTION facingDirection;
     public GameObject player;
     public InputControl inputPlayer;
-    public FACING_DIRECTION facingDirection;
-    private bool isActivated = false;
+    public bool isUsed = false;
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-    }
-
-    private void ExitControl()
-    {
-        if (Input.GetKeyDown(inputPlayer.openDoor))
+        if (collision.tag == "Player" && !isUsed)
         {
-            ExitAttackInstance();
+            AddPlayerReferences(collision);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void AddPlayerReferences(Collider2D col)
     {
-        if (collision.tag == "Player")
+        player = col.gameObject;
+        inputPlayer = player.GetComponent<InputControl>();
+    }
+
+    private void Update()
+    {
+        if (player)
         {
-            player = collision.gameObject;
-            inputPlayer = player.GetComponent<InputControl>();
-            if (!isActivated && Input.GetKeyDown(inputPlayer.openDoor))
+            if (Input.GetKeyDown(inputPlayer.openDoor))
             {
-                isActivated = true;
-                player.GetComponent<CharacterController2D>().SetAttackMode(true);
-                FacingClamp();
-            }
-            else if (isActivated && Input.GetKeyDown(inputPlayer.openDoor))
-            {
-                ExitControl();
+                if (!isUsed)
+                {
+                    isUsed = true;
+                    player.GetComponent<CharacterController2D>().SetAttackMode(true);
+                    FacingClamp();
+                }
+                else
+                {
+                    isUsed = false;
+                    player.GetComponent<CharacterController2D>().SetAttackMode(false);
+                }
             }
         }
     }
@@ -61,14 +65,12 @@ public class AttackTrigger : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            ExitAttackInstance();
+            RemovePlayerReferences();
         }
     }
 
-    private void ExitAttackInstance()
+    private void RemovePlayerReferences()
     {
-        isActivated = false;
-        player.GetComponent<CharacterController2D>().SetAttackMode(false);
         player = null;
         inputPlayer = null;
     }
