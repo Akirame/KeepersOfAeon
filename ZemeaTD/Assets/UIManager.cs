@@ -15,18 +15,34 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (waveTextAux != EnemyManager.GetInstance().wave.name)
+        if (waveTextAux != EnemyManager.GetInstance().wave.name) //delegate
         {
             GetComponent<Animator>().SetTrigger("wave");
             waveTextAux = EnemyManager.GetInstance().wave.name;            
         }
         ChangeOrbImage();
     }
-
-    private void ChangeOrbImage()
+    
+    private void ChangeOrbImage()//delegate
     {
-        //orbPlayer1.sprite = orbSprites[(int)player1.currentElement];
-        //orbPlayer2.sprite = orbSprites[(int)player2.currentElement];
+        if (player1.currentElement)
+        {
+            orbPlayer1.color = new Color(1f, 1f, 1f, 1f);
+            orbPlayer1.sprite = orbSprites[(int)player1.currentElement.elementType];
+        }
+        else
+        {
+            orbPlayer1.color = new Color(1f, 1f, 1f, 0f);            
+        }
+        if (player2.currentElement)
+        {
+            orbPlayer2.color = new Color(1f, 1f, 1f, 1f);
+            orbPlayer2.sprite = orbSprites[(int)player2.currentElement.elementType];
+        }
+        else
+        {
+            orbPlayer2.color = new Color(1f, 1f, 1f, 0f);            
+        }
     }
 
     private void UpdateText()

@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 0}
+  element: 0
   damage: 10
+  health: 100
   timeToAttack: 1
 --- !u!114 &114668749071737600
 MonoBehaviour:
@@ -123,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 200
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1

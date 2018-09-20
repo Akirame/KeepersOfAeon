@@ -9,7 +9,8 @@ public class InputControl : MonoBehaviour {
     public KeyCode moveRight;
     public KeyCode jump;
     public KeyCode moveDown;
-    public KeyCode openDoor;
-    public KeyCode attack;
+    public KeyCode primaryButton;
+    public KeyCode secondaryButton;
+    public string axisH;
     #endregion
 }

@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   elementSprite: {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
+  c: {r: 0.096788846, g: 0.023584902, b: 1, a: 1}

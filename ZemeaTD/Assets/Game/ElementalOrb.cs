@@ -7,4 +7,5 @@ public class ElementalOrb : MonoBehaviour {
     public enum ELEMENT_TYPE {WATER, FIRE, EARTH };
     public ELEMENT_TYPE elementType;
     public Sprite elementSprite;
+    public Color c;        
 }

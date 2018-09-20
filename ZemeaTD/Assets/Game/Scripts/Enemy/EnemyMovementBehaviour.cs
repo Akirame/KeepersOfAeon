@@ -49,4 +49,11 @@ public class EnemyMovementBehaviour : MonoBehaviour
         rig.velocity = Vector2.zero;
         this.enabled = false;
     }
+    public void KnockBack(float force)
+    {
+        if(direction == Dir.Right)
+        rig.AddForce(Vector2.left * force, ForceMode2D.Impulse);
+        else
+            rig.AddForce(Vector2.right * force, ForceMode2D.Impulse);
+    }
 }

@@ -21,11 +21,11 @@ public class ElementalArcanum : MonoBehaviour {
     {
         if (player)
         {
-            if (Input.GetKeyDown(inputPlayer.openDoor))
+            if (Input.GetKeyDown(inputPlayer.primaryButton))
             {
-                NextOrb();
+                NextOrb();                
             }
-            if (Input.GetKeyDown(inputPlayer.attack))
+            if (Input.GetKeyDown(inputPlayer.secondaryButton))
             {
                 ChooseOrb();
             }

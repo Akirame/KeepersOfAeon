@@ -16,4 +16,4 @@ MonoBehaviour:
   attackSpeed: 5
   jumpForce: 30
   minDamage: 1
-  maxDamage: 1
+  maxDamage: 10

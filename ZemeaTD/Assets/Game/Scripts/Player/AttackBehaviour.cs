@@ -58,7 +58,8 @@ public class AttackBehaviour : MonoBehaviour {
             angleAttack.z = -maxAngleAttack;
         }
         crosshair.transform.eulerAngles = angleAttack;
-        if (Input.GetKeyDown(inputPlayer.attack))
+
+        if (Input.GetKeyDown(inputPlayer.secondaryButton))
         {
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
@@ -82,5 +83,4 @@ public class AttackBehaviour : MonoBehaviour {
     {
         currentElement = element;
     }
-
 }

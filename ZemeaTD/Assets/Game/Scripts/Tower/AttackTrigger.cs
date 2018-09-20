@@ -29,7 +29,7 @@ public class AttackTrigger : MonoBehaviour {
     {
         if (player)
         {
-            if (Input.GetKeyDown(inputPlayer.openDoor))
+            if (Input.GetKeyDown(inputPlayer.primaryButton))
             {
                 if (!isUsed)
                 {
@@ -51,10 +51,10 @@ public class AttackTrigger : MonoBehaviour {
         switch (facingDirection)
         {
             case FACING_DIRECTION.RIGHT:
-                player.GetComponent<CharacterController2D>().SetFacing(true);
+                player.GetComponent<CharacterController2D>().SetFacingRight(true);
                 break;
             case FACING_DIRECTION.LEFT:
-                player.GetComponent<CharacterController2D>().SetFacing(false);
+                player.GetComponent<CharacterController2D>().SetFacingRight(false);
                 break;
             default:
                 break;

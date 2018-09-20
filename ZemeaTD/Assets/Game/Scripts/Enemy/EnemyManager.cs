@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        Enemy.Hitted += EnemyKilled;
+        Enemy.Death += EnemyKilled;
         nextWave = true;
         currentWave = 1;
         wave = new GameObject();
@@ -49,6 +49,12 @@ public class EnemyManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Enemy e = EnemyWaves[currentWave - 1].enemies[Random.Range(0,EnemyWaves[currentWave-1].enemies.Count)];
+            Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);
+        }
         if (currentWave <= EnemyWaves.Count)
         {
             if (nextWave)
@@ -102,6 +108,6 @@ public class EnemyManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Enemy.Hitted -= EnemyKilled;
+        Enemy.Death -= EnemyKilled;
     }
 }

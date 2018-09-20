@@ -14,6 +14,9 @@ public class CharacterController2D : MonoBehaviour
     private bool onFloor = false;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
+    private Animator anim;
+    public SpriteRenderer spriteRend;
+    private Vector2 movement;
 
     private void Start()
     {
@@ -21,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
         SetAttackMode(false);
         inputControl = GetComponent<InputControl>();
         attackComponent = GetComponent<AttackBehaviour>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -114,30 +118,24 @@ public class CharacterController2D : MonoBehaviour
             {
                 movSpeed = playerData.airSpeed;
             }
-            if (Input.GetKey(inputControl.moveLeft))
+            movement.x = Input.GetAxis(inputControl.axisH);
+            rig.velocity = new Vector2(movSpeed * Time.deltaTime * movement.x,rig.velocity.y);
+            if (movement.x > 0)
             {
-                SetFacing(false);
-                rig.velocity = new Vector2(-movSpeed * Time.deltaTime, rig.velocity.y);
-            }
-            else if (Input.GetKey(inputControl.moveRight))
-            {
-                SetFacing(true);
-                rig.velocity = new Vector2(movSpeed * Time.deltaTime, rig.velocity.y);
+                SetFacingRight(true);
             }
             else
             {
-                if (onFloor)
-                {
-                    rig.velocity = new Vector2(0, rig.velocity.y);
-                }
+                SetFacingRight(false);
             }
+            anim.SetFloat("axis", Mathf.Abs(movement.x));
         }
 
     }
 
     public void GroundControl()
     {
-        Vector2 minSpriteSize = new Vector2(0, -GetComponent<SpriteRenderer>().size.y / 2);
+        Vector2 minSpriteSize = new Vector2(0, -spriteRend.size.y / 2);
         Vector2 floorContact = (Vector2)transform.position + minSpriteSize;
         if (Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer))
         {
@@ -179,13 +177,13 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(inputControl.openDoor) && collision.tag == "Door")
+        if (Input.GetKeyDown(inputControl.primaryButton) && collision.tag == "Door")
         {
             collision.GetComponent<Door>().GoToNextDoor(gameObject);
         }
     }
 
-    public void SetFacing(bool faceRight)
+    public void SetFacingRight(bool faceRight)
     {
         if (faceRight)
         {
