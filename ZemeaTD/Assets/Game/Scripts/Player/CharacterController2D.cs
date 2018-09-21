@@ -10,13 +10,14 @@ public class CharacterController2D : MonoBehaviour
     public PLAYER_STATES currentState;
     public LayerMask floorLayer;
     public InputControl inputControl;
+    public SpriteRenderer spriteRend;
+    public bool jumped = false;
+    public bool lookingRight;
     private bool canMove = true;
     private bool onFloor = false;
-    public bool jumped = false;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
     private Animator anim;
-    public SpriteRenderer spriteRend;
     private Vector2 movement;
 
     private void Start()
@@ -125,7 +126,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 SetFacingRight(true);
             }
-            else
+            else if(movement.x < 0)
             {
                 SetFacingRight(false);
             }
@@ -190,12 +191,13 @@ public class CharacterController2D : MonoBehaviour
     {
         if (faceRight)
         {
-            transform.localScale = new Vector2(2, 2);
+            transform.localScale = new Vector2(2, 2);            
         }
         else
         {
             transform.localScale = new Vector2(-2, 2);
         }
+        lookingRight = faceRight;
     }
 
 }

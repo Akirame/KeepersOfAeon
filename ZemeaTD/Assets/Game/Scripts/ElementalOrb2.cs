@@ -27,7 +27,10 @@ public class ElementalOrb2 : MonoBehaviour {
     internal void Throw()
     {
         rigid.bodyType = RigidbodyType2D.Dynamic;
+        if(playerAttached.GetComponent<CharacterController2D>().lookingRight)
         rigid.velocity = new Vector2(10, 10);
+        else
+            rigid.velocity = new Vector2(-10, 10);
         pickedUp = false;
         transform.parent = playerAttached.transform.parent;
         playerAttached = null;
