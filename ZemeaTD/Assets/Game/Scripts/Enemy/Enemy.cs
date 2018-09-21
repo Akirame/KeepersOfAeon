@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
             totalDamage *= 0.1f;
         }
         health -= (int)totalDamage;
-        movementBehaviour.KnockBack(10);
+        movementBehaviour.KnockBack(50);
         if (health < 0)
             Death(this);
     }

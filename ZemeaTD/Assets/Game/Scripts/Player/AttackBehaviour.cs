@@ -14,6 +14,8 @@ public class AttackBehaviour : MonoBehaviour {
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
     private int playerDamage;
+    private float timer;
+    public float timeBetweenAttacks = 0.2f;
     private CharacterController2D player;
 
     private void Start()
@@ -22,6 +24,7 @@ public class AttackBehaviour : MonoBehaviour {
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
         playerDamage = player.playerData.maxDamage;
+        timer = timeBetweenAttacks;
     }
 
     public void AttackControl()
@@ -59,11 +62,16 @@ public class AttackBehaviour : MonoBehaviour {
         }
         crosshair.transform.eulerAngles = angleAttack;
 
-        if (Input.GetKeyDown(inputPlayer.secondaryButton))
+        if (Input.GetKey(inputPlayer.secondaryButton))
         {
-            GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
-            Vector2 bulletDirection = crossPos.position - transform.position;
-            b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement);
+            if(timer >= timeBetweenAttacks) {
+                GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
+                Vector2 bulletDirection = crossPos.position - transform.position;
+                b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement);
+                timer = 0;
+            }
+            else
+                timer += Time.deltaTime;
         }
     }
 
