@@ -9,7 +9,7 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
-    public ElementalOrb currentElement;
+    public ElementalOrb currentElement;    
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;

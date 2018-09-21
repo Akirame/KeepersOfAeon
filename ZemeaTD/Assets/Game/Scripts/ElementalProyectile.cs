@@ -31,7 +31,7 @@ public class ElementalProyectile : MonoBehaviour {
     }
 
     public void Shoot(Vector2 dir, int _damage, ElementalOrb _element)
-    {
+    {        
         direction = dir;
         damage = _damage;
         element = _element;

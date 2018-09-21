@@ -6,9 +6,9 @@ using UnityEngine;
 public class ElementalArcanum : MonoBehaviour {
 
     public GameObject[] orbs;
-    public ElementalOrb[] orbsSprites;
+    public ElementalOrb3[] orbsSprites;
     private GameObject player;
-    public ElementalOrb orbSelected;
+    public ElementalOrb3 orbSelected;
     private InputControl inputPlayer;
     private int orbIndex = 0;
     public GameObject orbPivot;
@@ -16,7 +16,7 @@ public class ElementalArcanum : MonoBehaviour {
 
     private void Start()
     {
-        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb>();
+        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb3>();
     }
 
     private void Update()
@@ -42,12 +42,12 @@ public class ElementalArcanum : MonoBehaviour {
             if (!attackPlayer.currentElement)
             {
                 orbsSprites[(int)orbSelected.elementType].SetActive(false);
-                attackPlayer.currentElement = orbSelected;
+               // attackPlayer.currentElement = orbSelected;
             }
             if (attackPlayer.currentElement != orbSelected)
             {
                 orbsSprites[(int)attackPlayer.currentElement.elementType].SetActive(true);
-                attackPlayer.currentElement = orbSelected;
+                //attackPlayer.currentElement = orbSelected;
                 orbsSprites[(int)orbSelected.elementType].SetActive(false);
             }
         }
@@ -60,7 +60,7 @@ public class ElementalArcanum : MonoBehaviour {
         {
             orbIndex = 0;            
         }
-        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb>();
+        orbSelected = orbs[orbIndex].GetComponent<ElementalOrb3>();
         ChangeOrbsOrder();
     }
 

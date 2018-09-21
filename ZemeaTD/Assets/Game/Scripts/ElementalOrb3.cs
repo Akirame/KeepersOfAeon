@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalOrb : MonoBehaviour {
+public class ElementalOrb3 : MonoBehaviour {
 
     public enum ELEMENT_TYPE {WATER, FIRE, EARTH };
     public ELEMENT_TYPE elementType;
