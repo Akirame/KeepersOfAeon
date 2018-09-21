@@ -11,6 +11,7 @@ public class InputControl : MonoBehaviour {
     public KeyCode moveDown;
     public KeyCode primaryButton;
     public KeyCode secondaryButton;
+    public KeyCode thirdButton;
     public string axisH;
     #endregion
 }

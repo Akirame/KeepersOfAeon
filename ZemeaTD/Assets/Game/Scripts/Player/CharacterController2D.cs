@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour
     public InputControl inputControl;
     private bool canMove = true;
     private bool onFloor = false;
+    public bool jumped = false;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
     private Animator anim;
@@ -140,6 +141,7 @@ public class CharacterController2D : MonoBehaviour
         if (Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer))
         {
             onFloor = true;
+            jumped = false;
         }
         else
         {
@@ -152,6 +154,7 @@ public class CharacterController2D : MonoBehaviour
         if (onFloor && Input.GetKeyDown(inputControl.jump))
         {
             onFloor = false;
+            jumped = true;
             rig.velocity = new Vector2(0, playerData.jumpForce);
         }
     }
