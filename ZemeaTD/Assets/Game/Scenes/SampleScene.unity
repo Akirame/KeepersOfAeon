@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: TypeOfEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4859878995875268, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -157,6 +162,24 @@ Prefab:
       propertyPath: EnemyWaves.Array.data[0].enemies.Array.data[1]
       value: 
       objectReference: {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809,
+        type: 2}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: TypeOfEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809,
+        type: 2}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: TypeOfEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f,
+        type: 2}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: TypeOfEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
@@ -964,18 +987,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5e96668daa4414c9e96fb063bd59a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyWaves:
-  - enemies:
-    - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
-    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
-  - enemies:
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
-    - {fileID: 114425513066743668, guid: 7cbbfa51284827149806f01aee1dbc57, type: 2}
   spawnPoints:
   - {fileID: 1021590092}
   - {fileID: 553728169}
   wave: {fileID: 0}
+  minCantMelee: 5
+  minCantRanged: 1
+  minCantFlyer: 1
+  TypeOfEnemies: []
 --- !u!1 &620641916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,12 +2757,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa4916e2f2e689e4eab9d0242563fd69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b8c12068e05f864a8987b40a4e93b91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.24}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4865,7 +4884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1794222144
 BoxCollider2D:
   m_ObjectHideFlags: 0
