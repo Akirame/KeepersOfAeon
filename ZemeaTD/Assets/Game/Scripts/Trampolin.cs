@@ -11,10 +11,19 @@ public class Trampolin : MonoBehaviour {
         if (collision.tag == "Player")
         {
             CharacterController2D character = collision.GetComponent<CharacterController2D>();
-            if (character.jumped)
+            InputControl characterInput = collision.GetComponent<InputControl>();
+            if (character.jumped && !Input.GetKey(characterInput.moveDown))
             {
                 Rigidbody2D rig = collision.gameObject.GetComponent<Rigidbody2D>();
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+            }
+        }
+        if (collision.tag == "ElementalOrb")
+        {
+            Rigidbody2D rigOrb = collision.GetComponent<Rigidbody2D>();
+            if (rigOrb.velocity.y < 0)
+            {
+                rigOrb.velocity = new Vector2(rigOrb.velocity.x, jumpForce / 1.8f);
             }
         }
     }
