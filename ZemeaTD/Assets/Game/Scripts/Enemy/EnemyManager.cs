@@ -53,7 +53,7 @@ public class EnemyManager : MonoBehaviour {
             SpawnWave();
         }
         if(currentEnemies <= 0) {
-            if(timer >= timeBetweenWaves) {
+            if(timer >= timeBetweenWaves) {                
                 currentWave++;
                 nextWave = true;
                 CleanWave();
@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour {
                 enemyConta++;
                 timer = 0;
             }
-            else {
+            else {                
                 timer += Time.deltaTime;
             }
         }

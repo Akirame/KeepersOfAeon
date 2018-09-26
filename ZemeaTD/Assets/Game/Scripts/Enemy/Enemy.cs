@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     {        
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
         syncroAttackWithAnim = false;
-        element = ElementalOrb.ELEMENT_TYPE.FIRE;
+        element = (ElementalOrb.ELEMENT_TYPE)Random.Range(0,3);
         switch (element)
         {
             case ElementalOrb.ELEMENT_TYPE.WATER:

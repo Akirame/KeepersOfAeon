@@ -181,6 +181,21 @@ Prefab:
       value: 
       objectReference: {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d,
         type: 2}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: minCantFlyer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: timeBetweenWaves
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: timeBetweenEnemies
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
   m_IsPrefabAsset: 0
@@ -995,6 +1010,8 @@ MonoBehaviour:
   minCantRanged: 1
   minCantFlyer: 1
   TypeOfEnemies: []
+  timeBetweenWaves: 0
+  timeBetweenEnemies: 0
 --- !u!1 &620641916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,7 +2161,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1091305402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -46.6, y: 25.39048, z: 0}
+  m_LocalPosition: {x: -52.6, y: 25.39048, z: 0}
   m_LocalScale: {x: 0.29999998, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 202433452}
@@ -2262,7 +2279,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097720752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 25.39048, z: 0}
+  m_LocalPosition: {x: 56, y: 25.39048, z: 0}
   m_LocalScale: {x: 0.30000034, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 202433452}
