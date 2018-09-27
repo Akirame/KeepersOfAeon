@@ -73,8 +73,8 @@ public class Enemy : MonoBehaviour
         movementBehaviour.KnockBack(50);
         if (health <= 0)
         {
-            PlayerLevel playerLevel = playerElement.gameObject.transform.parent.GetComponent<PlayerLevel>();
-            playerLevel.AddExperience(experience);
+            //PlayerLevel playerLevel = playerElement.gameObject.transform.parent.GetComponent<PlayerLevel>();
+            //playerLevel.AddExperience(experience);
             Death(this);
         }
     }
