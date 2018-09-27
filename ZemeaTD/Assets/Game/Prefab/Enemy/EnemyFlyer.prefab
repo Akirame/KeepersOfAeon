@@ -102,9 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 0}
+  element: 0
   damage: 10
+  health: 20
+  experience: 100
   timeToAttack: 2
-  sprite: {fileID: 0}
 --- !u!114 &114349914651108044
 MonoBehaviour:
   m_ObjectHideFlags: 1

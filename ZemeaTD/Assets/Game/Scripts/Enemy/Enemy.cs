@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public ElementalOrb.ELEMENT_TYPE element;
     public int damage;
     public int health = 100;
+    public int experience = 50;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;    
     protected virtual void Start()
@@ -70,7 +71,11 @@ public class Enemy : MonoBehaviour
         }
         health -= (int)totalDamage;
         movementBehaviour.KnockBack(50);
-        if (health < 0)
+        if (health <= 0)
+        {
+            PlayerLevel playerLevel = playerElement.gameObject.transform.parent.GetComponent<PlayerLevel>();
+            playerLevel.AddExperience(experience);
             Death(this);
+        }
     }
 }

@@ -23,7 +23,7 @@ public class ElementalOrb : MonoBehaviour {
         playerAttached = player;
         rigid.bodyType = RigidbodyType2D.Kinematic;
         transform.position = newPos.position;
-        transform.parent = newPos;
+        transform.parent = playerAttached.transform;
         rigid.velocity = new Vector2();
     }
 
@@ -42,7 +42,7 @@ public class ElementalOrb : MonoBehaviour {
     public ElementalOrb Consume() {
         playerAttached.GetComponent<AttackBehaviour>().currentElement = this;
         pickedUp = false;
-        transform.parent = playerAttached.transform.parent;        
+        transform.parent = playerAttached.transform;
         OnConsumption(this);
         return this;
     }

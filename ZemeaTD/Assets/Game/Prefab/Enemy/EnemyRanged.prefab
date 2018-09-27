@@ -190,7 +190,8 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 10
-  health: 100
+  health: 30
+  experience: 100
   timeToAttack: 2
   detector: {fileID: 114271218249390874}
   bullet: {fileID: 114058871533682056, guid: 8819a96739fe36746b2b0b7a86d5226a, type: 2}
