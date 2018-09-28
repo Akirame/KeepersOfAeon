@@ -11,7 +11,8 @@ public class ElementalOrb : MonoBehaviour {
     public ELEMENT_TYPE elementType;
     public Color c;
     public bool pickedUp = false;
-    public GameObject playerAttached;    
+    public GameObject playerAttached;
+    public GameObject orbStash;
     private Rigidbody2D rigid;
 
     private void Start() {
@@ -41,8 +42,7 @@ public class ElementalOrb : MonoBehaviour {
     }
     public ElementalOrb Consume() {
         playerAttached.GetComponent<AttackBehaviour>().currentElement = this;
-        pickedUp = false;
-        transform.parent = playerAttached.transform;
+        pickedUp = false;        
         OnConsumption(this);
         return this;
     }

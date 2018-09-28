@@ -1179,7 +1179,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4783010830657362, guid: 7537e71ea84a952429d8ea2b516cdd6d, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1408901857050704, guid: 7537e71ea84a952429d8ea2b516cdd6d, type: 2}
       propertyPath: m_TagString
@@ -1662,11 +1662,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4286977102748878, guid: c167410242eaf96419aef678fc8b3f1b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 123.9
+      value: 245
       objectReference: {fileID: 0}
     - target: {fileID: 4286977102748878, guid: c167410242eaf96419aef678fc8b3f1b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 66.8
+      value: 228
       objectReference: {fileID: 0}
     - target: {fileID: 4286977102748878, guid: c167410242eaf96419aef678fc8b3f1b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1690,7 +1690,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4286977102748878, guid: c167410242eaf96419aef678fc8b3f1b, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c167410242eaf96419aef678fc8b3f1b, type: 2}
@@ -2732,7 +2732,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4128227804455244, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c1f15b5bf536ec419a9d37b09a2aa03, type: 2}
@@ -3354,6 +3354,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852136638236734, guid: c0f8ec4101b128f4f9fa7cfe9909b780, type: 2}
+      propertyPath: m_Name
+      value: UIGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0f8ec4101b128f4f9fa7cfe9909b780, type: 2}
@@ -4757,7 +4761,7 @@ Transform:
   - {fileID: 1523576586}
   - {fileID: 2080311581}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688113875
 GameObject:

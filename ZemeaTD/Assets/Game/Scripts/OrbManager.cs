@@ -8,7 +8,8 @@ public class OrbManager : MonoBehaviour {
         PlayerDetector.ReturnOrb += ReturnOrbToPlayer;
     }
     private void DeactivateOrb(ElementalOrb e) {
-        e.gameObject.transform.position = this.transform.position;        
+        e.gameObject.transform.position = this.transform.position;
+        e.transform.parent = this.transform;
     }
     private void ReturnOrbToPlayer(PlayerDetector p, ElementalOrb e) {
         e.transform.position = p.orbPosition.transform.position;
