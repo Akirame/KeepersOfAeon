@@ -190,7 +190,7 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 10
-  health: 30
+  health: 25
   experience: 100
   timeToAttack: 2
   detector: {fileID: 114271218249390874}

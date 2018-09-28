@@ -112,7 +112,7 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 10
-  health: 40
+  health: 30
   experience: 100
   timeToAttack: 1
 --- !u!114 &114668749071737600
