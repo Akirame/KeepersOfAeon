@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
-{
+public class UIGame : MonoBehaviour
+{    
     public Text waveText;
     public Text P1Level;
     public Text P2Level;
@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public Image expBarP2;
     public AttackBehaviour player1;
     public AttackBehaviour player2;
-    public Sprite[] orbSprites; 
+    public Sprite[] orbSprites;     
     private string waveTextAux;
     private PlayerLevel p1;
     private PlayerLevel p2;
