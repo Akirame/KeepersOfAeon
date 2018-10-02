@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 0}
   element: 0
-  damage: 10
+  damage: 5
   health: 25
   experience: 100
   timeToAttack: 2

@@ -62,7 +62,7 @@ public class AttackBehaviour : MonoBehaviour {
         }
         crosshair.transform.eulerAngles = angleAttack;
 
-        if (Input.GetKey(inputPlayer.secondaryButton))
+        if (Input.GetKey(inputPlayer.secondaryButton) && currentElement)
         {
             if(timer >= timeBetweenAttacks) {
                 GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
