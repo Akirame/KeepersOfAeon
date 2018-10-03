@@ -92,6 +92,10 @@ public class ElementalProyectile : MonoBehaviour {
         {
             pureDamage *= 0.1f;
         }
+        if (pureDamage < 1)
+        {
+            pureDamage = 1;
+        }
         return (int)pureDamage;
     }
 

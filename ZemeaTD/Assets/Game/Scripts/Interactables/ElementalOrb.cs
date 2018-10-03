@@ -19,7 +19,7 @@ public class ElementalOrb : MonoBehaviour {
         rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void AttachToPlayer(GameObject player, Transform newPos) {
+    public void AttachToPlayer(GameObject player, Transform newPos){
         pickedUp = true;
         playerAttached = player;
         rigid.bodyType = RigidbodyType2D.Kinematic;

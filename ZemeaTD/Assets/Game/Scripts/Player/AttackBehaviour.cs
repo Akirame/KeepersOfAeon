@@ -63,6 +63,8 @@ public class AttackBehaviour : MonoBehaviour {
         }
         crosshair.transform.eulerAngles = angleAttack;
 
+        CalculateAttackSpeed();
+
         if (Input.GetKey(inputPlayer.secondaryButton) && currentElement)
         {
             if(timer >= timeBetweenAttacks) {
@@ -84,9 +86,9 @@ public class AttackBehaviour : MonoBehaviour {
 
     private void CalculateAttackSpeed()
     {
-        if (timeBetweenAttacks > minAttackSpeed)
+        if (timeBetweenAttacks != 1/player.playerData.attackSpeed)
         {
-
+            timeBetweenAttacks = 1/player.playerData.attackSpeed;
         }
     }
 

@@ -538,11 +538,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
-        type: 2}
-      propertyPath: angleAttackSpeed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0
@@ -690,15 +685,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114153928310293144, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+    - target: {fileID: 114010267693101464, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
         type: 2}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1326641369}
-    - target: {fileID: 1189590065705940, guid: 4cde8e47c7d81ca4ba5af02734e52c2e, type: 2}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cde8e47c7d81ca4ba5af02734e52c2e, type: 2}
   m_IsPrefabAsset: 0

@@ -10,4 +10,11 @@ public class CharacterData : ScriptableObject
     public float jumpForce;
     public int minDamage;
     public int maxDamage;
+
+    public void LevelUp()
+    {
+        attackSpeed += 0.5f;
+        minDamage += 1;
+        maxDamage += 1;
+    }
 }

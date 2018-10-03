@@ -14,6 +14,7 @@ public class PlayerLevel : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             playerLevel++;
+            LevelUpTo(playerLevel);
             print("DEBUG - LEVEL UP - PlayerLevel.cs");
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -36,5 +37,6 @@ public class PlayerLevel : MonoBehaviour
     public void LevelUpTo(int level)
     {
         playerLevel = level;
+        GetComponent<CharacterController2D>().playerData.LevelUp();
     }
 }

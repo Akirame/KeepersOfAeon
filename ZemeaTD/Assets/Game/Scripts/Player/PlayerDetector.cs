@@ -7,50 +7,49 @@ public class PlayerDetector : MonoBehaviour {
 
     public delegate void PlayerDetectorAction(PlayerDetector p, ElementalOrb e);
     public static PlayerDetectorAction ReturnOrb;
-    public ElementalOrb orb;
-    public ElementalOrb secondaryOrb;
+    public ElementalOrb orbToPick;
+    public ElementalOrb currentOrb;
     public Transform orbPosition;
     public InputControl playerInput;
 
     private void Update() {
-        if(orb) {
-            if(!orb.pickedUp && Input.GetKeyDown(playerInput.primaryButton)) {
+        if(orbToPick) {
+            if(!orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton)) {
                 PickUpOrb();
             }
             else
-                if(orb.pickedUp && Input.GetKeyDown(playerInput.secondaryButton)) {
+                if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.secondaryButton)) {
                 ThrowOrb();
             }
             else
-            if(orb.pickedUp && Input.GetKeyDown(playerInput.primaryButton)) {
+            if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton)) {
                 ConsumeOrb();
             }
         }
     }
 
     private void ThrowOrb() {
-        orb.Throw();
+        orbToPick.Throw();
     }
     private void ConsumeOrb() {
 
-        if(secondaryOrb)
-            ReturnOrb(this, secondaryOrb);
-
-        secondaryOrb = orb.Consume();
+        if(currentOrb)
+            ReturnOrb(this, currentOrb);
+        currentOrb = orbToPick.Consume();
     }
     private void PickUpOrb() {
-        orb.AttachToPlayer(transform.parent.gameObject, orbPosition);
+        orbToPick.AttachToPlayer(transform.parent.gameObject, orbPosition);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.tag == "ElementalOrb") {
-            orb = collision.gameObject.GetComponent<ElementalOrb>();
+            orbToPick = collision.gameObject.GetComponent<ElementalOrb>();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if(collision.gameObject.tag == "ElementalOrb") {
-            orb = null;
+            orbToPick = null;
         }
     }
 

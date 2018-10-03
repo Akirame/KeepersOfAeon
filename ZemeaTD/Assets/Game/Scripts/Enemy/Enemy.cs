@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
                 GetComponent<SpriteRenderer>().color = Color.green;
                 break;
         }
+        tag = "Enemy";
     }
 
     private void Update()
@@ -41,16 +42,16 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.tag == "Enemy")
         if (collision.gameObject.tag == "Tower")
-        {            
+        {
             Death(this);
-        }                    
+            collision.GetComponent<TowerTest>().TakeDamage(damage);
+        }
     }
 
     public void AttackAnimEnd()
     {
-        syncroAttackWithAnim = true;        
+        syncroAttackWithAnim = true;
     }
 
     public void TakeDamage(int bulletDamage, ElementalOrb playerElement, GameObject player)

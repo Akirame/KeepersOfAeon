@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +12,10 @@ public class TowerTest : MonoBehaviour
     {
         healthText.text = health + "%";
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void TakeDamage(int damage)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            health -= 10;
-            healthText.text = health + "%";
-        }
+        health -= damage;
+        healthText.text = health + "%";
     }
 }
