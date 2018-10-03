@@ -15,5 +15,5 @@ MonoBehaviour:
   airSpeed: 1100
   attackSpeed: 5
   jumpForce: 60
-  minDamage: 10
-  maxDamage: 80
+  minDamage: 8
+  maxDamage: 10
