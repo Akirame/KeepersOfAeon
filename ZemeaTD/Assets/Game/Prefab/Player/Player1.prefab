@@ -172,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521620813128664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.6, y: 0.69048, z: -0.16164221}
+  m_LocalPosition: {x: -6.3, y: 47, z: -0.16164221}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4617290414036540}
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngleAttack: 65
-  angleAttackSpeed: 10
+  angleAttackSpeed: 30
   crosshair: {fileID: 1363246121291928}
   bullet: {fileID: 1405494552224080, guid: 09c89852b68c6294db82b016de1fe97d, type: 2}
   crossPos: {fileID: 4262421900324820}

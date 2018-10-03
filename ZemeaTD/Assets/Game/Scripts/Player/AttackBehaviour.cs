@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackBehaviour : MonoBehaviour {
 
     public float maxAngleAttack = 65f; 
-    public float angleAttackSpeed = 10f;
+    public float angleAttackSpeed = 30f;
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
@@ -16,6 +17,7 @@ public class AttackBehaviour : MonoBehaviour {
     private int playerDamage;
     private float timer;
     public float timeBetweenAttacks = 0.2f;
+    public float minAttackSpeed = 0.01f;
     private CharacterController2D player;
 
     private void Start()
@@ -23,7 +25,6 @@ public class AttackBehaviour : MonoBehaviour {
         inputPlayer = GetComponent<InputControl>();
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
-        playerDamage = player.playerData.maxDamage;
         timer = timeBetweenAttacks;
     }
 
@@ -67,13 +68,28 @@ public class AttackBehaviour : MonoBehaviour {
             if(timer >= timeBetweenAttacks) {
                 GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
                 Vector2 bulletDirection = crossPos.position - transform.position;
-                b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement);
+                CalculatePlayerDamage();
+                b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement, this.gameObject);
                 timer = 0;
             }
             else
                 timer += Time.deltaTime;
         }
     }
+
+    private void CalculatePlayerDamage()
+    {
+        playerDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
+    }
+
+    private void CalculateAttackSpeed()
+    {
+        if (timeBetweenAttacks > minAttackSpeed)
+        {
+
+        }
+    }
+
 
     private bool IsFacingRight()
     {
