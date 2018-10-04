@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public ElementalOrb.ELEMENT_TYPE element;
     public int damage;
     public int health = 100;
+    public int chanceOfElement = 25;
     public int experience = 50;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
@@ -21,18 +22,22 @@ public class Enemy : MonoBehaviour
     {        
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
         syncroAttackWithAnim = false;
-        element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0,3);
-        switch (element)
+        element = ElementalOrb.ELEMENT_TYPE.NONE;
+        if (UnityEngine.Random.Range(0,100)<chanceOfElement)
         {
-            case ElementalOrb.ELEMENT_TYPE.WATER:
-                GetComponent<SpriteRenderer>().color = Color.blue;
-                break;
-            case ElementalOrb.ELEMENT_TYPE.FIRE:
-                GetComponent<SpriteRenderer>().color = Color.red;
-                break;
-            case ElementalOrb.ELEMENT_TYPE.EARTH:
-                GetComponent<SpriteRenderer>().color = Color.green;
-                break;
+            element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
+            switch (element)
+            {
+                case ElementalOrb.ELEMENT_TYPE.WATER:
+                    GetComponent<SpriteRenderer>().color = Color.blue;
+                    break;
+                case ElementalOrb.ELEMENT_TYPE.FIRE:
+                    GetComponent<SpriteRenderer>().color = Color.red;
+                    break;
+                case ElementalOrb.ELEMENT_TYPE.EARTH:
+                    GetComponent<SpriteRenderer>().color = Color.green;
+                    break;
+            }
         }
         tag = "Enemy";
     }
@@ -54,7 +59,7 @@ public class Enemy : MonoBehaviour
         syncroAttackWithAnim = true;
     }
 
-    public void TakeDamage(int bulletDamage, ElementalOrb playerElement, GameObject player)
+    public void TakeDamage(int bulletDamage, GameObject player)
     {        
         health -= bulletDamage;
         movementBehaviour.KnockBack(50);

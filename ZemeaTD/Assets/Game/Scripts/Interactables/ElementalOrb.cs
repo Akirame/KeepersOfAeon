@@ -7,7 +7,7 @@ public class ElementalOrb : MonoBehaviour {
 
     public delegate void OrbActions(ElementalOrb e);
     public static OrbActions OnConsumption;
-    public enum ELEMENT_TYPE { WATER, FIRE, EARTH };
+    public enum ELEMENT_TYPE { WATER, FIRE, EARTH, NONE };
     public ELEMENT_TYPE elementType;
     public Color c;
     public bool pickedUp = false;

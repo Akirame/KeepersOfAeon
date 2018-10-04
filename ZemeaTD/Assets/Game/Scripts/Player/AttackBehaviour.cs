@@ -65,7 +65,7 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if (Input.GetKey(inputPlayer.secondaryButton) && currentElement)
+        if (Input.GetKey(inputPlayer.secondaryButton))
         {
             if(timer >= timeBetweenAttacks) {
                 GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);

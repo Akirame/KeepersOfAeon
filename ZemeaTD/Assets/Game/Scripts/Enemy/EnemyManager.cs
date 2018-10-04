@@ -58,6 +58,7 @@ public class EnemyManager : MonoBehaviour {
                 nextWave = true;
                 CleanWave();
                 timer = 0;
+                print(1);
             }
             else
                 timer += Time.deltaTime;
@@ -94,6 +95,7 @@ public class EnemyManager : MonoBehaviour {
                 Enemy e = enemies[enemyConta];
                 Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
                 Instantiate(e.transform.gameObject, t.position, Quaternion.identity, wave.transform);
+                currentEnemies++;
                 enemyConta++;
                 timer = 0;
             }
@@ -101,8 +103,7 @@ public class EnemyManager : MonoBehaviour {
                 timer += Time.deltaTime;
             }
         }
-        else {
-            currentEnemies = enemyConta;
+        else {            
             nextWave = false;
             waveCalculated = false;
             enemyConta = 0;
@@ -118,6 +119,7 @@ public class EnemyManager : MonoBehaviour {
     {        
         Destroy(e.gameObject);
         currentEnemies--;
+        print(currentEnemies);
     }
     private void OnDestroy()
     {

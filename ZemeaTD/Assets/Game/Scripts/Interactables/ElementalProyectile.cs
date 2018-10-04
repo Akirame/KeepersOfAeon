@@ -61,7 +61,7 @@ public class ElementalProyectile : MonoBehaviour {
         if (collision.tag == "Enemy")
         {
             damage = CalculateElementalDamage(damage, player.GetComponent<AttackBehaviour>().currentElement, collision.GetComponent<Enemy>().element);
-            collision.GetComponent<Enemy>().TakeDamage(damage, element, player);
+            collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             Destroy(gameObject);
         }
@@ -76,22 +76,33 @@ public class ElementalProyectile : MonoBehaviour {
     private int CalculateElementalDamage(int damage, ElementalOrb playerOrb, ElementalOrb.ELEMENT_TYPE enemyOrb)
     {
         float pureDamage = damage;
-        if (playerOrb.elementType == enemyOrb)
+        if (enemyOrb != ElementalOrb.ELEMENT_TYPE.NONE)
         {
-            pureDamage *= 0.5f;
+            if (playerOrb)
+            {
+                if (playerOrb.elementType == enemyOrb)
+                {
+                    pureDamage *= 0.5f;
+                }
+                else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER ||
+                         enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
+                         enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE)
+                {
+                    pureDamage *= 2;
+                }
+                else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
+                         enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE ||
+                         enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER)
+                {
+                    pureDamage *= 0.1f;
+                }
+            }
+            else
+            {
+                pureDamage *= 0.2f;
+            }
         }
-        else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER ||
-                 enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
-                 enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE)
-        {
-            pureDamage *= 2;
-        }
-        else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
-                 enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE ||
-                 enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER)
-        {
-            pureDamage *= 0.1f;
-        }
+
         if (pureDamage < 1)
         {
             pureDamage = 1;
