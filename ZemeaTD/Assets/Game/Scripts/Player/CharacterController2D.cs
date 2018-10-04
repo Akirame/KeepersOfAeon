@@ -64,6 +64,7 @@ public class CharacterController2D : MonoBehaviour
     private void AttackMode()
     {
         attackComponent.AttackControl();
+        anim.SetFloat("axis", 0);
     }
 
     private void StateController()
@@ -132,6 +133,7 @@ public class CharacterController2D : MonoBehaviour
             }
             anim.SetFloat("axis", Mathf.Abs(movement.x));
         }
+        
 
     }
 

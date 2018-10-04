@@ -191,6 +191,7 @@ MonoBehaviour:
   element: 0
   damage: 5
   health: 25
+  chanceOfElement: 25
   experience: 100
   timeToAttack: 2
   detector: {fileID: 114271218249390874}
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 1000
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1
