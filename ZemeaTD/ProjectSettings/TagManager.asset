@@ -13,6 +13,7 @@ TagManager:
   - EnemyBullet
   - Range
   - ElementalOrb
+  - Light
   layers:
   - Default
   - TransparentFX
