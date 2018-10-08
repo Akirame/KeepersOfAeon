@@ -27,6 +27,7 @@ public class CharacterController2D : MonoBehaviour
         inputControl = GetComponent<InputControl>();
         attackComponent = GetComponent<AttackBehaviour>();
         anim = GetComponent<Animator>();
+        lookingRight = true;
     }
 
     private void Update()

@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour {
     public List<Enemy> TypeOfEnemies;
     public float timeBetweenWaves;
     public float timeBetweenEnemies;
+    public float timeForFirstWave = 75;
     private List<int> enemiesIndex;
     private List<Enemy> enemies;
     private int currentWave;
@@ -34,10 +35,10 @@ public class EnemyManager : MonoBehaviour {
     private float timer;
     private bool nextWave;
     private bool waveCalculated;
+    private bool firstWave;
 
     private void Start() {
         Enemy.Death += EnemyKilled;
-        nextWave = true;
         currentWave = 1;
         wave = new GameObject();
         enemyConta = 0;
@@ -47,22 +48,40 @@ public class EnemyManager : MonoBehaviour {
         enemiesIndex = new List<int>();
         enemies = new List<Enemy>();
         enemyMultiplier = 0;
+        firstWave = true;
     }
     private void Update() {
-        if(nextWave) {
-            SpawnWave();
-        }
-        if(currentEnemies <= 0) {
-            if(timer >= timeBetweenWaves) {                
-                currentWave++;
+        if (firstWave)
+        {
+            timer += Time.deltaTime;
+            if (timer >= timeForFirstWave)
+            {
                 nextWave = true;
-                CleanWave();
                 timer = 0;
-                print(1);
+                firstWave = false;
             }
-            else
-                timer += Time.deltaTime;
         }
+        else
+        {
+            if (nextWave)
+            {
+                SpawnWave();
+            }
+            if (currentEnemies <= 0)
+            {
+                if (timer >= timeBetweenWaves)
+                {
+                    currentWave++;
+                    nextWave = true;
+                    CleanWave();
+                    timer = 0;
+                    print(1);
+                }
+                else
+                    timer += Time.deltaTime;
+            }
+        }
+
     }
     private void CalculateWave() {
         for(int i = 0; i < minCantMelee + enemyMultiplier; i++) {

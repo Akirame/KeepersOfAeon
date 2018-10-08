@@ -109,15 +109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5e96668daa4414c9e96fb063bd59a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyWaves:
-  - enemies:
-    - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
-    - {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f, type: 2}
-  - enemies:
-    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
-    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
-    - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
   spawnPoints:
   - {fileID: 4488360526375812}
   - {fileID: 4689669563965970}
   wave: {fileID: 0}
+  minCantMelee: 5
+  minCantRanged: 1
+  minCantFlyer: 0
+  TypeOfEnemies:
+  - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
+  - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
+  - {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f, type: 2}
+  timeBetweenWaves: 3
+  timeBetweenEnemies: 1
+  timeForFirstWave: 30
