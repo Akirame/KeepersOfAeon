@@ -7,7 +7,7 @@ public class TutorialTrigger : MonoBehaviour {
     public enum TUTORIAL_TYPE {ORB, ATTACK }
     public TUTORIAL_TYPE tutorialType;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
