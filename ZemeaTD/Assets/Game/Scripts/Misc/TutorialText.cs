@@ -26,28 +26,27 @@ public class TutorialText : MonoBehaviour {
         InitializeTutorials();
         currentTutorial = TUTORIAL_STATE.MOVEMENT;
         ChangeTextFacing();
-        ChangeText();
+        ChangeTextTo(tutorialIndex);
     }
 
     public void ChangeTutorialTo(TUTORIAL_STATE tutorial)
     {
-        currentTutorial = tutorial;
         // SETEO EL COMIENZO DEL TUTORIAL
         if (tutorial != currentTutorial)
         {
+            currentTutorial = tutorial;
             switch (tutorial)
             {
                 case TUTORIAL_STATE.MOVEMENT:
                     if (!movementTutorialEnd)
-                        tutorialIndex = 0;
+                        tutorialIndex = 0; //La primera linea de Movimiento
                     break;
                 case TUTORIAL_STATE.ORB:
-                    if (!orbTutorialEnd)
-                        tutorialIndex = 2;
+                    tutorialIndex = 2; //La primera linea de Orbes
                     break;
                 case TUTORIAL_STATE.ATTACK:
                     if (!attackTutorialEnd)
-                        tutorialIndex = 5;
+                        tutorialIndex = 5; //La primera linea de Ataque
                     break;
                 default:
                     break;
@@ -73,13 +72,17 @@ public class TutorialText : MonoBehaviour {
                 break;
         }
         ChangeTextFacing();
-        ChangeText();
         if (IsTutorialCompleted())
         {
-            tutorialText.text = "";
+            ClearText();
             Destroy(this.gameObject);
         }
 	}
+
+    private void ClearText()
+    {
+        tutorialText.text = "";
+    }
 
     private bool IsTutorialCompleted()
     {
@@ -91,15 +94,21 @@ public class TutorialText : MonoBehaviour {
     {
         if (!attackTutorialEnd)
         {
+            ChangeTextTo(tutorialIndex);
             timer += Time.deltaTime;
             if (timer >= tutorialTextTime)
             {
-                tutorialIndex++;
-                ChangeText();
-            }
-            if (tutorialIndex + 1 > 7)
-            {
-                attackTutorialEnd = true;
+                if (tutorialIndex + 1 > 7)
+                {
+                    attackTutorialEnd = true;
+                    ClearText();
+                }
+                else
+                {
+                    tutorialIndex++;
+                    ChangeTextTo(tutorialIndex);
+                    timer = 0;
+                }
             }
         }
     }
@@ -108,15 +117,21 @@ public class TutorialText : MonoBehaviour {
     {
         if (!orbTutorialEnd)
         {
+            ChangeTextTo(tutorialIndex);
             timer += Time.deltaTime;
             if (timer >= tutorialTextTime)
             {
-                tutorialIndex++;
-                ChangeText();
-            }
-            if (tutorialIndex + 1 > 4)
-            {
-                orbTutorialEnd = true;
+                if (tutorialIndex + 1 > 4)
+                {
+                    orbTutorialEnd = true;
+                    ClearText();
+                }
+                else
+                {
+                    tutorialIndex++;
+                    ChangeTextTo(tutorialIndex);
+                    timer = 0;
+                }
             }
         }
     }
@@ -124,26 +139,28 @@ public class TutorialText : MonoBehaviour {
     public void MovementTutorial() {
         if (!movementTutorialEnd)
         {
+            ChangeTextTo(tutorialIndex);
             timer += Time.deltaTime;
             if (timer >= tutorialTextTime)
             {
-                tutorialIndex++;
-                ChangeText();
-            }
-            if (tutorialIndex + 1 > 1)
-            {
-                movementTutorialEnd = true;
+                if (tutorialIndex + 1 > 1)
+                {
+                    movementTutorialEnd = true;
+                    ClearText();
+                }
+                else
+                {
+                    tutorialIndex++;
+                    ChangeTextTo(tutorialIndex);
+                    timer = 0;
+                }
             }
         }
     }
 
-    private void ChangeText()
+    private void ChangeTextTo(int index)
     {
-        if (tutorialText.text != tutorialList[tutorialIndex])
-        {
-            tutorialText.text = tutorialList[tutorialIndex];
-            timer = 0;
-        }
+        tutorialText.text = tutorialList[tutorialIndex];
     }
 
 
