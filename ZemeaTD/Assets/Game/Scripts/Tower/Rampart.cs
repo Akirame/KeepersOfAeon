@@ -4,32 +4,25 @@ using UnityEngine;
 
 public class Rampart : MonoBehaviour
 {
-    private int health;
+    public float health;
+    public float healthPerSecond;
     private SpriteRenderer rend;
     private BoxCollider2D coll;
 
 	void Start ()
-    {
-        health = 100;
+    {        
         rend = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
 	}
     private void Update()
     {
-        if (IsAlive())
-        {            
-        }
-        else
-        {
-            coll.enabled = false;
-            Color c = new Vector4(0, 0, 0, 0);
-            rend.color = c;
-        }
+  
     }
     public void Attacked(int damage)
     {
         health -= damage;        
-        rend.color = Color.red;        
+        rend.color = Color.red;
+        CheckAlive();
     }
     private bool IsAlive()
     {
@@ -37,6 +30,18 @@ public class Rampart : MonoBehaviour
             return true;
         else
             return false;
+    }
+    private void CheckAlive() {
+        if(IsAlive()) {
+            coll.enabled = true;
+            Color c = Color.white;
+            rend.color = c;
+        }
+        else {
+            coll.enabled = false;
+            Color c = new Vector4(0, 0, 0, 0);
+            rend.color = c;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,6 +55,13 @@ public class Rampart : MonoBehaviour
         if (collision.gameObject.tag == "EnemyBullet")
         {
             Attacked(collision.GetComponent<Bullet>().GetDamage());            
+        }
+    }
+    public void RepairRampart() {
+        if(health < 100) {
+            Debug.Log("xd");
+            health += healthPerSecond * Time.deltaTime;
+            CheckAlive();
         }
     }
 }
