@@ -40,7 +40,10 @@ public class TutorialTrigger : MonoBehaviour {
             switch (tutorialType)
             {
                 case TUTORIAL_TYPE.ORB:
-                    tutorial.ChangeTutorialTo(TutorialText.TUTORIAL_STATE.ORB);
+                    if (tutorial)
+                    {
+                        tutorial.ChangeTutorialTo(TutorialText.TUTORIAL_STATE.ORB);
+                    }
                     break;
                 case TUTORIAL_TYPE.ATTACK:
                     if (tutorial.orbTutorialEnd)

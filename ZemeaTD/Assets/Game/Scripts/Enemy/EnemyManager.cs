@@ -25,6 +25,8 @@ public class EnemyManager : MonoBehaviour {
     public float timeBetweenWaves;
     public float timeBetweenEnemies;
     public float timeForFirstWave = 75;
+    public GameObject miniBoss;
+    public int waveMiniBoss = 1;
     private List<int> enemiesIndex;
     private List<Enemy> enemies;
     private int currentWave;
@@ -109,6 +111,13 @@ public class EnemyManager : MonoBehaviour {
         wave.name = "Wave " + currentWave;
         if(!waveCalculated)
             CalculateWave();
+        if (currentWave % waveMiniBoss == 0)
+        {
+            Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Instantiate(miniBoss, t.position + new Vector3(0,miniBoss.transform.position.y,0), Quaternion.identity, wave.transform);
+            currentEnemies++;
+            enemyConta++;
+        }
         if((enemyConta < totalEnemiesToSpawn)) {
             if(timer >= timeBetweenEnemies) {
                 Enemy e = enemies[enemyConta];

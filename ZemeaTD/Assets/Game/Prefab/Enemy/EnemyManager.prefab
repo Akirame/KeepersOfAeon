@@ -120,6 +120,8 @@ MonoBehaviour:
   - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
   - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
   - {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f, type: 2}
-  timeBetweenWaves: 3
+  timeBetweenWaves: 15
   timeBetweenEnemies: 1
-  timeForFirstWave: 30
+  timeForFirstWave: 75
+  miniBoss: {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 2}
+  waveMiniBoss: 5
