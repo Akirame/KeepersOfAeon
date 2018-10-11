@@ -24,12 +24,9 @@ public class Rampart : MonoBehaviour
         rend.color = Color.red;
         CheckAlive();
     }
-    private bool IsAlive()
+    public bool IsAlive()
     {
-        if (health > 0)
-            return true;
-        else
-            return false;
+        return (health > 0);
     }
     private void CheckAlive() {
         if(IsAlive()) {

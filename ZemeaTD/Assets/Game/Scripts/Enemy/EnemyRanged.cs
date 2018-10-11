@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyRanged : Enemy
 {
-    public float timeToAttack;        
-    public RangeDetector detector;    
+    public float timeToAttack;
+    public RangeDetector detector;
     public Bullet bullet;
     private float timer;
     private bool isAttacking;
@@ -14,7 +14,7 @@ public class EnemyRanged : Enemy
     protected override void Start()
     {
         base.Start();
-        timer = 0;        
+        timer = 0;
         detector.RampartOnRange += OnRange;
         detector.RampartOffRange += OffRange;
         anim = GetComponent<Animator>();
@@ -27,32 +27,35 @@ public class EnemyRanged : Enemy
     private void Update()
     {
         if (rampart)
-        {            
-            if (timer < timeToAttack)
+            if (rampart.IsAlive())
             {
-                timer += Time.deltaTime;                                    
+                if (timer < timeToAttack)
+                {
+                    timer += Time.deltaTime;
+                }
+                else if (syncroAttackWithAnim)
+                {
+                    GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
+                    Vector2 bulletDirection = rampart.transform.position - transform.position;
+                    b.GetComponent<Bullet>().SetDamage(damage);
+                    b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
+                    b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, Vector3.right);
+                    timer = 0;
+                    syncroAttackWithAnim = false;
+
+                }
             }
-            else if(syncroAttackWithAnim)
+            else
             {
-                GameObject b = Instantiate(bullet.gameObject, transform.position,Quaternion.identity);
-                Vector2 bulletDirection = rampart.transform.position - transform.position;
-                b.GetComponent<Bullet>().SetDamage(damage);
-                b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
-                b.GetComponent<Bullet>().Shoot(bulletDirection.normalized,Vector3.right);
+                rampart = null;
+                movementBehaviour.SetCanMove(true);
                 timer = 0;
-                syncroAttackWithAnim = false;
-                
             }
-        }
-        else
-        {            
-            timer = 0;
-        }
     }
     private void OnRange(RangeDetector d)
     {
         rampart = d.GetRampart();
-        movementBehaviour.Deactivate();
+        movementBehaviour.SetCanMove(false);
         anim.SetBool("AttackOn", true);
     }
     private void OffRange(RangeDetector d)

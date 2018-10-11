@@ -68,4 +68,8 @@ public class Enemy : MonoBehaviour
             Death(this);
         }
     }
+    public void Kill()
+    {
+        Death(this);
+    }
 }

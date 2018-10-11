@@ -9,6 +9,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public float speed = 200;
     public float knockbackTime = 0.2f;
     private bool isKnockback = false;
+    private bool canMove = true;
     private Rigidbody2D rig;
     private SpriteRenderer rend;
     private float timer;
@@ -24,19 +25,25 @@ public class EnemyMovementBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockback)
+        if (canMove)
         {
-            velocity.x = speed/2 * -movementDirection * Time.deltaTime;
-            timer += Time.deltaTime;
-            if (timer > knockbackTime)
+            if (isKnockback)
             {
-                timer = 0;
-                isKnockback = false;
+                velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
+                timer += Time.deltaTime;
+                if (timer > knockbackTime)
+                {
+                    timer = 0;
+                    isKnockback = false;
+                }
             }
+            else
+                velocity.x = speed * movementDirection * Time.deltaTime;
+            rig.velocity = velocity;
         }
         else
-            velocity.x = speed * movementDirection * Time.deltaTime;
-        rig.velocity = velocity;
+            rig.velocity = Vector2.zero;
+
     }
 
 
@@ -44,7 +51,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     {
         if (transform.position.x > 0)
         {
-            rend.flipX = true;
             movementDirection = -1;
         }
         else
@@ -52,12 +58,12 @@ public class EnemyMovementBehaviour : MonoBehaviour
             rend.flipX = false;
             movementDirection = 1;
         }
+        transform.localScale = new Vector3(movementDirection * 2, 2, 1);
     }
 
-    public void Deactivate()
+    public void SetCanMove(bool val)
     {
-        rig.velocity = Vector2.zero;
-        this.enabled = false;
+        canMove = val;
     }
 
     public void KnockBack()

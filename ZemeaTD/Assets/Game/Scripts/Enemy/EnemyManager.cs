@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour {
     private bool nextWave;
     private bool waveCalculated;
     private bool firstWave;
+    private bool bossSpawn = false;
 
     private void Start() {
         Enemy.Death += EnemyKilled;
@@ -53,6 +54,8 @@ public class EnemyManager : MonoBehaviour {
         firstWave = true;
     }
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.F1))
+            KillAllEnemies();
         if (firstWave)
         {
             timer += Time.deltaTime;
@@ -111,14 +114,15 @@ public class EnemyManager : MonoBehaviour {
         wave.name = "Wave " + currentWave;
         if(!waveCalculated)
             CalculateWave();
-        if (currentWave % waveMiniBoss == 0)
+        if (currentWave % waveMiniBoss == 0 && !bossSpawn)
         {
+            bossSpawn = true;
             Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(miniBoss, t.position + new Vector3(0,miniBoss.transform.position.y,0), Quaternion.identity, wave.transform);
+            Instantiate(miniBoss, t.position + new Vector3(0, miniBoss.transform.position.y, 0), Quaternion.identity, wave.transform);
             currentEnemies++;
             enemyConta++;
         }
-        if((enemyConta < totalEnemiesToSpawn)) {
+        if ((enemyConta < totalEnemiesToSpawn)) {
             if(timer >= timeBetweenEnemies) {
                 Enemy e = enemies[enemyConta];
                 Transform t = spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -136,6 +140,7 @@ public class EnemyManager : MonoBehaviour {
             waveCalculated = false;
             enemyConta = 0;
             timer = 0;
+            bossSpawn = false;
         }
 
     }
@@ -152,5 +157,14 @@ public class EnemyManager : MonoBehaviour {
     private void OnDestroy()
     {
         Enemy.Death -= EnemyKilled;
+    }
+    public void KillAllEnemies()
+    {
+        Enemy[] enemyList = wave.GetComponentsInChildren<Enemy>();
+        foreach (Enemy e in enemyList)
+        {
+            e.Kill();
+        }
+        CleanWave();
     }
 }

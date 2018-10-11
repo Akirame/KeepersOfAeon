@@ -11,14 +11,18 @@ public class Bullet : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;
+        GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;        
 	}
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
     public void Shoot(Vector2 dir, Vector3 angleAttack)
     {
         direction = dir;
         transform.eulerAngles = angleAttack;
-    }
+    }    
     public void SetDamage(int _damage)
     {
         damage = _damage;
@@ -44,5 +48,5 @@ public class Bullet : MonoBehaviour {
                     Destroy(this.gameObject);
                 break;
         }        
-    }
+    }    
 }

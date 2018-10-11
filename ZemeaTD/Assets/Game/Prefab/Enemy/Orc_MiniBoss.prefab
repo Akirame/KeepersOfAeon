@@ -20,6 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4295530587259340}
   - component: {fileID: 95042465029019882}
+  - component: {fileID: 50110538550696088}
+  - component: {fileID: 70224319145182632}
+  - component: {fileID: 114229144858097208}
+  - component: {fileID: 114938033375666440}
   m_Layer: 9
   m_Name: Orc_MiniBoss
   m_TagString: Enemy
@@ -36,10 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4417187794435364}
   - component: {fileID: 212289295877834092}
-  - component: {fileID: 50691527462154642}
-  - component: {fileID: 70253234917716352}
-  - component: {fileID: 114251906660324750}
-  - component: {fileID: 114026737319684522}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
@@ -74,13 +74,13 @@ Transform:
   m_Father: {fileID: 4295530587259340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50691527462154642
+--- !u!50 &50110538550696088
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1672859721607220}
+  m_GameObject: {fileID: 1538042493107528}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -94,12 +94,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!70 &70253234917716352
+--- !u!70 &70224319145182632
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1672859721607220}
+  m_GameObject: {fileID: 1538042493107528}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -127,24 +127,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114026737319684522
+--- !u!114 &114229144858097208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1672859721607220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 200
---- !u!114 &114251906660324750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1672859721607220}
+  m_GameObject: {fileID: 1538042493107528}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7332d044706b5f468c29c94f6215914, type: 3}
@@ -157,6 +145,20 @@ MonoBehaviour:
   chanceOfElement: 100
   experience: 1000
   timeToAttack: 4
+--- !u!114 &114938033375666440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538042493107528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  speed: 200
+  knockbackTime: 0.2
 --- !u!212 &212289295877834092
 SpriteRenderer:
   m_ObjectHideFlags: 1

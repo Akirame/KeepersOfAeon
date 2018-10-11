@@ -305,7 +305,7 @@ Prefab:
     - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 2}
       propertyPath: timeForFirstWave
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 2}
@@ -334,7 +334,7 @@ Prefab:
     - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 2}
       propertyPath: timeBetweenWaves
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 2}
@@ -345,7 +345,17 @@ Prefab:
     - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 2}
       propertyPath: waveMiniBoss
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: minCantRanged
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: minCantMelee
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
@@ -800,7 +810,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 450443306}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1046,7 +1056,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 483118255}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1234,8 +1244,53 @@ Prefab:
     - target: {fileID: 224973226055640722, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61299052251447954, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61484549090445836, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61944193873165238, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61475353499204494, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61463571201553820, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61587674219199650, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61224028751929710, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61839090758055152, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
+    - target: {fileID: 61183083264007370, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cde8e47c7d81ca4ba5af02734e52c2e, type: 2}
   m_IsPrefabAsset: 0
@@ -2522,7 +2577,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1628598728}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ad4e937321a2e2e4ba42243e301e3949, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

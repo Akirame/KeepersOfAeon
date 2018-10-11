@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7815aac8e27359c41a8b85d2f095904f, type: 3}
   m_Name: DataArcher
   m_EditorClassIdentifier: 
-  floorSpeed: 1200
-  airSpeed: 1100
+  floorSpeed: 1500
+  airSpeed: 1600
   attackSpeed: 5
   jumpForce: 60
   minDamage: 8
