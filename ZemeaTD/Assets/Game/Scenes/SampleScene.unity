@@ -357,6 +357,15 @@ Prefab:
       propertyPath: minCantMelee
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1313142126351698, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826024801907116, guid: 6db1b0dd039e4454aa40c07c355d6350,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 2}
   m_IsPrefabAsset: 0
@@ -1726,6 +1735,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &886375453 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4689669563965970, guid: 6db1b0dd039e4454aa40c07c355d6350,
+    type: 2}
+  m_PrefabInternal: {fileID: 82222351}
 --- !u!1 &887259566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,6 +2545,41 @@ MonoBehaviour:
   secondaryButton: 258
   thirdButton: 259
   axisH: P1_Horizontal
+--- !u!4 &1350414248 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4488360526375812, guid: 6db1b0dd039e4454aa40c07c355d6350,
+    type: 2}
+  m_PrefabInternal: {fileID: 82222351}
+--- !u!1 &1450289358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1313142126351698, guid: 6db1b0dd039e4454aa40c07c355d6350,
+    type: 2}
+  m_PrefabInternal: {fileID: 82222351}
+--- !u!114 &1450289359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450289358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839b9c6a90448c641aefc824cba9177b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList:
+  - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
+  - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
+  - {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f, type: 2}
+  spawnPoints:
+  - {fileID: 1350414248}
+  - {fileID: 886375453}
+  meleeCount: 3
+  rangeCount: 3
+  flyCount: 3
+  currentWave: 1
+  timeBetweenWaves: 10
+  timeBetweenEnemies: 1
+  enemies: []
 --- !u!4 &1598832594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4959807564778454, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,

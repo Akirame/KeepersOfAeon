@@ -37,11 +37,11 @@ public class UIGame : MonoBehaviour
 
     private void Update()
     {
-        if (waveTextAux != EnemyManager.GetInstance().wave.name) //delegate
-        {
-            GetComponent<Animator>().SetTrigger("wave");
-            waveTextAux = EnemyManager.GetInstance().wave.name;            
-        }
+        //if (waveTextAux != EnemyManager.GetInstance().wave.name) //delegate
+        //{
+        //    GetComponent<Animator>().SetTrigger("wave");
+        //    waveTextAux = EnemyManager.GetInstance().wave.name;            
+        //}
         ChangeOrbImage();
 
 
