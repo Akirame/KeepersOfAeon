@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  knockbackTime: 1
+  velocity: {x: 0, y: 0}
 --- !u!114 &114425513066743668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +118,7 @@ MonoBehaviour:
   element: 0
   damage: 0
   health: 100
+  chanceOfElement: 25
   experience: 100
 --- !u!212 &212821889654399378
 SpriteRenderer:

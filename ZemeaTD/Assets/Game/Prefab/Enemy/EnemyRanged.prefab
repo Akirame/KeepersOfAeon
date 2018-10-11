@@ -96,7 +96,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!50 &50786331333545350
 Rigidbody2D:
   serializedVersion: 4
@@ -207,7 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  speed: 150
+  knockbackTime: 0.2
+  velocity: {x: 0, y: 0}
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -7,7 +7,6 @@ public class EnemyMelee : Enemy
     public float timeToAttack;    
     private float timer;    
     private bool isAttacking;
-    
 
     protected override void Start()
     {

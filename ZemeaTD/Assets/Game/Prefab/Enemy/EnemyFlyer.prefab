@@ -105,6 +105,7 @@ MonoBehaviour:
   element: 0
   damage: 10
   health: 20
+  chanceOfElement: 25
   experience: 100
   timeToAttack: 2
 --- !u!114 &114349914651108044
@@ -132,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
+  knockbackTime: 0.2
+  velocity: {x: 0, y: 0}
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1

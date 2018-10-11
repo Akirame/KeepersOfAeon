@@ -42,9 +42,7 @@ public class Enemy : MonoBehaviour
         tag = "Enemy";
     }
 
-    private void Update()
-    {
-    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Tower")
@@ -62,7 +60,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int bulletDamage, GameObject player)
     {        
         health -= bulletDamage;
-        movementBehaviour.KnockBack(50);
+        movementBehaviour.KnockBack();
         if (health <= 0)
         {
             PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();

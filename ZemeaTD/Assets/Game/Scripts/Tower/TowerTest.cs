@@ -10,12 +10,18 @@ public class TowerTest : MonoBehaviour
 
     private void Start()
     {
-        healthText.text = health + "%";
+        if (healthText)
+        {
+            healthText.text = health + "%";
+        }
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        healthText.text = health + "%";
+        if (healthText)
+        {
+            healthText.text = health + "%";
+        }
     }
 }

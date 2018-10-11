@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovementBehaviour : MonoBehaviour
 {
-    private Rigidbody2D rig;
-    private Dir direction;
-    private SpriteRenderer rend;
+    public Vector2 velocity = new Vector2();
     public float speed = 200;
-    public enum Dir { Left, Right }
+    public float knockbackTime = 0.2f;
+    private bool isKnockback = false;
+    private Rigidbody2D rig;
+    private SpriteRenderer rend;
+    private float timer;
+    private int movementDirection;
 
 
     private void Start()
@@ -17,43 +21,48 @@ public class EnemyMovementBehaviour : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         SetDirection();
     }
+
     private void FixedUpdate()
     {
+        if (isKnockback)
         {
-            switch (direction)
+            velocity.x = speed/2 * -movementDirection * Time.deltaTime;
+            timer += Time.deltaTime;
+            if (timer > knockbackTime)
             {
-                case Dir.Left:
-                    rig.velocity = new Vector2(-speed * Time.deltaTime, rig.velocity.y);
-                    break;
-                case Dir.Right:
-                    rig.velocity = new Vector2(speed * Time.deltaTime, rig.velocity.y);
-                    break;
+                timer = 0;
+                isKnockback = false;
             }
         }
+        else
+            velocity.x = speed * movementDirection * Time.deltaTime;
+        rig.velocity = velocity;
     }
+
+
     public void SetDirection()
     {
         if (transform.position.x > 0)
         {
-            direction = Dir.Left;
             rend.flipX = true;
+            movementDirection = -1;
         }
         else
         {
-            direction = Dir.Right;
             rend.flipX = false;
+            movementDirection = 1;
         }
     }
+
     public void Deactivate()
     {
         rig.velocity = Vector2.zero;
         this.enabled = false;
     }
-    public void KnockBack(float force)
-    {        
-        if(direction == Dir.Right)
-        rig.AddForce(Vector2.left * force, ForceMode2D.Impulse);
-        else
-            rig.AddForce(Vector2.right * force,ForceMode2D.Impulse);        
+
+    public void KnockBack()
+    {
+        rig.AddForce(new Vector2(10 * -movementDirection, 0), ForceMode2D.Impulse);
+        isKnockback = true;
     }
 }
