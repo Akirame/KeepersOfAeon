@@ -26,8 +26,19 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    private void Start()
+    {
+        Tower.TowerDestroyed += GameOver;
+        LightBehaviour.LightFinished += GameWon;
+    }
+
+    private void GameWon(LightBehaviour l)
+    {
+        LoaderManager.Get().LoadScene("FinalScreen");
+    }
+
+    private void GameOver(Tower t)
+    {
+        LoaderManager.Get().LoadSceneQuick("FinalScreen");
+    }
 }

@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Tower")
         {
             Death(this);
-            collision.GetComponent<TowerTest>().TakeDamage(damage);
+            collision.GetComponent<Tower>().TakeDamage(damage);
         }
     }
 

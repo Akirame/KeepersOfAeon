@@ -35,6 +35,11 @@ public class LoaderManager : MonoBehaviour
         SceneManager.LoadScene("LoadingScreen");
         StartCoroutine(AsynchronousLoad(sceneName));
     }
+    public void LoadSceneQuick(string sceneName) {
+        SceneManager.LoadScene("LoadingScreen");
+        minTimeToLoad = 2;
+        StartCoroutine(AsynchronousLoad(sceneName));
+    }
     IEnumerator AsynchronousLoad(string scene)
     {        
         loadingProgress = 0;
@@ -54,7 +59,6 @@ public class LoaderManager : MonoBehaviour
             {
                 ao.allowSceneActivation = true;                
             }
-
             yield return null;
         }
     }

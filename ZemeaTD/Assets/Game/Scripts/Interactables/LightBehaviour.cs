@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightBehaviour : MonoBehaviour {
+public class LightBehaviour : MonoBehaviour
+{
+
+    public delegate void LightAction(LightBehaviour l);
+    public static LightAction LightFinished;
 
     private bool lightOn = false;
     public float lightValue = 0f;
@@ -12,6 +16,8 @@ public class LightBehaviour : MonoBehaviour {
     private void Update() {
         if(lightOn)
             ActivateLight();
+        if (lightValue >= 100)
+            LightFinished(this);
     }
     private void ActivateLight() {
         if(lightValue < 100) {
