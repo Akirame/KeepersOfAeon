@@ -5,7 +5,22 @@ using UnityEngine;
 
 public class WaveControl : MonoBehaviour {
 
-    public Enemy[] enemyList;
+    #region singleton
+    private static WaveControl instance;
+    public static WaveControl GetInstance()
+    {
+        return instance;
+    }
+    private void Awake()
+    {
+        if (!instance)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
+    #endregion
+
+    public Enemy[] enemyPrefab;
     public Transform[] spawnPoints;
     public int meleeCount;
     public int rangeCount;
@@ -13,7 +28,11 @@ public class WaveControl : MonoBehaviour {
     public int currentWave;
     public int timeBetweenWaves;
     public int timeBetweenEnemies;
-    public List<GameObject> enemies;
+    public GameObject miniBoss;
+    public int waveMiniBoss;
+    public GameObject enemiesParent;
+    public int enemyIncrementFactor = 2;
+    private List<GameObject> enemyList;
     private List<int> enemyTypeList;
     private float timerWaves;
     private float timerEnemies;
@@ -23,7 +42,7 @@ public class WaveControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         enemyTypeList = new List<int>();
-        enemies = new List<GameObject>();
+        enemyList = new List<GameObject>();
         Enemy.Death += EnemyKilled;
     }
 	
@@ -38,6 +57,7 @@ public class WaveControl : MonoBehaviour {
             {
                 CleanWave();
                 SpawnWave();
+                TrySpawnMiniBoss();
                 timerWaves = 0;
             }
         }
@@ -45,9 +65,19 @@ public class WaveControl : MonoBehaviour {
             CheckEnemyCount();
 	}
 
+    private void TrySpawnMiniBoss()
+    {
+        if (currentWave % waveMiniBoss == 0)
+        {
+            Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+            GameObject enemy = Instantiate(miniBoss, t.position + new Vector3(0,20,0), Quaternion.identity, enemiesParent.transform);
+            enemyList.Add(enemy);
+        }
+    }
+
     private void CheckEnemyCount()
     {
-        if (enemies.Count <= 0)
+        if (enemyList.Count <= 0)
         {
             canSpawn = true;
         }
@@ -59,6 +89,7 @@ public class WaveControl : MonoBehaviour {
         StopAllCoroutines();
         StartCoroutine(SpawnEnemyList());
         canSpawn = false;
+        currentWave++;
     }
 
     IEnumerator SpawnEnemyList()
@@ -66,29 +97,29 @@ public class WaveControl : MonoBehaviour {
         for (int i = 0; i < enemyTypeList.Count; i++)
         {
             Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-            GameObject enemy = Instantiate(enemyList[enemyTypeList[i]].gameObject, t.position, Quaternion.identity, transform);
-            enemies.Add(enemy);
+            GameObject enemy = Instantiate(enemyPrefab[enemyTypeList[i]].gameObject, t.position, Quaternion.identity, enemiesParent.transform);
+            enemyList.Add(enemy);
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
     }
 
     private void EnemyKilled(Enemy e)
     {
-        enemies.Remove(e.gameObject);
+        enemyList.Remove(e.gameObject);
         Destroy(e.gameObject);
     }
 
     private void GenerateEnemyList()
     {
-        for (int i = 0; i < meleeCount; i++)
+        for (int i = 0; i < meleeCount + enemyIncrementFactor * currentWave; i++)
         {
             enemyTypeList.Add(0);
         }
-        for (int i = 0; i < rangeCount; i++)
+        for (int i = 0; i < rangeCount + enemyIncrementFactor * currentWave; i++)
         {
             enemyTypeList.Add(1);
         }
-        for (int i = 0; i < flyCount; i++)
+        for (int i = 0; i < flyCount + enemyIncrementFactor * currentWave; i++)
         {
             enemyTypeList.Add(2);
         }
@@ -109,16 +140,17 @@ public class WaveControl : MonoBehaviour {
     public void KillAllEnemies()
     {
         StopAllCoroutines();
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = enemyList.Count - 1; i >= 0; i--)
         {
-            enemies[i].GetComponent<Enemy>().Kill();
+            enemyList[i].GetComponent<Enemy>().Kill();
         }
+        CleanWave();
         canSpawn = true;
     }
 
     private void CleanWave()
     {
         enemyTypeList.Clear();
-        enemies.Clear();
+        enemyList.Clear();
     }
 }

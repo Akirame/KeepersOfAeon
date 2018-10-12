@@ -22,6 +22,7 @@ public class UIGame : MonoBehaviour
     private int p2Level;
     private int p1Exp;
     private int p2Exp;
+    private int wave;
 
     private void Start()
     {
@@ -31,17 +32,21 @@ public class UIGame : MonoBehaviour
         p2Level = p2.playerLevel;
         p1Exp = p1.playerExperience;
         p2Exp = p2.playerExperience;
+        P1Level.text = "Lvl " + p1.playerLevel.ToString();
+        P2Level.text = "Lvl " + p2.playerLevel.ToString();
         expBarP1.fillAmount = p1.playerExperience / (p1.expNeededPerLevel * p1.playerLevel);
         expBarP2.fillAmount = p2.playerExperience / (p2.expNeededPerLevel * p2.playerLevel);
+        wave = WaveControl.GetInstance().currentWave;
+        waveText.text = "NEW GAME";
     }
 
     private void Update()
     {
-        //if (waveTextAux != EnemyManager.GetInstance().wave.name) //delegate
-        //{
-        //    GetComponent<Animator>().SetTrigger("wave");
-        //    waveTextAux = EnemyManager.GetInstance().wave.name;            
-        //}
+        if (wave != WaveControl.GetInstance().currentWave) //delegate
+        {
+            wave = WaveControl.GetInstance().currentWave;
+            GetComponent<Animator>().SetTrigger("wave");
+        }
         ChangeOrbImage();
 
 
@@ -94,6 +99,6 @@ public class UIGame : MonoBehaviour
 
     private void UpdateText()
     {
-        waveText.text = waveTextAux;
+        waveText.text = "Wave " + wave.ToString();
     }
 }

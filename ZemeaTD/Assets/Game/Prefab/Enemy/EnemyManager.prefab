@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4859878995875268}
-  - component: {fileID: 114826024801907116}
+  - component: {fileID: 114849525397464028}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -52,6 +52,21 @@ GameObject:
   - component: {fileID: 4689669563965970}
   m_Layer: 0
   m_Name: SpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1778851288950606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4966451133012140}
+  m_Layer: 0
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,10 +110,24 @@ Transform:
   m_Children:
   - {fileID: 4488360526375812}
   - {fileID: 4689669563965970}
+  - {fileID: 4966451133012140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114826024801907116
+--- !u!4 &4966451133012140
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778851288950606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4859878995875268}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114849525397464028
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,22 +135,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1313142126351698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d5e96668daa4414c9e96fb063bd59a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 839b9c6a90448c641aefc824cba9177b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 4488360526375812}
-  - {fileID: 4689669563965970}
-  wave: {fileID: 0}
-  minCantMelee: 5
-  minCantRanged: 1
-  minCantFlyer: 0
-  TypeOfEnemies:
+  enemyPrefab:
   - {fileID: 114186622731537466, guid: 5037b7dec618d604abe6e911fc29c809, type: 2}
   - {fileID: 114608272000057322, guid: 1eeb5c632b311cb40bce050d3bbaba6d, type: 2}
   - {fileID: 114207528155512960, guid: 10f0bb97b40f9bf4ca536dac2cec071f, type: 2}
-  timeBetweenWaves: 15
+  spawnPoints:
+  - {fileID: 4488360526375812}
+  - {fileID: 4689669563965970}
+  meleeCount: 3
+  rangeCount: 3
+  flyCount: 3
+  currentWave: 0
+  timeBetweenWaves: 10
   timeBetweenEnemies: 1
-  timeForFirstWave: 75
-  miniBoss: {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 2}
-  waveMiniBoss: 5
+  enemyList: []
+  miniBoss: {fileID: 0}
+  enemiesParent: {fileID: 1778851288950606}
+  enemyIncrementFactor: 2

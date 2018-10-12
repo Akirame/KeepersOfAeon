@@ -26,18 +26,24 @@ public class Enemy : MonoBehaviour
         if (UnityEngine.Random.Range(0,100)<chanceOfElement)
         {
             element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
-            switch (element)
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr)
             {
-                case ElementalOrb.ELEMENT_TYPE.WATER:
-                    GetComponent<SpriteRenderer>().color = Color.blue;
-                    break;
-                case ElementalOrb.ELEMENT_TYPE.FIRE:
-                    GetComponent<SpriteRenderer>().color = Color.red;
-                    break;
-                case ElementalOrb.ELEMENT_TYPE.EARTH:
-                    GetComponent<SpriteRenderer>().color = Color.green;
-                    break;
+                switch (element)
+                {
+                    case ElementalOrb.ELEMENT_TYPE.WATER:
+                        sr.color = Color.blue;
+                        break;
+                    case ElementalOrb.ELEMENT_TYPE.FIRE:
+                        sr.color = Color.red;
+                        break;
+                    case ElementalOrb.ELEMENT_TYPE.EARTH:
+                        sr.color = Color.green;
+                        break;
+                }
+
             }
+
         }
         tag = "Enemy";
     }

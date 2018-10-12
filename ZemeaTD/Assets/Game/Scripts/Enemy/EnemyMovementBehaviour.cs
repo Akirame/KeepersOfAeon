@@ -55,10 +55,9 @@ public class EnemyMovementBehaviour : MonoBehaviour
         }
         else
         {
-            rend.flipX = false;
             movementDirection = 1;
         }
-        transform.localScale = new Vector3(movementDirection * 2, 2, 1);
+        transform.localScale = new Vector3(movementDirection, 1, 1);
     }
 
     public void SetCanMove(bool val)
