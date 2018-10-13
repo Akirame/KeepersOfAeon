@@ -11,7 +11,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private bool isKnockback = false;
     private bool canMove = true;
     private Rigidbody2D rig;
-    private SpriteRenderer rend;
     private float timer;
     private int movementDirection;
 
@@ -19,7 +18,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private void Start()
     {        
         rig = GetComponent<Rigidbody2D>();
-        rend = GetComponent<SpriteRenderer>();
         SetDirection();
     }
 

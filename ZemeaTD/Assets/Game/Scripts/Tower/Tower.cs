@@ -9,13 +9,15 @@ public class Tower : MonoBehaviour
     public static TowerActions TowerDestroyed;
 
     public int health = 100;
+    public int maxHealth = 100;
     public Text healthText;
+    public Image healthBar;
     
     private void Start()
     {
         if (healthText)
         {
-            healthText.text = health + "%";
+            healthText.text = health.ToString() + "/" + maxHealth.ToString();
         }
     }
 
@@ -23,6 +25,10 @@ public class Tower : MonoBehaviour
     {
         if (health <= 0)
             TowerDestroyed(this);
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            TakeDamage(2);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -30,7 +36,8 @@ public class Tower : MonoBehaviour
         health -= damage;
         if (healthText)
         {
-            healthText.text = health + "%";
+            healthText.text = health.ToString() + "/" + maxHealth.ToString();
+            healthBar.fillAmount = (float)health / maxHealth;
         }
     }
 }
