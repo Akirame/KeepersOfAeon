@@ -8,8 +8,7 @@ public class RepairShop : MonoBehaviour {
     private void Update() {
         if(repairOn) {
             foreach(Rampart r in ramparts) {
-                r.RepairRampart();
-                print("holi");
+                r.RepairRampart();                
             }
         }
     }

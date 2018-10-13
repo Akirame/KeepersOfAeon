@@ -32,6 +32,11 @@ public class EnemyMelee : Enemy
             }
     }
 
+    public void EnemyBossShake()
+    {
+        CameraShake.GetInstance().ShakeOnce();
+    }
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
