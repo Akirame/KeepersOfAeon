@@ -9,19 +9,17 @@ public class PlayerLevel : MonoBehaviour
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
 
-    private void Update()
+
+    public void LevelUpPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            playerLevel++;
-            LevelUpTo(playerLevel);
-            print("DEBUG - LEVEL UP - PlayerLevel.cs");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            AddExperience(500);
-            print("DEBUG - ADD EXPERIENCE - PlayerLevel.cs");
-        }
+        playerLevel++;
+        LevelUpTo(playerLevel);
+    }
+
+    public void LevelDownPlayer()
+    {
+        playerLevel--;
+        LevelUpTo(playerLevel);
     }
 
     public void AddExperience(int amount)

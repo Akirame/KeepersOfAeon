@@ -44,6 +44,7 @@ public class WaveControl : MonoBehaviour {
         enemyTypeList = new List<int>();
         enemyList = new List<GameObject>();
         Enemy.Death += EnemyKilled;
+        DebugScreen.GetInstance().AddButton("Kill All Enemies",KillAllEnemies);
     }
 	
 	// Update is called once per frame

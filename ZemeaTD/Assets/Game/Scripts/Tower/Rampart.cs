@@ -17,10 +17,6 @@ public class Rampart : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
 	}
-    private void Update()
-    {
-  
-    }
     public void Attacked(int damage)
     {
         shield -= damage;        
@@ -57,6 +53,12 @@ public class Rampart : MonoBehaviour
             Attacked(collision.GetComponent<Bullet>().GetDamage());            
         }
     }
+
+    public void RepairAll()
+    {
+        shield = maxShield;
+    }
+
     public void RepairRampart() {
         if(shield < maxShield) {
             shield += healthPerSecond * Time.deltaTime;

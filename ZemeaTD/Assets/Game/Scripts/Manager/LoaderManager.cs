@@ -37,7 +37,7 @@ public class LoaderManager : MonoBehaviour
     }
     public void LoadSceneQuick(string sceneName) {
         SceneManager.LoadScene("LoadingScreen");
-        minTimeToLoad = 2;
+        minTimeToLoad = 0.5f;
         StartCoroutine(AsynchronousLoad(sceneName));
     }
     IEnumerator AsynchronousLoad(string scene)
