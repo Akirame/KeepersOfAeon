@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rampart : MonoBehaviour
 {
-    public float health;
+    public float shield = 200;
+    public int maxShield = 200;
     public float healthPerSecond;
+    public Image shieldBar;
     private SpriteRenderer rend;
     private BoxCollider2D coll;
 
@@ -20,13 +23,13 @@ public class Rampart : MonoBehaviour
     }
     public void Attacked(int damage)
     {
-        health -= damage;        
+        shield -= damage;        
         rend.color = Color.red;
         CheckAlive();
     }
     public bool IsAlive()
     {
-        return (health > 0);
+        return (shield > 0);
     }
     private void CheckAlive() {
         if(IsAlive()) {
@@ -55,9 +58,8 @@ public class Rampart : MonoBehaviour
         }
     }
     public void RepairRampart() {
-        if(health < 100) {
-            Debug.Log("xd");
-            health += healthPerSecond * Time.deltaTime;
+        if(shield < maxShield) {
+            shield += healthPerSecond * Time.deltaTime;
             CheckAlive();
         }
     }
