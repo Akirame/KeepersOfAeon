@@ -21,9 +21,12 @@ public class Tower : MonoBehaviour
         {
             healthText.text = health.ToString() + "/" + maxHealth.ToString();
         }
-        DebugScreen.GetInstance().AddButton("TowerInvulnerable",TowerInvulnerable);
-        DebugScreen.GetInstance().AddButton("RepairTower",RepairTower);
-        DebugScreen.GetInstance().AddButton("RepairRamparts",RepairRamparts);
+        if (DebugScreen.GetInstance())
+        {
+            DebugScreen.GetInstance().AddButton("TowerInvulnerable", TowerInvulnerable);
+            DebugScreen.GetInstance().AddButton("RepairTower", RepairTower);
+            DebugScreen.GetInstance().AddButton("RepairRamparts", RepairRamparts);
+        }
     }
 
     private void Update()

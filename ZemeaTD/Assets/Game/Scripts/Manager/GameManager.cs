@@ -33,9 +33,12 @@ public class GameManager : MonoBehaviour {
     {
         Tower.TowerDestroyed += GameOver;
         LightBehaviour.LightFinished += GameWon;
-        DebugScreen.GetInstance().AddButton("ResetGameScene",ResetGame);
-        DebugScreen.GetInstance().AddButton("Add Players Level", LevelUpPlayers);
-        DebugScreen.GetInstance().AddButton("Substract Players Level", LevelDownPlayers);
+        if (DebugScreen.GetInstance())
+        {
+            DebugScreen.GetInstance().AddButton("ResetGameScene", ResetGame);
+            DebugScreen.GetInstance().AddButton("Add Players Level", LevelUpPlayers);
+            DebugScreen.GetInstance().AddButton("Substract Players Level", LevelDownPlayers);
+        }
     }
 
     private void ResetGame()

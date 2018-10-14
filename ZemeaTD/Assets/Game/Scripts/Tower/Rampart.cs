@@ -10,17 +10,27 @@ public class Rampart : MonoBehaviour
     public float healthPerSecond;
     public Image shieldBar;
     private SpriteRenderer rend;
-    private BoxCollider2D coll;
+    private CircleCollider2D coll;
 
 	void Start ()
     {        
         rend = GetComponent<SpriteRenderer>();
-        coll = GetComponent<BoxCollider2D>();
+        coll = GetComponent<CircleCollider2D>();
 	}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            print("DEBUG - Rampart.cs - 10 DANIO SHIELD");
+            shield -= 10;
+        }
+        shieldBar.fillAmount = (float)shield / maxShield;
+    }
+
     public void Attacked(int damage)
     {
-        shield -= damage;        
-        rend.color = Color.red;
+        shield -= damage;
         CheckAlive();
     }
     public bool IsAlive()
@@ -30,13 +40,9 @@ public class Rampart : MonoBehaviour
     private void CheckAlive() {
         if(IsAlive()) {
             coll.enabled = true;
-            Color c = Color.white;
-            rend.color = c;
         }
         else {
             coll.enabled = false;
-            Color c = new Vector4(0, 0, 0, 0);
-            rend.color = c;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
