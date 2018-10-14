@@ -9,8 +9,10 @@ public class Rampart : MonoBehaviour
     public int maxShield = 200;
     public float healthPerSecond;
     public Image shieldBar;
+    public ParticleSystem[] shieldParticles;
     private SpriteRenderer rend;
     private CircleCollider2D coll;
+    private bool activateRenderer = false;
 
 	void Start ()
     {        
@@ -21,9 +23,8 @@ public class Rampart : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F3))
-        {
-            print("DEBUG - Rampart.cs - 10 DANIO SHIELD");
-            shield -= 10;
+        {            
+            Attacked(50);
         }
         shieldBar.fillAmount = (float)shield / maxShield;
     }
@@ -39,10 +40,27 @@ public class Rampart : MonoBehaviour
     }
     private void CheckAlive() {
         if(IsAlive()) {
-            coll.enabled = true;
+            if (activateRenderer)
+            {
+                coll.enabled = true;
+                rend.enabled = true;
+                activateRenderer = !activateRenderer;
+                foreach (ParticleSystem p in shieldParticles)
+                {
+                    p.Play(true);
+                }
+            }
         }
         else {
-            coll.enabled = false;
+            if (!activateRenderer)
+            {
+                coll.enabled = false;                
+                rend.enabled = false;
+                activateRenderer = !activateRenderer;
+                foreach(ParticleSystem p in shieldParticles) {
+                    p.Stop(true);
+                }
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,6 +81,7 @@ public class Rampart : MonoBehaviour
     public void RepairAll()
     {
         shield = maxShield;
+        CheckAlive();
     }
 
     public void RepairRampart() {
