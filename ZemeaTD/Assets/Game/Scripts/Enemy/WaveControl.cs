@@ -52,8 +52,6 @@ public class WaveControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.F1))
-            KillAllEnemies();
         if (canSpawn)
         {
             timerWaves += Time.deltaTime;

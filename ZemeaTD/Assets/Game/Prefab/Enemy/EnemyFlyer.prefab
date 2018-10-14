@@ -121,6 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   maxY: 200
+  maxSpeedUpDown: 4
+  minSpeedUpDown: 2
+  maxDistanceUpDown: 5
+  minDistanceUpDown: 1
 --- !u!114 &114668749071737600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   speed: 500
   knockbackTime: 0.2
-  velocity: {x: 0, y: 0}
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1

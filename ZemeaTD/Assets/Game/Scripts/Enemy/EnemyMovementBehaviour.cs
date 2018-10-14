@@ -37,7 +37,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
             }
             else
                 velocity.x = speed * movementDirection * Time.deltaTime;
-            rig.velocity = velocity;
+            rig.velocity = new Vector2(velocity.x,rig.velocity.y);
         }
         else
             rig.velocity = Vector2.zero;

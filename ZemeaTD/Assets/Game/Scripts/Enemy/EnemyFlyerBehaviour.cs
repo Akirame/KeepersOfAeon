@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFlyerBehaviour : MonoBehaviour
-{
-    private Rigidbody2D rig;    
-    public float time = 3;
-    public float maxY = 200;
-    private float timer = 0;
+{        
+    public float maxSpeedUpDown = 4f;
+    public float minSpeedUpDown = 2f;
+    public float maxDistanceUpDown = 10f;
+    public float minDistanceUpDown = 2f;
+    private float distanceUpDown;
+    private float speedUpDown;
+    private float centerPos;
 
     private void Start()
-    {
-        rig = GetComponent<Rigidbody2D>();
-        rig.gravityScale = 0;
-        transform.position = new Vector2(transform.position.x, 20);        
+    {       
+        centerPos = Random.Range(15f, 50f);
+        distanceUpDown = Random.Range(minDistanceUpDown, maxDistanceUpDown);
+        speedUpDown = Random.Range(minSpeedUpDown, maxSpeedUpDown);
     }
-    private void Update()
+    private void LateUpdate()
     {
-        if (timer < time)
-        {
-            rig.velocity = new Vector2(rig.velocity.x, maxY * Time.deltaTime);
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            timer = 0;
-            maxY *= -1;
-        }
+        
+        Vector3 mov = new Vector3(transform.position.x,  centerPos + Mathf.Sin(speedUpDown * Time.time) * distanceUpDown, transform.position.z);
+        transform.position = mov;
     }
 }
