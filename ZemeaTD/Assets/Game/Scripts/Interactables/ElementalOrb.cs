@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalOrb : MonoBehaviour {
+public class ElementalOrb :MonoBehaviour
+{
 
     public delegate void OrbActions(ElementalOrb e);
     public static OrbActions OnConsumption;
@@ -14,12 +15,16 @@ public class ElementalOrb : MonoBehaviour {
     public GameObject playerAttached;
     public GameObject orbStash;
     private Rigidbody2D rigid;
+    private Animator anim;
 
-    private void Start() {
+    private void Start()
+    {
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
-    public void AttachToPlayer(GameObject player, Transform newPos){
+    public void AttachToPlayer(GameObject player, Transform newPos)
+    {
         pickedUp = true;
         playerAttached = player;
         rigid.bodyType = RigidbodyType2D.Kinematic;
@@ -28,7 +33,13 @@ public class ElementalOrb : MonoBehaviour {
         rigid.velocity = new Vector2();
     }
 
-    public void Throw() {
+    public void ActivateOutline(bool set)
+    {
+        anim.SetBool("onTouch", set);
+    }
+
+    public void Throw()
+    {
         rigid.bodyType = RigidbodyType2D.Dynamic;
         if(playerAttached.GetComponent<CharacterController2D>().lookingRight)
 
@@ -40,10 +51,24 @@ public class ElementalOrb : MonoBehaviour {
         transform.parent = playerAttached.transform.parent;
         playerAttached = null;
     }
-    public ElementalOrb Consume() {
+    public ElementalOrb Consume()
+    {
         playerAttached.GetComponent<AttackBehaviour>().currentElement = this;
-        pickedUp = false;        
+        pickedUp = false;
         OnConsumption(this);
         return this;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {        
+        if(collision.gameObject.tag == "Detector")
+            ActivateOutline(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Detector")
+            ActivateOutline(false);
+    }
+
 }

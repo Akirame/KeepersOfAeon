@@ -43,12 +43,12 @@ public class PlayerDetector : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.tag == "ElementalOrb") {
-            orbToPick = collision.gameObject.GetComponent<ElementalOrb>();
+            orbToPick = collision.gameObject.GetComponent<ElementalOrb>();            
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if(collision.gameObject.tag == "ElementalOrb") {
+        if(collision.gameObject.tag == "ElementalOrb") {                        
             orbToPick = null;
         }
     }
