@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,24 +13,27 @@ public class PlayerDetector :MonoBehaviour
     public ElementalOrb orbToPick;
     public ElementalOrb currentOrb;
     public Transform orbPosition;
-    public InputControl playerInput;    
+    public InputControl playerInput;
+    private List<ElementalOrb> elementals;
 
     private void Start()
-    {        
+    {
+        elementals = new List<ElementalOrb>();
     }
 
     private void Update()
     {
+        UpdateOrbToPick();
         if(orbToPick)
         {
             if(!orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
             {
-                PickUpOrb();                
+                PickUpOrb();
             }
             else
                 if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.secondaryButton))
             {
-                ThrowOrb();                
+                ThrowOrb();
             }
             else
             if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
@@ -37,6 +41,15 @@ public class PlayerDetector :MonoBehaviour
                 ConsumeOrb();
             }
         }
+    }
+
+    private void UpdateOrbToPick()
+    {
+        if(elementals.Count != 0)
+            orbToPick = elementals.Last();
+        else
+            orbToPick = null;
+        print(elementals.Count);
     }
 
     private void ThrowOrb()
@@ -51,15 +64,14 @@ public class PlayerDetector :MonoBehaviour
     }
     private void PickUpOrb()
     {
-        orbToPick.AttachToPlayer(transform.parent.gameObject, orbPosition);        
+        orbToPick.AttachToPlayer(transform.parent.gameObject, orbPosition);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "ElementalOrb")
-        {
-            if(!orbToPick)
-            orbToPick = collision.gameObject.GetComponent<ElementalOrb>();
+        {            
+              elementals.Add(collision.gameObject.GetComponent<ElementalOrb>());            
         }
     }
 
@@ -67,9 +79,7 @@ public class PlayerDetector :MonoBehaviour
     {
         if(collision.gameObject.tag == "ElementalOrb")
         {
-            if(orbToPick)         
-            if(orbToPick.gameObject == collision.gameObject)
-            orbToPick = null;
+            elementals.Remove(collision.gameObject.GetComponent<ElementalOrb>());            
         }
     }
 
