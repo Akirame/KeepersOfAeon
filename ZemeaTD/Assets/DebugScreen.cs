@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class DebugScreen : MonoBehaviour 
+public class DebugScreen :MonoBehaviour
 {
     #region singleton
 
-    private static DebugScreen instance;
+    private static DebugScreen instance;    
 
     public static DebugScreen GetInstance()
     {
@@ -17,8 +17,10 @@ public class DebugScreen : MonoBehaviour
 
     private void Awake()
     {
-        if (!instance)
+        if(!instance)
+        {
             instance = this;
+        }
         else
         {
             Destroy(this.gameObject);
@@ -30,6 +32,11 @@ public class DebugScreen : MonoBehaviour
     public Canvas screenDebug;
     public GameObject buttonPrefab;
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.F1))
@@ -40,7 +47,8 @@ public class DebugScreen : MonoBehaviour
     {
         GameObject go = Instantiate(buttonPrefab, screenDebug.transform.position, Quaternion.identity,
             screenDebug.transform);
-        go.GetComponent<Button>().GetComponentInChildren<Text>().text = buttonName;
-        go.GetComponent<Button>().onClick.AddListener(()=>callback());
+        Button goButton = go.GetComponent<Button>();
+        goButton.GetComponentInChildren<Text>().text = buttonName;
+        goButton.onClick.AddListener(() => callback());
     }
 }
