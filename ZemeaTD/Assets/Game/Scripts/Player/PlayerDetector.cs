@@ -49,7 +49,6 @@ public class PlayerDetector :MonoBehaviour
             orbToPick = elementals.Last();
         else
             orbToPick = null;
-        print(elementals.Count);
     }
 
     private void ThrowOrb()
