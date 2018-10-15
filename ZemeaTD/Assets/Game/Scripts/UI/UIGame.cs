@@ -32,8 +32,8 @@ public class UIGame : MonoBehaviour
         p2Level = p2.playerLevel;
         p1Exp = p1.playerExperience;
         p2Exp = p2.playerExperience;
-        P1Level.text = "Lvl " + p1.playerLevel.ToString();
-        P2Level.text = "Lvl " + p2.playerLevel.ToString();
+        P1Level.text = p1.playerLevel.ToString();
+        P2Level.text = p2.playerLevel.ToString();
         expBarP1.fillAmount = p1.playerExperience / (p1.expNeededPerLevel * p1.playerLevel);
         expBarP2.fillAmount = p2.playerExperience / (p2.expNeededPerLevel * p2.playerLevel);
         wave = WaveControl.GetInstance().currentWave;

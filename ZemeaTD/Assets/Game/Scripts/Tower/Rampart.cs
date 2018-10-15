@@ -34,10 +34,12 @@ public class Rampart : MonoBehaviour
         shield -= damage;
         CheckAlive();
     }
+
     public bool IsAlive()
     {
         return (shield > 0);
     }
+
     private void CheckAlive() {
         if(IsAlive()) {
             if (activateRenderer)
