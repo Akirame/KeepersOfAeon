@@ -10,20 +10,25 @@ public class ElementalExplosion : MonoBehaviour {
     public int damage;
     private float force;
     private GameObject playerThrow;
+    public ParticleSystem particles;
+    private Vector3 defaultPos;
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        //GetComponent<SpriteRenderer>().sprite = sprite;
+        defaultPos = new Vector3(transform.position.x, transform.position.y, -10);
     }
-
-    // Update is called once per frame
+    
     void Update () {
-        force += explosionForce * Time.deltaTime;
-        transform.localScale = new Vector2(1, 1) * force;
-        if (transform.localScale.x > explosionRadius)
-        {
+        //force += explosionForce * Time.deltaTime;
+        //transform.localScale = new Vector2(1, 1) * force;
+        //if (transform.localScale.x > explosionRadius)
+        //{
+        //    Destroy(this.gameObject);
+        //}
+        transform.position = defaultPos;
+        if(!particles.isEmitting)
             Destroy(this.gameObject);
-        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +36,7 @@ public class ElementalExplosion : MonoBehaviour {
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<Enemy>().TakeDamage(damage,playerThrow);
+            print("holi");
         }
     }
 

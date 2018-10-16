@@ -21,10 +21,12 @@ public class ElementalOrb :MonoBehaviour
     private Rigidbody2D rigid;
     private Animator anim;
     private GameObject lastPlayerAttached;
+    private SpriteRenderer rend;
     private float timerRespawn;
 
     private void Start()
     {
+        rend = GetComponent<SpriteRenderer>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         initialPos = transform.position;
@@ -33,10 +35,11 @@ public class ElementalOrb :MonoBehaviour
     private void Update()
     {
         if (exploded)
-        {
+        {            
             timerRespawn += Time.deltaTime;
             if (timerRespawn >= respawnTime)
             {
+                rend.enabled = true;
                 transform.position = initialPos;
                 rigid.velocity = new Vector2();
                 exploded = false;
@@ -97,6 +100,7 @@ public class ElementalOrb :MonoBehaviour
         GameObject e = Instantiate(explosion.gameObject, transform.position, Quaternion.identity, transform.parent);
         e.GetComponent<ElementalExplosion>().SetPlayerThrow(lastPlayerAttached);
         exploded = true;
+        rend.enabled = false;        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
