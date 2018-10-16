@@ -13,6 +13,6 @@ public class OrbManager : MonoBehaviour {
     }
     private void ReturnOrbToPlayer(PlayerDetector p, ElementalOrb e) {
         e.transform.position = p.orbPosition.transform.position;
-        e.Throw();
+        e.Throw(1);
     }
 }

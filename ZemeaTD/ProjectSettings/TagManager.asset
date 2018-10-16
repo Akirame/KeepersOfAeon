@@ -15,6 +15,7 @@ TagManager:
   - ElementalOrb
   - Light
   - Detector
+  - Ground
   layers:
   - Default
   - TransparentFX

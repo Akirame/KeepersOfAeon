@@ -15,6 +15,10 @@ public class PlayerDetector :MonoBehaviour
     public Transform orbPosition;
     public InputControl playerInput;
     private List<ElementalOrb> elementals;
+    private float forceToThrow = 25;
+    private int maxForceThrow = 25;
+    private float forceCalculation = 0;
+
 
     private void Start()
     {
@@ -31,14 +35,22 @@ public class PlayerDetector :MonoBehaviour
                 PickUpOrb();
             }
             else
-                if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.secondaryButton))
+                if(orbToPick.pickedUp && Input.GetKey(playerInput.secondaryButton))
             {
-                ThrowOrb();
+                CalculateThrowForce();
             }
             else
             if(orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
             {
                 ConsumeOrb();
+            }
+            if (forceCalculation > 0)
+            {
+                if (Input.GetKeyUp(playerInput.secondaryButton))
+                {
+                    ThrowOrb();
+                    forceCalculation = 0;
+                }
             }
         }
     }
@@ -51,9 +63,18 @@ public class PlayerDetector :MonoBehaviour
             orbToPick = null;
     }
 
+    private void CalculateThrowForce()
+    {
+        forceCalculation += forceToThrow * Time.deltaTime;
+        if (forceCalculation >= maxForceThrow)
+        {
+            forceCalculation = maxForceThrow;
+        }
+    }
+
     private void ThrowOrb()
     {
-        orbToPick.Throw();
+        orbToPick.Throw(forceCalculation);
     }
     private void ConsumeOrb()
     {

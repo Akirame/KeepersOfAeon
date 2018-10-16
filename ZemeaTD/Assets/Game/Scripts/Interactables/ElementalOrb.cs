@@ -14,19 +14,42 @@ public class ElementalOrb :MonoBehaviour
     public bool pickedUp = false;
     public GameObject playerAttached;
     public GameObject orbStash;
+    public ElementalExplosion explosion;
+    public float respawnTime;
+    private bool exploded = false;
+    private Vector2 initialPos;
     private Rigidbody2D rigid;
     private Animator anim;
+    private GameObject lastPlayerAttached;
+    private float timerRespawn;
 
     private void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        initialPos = transform.position;
+    }
+
+    private void Update()
+    {
+        if (exploded)
+        {
+            timerRespawn += Time.deltaTime;
+            if (timerRespawn >= respawnTime)
+            {
+                transform.position = initialPos;
+                rigid.velocity = new Vector2();
+                exploded = false;
+                timerRespawn = 0;
+            }
+        }
     }
 
     public void AttachToPlayer(GameObject player, Transform newPos)
     {
         pickedUp = true;
         playerAttached = player;
+        lastPlayerAttached = player;
         rigid.bodyType = RigidbodyType2D.Kinematic;
         transform.position = newPos.position;
         transform.parent = playerAttached.transform;
@@ -38,14 +61,14 @@ public class ElementalOrb :MonoBehaviour
         anim.SetBool("onTouch", set);
     }
 
-    public void Throw()
+    public void Throw(float force)
     {
         rigid.bodyType = RigidbodyType2D.Dynamic;
         if(playerAttached.GetComponent<CharacterController2D>().lookingRight)
 
-            rigid.velocity = new Vector2(12, 15);
+            rigid.velocity = new Vector2(1, 2) * force;
         else
-            rigid.velocity = new Vector2(-12, 15);
+            rigid.velocity = new Vector2(-1, 2) * force;
 
         pickedUp = false;
         transform.parent = playerAttached.transform.parent;
@@ -63,6 +86,17 @@ public class ElementalOrb :MonoBehaviour
     {        
         if(collision.gameObject.tag == "Detector")
             ActivateOutline(true);
+        if (collision.tag == "Ground")
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        GameObject e = Instantiate(explosion.gameObject, transform.position, Quaternion.identity, transform.parent);
+        e.GetComponent<ElementalExplosion>().SetPlayerThrow(lastPlayerAttached);
+        exploded = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

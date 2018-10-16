@@ -69,8 +69,11 @@ public class Enemy : MonoBehaviour
         movementBehaviour.KnockBack();
         if (health <= 0)
         {
-            PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
-            playerLevel.AddExperience(experience);
+            if (player)
+            {
+                PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
+                playerLevel.AddExperience(experience);
+            }
             Death(this);
         }
     }

@@ -65,12 +65,12 @@ public class UIGame : MonoBehaviour
         if (p1.playerLevel != p1Level)
         {
             p1Level = p1.playerLevel;
-            P1Level.text = "Lvl " + p1.playerLevel.ToString();
+            P1Level.text = p1.playerLevel.ToString();
         }
         if (p2.playerLevel != p2Level)
         {
             p2Level = p2.playerLevel;
-            P2Level.text = "Lvl " + p2.playerLevel.ToString();
+            P2Level.text = p2.playerLevel.ToString();
         }
 
     }
