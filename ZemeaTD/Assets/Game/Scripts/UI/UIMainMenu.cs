@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour  
 {
     public GameObject mainMenuCanvas;
     public GameObject howToPlayCanvas;
     public GameObject creditsCanvas;
+    public Text versionText;
+
+    private void Start()
+    {
+        versionText.text = "Version " + Application.version;
+    }
 
     public void PlayButtonPressed() {
         LoaderManager.Get().LoadScene("SampleScene");
