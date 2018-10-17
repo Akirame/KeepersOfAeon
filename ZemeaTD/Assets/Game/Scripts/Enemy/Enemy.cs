@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public ElementalOrb.ELEMENT_TYPE element;
     public int damage;
     public int health = 100;
+    public int healthMultiplier = 1;
     public int chanceOfElement = 25;
     public int experience = 50;
     protected Rampart rampart;
@@ -58,6 +59,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void MultiplyHealth(int multiplier)
+    {
+        if (multiplier > 0)
+        {
+            health *= multiplier;
+            print("holie");
+        }
+    }
+
     public void AttackAnimEnd()
     {
         syncroAttackWithAnim = true;
@@ -76,7 +86,7 @@ public class Enemy : MonoBehaviour
             }
             Death(this);
         }
-    }
+    }    
     public void Kill()
     {
         Death(this);
