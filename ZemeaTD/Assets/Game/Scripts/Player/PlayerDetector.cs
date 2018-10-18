@@ -65,7 +65,6 @@ public class PlayerDetector : MonoBehaviour
         if (elementals.Count != 0)
         {
             orbToPick = elementals.Last();
-            Debug.Log(elementals.Last());
         }
         else
             orbToPick = null;

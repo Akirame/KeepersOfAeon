@@ -12,11 +12,11 @@ Analizar todos los diferentes antipatterns y ver cual puede estar aplicandose en
 Zemea
 
     Laburar principalmente en el movimiento del player.
-    Aumentar aceleracion. Que la velocidad maxima se llegue más rápido.
+    //Aumentar aceleracion. Que la velocidad maxima se llegue más rápido.
     Las escaleras no se entienden.
     Resolucion de la UI. En que resolución se va a correr el juego.
     Textos más cortos. Tiempo para leerlos: Esto es menos enemigos al principio.
-    Sacar el tiempo de Fake Loading o acelerarlo;
+    //Sacar el tiempo de Fake Loading o acelerarlo;
     Inicio random de las animaciones de los enemigos
     Feedback en el player cuando aumentas de nivel. En el portrait tambien. Particulas? el shader ese?
     Font crisp on hit.
