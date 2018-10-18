@@ -8,19 +8,26 @@ public class LightBehaviour : MonoBehaviour
     public delegate void LightAction(LightBehaviour l);
     public static LightAction LightFinished;
 
-    private bool lightOn = false;
+    private bool lightOn = false;    
     public float lightValue = 0f;
     public float lightPerSecond = 0.3f;
+    public ParticleSystem particles;
+
     public UILight LightUICanvas;
 
     private void Update() {
-        if(lightOn)
+        if (lightOn)
             ActivateLight();
+        else
+        if (particles.isEmitting)
+            particles.Stop();
         if (lightValue >= 100)
             LightFinished(this);
     }
     private void ActivateLight() {
         if(lightValue < 100) {
+            if (!particles.isEmitting)
+                particles.Play();
             lightValue += lightPerSecond * Time.deltaTime;
             LightUICanvas.UpdateTexts((int)lightValue);
         }
