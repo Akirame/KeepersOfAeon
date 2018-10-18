@@ -16,6 +16,7 @@ public class PlayerDetector : MonoBehaviour
     public InputControl playerInput;
     private List<ElementalOrb> elementals;
     private float forceToThrow = 25;
+    private bool picked = false;
     private int maxForceThrow = 25;
     private float forceCalculation = 0;
 
@@ -27,28 +28,32 @@ public class PlayerDetector : MonoBehaviour
 
     private void Update()
     {
+        if(!picked)
         UpdateOrbToPick();
         if (orbToPick)
         {
             if (orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
             {                
-                ConsumeOrb();
+                ConsumeOrb();                
+                picked = false;
             }
             else
                 if (orbToPick.pickedUp && Input.GetKey(playerInput.secondaryButton))
             {
-                CalculateThrowForce();
+                CalculateThrowForce();                
             }
             else
             if (!orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
             {                
-                PickUpOrb();
+                PickUpOrb();                
+                picked = true;
             }
             if (forceCalculation > 0)
             {
                 if (Input.GetKeyUp(playerInput.secondaryButton))
                 {
                     ThrowOrb();
+                    picked = false;
                     forceCalculation = 0;
                 }
             }
@@ -58,7 +63,10 @@ public class PlayerDetector : MonoBehaviour
     private void UpdateOrbToPick()
     {
         if (elementals.Count != 0)
+        {
             orbToPick = elementals.Last();
+            Debug.Log(elementals.Last());
+        }
         else
             orbToPick = null;
     }
