@@ -8,28 +8,36 @@ public class ElementalProyectile : MonoBehaviour {
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
-    private float timer;
     public int lifeTime = 5;
     public SpriteRenderer spriteRenderer;
-    private Rigidbody2D rigid;
-    private ParticleSystem.MainModule main;
     public GameObject player;
     public PopText popText;
+    private Rigidbody2D rigid;
+    private ParticleSystem.MainModule main;
+    private bool onGround = false;
+    private float timer;
+    private ParticleSystem ps;
+
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        main = GetComponentInChildren<ParticleSystem>().main;
+        ps = GetComponentInChildren<ParticleSystem>();
+        main = ps.main;
     }
 
     private void Update()
     {
+        if (!onGround)
+        {
+            transform.right = rigid.velocity;
+        }
         timer += Time.deltaTime;
         if (timer >= lifeTime)
         {
             Destroy(gameObject);
         }
-        transform.right = rigid.velocity;
+
     }
 
     public void Shoot(Vector2 dir, int _damage, ElementalOrb _element, GameObject _player)
@@ -38,7 +46,7 @@ public class ElementalProyectile : MonoBehaviour {
         damage = _damage;
         element = _element;
         player = _player;
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+        rigid.velocity = direction * speed;
         ChangeElementColor();
     }
 
@@ -58,12 +66,19 @@ public class ElementalProyectile : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" && !onGround)
         {
             damage = CalculateElementalDamage(damage, player.GetComponent<AttackBehaviour>().currentElement, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             Destroy(gameObject);
+        }
+        if (collision.tag == "Ground")
+        {
+            onGround = true;
+            rigid.velocity = new Vector2();
+            rigid.gravityScale = 0;
+            ps.gameObject.SetActive(false);
         }
     }
 

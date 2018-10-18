@@ -201,6 +201,7 @@ MonoBehaviour:
   element: 0
   damage: 5
   health: 25
+  healthMultiplier: 1
   chanceOfElement: 25
   experience: 100
   timeToAttack: 2
@@ -254,7 +255,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 21300140, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

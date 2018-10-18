@@ -54,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405494552224080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.18, y: -2.38, z: 0.022437343}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalPosition: {x: -12.864777, y: 46.467216, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4984781456809414}
   m_Father: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -135,6 +135,7 @@ MonoBehaviour:
   damage: 10
   lifeTime: 5
   spriteRenderer: {fileID: 212192713876595314}
+  player: {fileID: 0}
   popText: {fileID: 114323807975107020, guid: de7b5cb421b49604084ffa69e86ecc55, type: 2}
 --- !u!198 &198714264329204510
 ParticleSystem:
@@ -4760,7 +4761,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e34df48391e824e4f85c3b698987c39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
