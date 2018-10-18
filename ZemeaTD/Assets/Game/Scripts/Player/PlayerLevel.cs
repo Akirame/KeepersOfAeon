@@ -8,7 +8,7 @@ public class PlayerLevel : MonoBehaviour
     public int playerLevel = 1;
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
-
+    public ParticleSystem particlesLevelUp;
 
     public void LevelUpPlayer()
     {
@@ -35,6 +35,7 @@ public class PlayerLevel : MonoBehaviour
     public void LevelUpTo(int level)
     {
         playerLevel = level;
+        particlesLevelUp.Play();
         GetComponent<CharacterController2D>().playerData.LevelUp();
     }
 }
