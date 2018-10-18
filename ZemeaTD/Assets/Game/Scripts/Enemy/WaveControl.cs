@@ -25,6 +25,7 @@ public class WaveControl : MonoBehaviour {
     public int meleeCount;
     public int rangeCount;
     public int flyCount;
+    public int enemyCount;
     public int currentWave;
     public int timeBetweenWaves;
     public int timeBetweenEnemies;
@@ -79,7 +80,7 @@ public class WaveControl : MonoBehaviour {
 
     private void CheckEnemyCount()
     {
-        if (enemyList.Count <= 0)
+        if (enemyCount <= 0)
         {
             canSpawn = true;
         }
@@ -110,6 +111,7 @@ public class WaveControl : MonoBehaviour {
     {
         enemyList.Remove(e.gameObject);
         Destroy(e.gameObject);
+        enemyCount--;
     }
 
     private void GenerateEnemyList()
@@ -127,6 +129,7 @@ public class WaveControl : MonoBehaviour {
             enemyTypeList.Add(2);
         }
         RandomizeEnemyList();
+        enemyCount = enemyTypeList.Count;
     }
 
     private void RandomizeEnemyList()
