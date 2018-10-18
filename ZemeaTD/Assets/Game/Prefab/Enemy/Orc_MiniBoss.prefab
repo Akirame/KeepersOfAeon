@@ -145,6 +145,10 @@ MonoBehaviour:
   healthMultiplier: 1
   chanceOfElement: 100
   experience: 1000
+  sprites:
+  - {fileID: 21300000, guid: fc92778ce86bc164b8e9ba4964f539a6, type: 3}
+  - {fileID: 21300000, guid: cd6f0065b5b31ae43b3c953539006bf3, type: 3}
+  - {fileID: 21300000, guid: bd8af3753c646034cbc1ea656f785f7b, type: 3}
   timeToAttack: 4
 --- !u!114 &114938033375666440
 MonoBehaviour:
