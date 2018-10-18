@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347248784181244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.3, y: 3.9, z: -0.734375}
+  m_LocalPosition: {x: 110.00862, y: 4.7811966, z: -0.734375}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4697030868893722}
@@ -154,8 +154,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10003281, y: 0}
-  m_Size: {x: 1.5133743, y: 4}
+  m_Offset: {x: -0.48, y: 0}
+  m_Size: {x: 1.5133743, y: 5.86}
   m_Direction: 0
 --- !u!95 &95040879135368862
 Animator:
@@ -205,9 +205,10 @@ MonoBehaviour:
   chanceOfElement: 25
   experience: 100
   sprites:
-  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
-  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
-  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  - {fileID: 21300000, guid: ebbe58f3f5e15fe49bd0a6596629751e, type: 3}
+  - {fileID: 21300000, guid: e4671067672bd1447a73dff1fb3ed295, type: 3}
+  - {fileID: 21300000, guid: f79673d547d2a8241ab452496f1fd1df, type: 3}
+  - {fileID: 21300000, guid: eb32866190ae0f94eab4f8f64fedba95, type: 3}
   timeToAttack: 2
   detector: {fileID: 114271218249390874}
   bullet: {fileID: 114058871533682056, guid: 8819a96739fe36746b2b0b7a86d5226a, type: 2}
@@ -260,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300140, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ebbe58f3f5e15fe49bd0a6596629751e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

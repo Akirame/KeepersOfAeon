@@ -8,16 +8,14 @@ public class EnemyRanged : Enemy
     public RangeDetector detector;
     public Bullet bullet;
     private float timer;
-    private bool isAttacking;
-    private Animator anim;
+    private bool isAttacking;    
 
     protected override void Start()
     {
         base.Start();
         timer = 0;
         detector.RampartOnRange += OnRange;
-        detector.RampartOffRange += OffRange;
-        anim = GetComponent<Animator>();
+        detector.RampartOffRange += OffRange;        
     }
     private void OnDestroy()
     {
@@ -33,16 +31,14 @@ public class EnemyRanged : Enemy
                 {
                     timer += Time.deltaTime;
                 }
-                else if (syncroAttackWithAnim)
-                {
+                else
+                { 
                     GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
                     Vector2 bulletDirection = rampart.transform.position - transform.position;
                     b.GetComponent<Bullet>().SetDamage(damage);
                     b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
                     b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, Vector3.right);
-                    timer = 0;
-                    syncroAttackWithAnim = false;
-
+                    timer = 0;                    
                 }
             }
             else
@@ -55,14 +51,12 @@ public class EnemyRanged : Enemy
     private void OnRange(RangeDetector d)
     {
         rampart = d.GetRampart();
-        movementBehaviour.SetCanMove(false);
-        anim.SetBool("AttackOn", true);
+        movementBehaviour.SetCanMove(false);        
     }
     private void OffRange(RangeDetector d)
     {
         rampart = d.GetRampart();
-        movementBehaviour.enabled = true;
-        anim.SetBool("AttackOn", false);
+        movementBehaviour.enabled = true;        
     }
 }
 

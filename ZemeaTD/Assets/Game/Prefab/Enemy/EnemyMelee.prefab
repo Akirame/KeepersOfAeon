@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347248784181244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.19992, y: 1.4448762, z: -0.734375}
+  m_LocalPosition: {x: 79.6, y: 13.409149, z: -0.734375}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10003281, y: 0}
-  m_Size: {x: 1.5133743, y: 4}
+  m_Offset: {x: -0.85, y: -1.03}
+  m_Size: {x: 7.69, y: 7.48}
   m_Direction: 0
 --- !u!95 &95902897800482068
 Animator:
@@ -117,6 +117,7 @@ MonoBehaviour:
   chanceOfElement: 25
   experience: 100
   sprites:
+  - {fileID: 21300000, guid: 0d113e6987cde084f94a41af2a369fcd, type: 3}
   - {fileID: 21300000, guid: 47d8172fcfd6dc243b3ba664c3bcf1e2, type: 3}
   - {fileID: 21300000, guid: 86771580a4dbb1146ab3830c52bf3dff, type: 3}
   - {fileID: 21300000, guid: e098b92459ecab64cae307ec748ce4f5, type: 3}
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300040, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d113e6987cde084f94a41af2a369fcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -18,29 +18,30 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
-    
+
 
     protected virtual void Start()
-    {        
+    {
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
         syncroAttackWithAnim = false;
         element = ElementalOrb.ELEMENT_TYPE.NONE;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.sprite = sprites[0];
         if (UnityEngine.Random.Range(0,100)<chanceOfElement)
         {
-            element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
-            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);            
             if (sr)
             {
                 switch (element)
                 {
                     case ElementalOrb.ELEMENT_TYPE.WATER:
-                        sr.sprite = sprites[0];
-                        break;
-                    case ElementalOrb.ELEMENT_TYPE.FIRE:
                         sr.sprite = sprites[1];
                         break;
-                    case ElementalOrb.ELEMENT_TYPE.EARTH:
+                    case ElementalOrb.ELEMENT_TYPE.FIRE:
                         sr.sprite = sprites[2];
+                        break;
+                    case ElementalOrb.ELEMENT_TYPE.EARTH:
+                        sr.sprite = sprites[3];
                         break;
                 }
 
