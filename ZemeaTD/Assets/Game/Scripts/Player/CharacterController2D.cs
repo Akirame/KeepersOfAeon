@@ -126,11 +126,11 @@ public class CharacterController2D : MonoBehaviour
             rig.velocity = new Vector2(movSpeed * Time.deltaTime * movement.x,rig.velocity.y);
             if (movement.x > 0)
             {
-                SetFacingRight(true);
+                SetFacingRight(false);
             }
             else if(movement.x < 0)
             {
-                SetFacingRight(false);
+                SetFacingRight(true);
             }
             anim.SetFloat("axis", Mathf.Abs(movement.x));
         }
