@@ -18,14 +18,15 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
-
+    protected SpriteRenderer sr;
+    protected bool flickerEnabled = false;
 
     protected virtual void Start()
     {
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
         syncroAttackWithAnim = false;
         element = ElementalOrb.ELEMENT_TYPE.NONE;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         sr.sprite = sprites[0];
         if (UnityEngine.Random.Range(0,100)<chanceOfElement)
         {
@@ -69,13 +70,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void AttackAnimEnd()
+    IEnumerator FlickerEffect()
     {
-        syncroAttackWithAnim = true;
+        for (int i = 0; i < 5; i++)
+        {
+            sr.enabled = !flickerEnabled;
+            flickerEnabled = !flickerEnabled;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        sr.enabled = true;
+        flickerEnabled = false;
     }
 
     public void TakeDamage(int bulletDamage, GameObject player)
-    {        
+    {
+        StopCoroutine("FlickerEffect");
+        StartCoroutine("FlickerEffect");
         health -= bulletDamage;
         movementBehaviour.KnockBack();
         if (health <= 0)
