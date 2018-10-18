@@ -1,0 +1,27 @@
+﻿clase 18/10/2018
+
+Pulido de los juegos.
+
+Como tarea.
+
+https://sourcemaking.com/antipatterns/software-development-antipatterns
+https://sourcemaking.com/antipatterns/software-architecture-antipatterns
+
+Analizar todos los diferentes antipatterns y ver cual puede estar aplicandose en su proyecto.
+
+Zemea
+
+    Laburar principalmente en el movimiento del player.
+    Aumentar aceleracion. Que la velocidad maxima se llegue más rápido.
+    Las escaleras no se entienden.
+    Resolucion de la UI. En que resolución se va a correr el juego.
+    Textos más cortos. Tiempo para leerlos: Esto es menos enemigos al principio.
+    Sacar el tiempo de Fake Loading o acelerarlo;
+    Inicio random de las animaciones de los enemigos
+    Feedback en el player cuando aumentas de nivel. En el portrait tambien. Particulas? el shader ese?
+    Font crisp on hit.
+    How to play en el loading. Press any key to start.
+    Persistencia de los enemigos muertos? Feeback al morir?
+    Animation speed en base a la velocidad que se mueven los enemigos.
+    Animacion en la UI de que baje la energía. Lo mismo para la xp de los players. Gradient colors.
+    Animacion al sprite del trampolin.
