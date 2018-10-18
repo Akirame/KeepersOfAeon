@@ -78,7 +78,6 @@ public class Enemy : MonoBehaviour
             flickerEnabled = !flickerEnabled;
             yield return new WaitForSeconds(0.1f);
         }
-
         sr.enabled = true;
         flickerEnabled = false;
     }

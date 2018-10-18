@@ -116,15 +116,15 @@ public class WaveControl : MonoBehaviour {
 
     private void GenerateEnemyList()
     {
-        for (int i = 0; i < meleeCount + enemyIncrementFactor * currentWave; i++)
+        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave); i++)
         {
             enemyTypeList.Add(0);
         }
-        for (int i = 0; i < rangeCount + enemyIncrementFactor * currentWave; i++)
+        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave / 3); i++)
         {
             enemyTypeList.Add(1);
         }
-        for (int i = 0; i < flyCount + enemyIncrementFactor * currentWave; i++)
+        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave / 5); i++)
         {
             enemyTypeList.Add(2);
         }
