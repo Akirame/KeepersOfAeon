@@ -23,13 +23,18 @@ public class UIGame : MonoBehaviour
     private int p1Exp;
     private int p2Exp;
     private int wave;
+    private Animator anim;
+    private bool updateLevels = false;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         p1 = player1.gameObject.GetComponent<PlayerLevel>();
         p2 = player2.gameObject.GetComponent<PlayerLevel>();
+        p1.GetComponent<PlayerLevel>().OnLevelUp += LevelUpPlayer1AnimationUI;
+        p2.GetComponent<PlayerLevel>().OnLevelUp += LevelUpPlayer2AnimationUI;
         p1Level = p1.playerLevel;
-        p2Level = p2.playerLevel;
+        p2Level = p2.playerLevel;        
         p1Exp = p1.playerExperience;
         p2Exp = p2.playerExperience;
         P1Level.text = p1.playerLevel.ToString();
@@ -62,13 +67,11 @@ public class UIGame : MonoBehaviour
             expBarP2.fillAmount = (float)p2.playerExperience / (p2.expNeededPerLevel * p2.playerLevel);
         }
 
-        if (p1.playerLevel != p1Level)
-        {
+        if ((p1.playerLevel != p1Level || p2.playerLevel != p2Level )&& updateLevels)
+        {            
+            updateLevels = false;
             p1Level = p1.playerLevel;
-            P1Level.text = p1.playerLevel.ToString();
-        }
-        if (p2.playerLevel != p2Level)
-        {
+            P1Level.text = p1.playerLevel.ToString();            
             p2Level = p2.playerLevel;
             P2Level.text = p2.playerLevel.ToString();
         }
@@ -100,5 +103,19 @@ public class UIGame : MonoBehaviour
     private void UpdateText()
     {
         waveText.text = "Wave " + wave.ToString();
+    }
+
+    public void UpdateLevelsText()
+    {
+        updateLevels = true;
+    }
+
+    private void LevelUpPlayer1AnimationUI(PlayerLevel pl)
+    {
+        anim.SetTrigger("levelUp1");
+    }
+    private void LevelUpPlayer2AnimationUI(PlayerLevel pl)
+    {
+        anim.SetTrigger("levelUp2");
     }
 }

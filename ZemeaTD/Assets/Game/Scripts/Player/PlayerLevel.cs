@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerLevel : MonoBehaviour
 {
-
+    public delegate void PlayerLevelAnimation(PlayerLevel pl);
+    public PlayerLevelAnimation OnLevelUp;
     public int playerLevel = 1;
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
-    public ParticleSystem particlesLevelUp;
+    public ParticleSystem particlesLevelUp;        
+    
 
     public void LevelUpPlayer()
     {
@@ -18,8 +21,11 @@ public class PlayerLevel : MonoBehaviour
 
     public void LevelDownPlayer()
     {
-        playerLevel--;
-        LevelUpTo(playerLevel);
+        if (playerLevel > 1)
+        {
+            playerLevel--;
+            LevelUpTo(playerLevel);
+        }
     }
 
     public void AddExperience(int amount)
@@ -35,7 +41,8 @@ public class PlayerLevel : MonoBehaviour
     public void LevelUpTo(int level)
     {
         playerLevel = level;
+        OnLevelUp(this);
         particlesLevelUp.Play();
         GetComponent<CharacterController2D>().playerData.LevelUp();
-    }
+    }    
 }

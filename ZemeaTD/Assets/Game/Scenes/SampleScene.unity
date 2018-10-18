@@ -11942,6 +11942,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114494640724822770, guid: d29783e65d437794f8a4f4ed962ba963,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494640724822770, guid: d29783e65d437794f8a4f4ed962ba963,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494640724822770, guid: d29783e65d437794f8a4f4ed962ba963,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d29783e65d437794f8a4f4ed962ba963, type: 2}
   m_IsPrefabAsset: 0
@@ -12333,6 +12348,11 @@ Prefab:
       propertyPath: particlesLevelUp
       value: 
       objectReference: {fileID: 849860648}
+    - target: {fileID: 114028925891237162, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: triggerAnimationID
+      value: levelUp1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0
@@ -17295,6 +17315,11 @@ Prefab:
       propertyPath: particlesLevelUp
       value: 
       objectReference: {fileID: 182749998}
+    - target: {fileID: 114907556283453630, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: triggerAnimationID
+      value: levelUp2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
