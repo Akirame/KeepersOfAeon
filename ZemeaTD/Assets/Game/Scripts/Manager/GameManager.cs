@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
     #region Singleton
     public static GameManager instance;
+    private LoaderManager loader;
 
     public static GameManager Get()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        loader = LoaderManager.Get();
         Tower.TowerDestroyed += GameOver;
         LightBehaviour.LightFinished += GameWon;
         if (DebugScreen.GetInstance())
@@ -42,11 +44,11 @@ public class GameManager : MonoBehaviour {
 
     private void ResetGame()
     {
-        LoaderManager.Get().LoadSceneQuick("SampleScene");
+        loader.LoadSceneQuick("SampleScene");
     }
     private void GameWon(LightBehaviour l)
     {
-        LoaderManager.Get().LoadScene("FinalScreen");
+        loader.LoadScene("FinalScreen");
     }
 
     private void LevelUpPlayers()
@@ -61,8 +63,13 @@ public class GameManager : MonoBehaviour {
         player2Level.LevelDownPlayer();
     }
 
+    public void ToMainMenu()
+    {
+        loader.LoadScene("MainMenu");
+    }
+
     private void GameOver(Tower t)
     {
-        LoaderManager.Get().LoadSceneQuick("FinalScreen");
+        loader.LoadSceneQuick("FinalScreen");
     }
 }
