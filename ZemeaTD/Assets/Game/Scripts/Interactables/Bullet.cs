@@ -8,10 +8,17 @@ public class Bullet : MonoBehaviour {
     public float speed = 200f;
     public Vector2 direction;
     public int damage = 10;
+    private int deathTime = 5;
+    private float timer;
 
     // Update is called once per frame
     void Update () {
-        GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;        
+        GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;
+        timer += Time.deltaTime;
+        if (timer >= deathTime)
+        {
+            Destroy(gameObject);
+        }
 	}
     private void OnBecameInvisible()
     {
