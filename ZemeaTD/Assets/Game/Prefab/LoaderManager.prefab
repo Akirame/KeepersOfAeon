@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingProgress: 0
   timeLoading: 0
-  minTimeToLoad: 5
+  minTimeToLoad: 3

@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public int healthMultiplier = 1;
     public int chanceOfElement = 25;
     public int experience = 50;
+    public Sprite[] sprites;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
     
@@ -33,13 +34,13 @@ public class Enemy : MonoBehaviour
                 switch (element)
                 {
                     case ElementalOrb.ELEMENT_TYPE.WATER:
-                        sr.color = Color.blue;
+                        sr.sprite = sprites[0];
                         break;
                     case ElementalOrb.ELEMENT_TYPE.FIRE:
-                        sr.color = Color.red;
+                        sr.sprite = sprites[1];
                         break;
                     case ElementalOrb.ELEMENT_TYPE.EARTH:
-                        sr.color = Color.green;
+                        sr.sprite = sprites[2];
                         break;
                 }
 
@@ -63,8 +64,7 @@ public class Enemy : MonoBehaviour
     {
         if (multiplier > 0)
         {
-            health *= multiplier;
-            print("holie");
+            health *= multiplier;            
         }
     }
 

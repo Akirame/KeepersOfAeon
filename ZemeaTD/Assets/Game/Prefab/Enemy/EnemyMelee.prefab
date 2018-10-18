@@ -113,8 +113,13 @@ MonoBehaviour:
   element: 0
   damage: 3
   health: 30
+  healthMultiplier: 1
   chanceOfElement: 25
   experience: 100
+  sprites:
+  - {fileID: 21300000, guid: 47d8172fcfd6dc243b3ba664c3bcf1e2, type: 3}
+  - {fileID: 21300000, guid: 86771580a4dbb1146ab3830c52bf3dff, type: 3}
+  - {fileID: 21300000, guid: e098b92459ecab64cae307ec748ce4f5, type: 3}
   timeToAttack: 1
 --- !u!114 &114668749071737600
 MonoBehaviour:
@@ -127,9 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3cf79cdc4dbd43bf0c6b28b076c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   speed: 500
   knockbackTime: 0.2
-  velocity: {x: 0, y: 0}
 --- !u!212 &212212550986562868
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -165,7 +170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300040, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47d8172fcfd6dc243b3ba664c3bcf1e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

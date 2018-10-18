@@ -201,8 +201,13 @@ MonoBehaviour:
   element: 0
   damage: 5
   health: 25
+  healthMultiplier: 1
   chanceOfElement: 25
   experience: 100
+  sprites:
+  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
+  - {fileID: 21300100, guid: ec6e797f761b8d34898df06bccd1b050, type: 3}
   timeToAttack: 2
   detector: {fileID: 114271218249390874}
   bullet: {fileID: 114058871533682056, guid: 8819a96739fe36746b2b0b7a86d5226a, type: 2}
