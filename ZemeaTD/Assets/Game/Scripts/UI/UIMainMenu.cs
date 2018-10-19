@@ -9,6 +9,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject howToPlayCanvas;
     public GameObject creditsCanvas;
     public GameObject Objectives;
+    public GameObject Orbs;
     public Text versionText;
 
     private void Start()
@@ -17,7 +18,7 @@ public class UIMainMenu : MonoBehaviour
     }
 
     public void PlayButtonPressed() {
-        Objectives.SetActive(true);
+        Orbs.SetActive(true);
         SetCanvas(false, false, false);
     }
     public void HowToPlayButtonPressed() {
@@ -31,6 +32,11 @@ public class UIMainMenu : MonoBehaviour
     }
     public void BackButtonPressed() {
         SetCanvas(true, false, false);
+    }
+    public void NextOrbsButtonPressed()
+    {
+        Orbs.SetActive(false);
+        Objectives.SetActive(true);
     }
     public void NextButtonPressed()
     {
