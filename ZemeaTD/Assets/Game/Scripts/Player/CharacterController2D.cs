@@ -19,7 +19,7 @@ public class CharacterController2D : MonoBehaviour
     private AttackBehaviour attackComponent;
     private Animator anim;
     private Vector2 movement;
-    private float changuiTime = 0.2f;
+    private float changuiTime = 0.162f;
     private float timerChangui;
 
     private void Start()
