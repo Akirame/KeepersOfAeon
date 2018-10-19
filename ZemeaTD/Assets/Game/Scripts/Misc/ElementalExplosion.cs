@@ -36,7 +36,6 @@ public class ElementalExplosion : MonoBehaviour {
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<Enemy>().TakeDamage(damage,playerThrow);
-            print("holi");
         }
     }
 

@@ -20,8 +20,8 @@ public class RangeDetector : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Rampart")
-        {            
-            rampart = null;            
+        {
+            rampart = null;
             RampartOffRange(this);
         }
     }
