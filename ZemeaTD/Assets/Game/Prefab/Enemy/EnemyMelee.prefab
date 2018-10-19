@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114668749071737600}
   - component: {fileID: 50111911320401406}
   - component: {fileID: 95902897800482068}
-  - component: {fileID: 70714097216136908}
+  - component: {fileID: 70795303344497572}
   m_Layer: 9
   m_Name: EnemyMelee
   m_TagString: Enemy
@@ -39,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347248784181244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.6, y: 13.409149, z: -0.734375}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -98.13059, y: 11.996443, z: -0.734375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,7 +65,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!70 &70714097216136908
+--- !u!70 &70795303344497572
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,8 +77,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.85, y: -1.03}
-  m_Size: {x: 7.69, y: 7.48}
+  m_Offset: {x: -1.3296242, y: -1.7046452}
+  m_Size: {x: 8.274086, y: 9.657375}
   m_Direction: 0
 --- !u!95 &95902897800482068
 Animator:

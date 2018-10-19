@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114668749071737600}
   - component: {fileID: 50111911320401406}
   - component: {fileID: 95040879135368862}
-  - component: {fileID: 70042146501335720}
+  - component: {fileID: 70941756726340616}
   m_Layer: 9
   m_Name: EnemyRanged
   m_TagString: Enemy
@@ -57,8 +57,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347248784181244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 110.00862, y: 4.7811966, z: -0.734375}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -79.61121, y: 10.202326, z: -0.734375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4697030868893722}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1620433357429748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0410185, y: 2.5463, z: 2.5463}
   m_Children: []
   m_Father: {fileID: 4342140843510392}
   m_RootOrder: 0
@@ -142,7 +142,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12, y: 1}
   m_EdgeRadius: 0
---- !u!70 &70042146501335720
+--- !u!70 &70941756726340616
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,8 +154,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.48, y: 0}
-  m_Size: {x: 1.5133743, y: 5.86}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 7.26, y: 12.42}
   m_Direction: 0
 --- !u!95 &95040879135368862
 Animator:

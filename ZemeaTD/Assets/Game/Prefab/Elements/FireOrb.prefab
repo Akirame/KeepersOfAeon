@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778980677973556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 45.5, z: -0.17375149}
+  m_LocalPosition: {x: 4.9700003, y: 54.64, z: -0.17375149}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 4243043120233204}
@@ -143,6 +143,9 @@ MonoBehaviour:
   pickedUp: 0
   playerAttached: {fileID: 0}
   orbStash: {fileID: 0}
+  explosion: {fileID: 114744532961624890, guid: db7e7b0c17845044dab3fa70ea893583,
+    type: 2}
+  respawnTime: 4
 --- !u!212 &212329142163104782
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -177,7 +180,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -20
   m_Sprite: {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -225,7 +228,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 344b2f3455527f44f92d315cd363a414, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

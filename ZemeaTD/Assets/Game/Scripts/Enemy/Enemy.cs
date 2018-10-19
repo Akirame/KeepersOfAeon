@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
 
         }
         tag = "Enemy";
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
 
 

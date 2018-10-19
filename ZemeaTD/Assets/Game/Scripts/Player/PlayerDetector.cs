@@ -34,13 +34,13 @@ public class PlayerDetector : MonoBehaviour
         {
             if (orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
             {                
-                ConsumeOrb();                
+                ConsumeOrb();
                 picked = false;
             }
             else
                 if (orbToPick.pickedUp && Input.GetKey(playerInput.secondaryButton))
             {
-                CalculateThrowForce();                
+                CalculateThrowForce();
             }
             else
             if (!orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))

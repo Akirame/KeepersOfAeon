@@ -100,8 +100,10 @@ public class WaveControl : MonoBehaviour {
         for (int i = 0; i < enemyTypeList.Count; i++)
         {
             Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-            GameObject enemy = Instantiate(enemyPrefab[enemyTypeList[i]].gameObject, t.position, Quaternion.identity, enemiesParent.transform);
-            enemy.GetComponent<Enemy>().MultiplyHealth((int)currentWave/5);            
+            Vector3 offsetPosition = new Vector3();
+            offsetPosition.y = UnityEngine.Random.Range(-3, 3);
+            GameObject enemy = Instantiate(enemyPrefab[enemyTypeList[i]].gameObject, t.position + offsetPosition, Quaternion.identity, enemiesParent.transform);
+            enemy.GetComponent<Enemy>().MultiplyHealth((int)currentWave/5);
             enemyList.Add(enemy);
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
