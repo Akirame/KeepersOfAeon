@@ -8,14 +8,14 @@ public class EnemyRanged : Enemy
     public RangeDetector detector;
     public Bullet bullet;
     private float timer;
-    private bool isAttacking;    
+    private bool isAttacking;
 
     protected override void Start()
     {
         base.Start();
         timer = 0;
         detector.RampartOnRange += OnRange;
-        detector.RampartOffRange += OffRange;        
+        detector.RampartOffRange += OffRange;
     }
     private void OnDestroy()
     {
@@ -34,11 +34,11 @@ public class EnemyRanged : Enemy
                 else
                 { 
                     GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
-                    Vector2 bulletDirection = rampart.transform.position - transform.position;
+                    Vector2 bulletDirection = rampart.transform.position - transform.position + new Vector3(0,10);
                     b.GetComponent<Bullet>().SetDamage(damage);
                     b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
-                    b.GetComponent<Bullet>().Shoot(bulletDirection.normalized, Vector3.right);
-                    timer = 0;                    
+                    b.GetComponent<Bullet>().Shoot(bulletDirection.normalized);
+                    timer = 0;
                 }
             }
             else
@@ -51,7 +51,7 @@ public class EnemyRanged : Enemy
     private void OnRange(RangeDetector d)
     {
         rampart = d.GetRampart();
-        movementBehaviour.SetCanMove(false);        
+        movementBehaviour.SetCanMove(false);
     }
     private void OffRange(RangeDetector d)
     {

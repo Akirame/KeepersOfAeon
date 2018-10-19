@@ -8,13 +8,16 @@ public class UIGame : MonoBehaviour
     public Text waveText;
     public Text P1Level;
     public Text P2Level;
+    public Text enemyCountText;
     public Image orbPlayer1;
     public Image orbPlayer2;
     public Image expBarP1;
     public Image expBarP2;
     public AttackBehaviour player1;
     public AttackBehaviour player2;
-    public Sprite[] orbSprites;     
+    public Sprite[] orbSprites;
+    private int currentEnemies;
+    private int currentWave;
     private string waveTextAux;
     private PlayerLevel p1;
     private PlayerLevel p2;
@@ -22,7 +25,7 @@ public class UIGame : MonoBehaviour
     private int p2Level;
     private int p1Exp;
     private int p2Exp;
-    private int wave;
+    private WaveControl wave;
     private Animator anim;
     private bool updateLevels = false;
 
@@ -41,16 +44,23 @@ public class UIGame : MonoBehaviour
         P2Level.text = p2.playerLevel.ToString();
         expBarP1.fillAmount = p1.playerExperience / (p1.expNeededPerLevel * p1.playerLevel);
         expBarP2.fillAmount = p2.playerExperience / (p2.expNeededPerLevel * p2.playerLevel);
-        wave = WaveControl.GetInstance().currentWave;
+        wave = WaveControl.GetInstance();
+        currentWave = wave.currentWave;
         waveText.text = "NEW GAME";
     }
 
     private void Update()
     {
-        if (wave != WaveControl.GetInstance().currentWave) //delegate
+        if (currentWave != wave.currentWave)
         {
-            wave = WaveControl.GetInstance().currentWave;
+            currentWave = wave.currentWave;
             GetComponent<Animator>().SetTrigger("wave");
+            enemyCountText.text = wave.enemyCount.ToString() + "/" + wave.totalEnemyCount.ToString();
+        }
+        if (currentEnemies != wave.enemyCount)
+        {
+            currentEnemies = wave.enemyCount;
+            enemyCountText.text = currentEnemies.ToString() + "/" + wave.totalEnemyCount.ToString();
         }
         ChangeOrbImage();
 
@@ -87,7 +97,7 @@ public class UIGame : MonoBehaviour
         }
         else
         {
-            orbPlayer1.color = new Color(1f, 1f, 1f, 0f);            
+            orbPlayer1.color = new Color(1f, 1f, 1f, 0f);
         }
         if (player2.currentElement)
         {
@@ -96,13 +106,13 @@ public class UIGame : MonoBehaviour
         }
         else
         {
-            orbPlayer2.color = new Color(1f, 1f, 1f, 0f);            
+            orbPlayer2.color = new Color(1f, 1f, 1f, 0f);
         }
     }
 
     private void UpdateText()
     {
-        waveText.text = "Wave " + wave.ToString();
+        waveText.text = "Wave " + currentWave.ToString();
     }
 
     public void UpdateLevelsText()

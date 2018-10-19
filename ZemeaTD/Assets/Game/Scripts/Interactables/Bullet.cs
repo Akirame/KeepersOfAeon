@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public enum TypeOf { Ally,Enemy };
     public TypeOf type;
-    public float speed = 200f;
+    public float speed = 50f;
     public Vector2 direction;
     public int damage = 10;
     private int deathTime = 5;
@@ -13,13 +13,14 @@ public class Bullet : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;
         timer += Time.deltaTime;
         if (timer >= deathTime)
         {
             Destroy(gameObject);
         }
-	}
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -29,7 +30,15 @@ public class Bullet : MonoBehaviour {
     {
         direction = dir;
         transform.eulerAngles = angleAttack;
-    }    
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+
+    public void Shoot(Vector2 dir)
+    {
+        direction = dir;
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+
     public void SetDamage(int _damage)
     {
         damage = _damage;

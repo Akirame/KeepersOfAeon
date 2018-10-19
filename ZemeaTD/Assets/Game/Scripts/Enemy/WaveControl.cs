@@ -33,6 +33,7 @@ public class WaveControl : MonoBehaviour {
     public int waveMiniBoss;
     public GameObject enemiesParent;
     public int enemyIncrementFactor = 2;
+    public int totalEnemyCount;
     private List<GameObject> enemyList;
     private List<int> enemyTypeList;
     private float timerWaves;
@@ -67,6 +68,7 @@ public class WaveControl : MonoBehaviour {
         else
             CheckEnemyCount();
 	}
+
 
     private void TrySpawnMiniBoss()
     {
@@ -132,6 +134,7 @@ public class WaveControl : MonoBehaviour {
         }
         RandomizeEnemyList();
         enemyCount = enemyTypeList.Count;
+        totalEnemyCount = enemyTypeList.Count;
     }
 
     private void RandomizeEnemyList()
