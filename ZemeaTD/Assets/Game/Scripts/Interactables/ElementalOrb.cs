@@ -67,7 +67,7 @@ public class ElementalOrb :MonoBehaviour
     public void Throw(float force)
     {
         rigid.bodyType = RigidbodyType2D.Dynamic;
-        if(!playerAttached.GetComponent<CharacterController2D>().lookingRight)
+        if(playerAttached.GetComponent<CharacterController2D>().lookingRight)
             rigid.velocity = new Vector2(1, 2) * force;
         else
             rigid.velocity = new Vector2(-1, 2) * force;
