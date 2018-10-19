@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour {
         Time.timeScale = timeScale;
         SetAllCanvas(true, false);
         gamePaused = false;
+        ControlPanel.SetActive(false);
     }
 
     public void ReturnToMenu()
