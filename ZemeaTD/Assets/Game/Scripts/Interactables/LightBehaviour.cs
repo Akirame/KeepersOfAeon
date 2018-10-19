@@ -15,6 +15,14 @@ public class LightBehaviour : MonoBehaviour
 
     public UILight LightUICanvas;
 
+    private void Start()
+    {
+        if (DebugScreen.GetInstance())
+        {
+            DebugScreen.GetInstance().AddButton("Win", LightOn);
+        }
+    }
+
     private void Update() {
         if (lightOn)
             ActivateLight();
@@ -40,4 +48,10 @@ public class LightBehaviour : MonoBehaviour
         if(collision.gameObject.tag == "Player")
             lightOn = false;
     }
+
+    public void LightOn()
+    {
+        lightValue = 200;
+    }
+
 }

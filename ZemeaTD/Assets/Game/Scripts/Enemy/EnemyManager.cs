@@ -145,8 +145,8 @@ public class EnemyManager : MonoBehaviour {
 
     }
     private void CleanWave() {
-        enemies.Clear();        
-        enemiesIndex.Clear();        
+        enemies.Clear();
+        enemiesIndex.Clear();
     }
     private void EnemyKilled(Enemy e)
     {

@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class UI_FinalScreen : MonoBehaviour {
 
-    public void ContinuePressed()
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
+
+    private void Awake()
     {
-        LoaderManager.Get().LoadSceneQuick("MainMenu");
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (GameManager.Get().winGame)
+        {
+            victoryPanel.SetActive(true);
+        }
+        else
+        {
+            defeatPanel.SetActive(true);
+        }
     }
 
     public void ExitPressed()
     {
-        Application.Quit();
+        LoaderManager.Get().LoadSceneQuick("MainMenu");
     }
 
     public void RestartPressed()

@@ -34,11 +34,14 @@ public class WaveControl : MonoBehaviour {
     public GameObject enemiesParent;
     public int enemyIncrementFactor = 2;
     public int totalEnemyCount;
+    public int timeForFirstWave = 30;
     private List<GameObject> enemyList;
     private List<int> enemyTypeList;
+    private float timerFirstWave;
     private float timerWaves;
     private float timerEnemies;
-    private bool canSpawn = true;
+    private bool canSpawn = false;
+    private bool firstWave = true;
 
 
     // Use this for initialization
@@ -54,19 +57,32 @@ public class WaveControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (canSpawn)
+        if (firstWave)
         {
-            timerWaves += Time.deltaTime;
-            if (timerWaves >= timeBetweenWaves)
+            timerFirstWave += Time.deltaTime;
+            if (timerFirstWave >= timeForFirstWave)
             {
-                CleanWave();
-                SpawnWave();
-                TrySpawnMiniBoss();
-                timerWaves = 0;
+                canSpawn = true;
+                firstWave = false;
             }
         }
         else
-            CheckEnemyCount();
+        {
+            if (canSpawn)
+            {
+                timerWaves += Time.deltaTime;
+                if (timerWaves >= timeBetweenWaves)
+                {
+                    CleanWave();
+                    SpawnWave();
+                    TrySpawnMiniBoss();
+                    timerWaves = 0;
+                }
+            }
+            else
+                CheckEnemyCount();
+        }
+
 	}
 
 

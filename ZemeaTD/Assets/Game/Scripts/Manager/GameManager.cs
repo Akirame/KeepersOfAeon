@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     #region Singleton
     public static GameManager instance;
     private LoaderManager loader;
+    public bool winGame = false;
 
     public static GameManager Get()
     {
@@ -45,10 +46,12 @@ public class GameManager : MonoBehaviour {
     private void ResetGame()
     {
         loader.LoadSceneQuick("SampleScene");
+        winGame = false;
     }
     private void GameWon(LightBehaviour l)
     {
         loader.LoadScene("FinalScreen");
+        winGame = true;
     }
 
     private void LevelUpPlayers()
@@ -71,5 +74,6 @@ public class GameManager : MonoBehaviour {
     private void GameOver(Tower t)
     {
         loader.LoadSceneQuick("FinalScreen");
+        winGame = false;
     }
 }

@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public int chanceOfElement = 25;
     public int experience = 50;
     public Sprite[] sprites;
+    public GameObject deathParticles;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
     protected SpriteRenderer sr;
@@ -60,6 +61,8 @@ public class Enemy : MonoBehaviour
         {
             Death(this);
             collision.GetComponent<Tower>().TakeDamage(damage);
+            Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
+
         }
     }
 
@@ -97,10 +100,12 @@ public class Enemy : MonoBehaviour
                 playerLevel.AddExperience(experience);
             }
             Death(this);
+            Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
         }
     }    
     public void Kill()
     {
         Death(this);
+        Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
     }
 }

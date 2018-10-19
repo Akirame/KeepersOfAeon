@@ -32,11 +32,6 @@ public class DebugScreen :MonoBehaviour
     public Canvas screenDebug;
     public GameObject buttonPrefab;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.F1))

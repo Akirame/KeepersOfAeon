@@ -23,10 +23,16 @@ public class Tower : MonoBehaviour
         }
         if (DebugScreen.GetInstance())
         {
+            DebugScreen.GetInstance().AddButton("DestroyTower", DestroyTower);
             DebugScreen.GetInstance().AddButton("TowerInvulnerable", TowerInvulnerable);
             DebugScreen.GetInstance().AddButton("RepairTower", RepairTower);
             DebugScreen.GetInstance().AddButton("RepairRamparts", RepairRamparts);
         }
+    }
+
+    private void DestroyTower()
+    {
+        health = -1;
     }
 
     private void Update()

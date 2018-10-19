@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightValue: 0
   lightPerSecond: 1
+  particles: {fileID: 0}
   LightUICanvas: {fileID: 114987649913837972}
 --- !u!114 &114228320388073412
 MonoBehaviour:

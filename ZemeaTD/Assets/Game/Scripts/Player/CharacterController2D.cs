@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
     private AttackBehaviour attackComponent;
     private Animator anim;
     private Vector2 movement;
+    private float changuiTime = 0.2f;
+    private float timerChangui;
 
     private void Start()
     {
@@ -134,8 +136,6 @@ public class CharacterController2D : MonoBehaviour
             }
             anim.SetFloat("axis", Mathf.Abs(movement.x));
         }
-        
-
     }
 
     public void GroundControl()
@@ -146,10 +146,15 @@ public class CharacterController2D : MonoBehaviour
         {
             onFloor = true;
             jumped = false;
+            timerChangui = 0;
         }
         else
         {
-            onFloor = false;
+            timerChangui += Time.deltaTime;
+            if (timerChangui > changuiTime)
+            {
+                onFloor = false;
+            }
         }
     }
 
