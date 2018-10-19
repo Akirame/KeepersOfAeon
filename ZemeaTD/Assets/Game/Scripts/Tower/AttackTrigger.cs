@@ -51,10 +51,10 @@ public class AttackTrigger : MonoBehaviour {
         switch (facingDirection)
         {
             case FACING_DIRECTION.RIGHT:
-                player.GetComponent<CharacterController2D>().SetFacingRight(false);
+                player.GetComponent<CharacterController2D>().SetFacingRight(true);
                 break;
             case FACING_DIRECTION.LEFT:
-                player.GetComponent<CharacterController2D>().SetFacingRight(true);
+                player.GetComponent<CharacterController2D>().SetFacingRight(false);
                 break;
             default:
                 break;
