@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
     public GameObject UIGame;
     public GameObject UIPause;
+    public GameObject ControlPanel;
     private bool gamePaused = false;
     private float timeScale;
 
@@ -17,7 +18,7 @@ public class UIManager : MonoBehaviour {
             if (!gamePaused)
                 PauseGame();
             else
-                UnpauseGame();                            
+                UnpauseGame();
     }
     private void PauseGame() {
         Time.timeScale = 0f;
@@ -39,5 +40,14 @@ public class UIManager : MonoBehaviour {
     private void SetAllCanvas(bool game, bool pause) {
         UIGame.SetActive(game);
         UIPause.SetActive(pause);
+    }
+
+    public void ButtonControlPressed()
+    {
+        ControlPanel.SetActive(true);
+    }
+    public void ButtonBackControlPressed()
+    {
+        ControlPanel.SetActive(false);
     }
 }

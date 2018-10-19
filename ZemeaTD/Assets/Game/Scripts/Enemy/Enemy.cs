@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
     {
         if (multiplier > 0)
         {
-            health *= multiplier;            
+            health *= multiplier;
         }
     }
 

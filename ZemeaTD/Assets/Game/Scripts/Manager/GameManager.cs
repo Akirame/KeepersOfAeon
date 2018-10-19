@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
 
     public void ToMainMenu()
     {
-        loader.LoadScene("MainMenu");
+        loader.LoadSceneQuick("MainMenu");
     }
 
     private void GameOver(Tower t)

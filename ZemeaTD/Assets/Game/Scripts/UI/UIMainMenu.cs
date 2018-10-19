@@ -8,6 +8,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject mainMenuCanvas;
     public GameObject howToPlayCanvas;
     public GameObject creditsCanvas;
+    public GameObject Objectives;
     public Text versionText;
 
     private void Start()
@@ -16,7 +17,8 @@ public class UIMainMenu : MonoBehaviour
     }
 
     public void PlayButtonPressed() {
-        LoaderManager.Get().LoadScene("SampleScene");
+        Objectives.SetActive(true);
+        SetCanvas(false, false, false);
     }
     public void HowToPlayButtonPressed() {
         SetCanvas(false, true, false);
@@ -29,6 +31,10 @@ public class UIMainMenu : MonoBehaviour
     }
     public void BackButtonPressed() {
         SetCanvas(true, false, false);
+    }
+    public void NextButtonPressed()
+    {
+        LoaderManager.Get().LoadScene("SampleScene");
     }
     private void SetCanvas(bool mainMenu, bool howto, bool credits) {
         mainMenuCanvas.SetActive(mainMenu);

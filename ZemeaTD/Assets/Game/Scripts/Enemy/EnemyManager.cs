@@ -149,10 +149,9 @@ public class EnemyManager : MonoBehaviour {
         enemiesIndex.Clear();        
     }
     private void EnemyKilled(Enemy e)
-    {        
+    {
         Destroy(e.gameObject);
         currentEnemies--;
-        print(currentEnemies);
     }
     private void OnDestroy()
     {
