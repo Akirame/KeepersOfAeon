@@ -32,13 +32,8 @@ public class EnemyRanged : Enemy
                     timer += Time.deltaTime;
                 }
                 else
-                { 
-                    GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
-                    Vector2 bulletDirection = rampart.transform.position - transform.position + new Vector3(0,10);
-                    b.GetComponent<Bullet>().SetDamage(damage);
-                    b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
-                    b.GetComponent<Bullet>().Shoot(bulletDirection.normalized);
-                    timer = 0;
+                {
+                    Attack();
                 }
             }
             else
@@ -56,7 +51,19 @@ public class EnemyRanged : Enemy
     private void OffRange(RangeDetector d)
     {
         rampart = d.GetRampart();
-        movementBehaviour.enabled = true;        
+        movementBehaviour.enabled = true;
+        movementBehaviour.SetCanMove(true);
     }
+
+    private void Attack()
+    {
+        GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
+        Vector2 bulletDirection = rampart.transform.position - transform.position + new Vector3(0, 10);
+        b.GetComponent<Bullet>().SetDamage(damage);
+        b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
+        b.GetComponent<Bullet>().Shoot(bulletDirection.normalized);
+        timer = 0;
+    }
+
 }
 

@@ -13,6 +13,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private Rigidbody2D rig;
     private float timer;
     private int movementDirection;
+    private int knockbackForce = 2;
 
 
     private void Start()
@@ -65,7 +66,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
 
     public void KnockBack()
     {
-        rig.AddForce(new Vector2(10 * -movementDirection, 0), ForceMode2D.Impulse);
+        rig.AddForce(new Vector2(knockbackForce * -movementDirection, 0), ForceMode2D.Impulse);
         isKnockback = true;
     }
 }

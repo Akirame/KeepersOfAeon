@@ -25,8 +25,8 @@ public class PopText : MonoBehaviour {
         if (timer > alphaTime)
         {
             alphaDecrementer -= Time.deltaTime;
-            text.color = new Color(1, 1, 1, alphaDecrementer);
-            transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime;
+            text.color = new Color(0, 0, 0, alphaDecrementer);
+            transform.localScale += new Vector3(1.5f, 1.5f, 1.5f) * Time.deltaTime;
         }
         if (text.color.a <= 0.1)
         {
