@@ -27,6 +27,7 @@ public class Rampart : MonoBehaviour
             Attacked(50);
         }
         shieldBar.fillAmount = (float)shield / maxShield;
+        rend.color = Color.Lerp(Color.red, Color.white, shieldBar.fillAmount);
     }
 
     public void Attacked(int damage)
