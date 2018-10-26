@@ -5,10 +5,18 @@ using UnityEngine;
 public class RepairShop : MonoBehaviour {
     public bool repairOn = false;
     public Rampart shield;
+    public ParticleSystem particles;
 
     private void Update() {
         if(repairOn) {
             shield.RepairRampart();
+            if(!particles.isEmitting)
+                particles.Play();
+        }
+        else
+        {
+            if(particles.isEmitting)
+                particles.Stop();
         }
     }
 

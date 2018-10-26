@@ -19,6 +19,12 @@ public class PlayerLevel : MonoBehaviour
         LevelUpTo(playerLevel);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+            AddExperience(20);
+    }
+
     public void LevelDownPlayer()
     {
         if (playerLevel > 1)
@@ -34,7 +40,7 @@ public class PlayerLevel : MonoBehaviour
         while (playerExperience >= playerLevel * expNeededPerLevel)
         {
             playerExperience -= playerLevel * expNeededPerLevel;
-            playerLevel++;
+            LevelUpPlayer();
         }
     }
 
