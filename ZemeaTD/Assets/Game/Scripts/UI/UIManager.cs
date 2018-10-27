@@ -11,10 +11,10 @@ public class UIManager : MonoBehaviour {
 
     private void Start() {
         timeScale = Time.timeScale;
-        SetAllCanvas(true, false);        
+        SetAllCanvas(true, false);
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick2Button9))
             if (!gamePaused)
                 PauseGame();
             else

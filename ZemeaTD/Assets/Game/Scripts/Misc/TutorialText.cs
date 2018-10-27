@@ -178,14 +178,14 @@ public class TutorialText : MonoBehaviour {
 
     public void InitializeTutorials()
     {
-        tutorialList.Add("USE " + playerControl.moveLeft.ToString() + " AND " + playerControl.moveRight.ToString() + " TO MOVE"); // MOVEMENT
-        tutorialList.Add("USE " + playerControl.jump.ToString() + " TO JUMP");
-        tutorialList.Add(playerControl.primaryButton.ToString() + " TO PICK AN ORB");
-        tutorialList.Add(playerControl.primaryButton.ToString() + " TO CONSUME AN ORB");
-        tutorialList.Add("YOU CAN THROW A PICKED ORB WITH "+ playerControl.secondaryButton.ToString());
-        tutorialList.Add(playerControl.thirdButton.ToString() + " TO ACTIVATE/DEACTIVATE ATTACK MODE ON BALCONY");
-        tutorialList.Add("USE " + playerControl.jump.ToString() + " AND " + playerControl.moveDown.ToString() + " TO AIM");
-        tutorialList.Add(playerControl.secondaryButton.ToString() + " TO SHOOT");
+        //tutorialList.Add("USE " + playerControl.moveLeft.ToString() + " AND " + playerControl.moveRight.ToString() + " TO MOVE"); // MOVEMENT
+        //tutorialList.Add("USE " + playerControl.jump.ToString() + " TO JUMP");
+        //tutorialList.Add(playerControl.primaryButton.ToString() + " TO PICK AN ORB");
+        //tutorialList.Add(playerControl.primaryButton.ToString() + " TO CONSUME AN ORB");
+        //tutorialList.Add("YOU CAN THROW A PICKED ORB WITH "+ playerControl.secondaryButton.ToString());
+        //tutorialList.Add(playerControl.thirdButton.ToString() + " TO ACTIVATE/DEACTIVATE ATTACK MODE ON BALCONY");
+        //tutorialList.Add("USE " + playerControl.jump.ToString() + " AND " + playerControl.moveDown.ToString() + " TO AIM");
+        //tutorialList.Add(playerControl.secondaryButton.ToString() + " TO SHOOT");
     }
 
 }

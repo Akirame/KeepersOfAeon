@@ -33,7 +33,7 @@ public class Trampolin : MonoBehaviour {
         {
             CharacterController2D character = collision.GetComponent<CharacterController2D>();
             InputControl characterInput = collision.GetComponent<InputControl>();
-            if (character.jumped && !Input.GetKey(characterInput.moveDown))
+            if (character.jumped && !(Input.GetAxis(characterInput.axisY) > 0))
             {
             StopAllCoroutines();
             StartCoroutine("BounceEffect");

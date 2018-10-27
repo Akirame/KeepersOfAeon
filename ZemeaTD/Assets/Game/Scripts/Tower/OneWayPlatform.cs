@@ -19,7 +19,7 @@ public class OneWayPlatform : MonoBehaviour {
 	void Update () {
         if (playerInput)
         {
-            if (Input.GetKey(playerInput.moveDown))
+            if (Input.GetAxis(playerInput.axisY) > 0 && Input.GetKey(playerInput.jump))
             {
                 lookingUp = false;
                 effector.rotationalOffset = 180f;

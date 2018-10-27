@@ -160,7 +160,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if (onFloor && Input.GetKeyDown(inputControl.jump))
+        if (onFloor && Input.GetKeyDown(inputControl.jump) && !(Input.GetAxis("P1_Vertical") > 0))
         {
             onFloor = false;
             jumped = true;

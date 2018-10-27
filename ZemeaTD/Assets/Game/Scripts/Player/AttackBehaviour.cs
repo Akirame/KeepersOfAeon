@@ -30,7 +30,7 @@ public class AttackBehaviour : MonoBehaviour {
 
     public void AttackControl()
     {
-        if (Input.GetKey(inputPlayer.jump))
+        if (Input.GetAxis(inputPlayer.axisY) < 0)
         {
             if (IsFacingRight())
             {
@@ -42,7 +42,7 @@ public class AttackBehaviour : MonoBehaviour {
 
             }
         }
-        else if (Input.GetKey(inputPlayer.moveDown))
+        else if (Input.GetAxis(inputPlayer.axisY) > 0)
         {
             if (IsFacingRight())
             {
