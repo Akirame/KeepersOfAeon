@@ -10,7 +10,7 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
-    public ElementalOrb currentElement;    
+    public ElementalOrb currentElement;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
@@ -68,15 +68,20 @@ public class AttackBehaviour : MonoBehaviour {
         if (Input.GetKey(inputPlayer.secondaryButton))
         {
             if(timer >= timeBetweenAttacks) {
-                GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
-                Vector2 bulletDirection = crossPos.position - transform.position;
-                CalculatePlayerDamage();
-                b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement, this.gameObject);
-                timer = 0;
+                Shoot();
             }
             else
                 timer += Time.deltaTime;
         }
+    }
+
+    private void Shoot()
+    {
+        GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
+        Vector2 bulletDirection = crossPos.position - transform.position;
+        CalculatePlayerDamage();
+        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement, this.gameObject);
+        timer = 0;
     }
 
     private void CalculatePlayerDamage()

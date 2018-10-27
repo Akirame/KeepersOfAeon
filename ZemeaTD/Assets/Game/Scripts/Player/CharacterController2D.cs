@@ -199,7 +199,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (faceRight)
         {
-            transform.localScale = new Vector2(2, 2);            
+            transform.localScale = new Vector2(2, 2);
         }
         else
         {
@@ -207,4 +207,5 @@ public class CharacterController2D : MonoBehaviour
         }
         lookingRight = faceRight;
     }
+
 }

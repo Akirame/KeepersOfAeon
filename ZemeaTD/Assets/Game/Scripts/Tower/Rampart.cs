@@ -10,13 +10,11 @@ public class Rampart : MonoBehaviour
     public float healthPerSecond;
     public Image shieldBar;
     public ParticleSystem[] shieldParticles;
-    private SpriteRenderer rend;
     private CircleCollider2D coll;
-    private bool activateRenderer = false;
+    private bool activateCollision = false;
 
 	void Start ()
     {        
-        rend = GetComponent<SpriteRenderer>();
         coll = GetComponent<CircleCollider2D>();
 	}
 
@@ -27,7 +25,6 @@ public class Rampart : MonoBehaviour
             Attacked(50);
         }
         shieldBar.fillAmount = (float)shield / maxShield;
-        rend.color = Color.Lerp(Color.red, Color.white, shieldBar.fillAmount);
     }
 
     public void Attacked(int damage)
@@ -43,11 +40,10 @@ public class Rampart : MonoBehaviour
 
     private void CheckAlive() {
         if(IsAlive()) {
-            if (activateRenderer)
+            if (activateCollision)
             {
                 coll.enabled = true;
-                rend.enabled = true;
-                activateRenderer = !activateRenderer;
+                activateCollision = !activateCollision;
                 foreach (ParticleSystem p in shieldParticles)
                 {
                     p.Play(true);
@@ -55,11 +51,10 @@ public class Rampart : MonoBehaviour
             }
         }
         else {
-            if (!activateRenderer)
+            if (!activateCollision)
             {
-                coll.enabled = false;                
-                rend.enabled = false;
-                activateRenderer = !activateRenderer;
+                coll.enabled = false;
+                activateCollision = !activateCollision;
                 foreach(ParticleSystem p in shieldParticles) {
                     p.Stop(true);
                 }
@@ -77,7 +72,7 @@ public class Rampart : MonoBehaviour
         }
         if (collision.gameObject.tag == "EnemyBullet")
         {
-            Attacked(collision.GetComponent<Bullet>().GetDamage());            
+            Attacked(collision.GetComponent<Bullet>().GetDamage());
         }
     }
 

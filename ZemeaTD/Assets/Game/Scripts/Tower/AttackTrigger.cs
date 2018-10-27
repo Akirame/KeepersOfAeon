@@ -71,6 +71,7 @@ public class AttackTrigger : MonoBehaviour {
 
     private void RemovePlayerReferences()
     {
+        player.GetComponent<CharacterController2D>().SetAttackMode(false);
         player = null;
         inputPlayer = null;
     }
