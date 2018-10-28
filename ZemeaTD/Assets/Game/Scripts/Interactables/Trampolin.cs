@@ -33,13 +33,13 @@ public class Trampolin : MonoBehaviour {
         {
             CharacterController2D character = collision.GetComponent<CharacterController2D>();
             InputControl characterInput = collision.GetComponent<InputControl>();
-            if (character.jumped && !(Input.GetAxis(characterInput.axisY) > 0))
-            {
-            StopAllCoroutines();
-            StartCoroutine("BounceEffect");
-                Rigidbody2D rig = collision.gameObject.GetComponent<Rigidbody2D>();
-                rig.velocity = new Vector2(rig.velocity.x, jumpForce);
-            }
+            //if (character.jumped && !(Input.GetAxis(characterInput.axisY) > 0))
+            //{
+            //StopAllCoroutines();
+            //StartCoroutine("BounceEffect");
+            //    Rigidbody2D rig = collision.gameObject.GetComponent<Rigidbody2D>();
+            //    rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+            //}
         }
         if (collision.tag == "ElementalOrb")
         {

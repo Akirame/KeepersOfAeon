@@ -11,7 +11,8 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask floorLayer;
     public InputControl inputControl;
     public SpriteRenderer spriteRend;
-    public bool jumped = false;
+    public bool canJump = true;
+    public bool dobleJump = false;
     public bool lookingRight;
     private bool canMove = true;
     private bool onFloor = false;
@@ -55,6 +56,7 @@ public class CharacterController2D : MonoBehaviour
             case PLAYER_STATES.Jump:
                 Movement();
                 GroundControl();
+                JumpBehaviour();
                 break;
             case PLAYER_STATES.Attack:
                 AttackMode();
@@ -145,7 +147,6 @@ public class CharacterController2D : MonoBehaviour
         if (Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer))
         {
             onFloor = true;
-            jumped = false;
             timerChangui = 0;
         }
         else
@@ -160,11 +161,16 @@ public class CharacterController2D : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if (onFloor && Input.GetKeyDown(inputControl.jump) && !(Input.GetAxis("P1_Vertical") > 0))
+        if (onFloor && Input.GetKeyDown(inputControl.jump) && canJump)
         {
             onFloor = false;
-            jumped = true;
+            dobleJump = true;
             rig.velocity = new Vector2(0, playerData.jumpForce);
+        }
+        else if (!onFloor && Input.GetKeyDown(inputControl.jump) && dobleJump)
+        {
+            rig.velocity = new Vector2(0, playerData.jumpForce);
+            dobleJump = false;
         }
     }
 

@@ -14,6 +14,6 @@ MonoBehaviour:
   floorSpeed: 1500
   airSpeed: 1600
   attackSpeed: 5
-  jumpForce: 60
+  jumpForce: 70
   minDamage: 8
   maxDamage: 10
