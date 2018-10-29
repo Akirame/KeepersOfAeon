@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticles;
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
-    protected SpriteRenderer sr;
+    public SpriteRenderer sr;
     protected bool flickerEnabled = false;
 
     protected virtual void Start()

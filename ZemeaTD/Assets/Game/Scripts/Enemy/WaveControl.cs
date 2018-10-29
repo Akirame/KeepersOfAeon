@@ -43,16 +43,22 @@ public class WaveControl : MonoBehaviour {
     private bool canSpawn = false;
     private bool firstWave = true;
 
+    public float hordeTime = 10f;
+    public float percentHordeSpawnRate = 5f;
+    private bool hordeSpawned = false;
+    private List<int> hordeWave;
 
     // Use this for initialization
     void Start () {
         enemyTypeList = new List<int>();
+        hordeWave = new List<int>();
         enemyList = new List<GameObject>();
         Enemy.Death += EnemyKilled;
         if (DebugScreen.GetInstance())
         {
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
         }
+        StartCoroutine(SpawnHorde());
     }
 	
 	// Update is called once per frame
@@ -100,19 +106,47 @@ public class WaveControl : MonoBehaviour {
     {
         if (enemyCount <= 0)
         {
-            canSpawn = true;
+            canSpawn = true;            
         }
     }
 
     private void SpawnWave()
     {
         GenerateEnemyList();
-        StopAllCoroutines();
+        StopCoroutine(SpawnEnemyList());
         StartCoroutine(SpawnEnemyList());
         canSpawn = false;
         currentWave++;
     }
 
+    IEnumerator SpawnHorde()
+    {
+        while(true)
+        {
+            if(!hordeSpawned && UnityEngine.Random.Range(1, 100f) <= percentHordeSpawnRate && enemyCount > 0)
+            {
+                Debug.Log("SPAWNED");
+                GenerateHordeWave();
+                hordeSpawned = true;
+                percentHordeSpawnRate = 5f;
+                Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+                for(int i = 0; i < hordeWave.Count; i++)
+                {
+                    Vector3 offsetPosition = new Vector3();
+                    offsetPosition.y = UnityEngine.Random.Range(-3, 3);
+                    GameObject enemy = Instantiate(enemyPrefab[hordeWave[i]].gameObject, t.position + offsetPosition, Quaternion.identity, enemiesParent.transform);
+                    enemy.GetComponent<Enemy>().MultiplyHealth((int)currentWave / 5);                    
+                    enemyList.Add(enemy);
+                    yield return new WaitForSeconds(timeBetweenEnemies/2);
+                }
+            }
+            else
+            {                
+                yield return new WaitForSeconds(10f);
+                percentHordeSpawnRate += 1f;
+            }
+        }
+    }
     IEnumerator SpawnEnemyList()
     {
         for (int i = 0; i < enemyTypeList.Count; i++)
@@ -136,21 +170,21 @@ public class WaveControl : MonoBehaviour {
 
     private void GenerateEnemyList()
     {
-        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave); i++)
+        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
         {
             enemyTypeList.Add(0);
         }
-        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave / 3); i++)
+        for (int i = 0; i < rangeCount + (int)((enemyIncrementFactor * currentWave / 3) * 3); i++)
         {
             enemyTypeList.Add(1);
         }
-        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave / 5); i++)
+        for (int i = 0; i < flyCount + (int)((enemyIncrementFactor * currentWave / 5) * 3); i++)
         {
             enemyTypeList.Add(2);
         }
         RandomizeEnemyList();
-        enemyCount = enemyTypeList.Count;
-        totalEnemyCount = enemyTypeList.Count;
+        enemyCount = enemyTypeList.Count + hordeWave.Count;
+        totalEnemyCount = enemyTypeList.Count + hordeWave.Count;
     }
 
     private void RandomizeEnemyList()
@@ -179,5 +213,31 @@ public class WaveControl : MonoBehaviour {
     {
         enemyTypeList.Clear();
         enemyList.Clear();
+    }
+
+    private void GenerateHordeWave()
+    {
+        hordeWave.Clear();
+        for(int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave); i++)
+        {
+            hordeWave.Add(0);
+        }
+        for(int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave / 3); i++)
+        {
+            hordeWave.Add(1);
+        }
+        for(int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave / 5); i++)
+        {
+            hordeWave.Add(2);
+        }                
+        for(int i = 0; i < hordeWave.Count; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(i, hordeWave.Count);
+            int aux = hordeWave[i];
+            hordeWave[i] = hordeWave[randomIndex];
+            hordeWave[randomIndex] = aux;
+        }
+        enemyCount = enemyTypeList.Count + hordeWave.Count;
+        totalEnemyCount = enemyTypeList.Count + hordeWave.Count;
     }
 }
