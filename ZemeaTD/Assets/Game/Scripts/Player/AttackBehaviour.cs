@@ -65,7 +65,7 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if (Input.GetKey(inputPlayer.secondaryButton))
+        if (Input.GetButton(inputPlayer.secondaryButton))
         {
             if(timer >= timeBetweenAttacks) {
                 Shoot();

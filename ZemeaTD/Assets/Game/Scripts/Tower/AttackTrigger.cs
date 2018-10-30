@@ -29,7 +29,7 @@ public class AttackTrigger : MonoBehaviour {
     {
         if (player)
         {
-            if (Input.GetKeyDown(inputPlayer.thirdButton))
+            if (Input.GetButtonDown(inputPlayer.thirdButton))
             {
                 if (!isUsed)
                 {

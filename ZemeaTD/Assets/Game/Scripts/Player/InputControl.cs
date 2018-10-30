@@ -5,10 +5,10 @@ using UnityEngine;
 public class InputControl : MonoBehaviour {
 
     #region Input
-    public KeyCode jump;
-    public KeyCode primaryButton;
-    public KeyCode secondaryButton;
-    public KeyCode thirdButton;
+    public string jump;
+    public string primaryButton;
+    public string secondaryButton;
+    public string thirdButton;
     public string axisY;
     public string axisH;
     #endregion

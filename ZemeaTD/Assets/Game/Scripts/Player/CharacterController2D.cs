@@ -161,13 +161,13 @@ public class CharacterController2D : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if (onFloor && Input.GetKeyDown(inputControl.jump) && canJump)
+        if (onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
         {
             onFloor = false;
             dobleJump = true;
             rig.velocity = new Vector2(0, playerData.jumpForce);
         }
-        else if (!onFloor && Input.GetKeyDown(inputControl.jump) && dobleJump)
+        else if (!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
         {
             rig.velocity = new Vector2(0, playerData.jumpForce);
             dobleJump = false;
@@ -190,14 +190,6 @@ public class CharacterController2D : MonoBehaviour
         {
             currentState = PLAYER_STATES.Idle;
             GetComponent<AttackBehaviour>().SetVisibilityCrosshair(false);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (Input.GetKeyDown(inputControl.primaryButton) && collision.tag == "Door")
-        {
-            collision.GetComponent<Door>().GoToNextDoor(gameObject);
         }
     }
 

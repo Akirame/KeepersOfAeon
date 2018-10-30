@@ -32,25 +32,25 @@ public class PlayerDetector : MonoBehaviour
             UpdateOrbToPick();
         if (orbToPick)
         {
-            if (orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
+            if (orbToPick.pickedUp && Input.GetButtonDown(playerInput.primaryButton))
             {
                 picked = false;
                 ConsumeOrb();
             }
             else
-                if (orbToPick.pickedUp && Input.GetKey(playerInput.secondaryButton))
+                if (orbToPick.pickedUp && Input.GetButton(playerInput.secondaryButton))
             {
                 CalculateThrowForce();
             }
             else
-            if (!orbToPick.pickedUp && Input.GetKeyDown(playerInput.primaryButton))
+            if (!orbToPick.pickedUp && Input.GetButtonDown(playerInput.primaryButton))
             {                
                 PickUpOrb();                
                 picked = true;
             }
             if (forceCalculation > 0)
             {
-                if (Input.GetKeyUp(playerInput.secondaryButton))
+                if (Input.GetButtonUp(playerInput.secondaryButton))
                 {
                     ThrowOrb();
                     picked = false;

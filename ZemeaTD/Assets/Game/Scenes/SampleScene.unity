@@ -7992,7 +7992,7 @@ Prefab:
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: jump
-      value: 352
+      value: P1_Jump
       objectReference: {fileID: 0}
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
@@ -8002,17 +8002,17 @@ Prefab:
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: primaryButton
-      value: 355
+      value: P1_Action
       objectReference: {fileID: 0}
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: secondaryButton
-      value: 353
+      value: P1_Throw
       objectReference: {fileID: 0}
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: thirdButton
-      value: 350
+      value: P1_ToggleAttack
       objectReference: {fileID: 0}
     - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
@@ -9102,22 +9102,22 @@ Prefab:
     - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
       propertyPath: jump
-      value: 372
+      value: P2_Jump
       objectReference: {fileID: 0}
     - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
       propertyPath: primaryButton
-      value: 375
+      value: P2_Action
       objectReference: {fileID: 0}
     - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
       propertyPath: secondaryButton
-      value: 373
+      value: P2_Throw
       objectReference: {fileID: 0}
     - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
       propertyPath: thirdButton
-      value: 370
+      value: P2_Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 212732925482398476, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
@@ -9138,6 +9138,10 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 2.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427051473401682, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
