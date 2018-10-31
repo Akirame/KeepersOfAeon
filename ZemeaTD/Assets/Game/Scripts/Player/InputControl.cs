@@ -9,6 +9,7 @@ public class InputControl : MonoBehaviour {
     public string primaryButton;
     public string secondaryButton;
     public string thirdButton;
+    public string pauseButton;
     public string axisY;
     public string axisH;
     public string LTrigger;
