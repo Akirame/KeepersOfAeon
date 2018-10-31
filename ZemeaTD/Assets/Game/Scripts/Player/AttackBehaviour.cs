@@ -19,20 +19,50 @@ public class AttackBehaviour : MonoBehaviour {
     public float timeBetweenAttacks = 0.2f;
     public float minAttackSpeed = 0.01f;
     private CharacterController2D player;
+    public ElementalOrb element;
+    private float rAxis = 0f;
+    private float lAxis = 0f;
+    private bool triggerTouched = false;
 
     private void Start()
     {
         inputPlayer = GetComponent<InputControl>();
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
-        timer = timeBetweenAttacks;
+        timer = timeBetweenAttacks;        
+        element.elementType = ElementalOrb.ELEMENT_TYPE.NONE;
     }
+    private void Update()
+    {
+        rAxis = Input.GetAxis(inputPlayer.RTrigger);        
+        lAxis = Input.GetAxis(inputPlayer.LTrigger);
 
+        if(rAxis >= 1f && !triggerTouched)
+        {
+            if(element.elementType < ElementalOrb.ELEMENT_TYPE.Count - 1)
+                element.elementType += 1;
+            else
+                element.elementType = 0;
+            element.UpdateColor();
+            triggerTouched = true;
+        }        
+        if(lAxis >= 1f && !triggerTouched)
+        {
+            if(element.elementType != ElementalOrb.ELEMENT_TYPE.WATER)
+                element.elementType -= 1;
+            else
+                element.elementType = ElementalOrb.ELEMENT_TYPE.NONE;
+            element.UpdateColor();
+            triggerTouched = true;
+        }
+        if(lAxis == 0f && rAxis == 0f)
+            triggerTouched = false;
+    }
     public void AttackControl()
     {
-        if (Input.GetAxis(inputPlayer.axisY) < 0)
+        if(Input.GetAxis(inputPlayer.axisY) < 0)
         {
-            if (IsFacingRight())
+            if(IsFacingRight())
             {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed;
             }
@@ -42,9 +72,9 @@ public class AttackBehaviour : MonoBehaviour {
 
             }
         }
-        else if (Input.GetAxis(inputPlayer.axisY) > 0)
+        else if(Input.GetAxis(inputPlayer.axisY) > 0)
         {
-            if (IsFacingRight())
+            if(IsFacingRight())
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed;
             }
@@ -53,11 +83,11 @@ public class AttackBehaviour : MonoBehaviour {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed;
             }
         }
-        if (angleAttack.z > maxAngleAttack)
+        if(angleAttack.z > maxAngleAttack)
         {
             angleAttack.z = maxAngleAttack;
         }
-        else if (angleAttack.z < -maxAngleAttack)
+        else if(angleAttack.z < -maxAngleAttack)
         {
             angleAttack.z = -maxAngleAttack;
         }
@@ -65,7 +95,7 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if (Input.GetButton(inputPlayer.secondaryButton))
+        if(Input.GetButton(inputPlayer.secondaryButton))
         {
             if(timer >= timeBetweenAttacks) {
                 Shoot();
@@ -73,6 +103,7 @@ public class AttackBehaviour : MonoBehaviour {
             else
                 timer += Time.deltaTime;
         }
+       
     }
 
     private void Shoot()
@@ -80,7 +111,7 @@ public class AttackBehaviour : MonoBehaviour {
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
-        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentElement, this.gameObject);
+        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, element, this.gameObject);
         timer = 0;
     }
 

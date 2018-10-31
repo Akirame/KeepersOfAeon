@@ -11,6 +11,8 @@ public class InputControl : MonoBehaviour {
     public string thirdButton;
     public string axisY;
     public string axisH;
+    public string LTrigger;
+    public string RTrigger;
     #endregion
 
 }

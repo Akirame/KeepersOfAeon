@@ -8,7 +8,15 @@ public class ElementalOrb :MonoBehaviour
 
     public delegate void OrbActions(ElementalOrb e);
     public static OrbActions OnConsumption;
-    public enum ELEMENT_TYPE { WATER, FIRE, EARTH, NONE };
+    public enum ELEMENT_TYPE
+    {
+        WATER = 0,
+        FIRE,
+        EARTH,
+        NONE,
+        Count
+    };
+
     public ELEMENT_TYPE elementType;
     public Color c;
     public bool pickedUp = false;
@@ -83,7 +91,24 @@ public class ElementalOrb :MonoBehaviour
         OnConsumption(this);
         return this;
     }
-
+    public void UpdateColor()
+    {
+        switch(elementType)
+        {
+            case ELEMENT_TYPE.EARTH:
+                c = Color.green;
+                break;
+            case ELEMENT_TYPE.FIRE:
+                c = Color.red;
+                break;
+            case ELEMENT_TYPE.WATER:
+                c = Color.blue;
+                break;
+            case ELEMENT_TYPE.NONE:
+                c = Color.white;
+                break;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {        
         if(collision.gameObject.tag == "Detector")
