@@ -16,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
     public bool lookingRight;
     private bool canMove = true;
     private bool onFloor = false;
+    public ParticleSystem psDust;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
     private Animator anim;
@@ -31,6 +32,7 @@ public class CharacterController2D : MonoBehaviour
         attackComponent = GetComponent<AttackBehaviour>();
         anim = GetComponent<Animator>();
         lookingRight = true;
+        psDust.Stop();
     }
 
     private void Update()
@@ -166,11 +168,13 @@ public class CharacterController2D : MonoBehaviour
             onFloor = false;
             dobleJump = true;
             rig.velocity = new Vector2(0, playerData.jumpForce);
+            psDust.Play();
         }
         else if (!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
         {
             rig.velocity = new Vector2(0, playerData.jumpForce);
             dobleJump = false;
+            psDust.Play();
         }
     }
 
