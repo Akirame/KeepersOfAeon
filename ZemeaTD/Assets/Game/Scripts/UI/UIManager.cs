@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour {
         SetAllCanvas(true, false);
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick2Button9) || Input.GetKeyDown(KeyCode.Joystick1Button9))
+        if(Input.GetKeyDown(KeyCode.Escape) || (Input.GetButtonDown("Pause")))
             if (!gamePaused)
                 PauseGame();
             else

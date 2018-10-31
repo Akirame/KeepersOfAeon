@@ -8053,6 +8053,11 @@ Prefab:
       propertyPath: m_Size.x
       value: 2.38
       objectReference: {fileID: 0}
+    - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: pauseButton
+      value: Pause
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0
@@ -9142,6 +9147,11 @@ Prefab:
     - target: {fileID: 1427051473401682, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: pauseButton
+      value: Pause
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}

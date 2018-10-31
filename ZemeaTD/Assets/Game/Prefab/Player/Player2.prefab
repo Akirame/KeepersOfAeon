@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1465927156668390
 GameObject:
   m_ObjectHideFlags: 1
@@ -163,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427051473401682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 74.8, z: -0.16164221}
+  m_LocalPosition: {x: -17.7, y: 9.2, z: -0.16164221}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4245804359749848}
@@ -274,7 +274,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.78, y: 2.56}
+  m_Size: {x: 2.15, y: 2.56}
   m_Direction: 0
 --- !u!95 &95010148808384234
 Animator:
@@ -305,13 +305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a640c335605f1e4b842dadfd6578e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveLeft: 97
-  moveRight: 100
-  jump: 119
-  moveDown: 115
-  primaryButton: 106
-  secondaryButton: 107
-  thirdButton: 108
+  jump: P2_Jump
+  primaryButton: P2_Action
+  secondaryButton: P2_Throw
+  thirdButton: P2_Toggle
+  pauseButton: Pause
+  axisY: P2_Vertical
   axisH: P2_Horizontal
 --- !u!114 &114293226754908252
 MonoBehaviour:
@@ -346,7 +345,8 @@ MonoBehaviour:
     m_Bits: 256
   inputControl: {fileID: 0}
   spriteRend: {fileID: 212131407246283886}
-  jumped: 0
+  canJump: 1
+  dobleJump: 0
   lookingRight: 0
 --- !u!114 &114603955414067010
 MonoBehaviour:
@@ -5054,7 +5054,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 29
   m_Sprite: {fileID: 21300000, guid: 5b7ac2059692de84bb0d5492a8869142, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

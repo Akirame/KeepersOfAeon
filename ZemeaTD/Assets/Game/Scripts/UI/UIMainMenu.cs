@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour  
@@ -11,6 +12,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject Objectives;
     public GameObject Orbs;
     public Text versionText;
+    public GameObject currentPanel;
 
     private void Start()
     {
@@ -19,32 +21,34 @@ public class UIMainMenu : MonoBehaviour
 
     public void PlayButtonPressed() {
         Orbs.SetActive(true);
-        SetCanvas(false, false, false);
+        currentPanel = Orbs;
     }
     public void HowToPlayButtonPressed() {
-        SetCanvas(false, true, false);
+        howToPlayCanvas.SetActive(true);
+        currentPanel = howToPlayCanvas;
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
     }
     public void CreditsButtonpressed() {
-        SetCanvas(false, false, true);
+        creditsCanvas.SetActive(true);
+        currentPanel = creditsCanvas;
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
     }
     public void ExitButtonPressed() {
         Application.Quit();
     }
     public void BackButtonPressed() {
-        SetCanvas(true, false, false);
+        currentPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
     }
     public void NextOrbsButtonPressed()
     {
         Orbs.SetActive(false);
         Objectives.SetActive(true);
+        currentPanel = Objectives;
+        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
     }
     public void NextButtonPressed()
     {
         LoaderManager.Get().LoadScene("SampleScene");
-    }
-    private void SetCanvas(bool mainMenu, bool howto, bool credits) {
-        mainMenuCanvas.SetActive(mainMenu);
-        howToPlayCanvas.SetActive(howto);
-        creditsCanvas.SetActive(credits);
     }
 }
