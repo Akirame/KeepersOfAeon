@@ -14,6 +14,7 @@ public class UIJoystickPlugScreen : MonoBehaviour {
     private float timeScale;
     private string[] names;
     private bool joysticksOk = false;
+    private int conta = 0;
     private void Awake()
     {
         if (!instance)
@@ -33,18 +34,19 @@ public class UIJoystickPlugScreen : MonoBehaviour {
     {
         while (true)
         {
-            names = Input.GetJoystickNames();            
-            for (int i = 0; i < names.Length; i++)
-            {                    
-            Debug.Log(names[i].Length);
-                if (names[i].Length == 33) // 33 = XBOX ONE CONTROLLER IS CONNECTED
-                    joysticksOk = true;
-                else
-                    joysticksOk = false;
-            } 
-            if(!joysticksOk)
-                PauseGame();
-            else if (paused)
+            names = Input.GetJoystickNames();
+            conta = 0;            
+                for(int i = 0; i < names.Length; i++)
+                {
+                    Debug.Log(names[i].Length);
+                    if(names[i].Length > 0)
+                        conta++;
+                    else
+                        conta = 0;
+                }            
+                if(conta != 2)
+                    PauseGame();            
+            else if(paused)
                 UnPauseGame();
             yield return new WaitForSecondsRealtime(1);
         }

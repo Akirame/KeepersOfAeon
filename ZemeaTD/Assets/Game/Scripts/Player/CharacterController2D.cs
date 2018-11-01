@@ -146,8 +146,15 @@ public class CharacterController2D : MonoBehaviour
     {
         Vector2 minSpriteSize = new Vector2(0, -spriteRend.size.y / 2);
         Vector2 floorContact = (Vector2)transform.position + minSpriteSize;
-        if (Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer))
+        RaycastHit2D hit = Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer);                
+        if (hit)
         {
+            if(hit.transform.gameObject.tag == "OneWay" && Input.GetAxis(inputControl.axisY) > 0 && Input.GetButtonDown(inputControl.jump))
+            {                
+                hit.transform.GetComponent<OneWayPlatform>().Deactivate();
+                onFloor = false;                
+            }
+            else
             onFloor = true;
             timerChangui = 0;
         }
@@ -163,19 +170,21 @@ public class CharacterController2D : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if (onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
+        if(onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
         {
             onFloor = false;
             dobleJump = true;
             rig.velocity = new Vector2(0, playerData.jumpForce);
             psDust.Play();
         }
-        else if (!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
+        else if(!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
         {
             rig.velocity = new Vector2(0, playerData.jumpForce);
             dobleJump = false;
             psDust.Play();
         }
+        else if(dobleJump && onFloor)
+            dobleJump = false;
     }
 
     public void SetCanMove(bool setMove)

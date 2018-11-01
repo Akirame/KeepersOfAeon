@@ -16,6 +16,8 @@ TagManager:
   - Light
   - Detector
   - Ground
+  - Explosion
+  - OneWay
   layers:
   - Default
   - TransparentFX
