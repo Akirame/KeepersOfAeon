@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour {
     }
     IEnumerator FocusOnButton(GameObject currentPanel)
     {        
-        yield return new WaitForEndOfFrame();        
+        yield return new WaitForEndOfFrame();
         GameObject b = currentPanel.GetComponentInChildren<Button>().gameObject;
         b.GetComponent<Button>().Select();
         EventSystem.current.SetSelectedGameObject(b,null);
