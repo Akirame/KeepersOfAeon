@@ -93,22 +93,14 @@ public class ElementalProyectile : MonoBehaviour {
         float pureDamage = damage;
         if (enemyOrb != ElementalOrb.ELEMENT_TYPE.NONE)
         {
-            if (playerOrb)
+            if(playerOrb)
             {
-                if (playerOrb.elementType == enemyOrb)
+                if(playerOrb.elementType == enemyOrb)
                 {
-                    pureDamage *= 0.5f;
+                    pureDamage *= 1f;
                 }
-                else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER ||
-                         enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
-                         enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE)
-                {
-                    pureDamage *= 2;
-                }
-                else if (enemyOrb == ElementalOrb.ELEMENT_TYPE.FIRE && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.EARTH ||
-                         enemyOrb == ElementalOrb.ELEMENT_TYPE.WATER && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.FIRE ||
-                         enemyOrb == ElementalOrb.ELEMENT_TYPE.EARTH && playerOrb.elementType == ElementalOrb.ELEMENT_TYPE.WATER)
-                {
+                else
+                { 
                     pureDamage *= 0.1f;
                 }
             }
