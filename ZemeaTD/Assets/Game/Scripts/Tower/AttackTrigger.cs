@@ -73,6 +73,7 @@ public class AttackTrigger : MonoBehaviour {
     {
         player.GetComponent<CharacterController2D>().SetAttackMode(false);
         player = null;
+        isUsed = false;
         inputPlayer = null;
     }
 }

@@ -1688,8 +1688,8 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: P1_Horizontal
-  m_VerticalAxis: P1_Vertical
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
   m_SubmitButton: Select
   m_CancelButton: Back
   m_InputActionsPerSecond: 10
@@ -1934,7 +1934,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819040854}
   m_LocalRotation: {x: -0.691415, y: -0, z: -0, w: 0.7224578}
-  m_LocalPosition: {x: 19.59, y: -1.21, z: 0}
+  m_LocalPosition: {x: -0.27, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 0, z: 0.99423355}
   m_Children: []
   m_Father: {fileID: 598054271}
@@ -18406,7 +18406,7 @@ Prefab:
     - target: {fileID: 224838594861903398, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212199966099888376, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
         type: 2}
@@ -18531,6 +18531,31 @@ Prefab:
     - target: {fileID: 4232266128605904, guid: 4cde8e47c7d81ca4ba5af02734e52c2e, type: 2}
       propertyPath: m_LocalPosition.y
       value: -1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 61605899991946728, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 4.907056
+      objectReference: {fileID: 0}
+    - target: {fileID: 61605899991946728, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.933918
+      objectReference: {fileID: 0}
+    - target: {fileID: 61983060478176046, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.07993905
+      objectReference: {fileID: 0}
+    - target: {fileID: 61983060478176046, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 5.014998
+      objectReference: {fileID: 0}
+    - target: {fileID: 61983060478176046, guid: 4cde8e47c7d81ca4ba5af02734e52c2e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 3.0682871
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212199966099888376, guid: 4cde8e47c7d81ca4ba5af02734e52c2e, type: 2}
