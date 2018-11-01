@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackBehaviour : MonoBehaviour {
 
     public float maxAngleAttack = 65f; 
-    public float angleAttackSpeed = 30f;
+    public float angleAttackSpeed = 120f;
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
@@ -64,23 +64,22 @@ public class AttackBehaviour : MonoBehaviour {
         {
             if(IsFacingRight())
             {
-                angleAttack.z += Time.deltaTime * angleAttackSpeed;
+                angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
             }
             else
             {
-                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
-
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
             }
         }
         else if(Input.GetAxis(inputPlayer.axisY) > 0)
         {
             if(IsFacingRight())
             {
-                angleAttack.z -= Time.deltaTime * angleAttackSpeed;
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
             }
             else
             {
-                angleAttack.z += Time.deltaTime * angleAttackSpeed;
+                angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
             }
         }
         if(angleAttack.z > maxAngleAttack)

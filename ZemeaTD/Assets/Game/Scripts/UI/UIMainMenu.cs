@@ -12,43 +12,48 @@ public class UIMainMenu : MonoBehaviour
     public GameObject Objectives;
     public GameObject Orbs;
     public Text versionText;
-    public GameObject currentPanel;
-
-    private void Start()
-    {
-        versionText.text = "Version " + Application.version;
-    }
+    public GameObject currentPanel;   
 
     public void PlayButtonPressed() {
         Orbs.SetActive(true);
         currentPanel = Orbs;
+        StartCoroutine(FocusOnButton());
     }
     public void HowToPlayButtonPressed() {
         howToPlayCanvas.SetActive(true);
         currentPanel = howToPlayCanvas;
-        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
+        StartCoroutine(FocusOnButton());
     }
     public void CreditsButtonpressed() {
         creditsCanvas.SetActive(true);
         currentPanel = creditsCanvas;
-        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
+        StartCoroutine(FocusOnButton());
     }
     public void ExitButtonPressed() {
         Application.Quit();
     }
     public void BackButtonPressed() {
         currentPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
+        currentPanel = mainMenuCanvas;
+        StartCoroutine(FocusOnButton());
     }
     public void NextOrbsButtonPressed()
     {
         Orbs.SetActive(false);
         Objectives.SetActive(true);
         currentPanel = Objectives;
-        EventSystem.current.SetSelectedGameObject(currentPanel.GetComponentInChildren<Button>().gameObject);
+        StartCoroutine(FocusOnButton());
+
     }
     public void NextButtonPressed()
     {
         LoaderManager.Get().LoadScene("SampleScene");
+    }
+    IEnumerator FocusOnButton()
+    {
+        yield return new WaitForEndOfFrame();
+        GameObject b = currentPanel.GetComponentInChildren<Button>().gameObject;
+        b.GetComponent<Button>().Select();
+        EventSystem.current.SetSelectedGameObject(b,null);
     }
 }

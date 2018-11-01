@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class UI_FinalScreen : MonoBehaviour {
 
     public GameObject victoryPanel;
@@ -18,10 +19,12 @@ public class UI_FinalScreen : MonoBehaviour {
         if (GameManager.Get().winGame)
         {
             victoryPanel.SetActive(true);
+            FocusOnButton(victoryPanel);
         }
         else
         {
             defeatPanel.SetActive(true);
+            FocusOnButton(defeatPanel);
         }
     }
 
@@ -33,5 +36,13 @@ public class UI_FinalScreen : MonoBehaviour {
     public void RestartPressed()
     {
         LoaderManager.Get().LoadSceneQuick("SampleScene");
+    }
+
+    IEnumerator FocusOnButton(GameObject currentPanel)
+    {
+        yield return new WaitForEndOfFrame();
+        GameObject b = currentPanel.GetComponentInChildren<Button>().gameObject;
+        b.GetComponent<Button>().Select();        
+        EventSystem.current.SetSelectedGameObject(b,null);
     }
 }
