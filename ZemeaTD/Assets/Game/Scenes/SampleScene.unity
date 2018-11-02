@@ -293,7 +293,7 @@ MonoBehaviour:
   currentElement: {fileID: 0}
   timeBetweenAttacks: 0.2
   minAttackSpeed: 0.01
-  element: {fileID: 114458669420607728, guid: 22b2725df31fdd2478be0c088fc33d93, type: 2}
+  element: {fileID: 640865222}
 --- !u!1001 &82222351
 Prefab:
   m_ObjectHideFlags: 0
@@ -1773,6 +1773,7 @@ GameObject:
   - component: {fileID: 640865219}
   - component: {fileID: 640865221}
   - component: {fileID: 640865220}
+  - component: {fileID: 640865222}
   m_Layer: 11
   m_Name: OrbSelected
   m_TagString: Untagged
@@ -1857,6 +1858,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &640865222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 640865218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861cfa0faf88c8941b57f5b9745149a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 0
+  c: {r: 0, g: 0, b: 0, a: 0}
+  pickedUp: 0
+  playerAttached: {fileID: 0}
+  orbStash: {fileID: 0}
+  explosion: {fileID: 0}
+  respawnTime: 0
+  orbSprites:
+  - {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
+  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
+  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
+  - {fileID: 21300000, guid: af96d64179e3e0846917c0361b3d9b9f, type: 3}
 --- !u!1 &654854400
 GameObject:
   m_ObjectHideFlags: 0
@@ -13587,6 +13611,11 @@ Prefab:
       propertyPath: levelCanvas
       value: 
       objectReference: {fileID: 870924415}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: element
+      value: 
+      objectReference: {fileID: 1722614125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0
@@ -13973,6 +14002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722614122}
   - component: {fileID: 1722614124}
+  - component: {fileID: 1722614125}
   - component: {fileID: 1722614123}
   m_Layer: 11
   m_Name: OrbSelected
@@ -14058,6 +14088,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1722614125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722614121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861cfa0faf88c8941b57f5b9745149a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 0
+  c: {r: 0, g: 0, b: 0, a: 0}
+  pickedUp: 0
+  playerAttached: {fileID: 0}
+  orbStash: {fileID: 0}
+  explosion: {fileID: 0}
+  respawnTime: 0
+  orbSprites:
+  - {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
+  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
+  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
+  - {fileID: 21300000, guid: af96d64179e3e0846917c0361b3d9b9f, type: 3}
 --- !u!1 &1723672816
 GameObject:
   m_ObjectHideFlags: 0

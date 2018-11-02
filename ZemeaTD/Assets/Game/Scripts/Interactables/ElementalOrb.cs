@@ -24,6 +24,7 @@ public class ElementalOrb :MonoBehaviour
     public GameObject orbStash;
     public ElementalExplosion explosion;
     public float respawnTime;
+    public Sprite[] orbSprites;
     private bool exploded = false;
     private Vector2 initialPos;
     private Rigidbody2D rigid;
@@ -97,15 +98,19 @@ public class ElementalOrb :MonoBehaviour
         {
             case ELEMENT_TYPE.EARTH:
                 c = Color.green;
+                rend.sprite = orbSprites[0];
                 break;
             case ELEMENT_TYPE.FIRE:
                 c = Color.red;
+                rend.sprite = orbSprites[1];
                 break;
             case ELEMENT_TYPE.WATER:
                 c = Color.blue;
+                rend.sprite = orbSprites[2];
                 break;
             case ELEMENT_TYPE.NONE:
                 c = Color.white;
+                rend.sprite = orbSprites[3];
                 break;
         }
     }
