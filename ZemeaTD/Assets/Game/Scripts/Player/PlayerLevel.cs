@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLevel : MonoBehaviour
 {
@@ -10,13 +12,34 @@ public class PlayerLevel : MonoBehaviour
     public int playerLevel = 1;
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
-    public ParticleSystem particlesLevelUp;        
-    
+    public ParticleSystem particlesLevelUp;
+    public Text levelText;
+
+    private void Start()
+    {
+        levelText.gameObject.SetActive(false);
+    }
 
     public void LevelUpPlayer()
     {
+        SetFlip();
         playerLevel++;
         LevelUpTo(playerLevel);
+        levelText.gameObject.SetActive(true);
+        levelText.GetComponent<Animator>().Play(0);
+    }
+
+    private void SetFlip()
+    {
+        bool facingRight = gameObject.GetComponent<CharacterController2D>().lookingRight;
+        Vector3 newScale = Vector3.zero;
+        if (!facingRight)
+        {
+            newScale = levelText.transform.localScale;
+            newScale.x = levelText.transform.localScale.x * -1;
+            levelText.transform.localScale = newScale;
+        }
+        
     }
 
     private void Update()
