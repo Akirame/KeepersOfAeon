@@ -37,7 +37,6 @@ public class UIJoystickPlugScreen : MonoBehaviour {
             conta = 0;            
                 for(int i = 0; i < names.Length; i++)
                 {
-                    Debug.Log(names[i].Length);
                     if(names[i].Length > 0)
                         conta++;
                     else

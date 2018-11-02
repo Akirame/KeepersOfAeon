@@ -12,8 +12,14 @@ public class UIMainMenu : MonoBehaviour
     public GameObject Objectives;
     public GameObject Orbs;
     public Text versionText;
-    public GameObject currentPanel;   
+    public GameObject currentPanel;
 
+    private void Start()
+    {
+        versionText.text = "v" + Application.version;
+        currentPanel = mainMenuCanvas;
+        StartCoroutine(FocusOnButton());
+    }
     public void PlayButtonPressed() {
         Orbs.SetActive(true);
         currentPanel = Orbs;
