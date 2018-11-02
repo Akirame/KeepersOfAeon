@@ -13,7 +13,6 @@ public class UIJoystickPlugScreen : MonoBehaviour {
     private bool paused = false;
     private float timeScale;
     private string[] names;
-    private bool joysticksOk = false;
     private int conta = 0;
     private void Awake()
     {

@@ -14,15 +14,16 @@ public class PlayerLevel : MonoBehaviour
     public int expNeededPerLevel = 300;
     public ParticleSystem particlesLevelUp;
     public Text levelText;
+    public Canvas levelCanvas;
 
     private void Start()
     {
         levelText.gameObject.SetActive(false);
     }
 
+    
     public void LevelUpPlayer()
-    {
-        SetFlip();
+    {        
         playerLevel++;
         LevelUpTo(playerLevel);
         levelText.gameObject.SetActive(true);
@@ -31,21 +32,23 @@ public class PlayerLevel : MonoBehaviour
 
     private void SetFlip()
     {
-        bool facingRight = gameObject.GetComponent<CharacterController2D>().lookingRight;
-        Vector3 newScale = Vector3.zero;
-        if (!facingRight)
+        bool facingRight = gameObject.GetComponent<CharacterController2D>().lookingRight;                
+        if(facingRight)
         {
-            newScale = levelText.transform.localScale;
-            newScale.x = levelText.transform.localScale.x * -1;
-            levelText.transform.localScale = newScale;
+            levelCanvas.transform.localScale = new Vector2(0.08f, 0.08f);
         }
-        
+        else
+        {
+            levelCanvas.transform.localScale = new Vector2(-0.08f, 0.08f);
+        }
+
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
             AddExperience(20);
+        SetFlip();
     }
 
     public void LevelDownPlayer()
