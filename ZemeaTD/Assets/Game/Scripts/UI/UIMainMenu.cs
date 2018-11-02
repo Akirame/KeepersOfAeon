@@ -15,7 +15,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject currentPanel;
 
     private void Start()
-    {
+    {        
         versionText.text = "v" + Application.version;
         currentPanel = mainMenuCanvas;
         StartCoroutine(FocusOnButton());

@@ -29,8 +29,8 @@ public class AttackBehaviour : MonoBehaviour {
         inputPlayer = GetComponent<InputControl>();
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
-        timer = timeBetweenAttacks;        
-        element.elementType = ElementalOrb.ELEMENT_TYPE.NONE;
+        timer = timeBetweenAttacks;
+        
     }
     private void Update()
     {

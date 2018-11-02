@@ -39,6 +39,8 @@ public class ElementalOrb :MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         initialPos = transform.position;
+        elementType = ELEMENT_TYPE.EARTH;
+        UpdateColor();
     }
 
     private void Update()

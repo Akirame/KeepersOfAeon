@@ -68,7 +68,7 @@ public class ElementalProyectile : MonoBehaviour {
     {
         if (collision.tag == "Enemy" && !onGround)
         {
-            damage = CalculateElementalDamage(damage, player.GetComponent<AttackBehaviour>().currentElement, collision.GetComponent<Enemy>().element);
+            damage = CalculateElementalDamage(damage, element, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             Destroy(gameObject);
@@ -91,25 +91,15 @@ public class ElementalProyectile : MonoBehaviour {
     private int CalculateElementalDamage(int damage, ElementalOrb playerOrb, ElementalOrb.ELEMENT_TYPE enemyOrb)
     {
         float pureDamage = damage;
-        if (enemyOrb != ElementalOrb.ELEMENT_TYPE.NONE)
-        {
-            if(playerOrb)
-            {
+        Debug.Log(playerOrb);
                 if(playerOrb.elementType == enemyOrb)
-                {
-                    pureDamage *= 1f;
+                {                    
+                    pureDamage *= 0.6f;
                 }
                 else
                 { 
                     pureDamage *= 0.1f;
-                }
-            }
-            else
-            {
-                pureDamage *= 0.2f;
-            }
-        }
-
+                }              
         if (pureDamage < 1)
         {
             pureDamage = 1;
