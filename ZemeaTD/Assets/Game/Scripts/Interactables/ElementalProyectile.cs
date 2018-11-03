@@ -92,14 +92,14 @@ public class ElementalProyectile : MonoBehaviour {
     {
         float pureDamage = damage;
         Debug.Log(playerOrb);
-                if(playerOrb.elementType == enemyOrb)
-                {                    
-                    pureDamage *= 0.6f;
-                }
-                else
-                { 
-                    pureDamage *= 0.1f;
-                }              
+        if(playerOrb.elementType == enemyOrb)
+        {
+            pureDamage *= 0.6f;
+        }
+        else
+        { 
+            pureDamage *= 0.1f;
+        }
         if (pureDamage < 1)
         {
             pureDamage = 1;

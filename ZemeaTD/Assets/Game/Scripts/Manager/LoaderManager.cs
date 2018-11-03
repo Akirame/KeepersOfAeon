@@ -53,11 +53,10 @@ public class LoaderManager : MonoBehaviour
             timeLoading += Time.deltaTime;
             loadingProgress = ao.progress + 0.1f;
             loadingProgress = loadingProgress * timeLoading / minTimeToLoad;
-
             // Loading completed
             if (loadingProgress >= 1)
             {
-                ao.allowSceneActivation = true;                
+                ao.allowSceneActivation = true;
             }
             yield return null;
         }

@@ -34,7 +34,7 @@ public class AttackBehaviour : MonoBehaviour {
     }
     private void Update()
     {
-        rAxis = Input.GetAxis(inputPlayer.RTrigger);        
+        rAxis = Input.GetAxis(inputPlayer.RTrigger);
         lAxis = Input.GetAxis(inputPlayer.LTrigger);
 
         if(rAxis >= 1f && !triggerTouched)
@@ -43,7 +43,7 @@ public class AttackBehaviour : MonoBehaviour {
                 element.elementType += 1;
             else
                 element.elementType = 0;
-            element.UpdateColor();
+            element.UpdateOrb();
             triggerTouched = true;
         }        
         if(lAxis >= 1f && !triggerTouched)
@@ -52,7 +52,7 @@ public class AttackBehaviour : MonoBehaviour {
                 element.elementType -= 1;
             else
                 element.elementType = ElementalOrb.ELEMENT_TYPE.NONE;
-            element.UpdateColor();
+            element.UpdateOrb();
             triggerTouched = true;
         }
         if(lAxis == 0f && rAxis == 0f)
