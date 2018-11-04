@@ -6,6 +6,7 @@ public class RepairShop : MonoBehaviour {
     public bool repairOn = false;
     public Rampart shield;
     public ParticleSystem particles;
+    public GameObject repairIcon;
 
     private void Update() {
         if(repairOn) {
@@ -17,6 +18,14 @@ public class RepairShop : MonoBehaviour {
         {
             if(particles.isEmitting)
                 particles.Stop();
+        }
+        if (shield.shield < shield.maxShield)
+        {
+            repairIcon.SetActive(true);
+        }
+        else
+        {
+            repairIcon.SetActive(false);
         }
     }
 

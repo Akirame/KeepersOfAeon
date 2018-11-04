@@ -11,6 +11,7 @@ public class LightBehaviour : MonoBehaviour
     private bool lightOn = false;    
     public float lightValue = 0f;
     public float lightPerSecond = 0.3f;
+    public float maxLight = 100;
     public ParticleSystem particles;
 
     public UILight LightUICanvas;
@@ -21,6 +22,7 @@ public class LightBehaviour : MonoBehaviour
         {
             DebugScreen.GetInstance().AddButton("Win", LightOn);
         }
+        LightUICanvas.maxLightValue = maxLight;
     }
 
     private void Update() {
@@ -29,15 +31,15 @@ public class LightBehaviour : MonoBehaviour
         else
         if (particles.isEmitting)
             particles.Stop();
-        if (lightValue >= 100)
+        if (lightValue >= maxLight)
             LightFinished(this);
     }
     private void ActivateLight() {
-        if(lightValue < 100) {
+        if(lightValue < maxLight) {
             if (!particles.isEmitting)
                 particles.Play();
             lightValue += lightPerSecond * Time.deltaTime;
-            LightUICanvas.UpdateTexts((int)lightValue);
+            LightUICanvas.UpdateTexts(lightValue);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -51,7 +53,7 @@ public class LightBehaviour : MonoBehaviour
 
     public void LightOn()
     {
-        lightValue = 200;
+        lightValue = maxLight * 2;
     }
 
 }
