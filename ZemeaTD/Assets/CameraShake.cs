@@ -30,7 +30,7 @@ public class CameraShake : MonoBehaviour {
     private float timer = 0;
     
 
-    private void Update() {        
+    private void Update() {
         if (shaking)
         {
             if (timer < totalShakeTime)

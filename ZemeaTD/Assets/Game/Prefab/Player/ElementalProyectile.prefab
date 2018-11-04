@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: {fileID: 0}
-  speed: 50
+  speed: 70
   damage: 10
   lifeTime: 5
   spriteRenderer: {fileID: 212192713876595314}

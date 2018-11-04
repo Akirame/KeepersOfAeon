@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorSpeed: 1500
   airSpeed: 1600
-  attackSpeed: 5
+  attackSpeed: 3
   jumpForce: 70
   minDamage: 8
   maxDamage: 10

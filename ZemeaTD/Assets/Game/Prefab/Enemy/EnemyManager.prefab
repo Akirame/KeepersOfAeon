@@ -150,9 +150,13 @@ MonoBehaviour:
   flyCount: 2
   enemyCount: 0
   currentWave: 0
-  timeBetweenWaves: 20
+  timeBetweenWaves: 15
   timeBetweenEnemies: 2
   miniBoss: {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 2}
   waveMiniBoss: 5
   enemiesParent: {fileID: 1778851288950606}
   enemyIncrementFactor: 2
+  totalEnemyCount: 0
+  timeForFirstWave: 1
+  hordeTime: 5
+  percentHordeSpawnRate: 5
