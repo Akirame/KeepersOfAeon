@@ -12,10 +12,12 @@ public class Rampart : MonoBehaviour
     public ParticleSystem[] shieldParticles;
     private CircleCollider2D coll;
     private bool activateCollision = false;
+    private bool canBeHurt = true;
 
 	void Start ()
     {        
         coll = GetComponent<CircleCollider2D>();
+        Item.InvulnerableConsume += ShieldInvulnerable;
 	}
 
     private void Update()
@@ -29,15 +31,29 @@ public class Rampart : MonoBehaviour
 
     public void Attacked(int damage)
     {
-        shield -= damage;
-        CheckAlive();
+        if(canBeHurt)
+        {
+            shield -= damage;
+            CheckAlive();
+        }
     }
 
     public bool IsAlive()
     {
         return (shield > 0);
     }
-
+    IEnumerator CanBeHurtOff()
+    {
+        canBeHurt = false;
+        shieldBar.color = Color.yellow;
+        yield return new WaitForSeconds(10);
+        shieldBar.color = Color.white;
+        canBeHurt = true;
+    }
+    public void ShieldInvulnerable(Item i)
+    {
+        StartCoroutine(CanBeHurtOff());
+    }
     private void CheckAlive() {
         if(IsAlive()) {
             if (activateCollision)

@@ -11,7 +11,16 @@ public class Target : MonoBehaviour {
     private int hitConta = 0;
     private Color[] colors = { Color.red, Color.white, Color.blue, Color.green };
     private void Start()
-    {         
+    {
+        RandomColor();
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            waveControl.gameStarted = true;
+            TutorialEnd();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

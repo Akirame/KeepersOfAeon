@@ -59,6 +59,7 @@ public class WaveControl : MonoBehaviour
         {
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
         }
+        Item.RalenticeConsume += RalenticeEnemies;
         TrySpawnHorde();
     }
 
@@ -235,5 +236,10 @@ public class WaveControl : MonoBehaviour
         }
         enemyCount += hordeWave.Count;
         totalEnemyCount = enemyCount;
+    }
+    private void RalenticeEnemies(Item it)
+    {
+        for(int i = 0; i < enemyList.Count; i++)
+            enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();
     }
 }

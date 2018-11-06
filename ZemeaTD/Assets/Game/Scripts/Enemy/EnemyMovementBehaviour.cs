@@ -64,6 +64,16 @@ public class EnemyMovementBehaviour : MonoBehaviour
         canMove = val;
     }
 
+    private IEnumerator RalenticeSpeed()
+    {
+        speed /= 4;
+        yield return new WaitForSeconds(10);
+        speed *= 4;
+    }
+    public void RalenticeMovement()
+    {
+        StartCoroutine(RalenticeSpeed());
+    }
     public void KnockBack()
     {
         rig.AddForce(new Vector2(knockbackForce * -movementDirection, 0), ForceMode2D.Impulse);
