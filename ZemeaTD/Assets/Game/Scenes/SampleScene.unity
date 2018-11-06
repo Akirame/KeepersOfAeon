@@ -1847,6 +1847,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884611374}
   m_CullTransparentMesh: 0
+--- !u!212 &950234137 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212245075368831922, guid: 7a90bf025f77e034a8b91907f255e9df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1677262077}
 --- !u!1 &962937216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3403,6 +3408,11 @@ RectTransform:
   m_AnchoredPosition: {x: -115, y: -40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!212 &1661196350 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212507179889059100, guid: 7a90bf025f77e034a8b91907f255e9df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1677262077}
 --- !u!1 &1675135403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,6 +3589,34 @@ Prefab:
       propertyPath: waveControl
       value: 
       objectReference: {fileID: 278616950}
+    - target: {fileID: 114378834958590068, guid: 7a90bf025f77e034a8b91907f255e9df,
+        type: 2}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 950234137}
+    - target: {fileID: 114709971740289402, guid: 7a90bf025f77e034a8b91907f255e9df,
+        type: 2}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1661196350}
+    - target: {fileID: 1255418620492758, guid: 7a90bf025f77e034a8b91907f255e9df, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102704826252742238, guid: 7a90bf025f77e034a8b91907f255e9df,
+        type: 2}
+      propertyPath: m_Text
+      value: "SHOOT WITH \nTHE SAME COLOR TO\nSTART GAME"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488751368518862, guid: 7a90bf025f77e034a8b91907f255e9df, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.227
+      objectReference: {fileID: 0}
+    - target: {fileID: 102669422260048748, guid: 7a90bf025f77e034a8b91907f255e9df,
+        type: 2}
+      propertyPath: m_Text
+      value: "SHOOT WITH \nTHE SAME COLOR TO\nSTART GAME"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a90bf025f77e034a8b91907f255e9df, type: 2}
   m_IsPrefabAsset: 0
