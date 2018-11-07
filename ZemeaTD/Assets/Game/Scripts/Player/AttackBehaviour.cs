@@ -65,10 +65,12 @@ public class AttackBehaviour : MonoBehaviour {
             if(IsFacingRight())
             {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
+                angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisYKey));
             }
             else
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisYKey));
             }
         }
         else if(Input.GetAxis(inputPlayer.axisY) > 0)
@@ -76,10 +78,12 @@ public class AttackBehaviour : MonoBehaviour {
             if(IsFacingRight())
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
+                angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisYKey));
             }
             else
             {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY));
+                angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisYKey));
             }
         }
         if(angleAttack.z > maxAngleAttack)
@@ -94,7 +98,7 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if(Input.GetButton(inputPlayer.secondaryButton))
+        if(Input.GetButton(inputPlayer.attackButton))
         {
             if(timer >= timeBetweenAttacks) {
                 Shoot();

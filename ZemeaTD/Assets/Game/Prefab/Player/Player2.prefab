@@ -453,12 +453,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: P2_Jump
-  primaryButton: P2_Action
-  secondaryButton: P2_Throw
-  thirdButton: P2_ToggleAttack
+  attackButton: P2_Attack
+  toggleAttackButton: P2_ToggleAttack
   pauseButton: Pause
   axisY: P2_Vertical
   axisH: P2_Horizontal
+  axisYKey: P2_VerticalKey
+  axisHKey: P2_HorizontalKey
   LTrigger: P2_LTrigger
   RTrigger: P2_RTrigger
 --- !u!114 &114435760195183702

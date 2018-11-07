@@ -129,6 +129,7 @@ public class CharacterController2D : MonoBehaviour
                 movSpeed = playerData.airSpeed;
             }
             movement.x = Input.GetAxis(inputControl.axisH);
+            movement.x =  Input.GetAxis(inputControl.axisHKey);
             rig.velocity = new Vector2(movSpeed * Time.deltaTime * movement.x,rig.velocity.y);
             if (movement.x > 0)
             {

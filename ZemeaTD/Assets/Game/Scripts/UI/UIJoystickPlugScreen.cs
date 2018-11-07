@@ -34,7 +34,7 @@ public class UIJoystickPlugScreen : MonoBehaviour {
         while (true)
         {
             names = Input.GetJoystickNames();
-            conta = 0;            
+            conta = 0;
                 for(int i = 0; i < names.Length; i++)
                 {
                     if(names[i].Length > 0)

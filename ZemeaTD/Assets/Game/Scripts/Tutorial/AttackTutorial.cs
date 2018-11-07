@@ -19,7 +19,7 @@ public class AttackTutorial : MonoBehaviour {
 	void Update () {
         if (playerInput)
         {
-            if (Input.GetButtonDown(playerInput.thirdButton))
+            if (Input.GetButtonDown(playerInput.toggleAttackButton))
             {
                 controlsEnabled = !controlsEnabled;
                 toggleAttack.SetActive(!controlsEnabled);

@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629f70d3d68329045a73fb4a5c586c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 843ca0ee27f703d43aeb4be1646fd676, type: 2}
+  playerData: {fileID: 11400000, guid: c1ce83441cbc8fd4da6bd92b415b499c, type: 2}
   currentState: 0
   floorLayer:
     serializedVersion: 2
@@ -599,12 +599,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: P1_Jump
-  primaryButton: P1_Action
-  secondaryButton: P1_Throw
-  thirdButton: P1_ToggleAttack
+  attackButton: P1_Attack
+  toggleAttackButton: P1_ToggleAttack
   pauseButton: Pause
   axisY: P1_Vertical
   axisH: P1_Horizontal
+  axisYKey: P1_VerticalKey
+  axisHKey: P1_HorizontalKey
   LTrigger: P1_LTrigger
   RTrigger: P1_RTrigger
 --- !u!198 &198243071912954892
