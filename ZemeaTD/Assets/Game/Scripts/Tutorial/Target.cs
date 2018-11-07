@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour {
 
+    public delegate void TargetActions(Target t);
+    public static TargetActions TargetDestroyed;
     public WaveControl waveControl;
     public GameObject tutorial;
     public SpriteRenderer rend;
@@ -18,7 +20,7 @@ public class Target : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.F5))
         {
-            waveControl.gameStarted = true;
+            TargetDestroyed(this);
             TutorialEnd();
         }
     }
@@ -33,7 +35,7 @@ public class Target : MonoBehaviour {
             }
             if (!waveControl.gameStarted && hitConta > 3)
             {
-                waveControl.gameStarted = true;
+                TargetDestroyed(this);
                 TutorialEnd();
             }
         }

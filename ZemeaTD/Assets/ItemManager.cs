@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    
     public Item[] items;
     public float spawnTime = 5f;
     public float height = 1;
     public float width = 1;
     private float timer = 0;
-
+    private bool canSpawnItems = false;
     private void Start()
     {
         Item.ItemConsumed += DestroyItem;
-       
+        Target.TargetDestroyed += StartSpawn;
     }
     private void Update()
     {
-        if(timer < spawnTime)
-            timer += Time.deltaTime ;
-        else
+        if(canSpawnItems)
         {
-            SpawnItem();
-            timer = 0;
+            if(timer < spawnTime)
+                timer += Time.deltaTime;
+            else
+            {
+                SpawnItem();
+                timer = 0;
+            }
         }
     }
     private void DestroyItem(Item i)
@@ -35,5 +39,9 @@ public class ItemManager : MonoBehaviour
         Vector3 finalPos = transform.position + newPos;
         print(finalPos);
         GameObject item = Instantiate(items[UnityEngine.Random.Range(0, items.Length)].gameObject, finalPos,Quaternion.identity,transform);
+    }
+    private void StartSpawn(Target t)
+    {
+        canSpawnItems = true;
     }
 }

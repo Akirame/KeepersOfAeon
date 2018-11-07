@@ -60,6 +60,7 @@ public class WaveControl : MonoBehaviour
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
         }
         Item.RalenticeConsume += RalenticeEnemies;
+        Target.TargetDestroyed += StartSpawning;
         TrySpawnHorde();
     }
 
@@ -241,5 +242,9 @@ public class WaveControl : MonoBehaviour
     {
         for(int i = 0; i < enemyList.Count; i++)
             enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();
+    }
+    private void StartSpawning(Target t)
+    {
+        gameStarted = true;
     }
 }
