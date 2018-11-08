@@ -114,7 +114,7 @@ public class AttackBehaviour : MonoBehaviour {
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
-        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, element, this.gameObject);
+        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, element.elementType, this.gameObject);
         timer = 0;
     }
 

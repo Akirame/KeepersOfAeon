@@ -57,5 +57,4 @@ public class ElementalOrb :MonoBehaviour
                 break;
         }
     }
-
 }

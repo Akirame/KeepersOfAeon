@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalProyectile : MonoBehaviour {
+public class ElementalProyectile :MonoBehaviour
+{
 
-    public ElementalOrb element;
+    public ElementalOrb.ELEMENT_TYPE element;
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
@@ -28,20 +29,19 @@ public class ElementalProyectile : MonoBehaviour {
 
     private void Update()
     {
-        if (!onGround)
+        if(!onGround)
         {
             transform.right = rigid.velocity;
         }
         timer += Time.deltaTime;
-        if (timer >= lifeTime)
+        if(timer >= lifeTime)
         {
             Destroy(gameObject);
         }
-
     }
 
-    public void Shoot(Vector2 dir, int _damage, ElementalOrb _element, GameObject _player)
-    {        
+    public void Shoot(Vector2 dir, int _damage, ElementalOrb.ELEMENT_TYPE _element, GameObject _player)
+    {
         direction = dir;
         damage = _damage;
         element = _element;
@@ -52,11 +52,24 @@ public class ElementalProyectile : MonoBehaviour {
 
     private void ChangeElementColor()
     {
-        if (element)
+        Color c = Color.white;
+        switch(element)
         {
-            spriteRenderer.color = element.c;
-            main.startColor = new ParticleSystem.MinMaxGradient(element.c);
+            case ElementalOrb.ELEMENT_TYPE.EARTH:
+                c = Color.green;
+                break;
+            case ElementalOrb.ELEMENT_TYPE.FIRE:
+                c = Color.red;
+                break;
+            case ElementalOrb.ELEMENT_TYPE.WATER:
+                c = Color.blue;
+                break;
+            case ElementalOrb.ELEMENT_TYPE.NONE:
+                c = Color.white;
+                break;
         }
+        spriteRenderer.color = c;
+        main.startColor = new ParticleSystem.MinMaxGradient(c);
     }
 
     public int GetDamage()
@@ -66,14 +79,14 @@ public class ElementalProyectile : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && !onGround)
+        if(collision.tag == "Enemy" && !onGround)
         {
             damage = CalculateElementalDamage(damage, element, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             Destroy(gameObject);
         }
-        if (collision.tag == "Ground")
+        if(collision.tag == "Ground")
         {
             onGround = true;
             rigid.velocity = new Vector2();
@@ -88,19 +101,18 @@ public class ElementalProyectile : MonoBehaviour {
         go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
     }
 
-    private int CalculateElementalDamage(int damage, ElementalOrb playerOrb, ElementalOrb.ELEMENT_TYPE enemyOrb)
+    private int CalculateElementalDamage(int damage, ElementalOrb.ELEMENT_TYPE playerOrb, ElementalOrb.ELEMENT_TYPE enemyOrb)
     {
-        float pureDamage = damage;
-        Debug.Log(playerOrb);
-        if(playerOrb.elementType == enemyOrb)
+        float pureDamage = damage;        
+        if(playerOrb == enemyOrb)
         {
             pureDamage *= 0.6f;
         }
         else
-        { 
+        {
             pureDamage *= 0.1f;
         }
-        if (pureDamage < 1)
+        if(pureDamage < 1)
         {
             pureDamage = 1;
         }

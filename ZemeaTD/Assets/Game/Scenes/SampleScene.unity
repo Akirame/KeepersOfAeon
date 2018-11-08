@@ -4787,6 +4787,11 @@ Prefab:
       propertyPath: axisHKey
       value: P2_HorizontalKey
       objectReference: {fileID: 0}
+    - target: {fileID: 114264365292011192, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: attackButton
+      value: P2_Action
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
@@ -5026,6 +5031,11 @@ Prefab:
         type: 2}
       propertyPath: axisHKey
       value: P1_HorizontalKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 114960105192969092, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: attackButton
+      value: P1_Action
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
