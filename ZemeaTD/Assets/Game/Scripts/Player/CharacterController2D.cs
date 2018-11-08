@@ -149,7 +149,7 @@ public class CharacterController2D : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer);                
         if (hit)
         {
-            if(hit.transform.gameObject.tag == "OneWay" && Input.GetAxis(inputControl.axisY) > 0 && Input.GetButtonDown(inputControl.jump))
+            if(hit.transform.gameObject.tag == "OneWay" && (Input.GetAxis(inputControl.axisY) + Input.GetAxis(inputControl.axisYKey) > 0) && Input.GetButtonDown(inputControl.jump))
             {                
                 hit.transform.GetComponent<OneWayPlatform>().Deactivate();
                 onFloor = false;                

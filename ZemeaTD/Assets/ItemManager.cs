@@ -37,7 +37,6 @@ public class ItemManager : MonoBehaviour
     {
         Vector3 newPos = new Vector3(UnityEngine.Random.Range(-width/2, width/2), UnityEngine.Random.Range(-height/2, height/2),1);
         Vector3 finalPos = transform.position + newPos;
-        print(finalPos);
         GameObject item = Instantiate(items[UnityEngine.Random.Range(0, items.Length)].gameObject, finalPos,Quaternion.identity,transform);
     }
     private void StartSpawn(Target t)

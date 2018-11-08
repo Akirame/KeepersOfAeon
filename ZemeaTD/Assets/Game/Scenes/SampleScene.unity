@@ -2073,7 +2073,7 @@ MonoBehaviour:
   items:
   - {fileID: 114249453283745312, guid: fa76c1e82f4728d45b335ba597b794ed, type: 2}
   - {fileID: 114859943621475672, guid: 538e488668f72b242bd3040abaac148c, type: 2}
-  spawnTime: 20
+  spawnTime: 5
   height: 48
   width: 44
 --- !u!4 &523354798
