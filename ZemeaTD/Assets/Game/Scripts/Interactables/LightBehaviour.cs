@@ -9,6 +9,7 @@ public class LightBehaviour : MonoBehaviour
     public static LightAction LightFinished;
 
     private bool lightOn = false;    
+    private bool inTutorial = true;
     public float lightValue = 0f;
     public float lightPerSecond = 0.3f;
     public float maxLight = 100;
@@ -23,10 +24,11 @@ public class LightBehaviour : MonoBehaviour
             DebugScreen.GetInstance().AddButton("Win", LightOn);
         }
         LightUICanvas.maxLightValue = maxLight;
+        Target.TargetDestroyed += ActivateLightAfterTutorial;
     }
 
     private void Update() {
-        if (lightOn)
+        if (lightOn && !inTutorial)
             ActivateLight();
         else
         if (particles.isEmitting)
@@ -55,5 +57,8 @@ public class LightBehaviour : MonoBehaviour
     {
         lightValue = maxLight * 2;
     }
-
+    private void ActivateLightAfterTutorial(Target t)
+    {
+        inTutorial = false;
+    }
 }
