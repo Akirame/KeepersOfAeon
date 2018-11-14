@@ -9,10 +9,13 @@ public class AttackTutorial : MonoBehaviour {
     public GameObject aim;
     public GameObject orbChange;
     private InputControl playerInput;
-    private bool controlsEnabled = false; 
+    private bool controlsEnabled = false;
+    private Animation anim;
 
 	// Use this for initialization
 	void Start () {
+        anim = GetComponent<Animation>();
+        toggleAttack.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,14 @@ public class AttackTutorial : MonoBehaviour {
                 attack.SetActive(controlsEnabled);
                 aim.SetActive(controlsEnabled);
                 orbChange.SetActive(controlsEnabled);
+                if (controlsEnabled)
+                {
+                    anim.Play("AttackTextInfo");
+                }
+                else
+                {
+                    anim.Play("AttackTextToggle");
+                }
             }
         }
 	}
@@ -34,7 +45,10 @@ public class AttackTutorial : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
+            toggleAttack.SetActive(true);
             playerInput = collision.GetComponent<InputControl>();
+            anim["AttackTextToggle"].speed = 1;
+            anim.Play("AttackTextToggle");
         }
     }
 
@@ -43,6 +57,9 @@ public class AttackTutorial : MonoBehaviour {
         if (collision.tag == "Player")
         {
             playerInput = null;
+            anim["AttackTextToggle"].speed = -1;
+            anim["AttackTextToggle"].time = anim["AttackTextToggle"].length;
+            anim.Play("AttackTextToggle");
         }
     }
 
