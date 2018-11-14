@@ -14,9 +14,9 @@ public class CharacterController2D : MonoBehaviour
     public bool canJump = true;
     public bool dobleJump = false;
     public bool lookingRight;
+    public ParticleSystem psDust;
     private bool canMove = true;
     private bool onFloor = false;
-    public ParticleSystem psDust;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
     private Animator anim;
@@ -33,6 +33,7 @@ public class CharacterController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         lookingRight = true;
         psDust.Stop();
+        playerData.SaveInitialValues();
     }
 
     private void Update()
@@ -210,11 +211,11 @@ public class CharacterController2D : MonoBehaviour
     {
         if (faceRight)
         {
-            transform.localScale = new Vector2(2, 2);
+            transform.localScale = new Vector2(1, 1);
         }
         else
         {
-            transform.localScale = new Vector2(-2, 2);
+            transform.localScale = new Vector2(-1, 1);
         }
         lookingRight = faceRight;
     }

@@ -32,7 +32,21 @@ public class TutorialManager : MonoBehaviour {
             timer = 0;
             ChangeToNextTutorial();
         }
-	}
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            TutorialEnd();
+        }
+    }
+
+    public void TutorialEnd()
+    {
+        foreach (GameObject item in tutorials)
+        {
+            Destroy(item);
+        }
+        GameManager.Get().tutorialDone = true;
+        Destroy(gameObject);
+    }
 
     private void ChangeToNextTutorial()
     {

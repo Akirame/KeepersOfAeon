@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,10 +25,10 @@ public class LightBehaviour : MonoBehaviour
             DebugScreen.GetInstance().AddButton("Win", LightOn);
         }
         LightUICanvas.maxLightValue = maxLight;
-        Target.TargetDestroyed += ActivateLightAfterTutorial;
     }
 
     private void Update() {
+        CheckOnTutorial();
         if (lightOn && !inTutorial)
             ActivateLight();
         else
@@ -36,6 +37,15 @@ public class LightBehaviour : MonoBehaviour
         if (lightValue >= maxLight)
             LightFinished(this);
     }
+
+    private void CheckOnTutorial()
+    {
+        if (GameManager.Get().tutorialDone && inTutorial)
+        {
+            inTutorial = false;
+        }
+    }
+
     private void ActivateLight() {
         if(lightValue < maxLight) {
             if (!particles.isEmitting)

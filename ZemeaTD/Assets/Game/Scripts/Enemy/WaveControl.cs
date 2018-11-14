@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveControl : MonoBehaviour
 {
@@ -24,16 +25,21 @@ public class WaveControl : MonoBehaviour
     public static WaveControlActions HordeIncoming;
     public Enemy[] enemyPrefab;
     public Transform[] spawnPoints;
+    public GameObject enemiesParent;
+    public Text waveTimeText;
+
     public int meleeCount;
     public int rangeCount;
     public int flyCount;
     public int enemyCount;
+
     public int currentWave;
     public int timeBetweenWaves;
     public int timeBetweenEnemies;
+
     public GameObject miniBoss;
     public int waveMiniBoss;
-    public GameObject enemiesParent;
+
     public int enemyIncrementFactor = 2;
     public int totalEnemyCount;
     public int timeForFirstWave = 30;
@@ -61,28 +67,41 @@ public class WaveControl : MonoBehaviour
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
         }
         Item.RalenticeConsume += RalenticeEnemies;
-        Target.TargetDestroyed += StartSpawning;
         TrySpawnHorde();
+        timerWaves = timeBetweenWaves;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckOnTutorial();
         if (gameStarted)
         {
             if (canSpawn)
             {
-                timerWaves += Time.deltaTime;
-                if (timerWaves >= timeBetweenWaves)
+                timerWaves -= Time.deltaTime;
+                waveTimeText.text = timerWaves.ToString("00");
+                if (timerWaves <= 0)
                 {
                     CleanWave();
                     SpawnWave();
                     TrySpawnMiniBoss();
-                    timerWaves = 0;
+                    timerWaves = timeBetweenWaves;
                 }
             }
             else
+            {
                 CheckEnemyCount();
+                waveTimeText.text = "";
+            }
+        }
+    }
+
+    private void CheckOnTutorial()
+    {
+        if (GameManager.Get().tutorialDone && !gameStarted)
+        {
+            gameStarted = true;
         }
     }
 
@@ -207,13 +226,13 @@ public class WaveControl : MonoBehaviour
             enemyList[i].GetComponent<Enemy>().Kill();
         }
         CleanWave();
-        canSpawn = true;
     }
 
     private void CleanWave()
     {
         enemyTypeList.Clear();
         enemyList.Clear();
+        enemyCount = 0;
     }
 
     private void GenerateHordeWave()
@@ -245,9 +264,5 @@ public class WaveControl : MonoBehaviour
     {
         for(int i = 0; i < enemyList.Count; i++)
             enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();
-    }
-    private void StartSpawning(Target t)
-    {
-        gameStarted = true;
     }
 }

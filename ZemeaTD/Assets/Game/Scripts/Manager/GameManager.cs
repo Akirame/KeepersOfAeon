@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 
     public PlayerLevel player1Level;
     public PlayerLevel player2Level;
-    private bool tutorialDone = false;
+    public bool tutorialDone = false;
 
     private void Start()
     {
@@ -40,12 +40,12 @@ public class GameManager : MonoBehaviour {
         {
             DebugScreen.GetInstance().AddButton("ResetGameScene", ResetGame);
             DebugScreen.GetInstance().AddButton("Add Players Level", LevelUpPlayers);
-            DebugScreen.GetInstance().AddButton("Substract Players Level", LevelDownPlayers);
         }
     }
 
     private void ResetGame()
     {
+        ResetCharactersData();
         loader.LoadSceneQuick("SampleScene");
         winGame = false;
         tutorialDone = true;
@@ -62,12 +62,6 @@ public class GameManager : MonoBehaviour {
         player2Level.LevelUpPlayer();
     }
 
-    private void LevelDownPlayers()
-    {
-        player1Level.LevelDownPlayer();
-        player2Level.LevelDownPlayer();
-    }
-
     public void ToMainMenu()
     {
         loader.LoadSceneQuick("MainMenu");
@@ -78,4 +72,16 @@ public class GameManager : MonoBehaviour {
         loader.LoadSceneQuick("FinalScreen");
         winGame = false;
     }
+
+    private void ResetCharactersData()
+    {
+        player1Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
+        player2Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
+    }
+
+    private void OnDestroy()
+    {
+        ResetCharactersData();
+    }
+
 }

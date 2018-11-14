@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIGame : MonoBehaviour
 {    
-    public Text waveText;        
-    public Text enemyCountText;                    
+    public Text waveText;
+    public Text enemyCountText;
     private int currentEnemies;
     private int currentWave;
-    private string waveTextAux;        
+    private string waveTextAux;
     private WaveControl wave;
     private Animator anim;
     private bool updateLevels = false;
@@ -35,7 +35,11 @@ public class UIGame : MonoBehaviour
         {
             currentEnemies = wave.enemyCount;
             enemyCountText.text = currentEnemies.ToString() + "/" + wave.totalEnemyCount.ToString();
-        }        
+            if (currentEnemies <= 0)
+            {
+                enemyCountText.text = "";
+            }
+        }
     }
 
     private void UpdateText()

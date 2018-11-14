@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Target : MonoBehaviour {
 
-    public delegate void TargetActions(Target t);
-    public static TargetActions TargetDestroyed;
     public WaveControl waveControl;
     public GameObject tutorial;
     public SpriteRenderer rend;
@@ -18,11 +16,6 @@ public class Target : MonoBehaviour {
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5))
-        {
-            TargetDestroyed(this);
-            TutorialEnd();
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,8 +28,7 @@ public class Target : MonoBehaviour {
             }
             if (!waveControl.gameStarted && hitConta > 3)
             {
-                TargetDestroyed(this);
-                TutorialEnd();
+                tutorial.GetComponent<TutorialManager>().TutorialEnd();
             }
         }
     }
@@ -55,13 +47,7 @@ public class Target : MonoBehaviour {
         }
         return false;
     }
-    private void TutorialEnd()
-    {
-        foreach (Transform item in tutorial.GetComponentsInChildren<Transform>())
-        {
-            Destroy(item.gameObject);
-        }
-    }
+
     private void RandomColor()
     {
         Color c;

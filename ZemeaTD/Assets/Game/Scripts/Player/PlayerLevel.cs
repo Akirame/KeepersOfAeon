@@ -25,12 +25,13 @@ public class PlayerLevel : MonoBehaviour
 
 
     public void LevelUpPlayer()
-    {        
+    {
         playerLevel++;
         levelVisor.text = playerLevel.ToString();
-        LevelUpTo(playerLevel);
+        GetComponent<CharacterController2D>().playerData.LevelUp();
         levelUpText.gameObject.SetActive(true);
         levelUpText.GetComponent<Animator>().Play(0);
+        LevelUpTo(playerLevel);
     }
 
     private void SetFlip()
@@ -78,6 +79,5 @@ public class PlayerLevel : MonoBehaviour
         playerLevel = level;
         OnLevelUp(this);
         particlesLevelUp.Play();
-        GetComponent<CharacterController2D>().playerData.LevelUp();
     }    
 }
