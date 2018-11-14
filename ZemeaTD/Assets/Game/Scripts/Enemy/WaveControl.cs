@@ -20,7 +20,8 @@ public class WaveControl : MonoBehaviour
             Destroy(this.gameObject);
     }
     #endregion
-
+    public delegate void WaveControlActions(WaveControl wc);
+    public static WaveControlActions HordeIncoming;
     public Enemy[] enemyPrefab;
     public Transform[] spawnPoints;
     public int meleeCount;
@@ -123,6 +124,8 @@ public class WaveControl : MonoBehaviour
         {
             if (!hordeSpawned && UnityEngine.Random.Range(1, 100f) <= percentHordeSpawnRate && totalEnemyCount > 0)
             {
+                HordeIncoming(this);
+                yield return new WaitForSeconds(2);
                 GenerateHordeWave();
                 hordeSpawned = true;
                 percentHordeSpawnRate = 5f;

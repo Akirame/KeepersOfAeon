@@ -18,6 +18,7 @@ public class UIGame : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         wave = WaveControl.GetInstance();
+        WaveControl.HordeIncoming += HordeIncomingTrigger;
         currentWave = wave.currentWave;
         waveText.text = "NEW GAME";
     }
@@ -45,5 +46,9 @@ public class UIGame : MonoBehaviour
     public void UpdateLevelsText()
     {
         updateLevels = true;
+    }
+    public void HordeIncomingTrigger(WaveControl wc)
+    {
+        anim.SetTrigger("horde");
     }
 }
