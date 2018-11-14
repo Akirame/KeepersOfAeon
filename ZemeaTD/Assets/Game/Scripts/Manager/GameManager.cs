@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
     public PlayerLevel player1Level;
     public PlayerLevel player2Level;
+    private bool tutorialDone = false;
 
     private void Start()
     {
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour {
     {
         loader.LoadSceneQuick("SampleScene");
         winGame = false;
+        tutorialDone = true;
     }
     private void GameWon(LightBehaviour l)
     {
