@@ -79,9 +79,8 @@ public class GameManager : MonoBehaviour {
         player2Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
     }
 
-    private void OnDestroy()
-    {
-        ResetCharactersData();
-    }
-
+    //private void OnDestroy()
+    //{
+    //    ResetCharactersData();
+    //}
 }

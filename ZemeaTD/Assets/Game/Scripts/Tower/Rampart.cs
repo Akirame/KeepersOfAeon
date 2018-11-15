@@ -20,6 +20,10 @@ public class Rampart : MonoBehaviour
         Item.InvulnerableConsume += ShieldInvulnerable;
 	}
 
+    private void OnDestroy()
+    {
+        Item.InvulnerableConsume -= ShieldInvulnerable;
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F3))
@@ -27,8 +31,7 @@ public class Rampart : MonoBehaviour
             Attacked(50);
         }
         shieldBar.fillAmount = (float)shield / maxShield;
-    }
-
+    }    
     public void Attacked(int damage)
     {
         if(canBeHurt)

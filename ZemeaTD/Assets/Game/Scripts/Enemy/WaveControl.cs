@@ -70,7 +70,10 @@ public class WaveControl : MonoBehaviour
         TrySpawnHorde();
         timerWaves = timeBetweenWaves;
     }
-
+    private void OnDestroy()
+    {
+        Item.RalenticeConsume -= RalenticeEnemies;
+    }
     // Update is called once per frame
     void Update()
     {
