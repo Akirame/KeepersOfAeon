@@ -211,11 +211,11 @@ public class CharacterController2D : MonoBehaviour
     {
         if (faceRight)
         {
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(0.8f, transform.localScale.y);
         }
         else
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(-0.8f, transform.localScale.y);
         }
         lookingRight = faceRight;
     }

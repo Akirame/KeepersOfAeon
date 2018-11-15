@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour {
     public float timeBetweenTutorials;
     private float timer;
     private int tutorialIdx = 0;
+    private int selectCount = 0;
 
     // Use this for initialization
     void Start () {
@@ -26,13 +27,17 @@ public class TutorialManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (Input.GetButtonDown("Select"))
+        {
+            selectCount++;
+        }
         timer += Time.deltaTime;
         if (timer >= timeBetweenTutorials)
         {
             timer = 0;
             ChangeToNextTutorial();
         }
-        if (Input.GetKeyDown(KeyCode.F5))
+        if (Input.GetKeyDown(KeyCode.F5) || selectCount > 5)
         {
             TutorialEnd();
         }
