@@ -19,6 +19,8 @@ public class Tower : MonoBehaviour
     {
         if (healthText)
         {
+            if(health <= 0)
+                health = 0;
             healthText.text = health.ToString() + "/" + maxHealth.ToString();
         }
         if (DebugScreen.GetInstance())

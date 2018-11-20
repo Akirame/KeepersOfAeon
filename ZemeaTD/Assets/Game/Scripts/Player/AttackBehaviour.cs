@@ -18,12 +18,12 @@ public class AttackBehaviour : MonoBehaviour {
     private float timer;
     public float timeBetweenAttacks = 0.2f;
     public float minAttackSpeed = 0.01f;
-    private CharacterController2D player;
     public ElementalOrb element;
+    private CharacterController2D player;
     private float rAxis = 0f;
     private float lAxis = 0f;
     private bool triggerTouched = false;
-
+    private bool shooted = false;
     private void Start()
     {
         inputPlayer = GetComponent<InputControl>();
@@ -98,19 +98,24 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if(Input.GetButton(inputPlayer.attackButton))
+        if(shooted)
         {
-            if(timer >= timeBetweenAttacks) {
-                Shoot();
+            if(timer >= timeBetweenAttacks)
+            {
+                shooted = false;
             }
             else
-                timer += Time.deltaTime;
+                timer += Time.deltaTime;         
         }
-       
+        if(Input.GetButton(inputPlayer.attackButton) && !shooted)
+        {
+            Shoot();
+        }
     }
 
     private void Shoot()
     {
+        shooted = true;
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
