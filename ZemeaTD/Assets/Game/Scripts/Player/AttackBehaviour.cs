@@ -39,20 +39,12 @@ public class AttackBehaviour : MonoBehaviour {
 
         if(rAxis >= 1f && !triggerTouched)
         {
-            if(element.elementType < ElementalOrb.ELEMENT_TYPE.Count - 1)
-                element.elementType += 1;
-            else
-                element.elementType = 0;
-            element.UpdateOrb();
+            element.CicleUpElement();
             triggerTouched = true;
         }        
         if(lAxis >= 1f && !triggerTouched)
         {
-            if(element.elementType != ElementalOrb.ELEMENT_TYPE.WATER)
-                element.elementType -= 1;
-            else
-                element.elementType = ElementalOrb.ELEMENT_TYPE.NONE;
-            element.UpdateOrb();
+            element.CicleDownElement();
             triggerTouched = true;
         }
         if(lAxis == 0f && rAxis == 0f)

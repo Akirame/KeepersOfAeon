@@ -15,6 +15,9 @@ public class ElementalOrb :MonoBehaviour
     };
 
     public ELEMENT_TYPE elementType;
+    public ELEMENT_TYPE[] elementsInPower;
+    private int currentElement;
+    private int conta = 0;
     public Color c;
     public Sprite[] orbSprites;
     private SpriteRenderer rend;
@@ -22,18 +25,34 @@ public class ElementalOrb :MonoBehaviour
 
     private void Start()
     {
+        currentElement = (int)elementsInPower[conta];
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        elementType = ELEMENT_TYPE.EARTH;
+        elementType = (ELEMENT_TYPE)currentElement;
         anim.Play("Idle",0, UnityEngine.Random.Range(0, anim.GetCurrentAnimatorStateInfo(0).length));
+        UpdateOrb();        
+    }
+
+    public void CicleUpElement()
+    {
+        if (conta < 1)
+            conta++;
+        else
+            conta = 0;
+        currentElement = (int)elementsInPower[conta];
+        elementType = (ELEMENT_TYPE)currentElement;
         UpdateOrb();
     }
-
-    public void ActivateOutline(bool set)
+    public void CicleDownElement()
     {
-        anim.SetBool("onTouch", set);
+        if (conta > 0)
+            conta--;
+        else
+            conta = 1;
+        currentElement = (int)elementsInPower[conta];
+        elementType = (ELEMENT_TYPE)currentElement;
+        UpdateOrb();
     }
-
 
     public void UpdateOrb()
     {

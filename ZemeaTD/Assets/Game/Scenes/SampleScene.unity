@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2051473145}
     m_Modifications:
+    - target: {fileID: 114117969136392092, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: elementsInPower.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4294253087457584, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.9200916
@@ -207,13 +212,24 @@ Prefab:
         type: 2}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 843ca0ee27f703d43aeb4be1646fd676,
+        type: 2}
     - target: {fileID: 114440416040816160, guid: 28b47e07610b96941967a4adecfcda4f,
         type: 2}
       propertyPath: playerData2
       value: 
       objectReference: {fileID: 11400000, guid: 843ca0ee27f703d43aeb4be1646fd676,
         type: 2}
+    - target: {fileID: 114117969136392092, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: elementsInPower.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117969136392092, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: elementsInPower.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
@@ -2333,6 +2349,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2051473145}
     m_Modifications:
+    - target: {fileID: 114924432345436090, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: elementsInPower.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4773555787719296, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 8.58881
@@ -2441,13 +2462,19 @@ Prefab:
         type: 2}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c1ce83441cbc8fd4da6bd92b415b499c,
+        type: 2}
     - target: {fileID: 114821971000796654, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 2}
       propertyPath: playerData2
       value: 
       objectReference: {fileID: 11400000, guid: c1ce83441cbc8fd4da6bd92b415b499c,
         type: 2}
+    - target: {fileID: 114924432345436090, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: elementsInPower.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0
