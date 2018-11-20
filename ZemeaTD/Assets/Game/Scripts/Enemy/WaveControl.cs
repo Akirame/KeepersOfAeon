@@ -35,7 +35,7 @@ public class WaveControl : MonoBehaviour
 
     public int currentWave;
     public int timeBetweenWaves;
-    public int timeBetweenEnemies;
+    public float timeBetweenEnemies;
 
     public GameObject miniBoss;
     public int waveMiniBoss;

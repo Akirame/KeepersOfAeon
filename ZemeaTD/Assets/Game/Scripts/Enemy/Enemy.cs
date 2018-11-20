@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator FlickerEffect()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             sprMask.enabled = !flickerEnabled;
             flickerEnabled = !flickerEnabled;
