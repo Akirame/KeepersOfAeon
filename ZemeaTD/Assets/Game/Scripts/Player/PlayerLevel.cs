@@ -13,13 +13,14 @@ public class PlayerLevel : MonoBehaviour
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
     public ParticleSystem particlesLevelUp;
-    public Text levelUpText;
+    public Animator levelUpAnim;
+    //public Text levelUpText;
     public Text levelVisor;
     public Canvas levelCanvas;
 
     private void Start()
     {
-        levelUpText.gameObject.SetActive(false);
+       // levelUpText.gameObject.SetActive(false);
         levelVisor.text = playerLevel.ToString();
     }
 
@@ -29,8 +30,9 @@ public class PlayerLevel : MonoBehaviour
         playerLevel++;
         levelVisor.text = playerLevel.ToString();
         GetComponent<CharacterController2D>().playerData.LevelUp();
-        levelUpText.gameObject.SetActive(true);
-        levelUpText.GetComponent<Animator>().Play(0);
+        levelUpAnim.SetTrigger("levelUp");
+        //levelUpText.gameObject.SetActive(true);
+        //levelUpText.GetComponent<Animator>().Play(0);
         LevelUpTo(playerLevel);
     }
 
@@ -77,7 +79,7 @@ public class PlayerLevel : MonoBehaviour
     public void LevelUpTo(int level)
     {
         playerLevel = level;
-        OnLevelUp(this);
+        //OnLevelUp(this);
         particlesLevelUp.Play();
     }    
 }
