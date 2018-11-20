@@ -12,7 +12,6 @@ public class UIGame : MonoBehaviour
     private string waveTextAux;
     private WaveControl wave;
     private Animator anim;
-    private bool updateLevels = false;
 
     private void Start()
     {
@@ -45,11 +44,6 @@ public class UIGame : MonoBehaviour
     private void UpdateText()
     {
         waveText.text = "Wave " + currentWave.ToString();
-    }
-
-    public void UpdateLevelsText()
-    {
-        updateLevels = true;
     }
     public void HordeIncomingTrigger(WaveControl wc)
     {
