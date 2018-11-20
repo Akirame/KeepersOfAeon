@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     protected Rampart rampart;
     protected bool syncroAttackWithAnim;
     public SpriteRenderer sr;
+    public SpriteMask sprMask;
     protected bool flickerEnabled = false;
 
     protected virtual void Start()
@@ -78,11 +79,11 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            sr.enabled = !flickerEnabled;
+            sprMask.enabled = !flickerEnabled;
             flickerEnabled = !flickerEnabled;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.07f);
         }
-        sr.enabled = true;
+        sprMask.enabled = false;
         flickerEnabled = false;
     }
 

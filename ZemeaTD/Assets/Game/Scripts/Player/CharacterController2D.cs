@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };
+    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };    
     public CharacterData playerData;
     public PLAYER_STATES currentState;
     public LayerMask floorLayer;
@@ -26,6 +26,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
+        var playerData2 = Instantiate(playerData);
+        playerData = playerData2;
         rig = GetComponent<Rigidbody2D>();
         SetAttackMode(false);
         inputControl = GetComponent<InputControl>();

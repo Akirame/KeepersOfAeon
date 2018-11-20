@@ -48,7 +48,6 @@ public class ItemManager : MonoBehaviour
 
     private void DestroyItem(Item i)
     {
-        Debug.Log("holi");
         Destroy(i.gameObject);
     }
 
