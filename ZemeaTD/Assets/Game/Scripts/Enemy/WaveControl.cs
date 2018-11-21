@@ -65,11 +65,18 @@ public class WaveControl : MonoBehaviour
         if (DebugScreen.GetInstance())
         {
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
+            DebugScreen.GetInstance().AddButton("NextWave", NextWave);
         }
         Item.RalenticeConsume += RalenticeEnemies;
         TrySpawnHorde();
         timerWaves = timeBetweenWaves;
     }
+
+    private void NextWave()
+    {
+        PrepareNewWave();
+    }
+
     private void OnDestroy()
     {
         Item.RalenticeConsume -= RalenticeEnemies;
@@ -86,10 +93,7 @@ public class WaveControl : MonoBehaviour
                 waveTimeText.text = timerWaves.ToString("00");
                 if (timerWaves <= 0)
                 {
-                    CleanWave();
-                    SpawnWave();
-                    TrySpawnMiniBoss();
-                    timerWaves = timeBetweenWaves;
+                    PrepareNewWave();
                 }
             }
             else
@@ -98,6 +102,14 @@ public class WaveControl : MonoBehaviour
                 waveTimeText.text = "";
             }
         }
+    }
+
+    private void PrepareNewWave()
+    {
+        CleanWave();
+        SpawnWave();
+        TrySpawnMiniBoss();
+        timerWaves = timeBetweenWaves;
     }
 
     private void CheckOnTutorial()
