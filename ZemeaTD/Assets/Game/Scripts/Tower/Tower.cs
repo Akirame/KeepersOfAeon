@@ -12,11 +12,16 @@ public class Tower : MonoBehaviour
     public int maxHealth = 100;
     public Text healthText;
     public Image healthBar;
+    public Image healthBackBar;
     public Rampart rampart;
+    public float decreaseBackHealthBarFactor = 10;
+    public float healthTiltThreshold;
     private bool canBeDestroyed = true;
+    private Animator healthAnimator;
 
     private void Start()
     {
+        healthAnimator = healthBar.GetComponent<Animator>();
         if (healthText)
         {
             if(health <= 0)
@@ -39,9 +44,8 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-
-            if (health <= 0)
-                TowerDestroyed(this);
+        if (health <= 0)
+            TowerDestroyed(this);
         if (Input.GetKeyDown(KeyCode.F2))
         {
             TakeDamage(2);
@@ -51,13 +55,27 @@ public class Tower : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if(canBeDestroyed)
-        health -= damage;
+            health -= damage;
         if (healthText)
         {
+            CancelInvoke();
             healthText.text = health.ToString() + "/" + maxHealth.ToString();
             healthBar.fillAmount = (float)health / maxHealth;
+            InvokeRepeating("LowBackHealth", 1.5f, 0.05f);
+        }
+        healthAnimator.SetFloat("Health", health);
+    }
+
+    private void LowBackHealth()
+    {
+        healthBackBar.fillAmount -= (healthBackBar.fillAmount - healthBar.fillAmount)/decreaseBackHealthBarFactor;
+        if (healthBackBar.fillAmount <= healthBar.fillAmount)
+        {
+            healthBackBar.fillAmount = healthBar.fillAmount;
         }
     }
+
+   
 
     private void RepairRamparts()
     {
