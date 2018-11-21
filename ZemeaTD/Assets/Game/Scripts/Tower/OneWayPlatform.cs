@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class OneWayPlatform : MonoBehaviour {
 
-    private PlatformEffector2D effector;    
-    public float resetTime = 0.5f;
-    public float timer;
-    public bool lookingUp = true;    
+    private PlatformEffector2D effector;
+    private List<Collider2D> playerCollision;
 
 	// Use this for initialization
 	void Start () {
@@ -16,21 +14,10 @@ public class OneWayPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!lookingUp)
-        {
-            timer += Time.deltaTime;
-            if (timer >= resetTime)
-            {                
-                effector.rotationalOffset = 0;
-                lookingUp = true;
-                timer = 0;
-            }
-        }
 	}
-    public void Deactivate()
+    public void Deactivate(Collider2D playerCollider)
     {
-        lookingUp = false;
-        effector.rotationalOffset = 180f;
+        Physics2D.IgnoreCollision(playerCollider, GetComponent<BoxCollider2D>());
     }
 
 }

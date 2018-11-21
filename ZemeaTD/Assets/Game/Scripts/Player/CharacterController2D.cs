@@ -153,9 +153,9 @@ public class CharacterController2D : MonoBehaviour
         if (hit)
         {
             if(hit.transform.gameObject.tag == "OneWay" && (Input.GetAxis(inputControl.axisY) + Input.GetAxis(inputControl.axisYKey) > 0) && Input.GetButtonDown(inputControl.jump))
-            {                
-                hit.transform.GetComponent<OneWayPlatform>().Deactivate();
-                onFloor = false;                
+            {
+                hit.transform.GetComponent<OneWayPlatform>().Deactivate(GetComponent<CapsuleCollider2D>());
+                onFloor = false;
             }
             else
             onFloor = true;
