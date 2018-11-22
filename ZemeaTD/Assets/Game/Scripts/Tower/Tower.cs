@@ -58,6 +58,7 @@ public class Tower : MonoBehaviour
             health -= damage;
         if (healthText)
         {
+            CancelInvoke();
             healthText.text = health.ToString() + "/" + maxHealth.ToString();
             healthBar.fillAmount = (float)health / maxHealth;
             InvokeRepeating("LowBackHealth", 1.5f, 0.05f);
