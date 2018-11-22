@@ -7,11 +7,12 @@ public class Target : MonoBehaviour {
 
     public WaveControl waveControl;
     public GameObject tutorial;
-    public SpriteRenderer rend;
+    private SpriteRenderer rend;
+    public List<Sprite> colorSprites;
     private int hitConta = 0;
-    private Color[] colors = { Color.red, Color.white, Color.blue, Color.green };
     private void Start()
     {
+        rend = GetComponentInChildren<SpriteRenderer>();
         RandomColor();
     }
     private void Update()
@@ -32,28 +33,25 @@ public class Target : MonoBehaviour {
             }
         }
     }
+
     private bool CheckColor(ElementalOrb.ELEMENT_TYPE element)
     {
         switch(element)
         {
             case ElementalOrb.ELEMENT_TYPE.WATER:
-                return (rend.color == Color.blue);                
+                return (rend.sprite == colorSprites[1]);
             case ElementalOrb.ELEMENT_TYPE.FIRE:
-                return (rend.color == Color.red);
+                return (rend.sprite == colorSprites[2]);
             case ElementalOrb.ELEMENT_TYPE.EARTH:
-                return (rend.color == Color.green);
+                return (rend.sprite == colorSprites[3]);
             case ElementalOrb.ELEMENT_TYPE.NONE:
-                return (rend.color == Color.white);
+                return (rend.sprite == colorSprites[0]);
         }
         return false;
     }
 
     private void RandomColor()
     {
-        Color c;
-        do {
-            c = colors[UnityEngine.Random.Range(0, colors.Length)];
-        } while (rend.color == c);
-        rend.color = c;
+        rend.sprite = colorSprites[UnityEngine.Random.Range(0, colorSprites.Count)];
     }
 }

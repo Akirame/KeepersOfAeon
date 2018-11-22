@@ -260,15 +260,14 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 5
-  health: 25
+  health: 10
   healthMultiplier: 1
-  chanceOfElement: 25
   experience: 100
   sprites:
-  - {fileID: 21300000, guid: ebbe58f3f5e15fe49bd0a6596629751e, type: 3}
-  - {fileID: 21300000, guid: e4671067672bd1447a73dff1fb3ed295, type: 3}
-  - {fileID: 21300000, guid: f79673d547d2a8241ab452496f1fd1df, type: 3}
-  - {fileID: 21300000, guid: eb32866190ae0f94eab4f8f64fedba95, type: 3}
+  - {fileID: 21300000, guid: b9418d9c7992d1b488c6f027de09a675, type: 3}
+  - {fileID: 21300000, guid: 86d8efef864c2a34e8a96c88b950abb0, type: 3}
+  - {fileID: 21300000, guid: cb220c99b46851e429e99a27c2c99ce7, type: 3}
+  - {fileID: 21300000, guid: 7d578e3e3084dd54fa0fd2fb7149e137, type: 3}
   deathParticles: {fileID: 1556593431079730, guid: 036bb481f39c9d84fbd578bcbb91e93a,
     type: 2}
   sr: {fileID: 0}
