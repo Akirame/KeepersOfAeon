@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalProyectile :MonoBehaviour
+public class ElementalProyectile : MonoBehaviour
 {
 
     public ElementalOrb.ELEMENT_TYPE element;
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
-    public int lifeTime = 5;
+    public int lifeTime = 100;
     public SpriteRenderer spriteRenderer;
     public GameObject player;
     public PopText popText;
