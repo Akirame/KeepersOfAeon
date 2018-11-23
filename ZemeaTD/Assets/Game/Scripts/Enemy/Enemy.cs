@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public int damage;
     public int health = 100;
     public int healthMultiplier = 1;
-    public int chanceOfElement = 25;
     public int experience = 50;
     public Sprite[] sprites;
     public GameObject deathParticles;
@@ -30,24 +29,20 @@ public class Enemy : MonoBehaviour
         element = ElementalOrb.ELEMENT_TYPE.NONE;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = sprites[0];
-        if (UnityEngine.Random.Range(0,100)<chanceOfElement)
+        element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
+        if (sr)
         {
-            element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);            
-            if (sr)
+            switch (element)
             {
-                switch (element)
-                {
-                    case ElementalOrb.ELEMENT_TYPE.WATER:
-                        sr.sprite = sprites[1];
-                        break;
-                    case ElementalOrb.ELEMENT_TYPE.FIRE:
-                        sr.sprite = sprites[2];
-                        break;
-                    case ElementalOrb.ELEMENT_TYPE.EARTH:
-                        sr.sprite = sprites[3];
-                        break;
-                }
-
+                case ElementalOrb.ELEMENT_TYPE.WATER:
+                    sr.sprite = sprites[1];
+                    break;
+                case ElementalOrb.ELEMENT_TYPE.FIRE:
+                    sr.sprite = sprites[2];
+                    break;
+                case ElementalOrb.ELEMENT_TYPE.EARTH:
+                    sr.sprite = sprites[3];
+                    break;
             }
 
         }

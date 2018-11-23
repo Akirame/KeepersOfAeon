@@ -56,16 +56,16 @@ public class ElementalProyectile : MonoBehaviour
         switch(element)
         {
             case ElementalOrb.ELEMENT_TYPE.EARTH:
-                c = Color.green;
+                c = Color.yellow;
                 break;
             case ElementalOrb.ELEMENT_TYPE.FIRE:
                 c = Color.red;
                 break;
             case ElementalOrb.ELEMENT_TYPE.WATER:
-                c = Color.blue;
+                c = Color.magenta;
                 break;
             case ElementalOrb.ELEMENT_TYPE.NONE:
-                c = Color.white;
+                c = Color.green;
                 break;
         }
         spriteRenderer.color = c;

@@ -55,6 +55,8 @@ public class WaveControl : MonoBehaviour
     private bool hordeSpawned = false;
     private List<int> hordeWave;
 
+    private int currentSpawnPoint = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -163,7 +165,8 @@ public class WaveControl : MonoBehaviour
                 GenerateHordeWave();
                 hordeSpawned = true;
                 percentHordeSpawnRate = 5f;
-                Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+                Transform t = spawnPoints[currentSpawnPoint];
+                NextSpawnPoint();
                 for (int i = 0; i < hordeWave.Count; i++)
                 {
                     Vector3 offsetPosition = new Vector3();
@@ -186,7 +189,8 @@ public class WaveControl : MonoBehaviour
     {
         for (int i = 0; i < enemyTypeList.Count; i++)
         {
-            Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+            Transform t = spawnPoints[currentSpawnPoint];
+            NextSpawnPoint();
             Vector3 offsetPosition = new Vector3();
             offsetPosition.y = UnityEngine.Random.Range(-3, 3);
             GameObject enemy = Instantiate(enemyPrefab[enemyTypeList[i]].gameObject, t.position + offsetPosition, Quaternion.identity, enemiesParent.transform);
@@ -194,6 +198,12 @@ public class WaveControl : MonoBehaviour
             enemyList.Add(enemy);
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
+    }
+
+    private void NextSpawnPoint()
+    {
+        currentSpawnPoint++;
+        currentSpawnPoint = currentSpawnPoint % spawnPoints.Length;
     }
 
     private void EnemyKilled(Enemy e)
