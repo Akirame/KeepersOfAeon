@@ -86,6 +86,11 @@ public class ElementalProyectile : MonoBehaviour
             PopDamageText(damage);
             Destroy(gameObject);
         }
+        if(collision.tag == "Balloon" && !onGround)
+        {            
+            collision.GetComponent<Balloon>().TakeDamage(element);
+            Destroy(gameObject);
+        }
         if(collision.tag == "Ground")
         {
             onGround = true;

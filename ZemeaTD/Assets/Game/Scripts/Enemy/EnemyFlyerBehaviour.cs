@@ -11,19 +11,19 @@ public class EnemyFlyerBehaviour : MonoBehaviour
     private float distanceUpDown;
     private float speedUpDown;
     private float centerPos;
-    public Balloon[] balloonsGroup;
+    public List<Balloon> balloonsGroup;
 
     private void Start()
     {       
         centerPos = Random.Range(15f, 50f);
         distanceUpDown = Random.Range(minDistanceUpDown, maxDistanceUpDown);
         speedUpDown = Random.Range(minSpeedUpDown, maxSpeedUpDown);
-        for(int i = 0; i < balloonsGroup.Length; i++)
+        for(int i = 0; i < balloonsGroup.Count; i++)
             balloonsGroup[i].onDeath += BalloonDestroyed;
     }
     private void Update()
     {
-        if(balloonsGroup.Length == 0)
+        if(balloonsGroup.Count == 0)
             gameObject.GetComponent<Enemy>().Kill();
     }
     private void LateUpdate()
@@ -33,12 +33,7 @@ public class EnemyFlyerBehaviour : MonoBehaviour
     }
     private void BalloonDestroyed(Balloon b)
     {
-        for(int i = 0; i < balloonsGroup.Length; i++)
-            if(balloonsGroup[i] == b)
-            {
-                Destroy(balloonsGroup[i].gameObject);
-                break;
-            }
-        Debug.Log("holi");
+        balloonsGroup.Remove(b);
+        Destroy(b.gameObject);
     }
 }
