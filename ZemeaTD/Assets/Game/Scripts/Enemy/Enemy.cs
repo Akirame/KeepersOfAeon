@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public GameObject deathParticles;
     protected Rampart rampart;
-    protected bool syncroAttackWithAnim;
     public SpriteRenderer sr;
     public SpriteMask sprMask;
     protected bool flickerEnabled = false;
@@ -25,7 +24,6 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
-        syncroAttackWithAnim = false;
         element = ElementalOrb.ELEMENT_TYPE.NONE;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = sprites[0];
