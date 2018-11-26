@@ -50,6 +50,7 @@ public class AttackBehaviour : MonoBehaviour {
         if(lAxis == 0f && rAxis == 0f)
             triggerTouched = false;
     }
+
     public void AttackControl()
     {
         if(Input.GetAxis(inputPlayer.axisY) < 0 || Input.GetAxis(inputPlayer.axisYKey) < 0)
@@ -90,19 +91,21 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if(shooted)
+        if (Input.GetButton(inputPlayer.attackButton) && !shooted)
+        {
+            Shoot();
+        }
+
+        if (shooted)
         {
             if(timer >= timeBetweenAttacks)
             {
                 shooted = false;
             }
             else
-                timer += Time.deltaTime;         
+                timer += Time.deltaTime;
         }
-        if(Input.GetButton(inputPlayer.attackButton) && !shooted)
-        {
-            Shoot();
-        }
+ 
     }
 
     private void Shoot()
