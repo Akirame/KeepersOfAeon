@@ -59,7 +59,6 @@ public class WaveControl : MonoBehaviour
 
     private float chanceOfHardRound;
     public float initialChanceOfHardRound = 0.2f;
-    public float hardRoundIncrementFactor = 0.1f;
 
     private int currentSpawnPoint = 0;
 
