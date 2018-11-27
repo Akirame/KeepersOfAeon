@@ -9,8 +9,6 @@ public class Meteorite : MonoBehaviour {
     public int health = 50;
     public int experience = 100;
     public int damage = 50;
-    public GameObject rightWarning;
-    public GameObject leftWarning;
     private float rotationSpeed;
     private Vector2 direction;
     private Vector2 velocity;
@@ -21,7 +19,13 @@ public class Meteorite : MonoBehaviour {
         rid = GetComponent<Rigidbody2D>();
         CalculateDirection();
         Movement();
+        EnableWarning();
 	}
+
+    private void EnableWarning()
+    {
+        UIGame.Get().EnableWarning(transform.position);
+    }
 
     private void Movement()
     {
@@ -36,12 +40,10 @@ public class Meteorite : MonoBehaviour {
         if (transform.position.x < 0)
         {
             direction.x = UnityEngine.Random.Range(0.8f,1f);
-            rightWarning.SetActive(true);
         }
         else
         {
             direction.x = UnityEngine.Random.Range(-0.8f,-1f);
-            leftWarning.SetActive(true);
         }
         direction.y = -1;
     }
@@ -58,6 +60,11 @@ public class Meteorite : MonoBehaviour {
         {
             TakeDamage(collision.GetComponent<ElementalProyectile>().GetDamage());
             Destroy(collision.gameObject);
+        }
+        if (collision.tag == "Tower")
+        {
+            collision.GetComponent<Tower>().TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 
@@ -76,7 +83,7 @@ public class Meteorite : MonoBehaviour {
 
     private void OnWillRenderObject()
     {
-        rightWarning.SetActive(false);
-        leftWarning.SetActive(false);
+        //rightWarning.SetActive(false);
+        //leftWarning.SetActive(false);
     }
 }

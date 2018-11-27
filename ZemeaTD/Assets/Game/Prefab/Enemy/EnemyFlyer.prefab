@@ -358,10 +358,10 @@ MonoBehaviour:
   balloonElement: 0
   sr: {fileID: 0}
   sprites:
-  - {fileID: 21300000, guid: 6e16e49d88ad37e4a8fe0ff5f3f2a37a, type: 3}
-  - {fileID: 21300000, guid: 92b164bb4e1ce944488c11bdc1b66233, type: 3}
-  - {fileID: 21300000, guid: 4cd5017ae94146846a43609a5ac2610f, type: 3}
-  - {fileID: 21300000, guid: bf41d1a7bbb5b3649b1569f8d9445e88, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114143904248185494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,10 +376,10 @@ MonoBehaviour:
   balloonElement: 0
   sr: {fileID: 0}
   sprites:
-  - {fileID: 21300000, guid: 6e16e49d88ad37e4a8fe0ff5f3f2a37a, type: 3}
-  - {fileID: 21300000, guid: 92b164bb4e1ce944488c11bdc1b66233, type: 3}
-  - {fileID: 21300000, guid: 4cd5017ae94146846a43609a5ac2610f, type: 3}
-  - {fileID: 21300000, guid: bf41d1a7bbb5b3649b1569f8d9445e88, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114207528155512960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -454,10 +454,10 @@ MonoBehaviour:
   balloonElement: 0
   sr: {fileID: 0}
   sprites:
-  - {fileID: 21300000, guid: 6e16e49d88ad37e4a8fe0ff5f3f2a37a, type: 3}
-  - {fileID: 21300000, guid: 92b164bb4e1ce944488c11bdc1b66233, type: 3}
-  - {fileID: 21300000, guid: 4cd5017ae94146846a43609a5ac2610f, type: 3}
-  - {fileID: 21300000, guid: bf41d1a7bbb5b3649b1569f8d9445e88, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212205389449542922
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -498,7 +498,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.39, y: 0.73}
+  m_Size: {x: 3.9, y: 7.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -544,7 +544,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.25, y: 2.25}
+  m_Size: {x: 8.5, y: 10.375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -590,7 +590,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.39, y: 0.73}
+  m_Size: {x: 3.9, y: 7.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -682,7 +682,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.39, y: 0.73}
+  m_Size: {x: 3.9, y: 7.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

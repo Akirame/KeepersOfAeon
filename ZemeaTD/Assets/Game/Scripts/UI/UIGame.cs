@@ -4,10 +4,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class UIGame : MonoBehaviour
-{    
+{
+
+
+    #region Singleton
+    public static UIGame instance;
+    public bool winGame = false;
+
+    public static UIGame Get()
+    {
+        return instance;
+    }
+    public virtual void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     public Text waveText;
     public Text enemyCountText;
+    public GameObject rightWarning;
+    public GameObject leftWarning;
     private int currentEnemies;
+
+    public void EnableWarning(Vector3 position)
+    {
+        if (position.x < 0)
+        {
+            rightWarning.SetActive(true);
+        }
+        else
+        {
+            leftWarning.SetActive(true);
+        }
+    }
+
     private int currentWave;
     private string waveTextAux;
     private WaveControl wave;

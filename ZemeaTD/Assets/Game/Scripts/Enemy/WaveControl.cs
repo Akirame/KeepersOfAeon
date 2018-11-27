@@ -55,6 +55,12 @@ public class WaveControl : MonoBehaviour
     private bool hordeSpawned = false;
     private List<int> hordeWave;
 
+    public GameObject meteorite;
+
+    private float chanceOfHardRound;
+    public float initialChanceOfHardRound = 0.2f;
+    public float hardRoundIncrementFactor = 0.1f;
+
     private int currentSpawnPoint = 0;
 
     // Use this for initialization
@@ -70,13 +76,14 @@ public class WaveControl : MonoBehaviour
             DebugScreen.GetInstance().AddButton("NextWave", NextWave);
         }
         Item.RalenticeConsume += RalenticeEnemies;
-        TrySpawnHorde();
+        chanceOfHardRound = initialChanceOfHardRound;
         timerWaves = timeBetweenWaves;
     }
 
     private void NextWave()
     {
-        PrepareNewWave();
+        KillAllEnemies();
+        timerWaves = 0;
     }
 
     private void OnDestroy()
@@ -96,6 +103,7 @@ public class WaveControl : MonoBehaviour
                 if (timerWaves <= 0)
                 {
                     PrepareNewWave();
+                    CheckIfHardRound();
                 }
             }
             else
@@ -104,6 +112,34 @@ public class WaveControl : MonoBehaviour
                 waveTimeText.text = "";
             }
         }
+    }
+
+    private void CheckIfHardRound()
+    {
+        float randomChance = UnityEngine.Random.Range(0f, 1f);
+        if (randomChance < chanceOfHardRound)
+        {
+            int enemyToSpawn = UnityEngine.Random.Range(0, 2);
+            switch (enemyToSpawn)
+            {
+                case 0:
+                    TrySpawnHorde();
+                    break;
+                case 1:
+                    TrySpawnMeteorite();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void TrySpawnMeteorite()
+    {
+        Transform t = spawnPoints[currentSpawnPoint];
+        NextSpawnPoint();
+        Vector3 pos = t.position + new Vector3(0, meteorite.transform.position.y, 0);
+        Instantiate(meteorite, pos, Quaternion.identity, enemiesParent.transform);
     }
 
     private void PrepareNewWave()
@@ -156,32 +192,21 @@ public class WaveControl : MonoBehaviour
 
     IEnumerator SpawnHorde()
     {
-        while (true)
+        HordeIncoming(this);
+        yield return new WaitForSeconds(2);
+        GenerateHordeWave();
+        hordeSpawned = true;
+        percentHordeSpawnRate = 5f;
+        Transform t = spawnPoints[currentSpawnPoint];
+        NextSpawnPoint();
+        for (int i = 0; i < hordeWave.Count; i++)
         {
-            if (!hordeSpawned && UnityEngine.Random.Range(1, 100f) <= percentHordeSpawnRate && totalEnemyCount > 0)
-            {
-                HordeIncoming(this);
-                yield return new WaitForSeconds(2);
-                GenerateHordeWave();
-                hordeSpawned = true;
-                percentHordeSpawnRate = 5f;
-                Transform t = spawnPoints[currentSpawnPoint];
-                NextSpawnPoint();
-                for (int i = 0; i < hordeWave.Count; i++)
-                {
-                    Vector3 offsetPosition = new Vector3();
-                    offsetPosition.y = UnityEngine.Random.Range(-3, 3);
-                    GameObject enemy = Instantiate(enemyPrefab[hordeWave[i]].gameObject, t.position + offsetPosition, Quaternion.identity, enemiesParent.transform);
-                    enemy.GetComponent<Enemy>().MultiplyHealth((int)currentWave / 5);
-                    enemyList.Add(enemy);
-                    yield return new WaitForSeconds(timeBetweenEnemies / 2);
-                }
-            }
-            else
-            {
-                yield return new WaitForSeconds(hordeTime);
-                percentHordeSpawnRate += 1f;
-            }
+            Vector3 offsetPosition = new Vector3();
+            offsetPosition.y = UnityEngine.Random.Range(-3, 3);
+            GameObject enemy = Instantiate(enemyPrefab[hordeWave[i]].gameObject, t.position + offsetPosition, Quaternion.identity, enemiesParent.transform);
+            enemy.GetComponent<Enemy>().MultiplyHealth((int)currentWave / 5);
+            enemyList.Add(enemy);
+            yield return new WaitForSeconds(timeBetweenEnemies / 2);
         }
     }
 
@@ -287,7 +312,7 @@ public class WaveControl : MonoBehaviour
     }
     private void RalenticeEnemies(Item it)
     {
-        for(int i = 0; i < enemyList.Count; i++)
+        for (int i = 0; i < enemyList.Count; i++)
             enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();
     }
 }
