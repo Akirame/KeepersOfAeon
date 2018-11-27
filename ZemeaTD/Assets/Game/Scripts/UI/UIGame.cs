@@ -33,19 +33,6 @@ public class UIGame : MonoBehaviour
     public GameObject rightWarning;
     public GameObject leftWarning;
     private int currentEnemies;
-
-    public void EnableWarning(Vector3 position)
-    {
-        if (position.x < 0)
-        {
-            rightWarning.SetActive(true);
-        }
-        else
-        {
-            leftWarning.SetActive(true);
-        }
-    }
-
     private int currentWave;
     private string waveTextAux;
     private WaveControl wave;
@@ -58,6 +45,13 @@ public class UIGame : MonoBehaviour
         WaveControl.HordeIncoming += HordeIncomingTrigger;
         currentWave = wave.currentWave;
         waveText.text = "NEW GAME";
+        DisableWarnings();
+    }
+
+    internal void DisableWarnings()
+    {
+        rightWarning.SetActive(false);
+        leftWarning.SetActive(false);
     }
 
     private void Update()
@@ -76,6 +70,18 @@ public class UIGame : MonoBehaviour
             {
                 enemyCountText.text = "";
             }
+        }
+    }
+
+    public void EnableWarning(Vector3 position)
+    {
+        if (position.x < 0)
+        {
+            rightWarning.SetActive(true);
+        }
+        else
+        {
+            leftWarning.SetActive(true);
         }
     }
 

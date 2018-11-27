@@ -13,6 +13,9 @@ public class Meteorite : MonoBehaviour {
     private Vector2 direction;
     private Vector2 velocity;
     private Rigidbody2D rid;
+    private bool onScreen = false;
+    private float timer;
+    private int warningTime = 2;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +24,19 @@ public class Meteorite : MonoBehaviour {
         Movement();
         EnableWarning();
 	}
+
+    private void Update()
+    {
+        if (onScreen)
+        {
+            timer += Time.deltaTime;
+            if (timer >= warningTime)
+            {
+                timer = 0;
+                UIGame.Get().DisableWarnings();
+            }
+        }
+    }
 
     private void EnableWarning()
     {
@@ -83,7 +99,6 @@ public class Meteorite : MonoBehaviour {
 
     private void OnWillRenderObject()
     {
-        //rightWarning.SetActive(false);
-        //leftWarning.SetActive(false);
+        onScreen = true;
     }
 }
