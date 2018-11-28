@@ -171,8 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 0}
   element: 0
-  damage: 3
-  health: 15
+  damage: 10
+  health: 10
   healthMultiplier: 1
   experience: 100
   sprites:
