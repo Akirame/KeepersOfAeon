@@ -18,8 +18,8 @@ public class ElementalProyectile : MonoBehaviour
     private Rigidbody2D rigid;
     private ParticleSystem.MainModule main;
     private bool onGround = false;
-    private float timer;
     private ParticleSystem ps;
+    private float groundTimer;
 
 
     private void Awake()
@@ -65,10 +65,22 @@ public class ElementalProyectile : MonoBehaviour
         {
             transform.right = rigid.velocity;
         }
-        timer += Time.deltaTime;
-        if(timer >= lifeTime)
+        else
         {
-            Destroy(gameObject);
+            if (rigid.velocity.y != 0)
+            {
+                groundTimer += Time.deltaTime;
+                if (groundTimer > UnityEngine.Random.Range(0, 0.15f))
+                {
+                    rigid.velocity = new Vector2();
+                    rigid.gravityScale = 0;
+                    ps.gameObject.SetActive(false);
+                }
+                if (groundTimer >= lifeTime)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
@@ -104,9 +116,6 @@ public class ElementalProyectile : MonoBehaviour
         if(collision.tag == "Ground")
         {
             onGround = true;
-            rigid.velocity = new Vector2();
-            rigid.gravityScale = 0;
-            ps.gameObject.SetActive(false);
         }
     }
 
