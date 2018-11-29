@@ -11,19 +11,21 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject bullet;
     public Transform crossPos;
     public ColorAttribute colorOrb;
+    public float timeBetweenAttacks = 0.2f;
+    public float minAttackSpeed = 0.01f;
+    public ColorAttribute currentColor;
+    public Sprite[] aimSprites;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
     private int playerDamage;
     private float timer;
-    public float timeBetweenAttacks = 0.2f;
-    public float minAttackSpeed = 0.01f;
-    public ColorAttribute currentColor;
     private CharacterController2D player;
     private float rAxis = 0f;
     private float lAxis = 0f;
     private bool triggerTouched = false;
     private bool shooted = false;
+
     private void Start()
     {
         inputPlayer = GetComponent<InputControl>();
@@ -130,7 +132,6 @@ public class AttackBehaviour : MonoBehaviour {
         }
     }
 
-
     private bool IsFacingRight()
     {
         return transform.localScale.x > 0;
@@ -146,5 +147,31 @@ public class AttackBehaviour : MonoBehaviour {
     public void ChangeElement(ColorAttribute element)
     {
         colorOrb = element;
+        UpdateAimColor();
     }
+
+    private void UpdateAimColor()
+    {
+        SpriteRenderer aimRenderer = crossPos.gameObject.GetComponent<SpriteRenderer>();
+        switch (colorOrb.colorType)
+        {
+            case ColorAttribute.COLOR_TYPE.GREEN:
+                aimRenderer.sprite = aimSprites[0];
+                break;
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
+                aimRenderer.sprite = aimSprites[1];
+                break;
+            case ColorAttribute.COLOR_TYPE.ORANGE:
+                aimRenderer.sprite = aimSprites[2];
+                break;
+            case ColorAttribute.COLOR_TYPE.YELLOW:
+                aimRenderer.sprite = aimSprites[3];
+                break;
+            case ColorAttribute.COLOR_TYPE.LAST:
+                break;
+            default:
+                break;
+        }
+    }
+
 }

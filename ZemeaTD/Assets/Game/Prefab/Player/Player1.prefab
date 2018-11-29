@@ -441,6 +441,11 @@ MonoBehaviour:
   timeBetweenAttacks: 0.2
   minAttackSpeed: 0.01
   currentColor: {fileID: 114924432345436090}
+  aimSprites:
+  - {fileID: 21300000, guid: 0f98113f1228acc4b8a1fe8c15e50298, type: 3}
+  - {fileID: 21300000, guid: 7242f20a0d942d44b8e23490358f8bdf, type: 3}
+  - {fileID: 21300000, guid: b9837a521aea806459642d8b526bae0a, type: 3}
+  - {fileID: 21300000, guid: 1924a44fca6f26a4582dce8e4ac9f37d, type: 3}
 --- !u!114 &114180918593307384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9972,8 +9977,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 29
-  m_Sprite: {fileID: 21300000, guid: 5b7ac2059692de84bb0d5492a8869142, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0f98113f1228acc4b8a1fe8c15e50298, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
