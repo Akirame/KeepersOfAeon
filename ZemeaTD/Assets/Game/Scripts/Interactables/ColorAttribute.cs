@@ -30,7 +30,7 @@ public class ColorAttribute :MonoBehaviour
         anim = GetComponent<Animator>();
         colorType = (COLOR_TYPE)currentColor;
         anim.Play("Idle",0, UnityEngine.Random.Range(0, anim.GetCurrentAnimatorStateInfo(0).length));
-        UpdateColor();        
+        UpdateColor();
     }
 
     public void CicleUpColor()

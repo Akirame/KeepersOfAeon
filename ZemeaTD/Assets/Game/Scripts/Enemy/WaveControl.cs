@@ -52,7 +52,6 @@ public class WaveControl : MonoBehaviour
 
     public float hordeTime = 10f;
     public float percentHordeSpawnRate = 5f;
-    private bool hordeSpawned = false;
     private List<int> hordeWave;
 
     public GameObject meteorite;
@@ -194,7 +193,6 @@ public class WaveControl : MonoBehaviour
         HordeIncoming(this);
         yield return new WaitForSeconds(2);
         GenerateHordeWave();
-        hordeSpawned = true;
         percentHordeSpawnRate = 5f;
         Transform t = spawnPoints[currentSpawnPoint];
         NextSpawnPoint();

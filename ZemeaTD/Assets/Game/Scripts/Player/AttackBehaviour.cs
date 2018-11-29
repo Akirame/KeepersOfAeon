@@ -41,11 +41,13 @@ public class AttackBehaviour : MonoBehaviour {
         if(rAxis >= 1f && !triggerTouched)
         {
             currentColor.CicleUpColor();
+            UpdateAimColor();
             triggerTouched = true;
         }        
         if(lAxis >= 1f && !triggerTouched)
         {
             currentColor.CicleDownColor();
+            UpdateAimColor();
             triggerTouched = true;
         }
         if(lAxis == 0f && rAxis == 0f)
@@ -147,7 +149,6 @@ public class AttackBehaviour : MonoBehaviour {
     public void ChangeElement(ColorAttribute element)
     {
         colorOrb = element;
-        UpdateAimColor();
     }
 
     private void UpdateAimColor()
