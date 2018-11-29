@@ -562,10 +562,10 @@ MonoBehaviour:
   equipedColors: 0000000002000000
   c: {r: 0, g: 0, b: 0, a: 0}
   colorSprites:
-  - {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
-  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
-  - {fileID: 21300000, guid: af96d64179e3e0846917c0361b3d9b9f, type: 3}
-  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
+  - {fileID: 21300000, guid: fb4021f92f0731645b0add48b649924f, type: 3}
+  - {fileID: 21300000, guid: 1a341bfe550905f42b584ea800b5ccbe, type: 3}
+  - {fileID: 21300000, guid: 518e805648a2f5049b07d745a4b3c7c7, type: 3}
+  - {fileID: 21300000, guid: 2dacc9c163b571c4d9341670821f361c, type: 3}
 --- !u!114 &114929190876019798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9926,7 +9926,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -7
-  m_Sprite: {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb4021f92f0731645b0add48b649924f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

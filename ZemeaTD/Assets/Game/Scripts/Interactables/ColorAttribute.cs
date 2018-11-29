@@ -43,6 +43,7 @@ public class ColorAttribute :MonoBehaviour
         colorType = (COLOR_TYPE)currentColor;
         UpdateColor();
     }
+
     public void CicleDownColor()
     {
         if (conta > 0)
@@ -76,4 +77,10 @@ public class ColorAttribute :MonoBehaviour
                 break;
         }
     }
+
+    public Color GetProyectileRawColor()
+    {
+        return c;
+    }
+
 }

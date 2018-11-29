@@ -32,25 +32,31 @@ public class ElementalProyectile : MonoBehaviour
 
     private void UpdateColor()
     {
+        Color c = Color.black;
         switch (colorType)
         {
             case ColorAttribute.COLOR_TYPE.GREEN:
                 sr.sprite = sprites[0];
+                c = Color.green;
                 break;
             case ColorAttribute.COLOR_TYPE.MAGENTA:
                 sr.sprite = sprites[1];
+                c = Color.magenta;
                 break;
             case ColorAttribute.COLOR_TYPE.ORANGE:
                 sr.sprite = sprites[2];
+                c = Color.red;
                 break;
             case ColorAttribute.COLOR_TYPE.YELLOW:
                 sr.sprite = sprites[3];
+                c = Color.yellow;
                 break;
             case ColorAttribute.COLOR_TYPE.LAST:
                 break;
             default:
                 break;
         }
+        main.startColor = c;
     }
 
     private void Update()
