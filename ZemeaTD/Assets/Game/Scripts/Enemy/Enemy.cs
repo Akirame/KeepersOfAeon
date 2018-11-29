@@ -17,9 +17,7 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public GameObject deathParticles;
     protected Rampart rampart;
-    public SpriteRenderer sr;
-    public SpriteMask sprMask;
-    protected bool flickerEnabled = false;
+    private SpriteRenderer sr;
 
     protected virtual void Start()
     {
@@ -56,7 +54,6 @@ public class Enemy : MonoBehaviour
             Death(this);
             collision.GetComponent<Tower>().TakeDamage(damage);
             Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
-
         }
     }
 
@@ -70,14 +67,19 @@ public class Enemy : MonoBehaviour
 
     IEnumerator FlickerEffect()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
-            sprMask.enabled = !flickerEnabled;
-            flickerEnabled = !flickerEnabled;
+            if (i % 2 == 0)
+            {
+               sr.material.SetFloat("_FlashAmount", 0.7f);
+            }
+            else
+            {
+                sr.material.SetFloat("_FlashAmount", 0f);
+            }
             yield return new WaitForSeconds(0.07f);
         }
-        sprMask.enabled = false;
-        flickerEnabled = false;
+        sr.material.SetFloat("_FlashAmount", 0);
     }
 
     public void TakeDamage(int bulletDamage, GameObject player)
