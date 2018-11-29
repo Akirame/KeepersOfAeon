@@ -439,8 +439,10 @@ MonoBehaviour:
   equipedColors: 0100000003000000
   c: {r: 0, g: 0, b: 0, a: 0}
   colorSprites:
-  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
   - {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
+  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
+  - {fileID: 21300000, guid: af96d64179e3e0846917c0361b3d9b9f, type: 3}
+  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
 --- !u!114 &114264365292011192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,12 +533,12 @@ MonoBehaviour:
   maxAngleAttack: 85
   angleAttackSpeed: 120
   crosshair: {fileID: 1143038713907192}
-  bullet: {fileID: 1405494552224080, guid: 09c89852b68c6294db82b016de1fe97d, type: 2}
+  bullet: {fileID: 1405494552224080, guid: b554260bf05886a43b45b6c5f2b971db, type: 2}
   crossPos: {fileID: 4358763298792136}
-  currentColor: {fileID: 0}
+  colorOrb: {fileID: 114117969136392092}
   timeBetweenAttacks: 0.2
   minAttackSpeed: 0.01
-  colorOrb: {fileID: 0}
+  currentColor: {fileID: 114117969136392092}
 --- !u!114 &114755749320480026
 MonoBehaviour:
   m_ObjectHideFlags: 1

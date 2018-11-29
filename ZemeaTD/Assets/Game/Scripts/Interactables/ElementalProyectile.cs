@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ElementalProyectile : MonoBehaviour
 {
 
-    public ColorAttribute.COLOR_TYPE element;
+    public ColorAttribute.COLOR_TYPE colorType;
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
-    public int lifeTime = 100;
-    public SpriteRenderer spriteRenderer;
+    public int lifeTime = 50;
+    public SpriteRenderer sr;
     public GameObject player;
     public PopText popText;
+    public Sprite[] sprites;
     private Rigidbody2D rigid;
     private ParticleSystem.MainModule main;
     private bool onGround = false;
@@ -25,6 +27,30 @@ public class ElementalProyectile : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         ps = GetComponentInChildren<ParticleSystem>();
         main = ps.main;
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    private void UpdateColor()
+    {
+        switch (colorType)
+        {
+            case ColorAttribute.COLOR_TYPE.GREEN:
+                sr.sprite = sprites[0];
+                break;
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
+                sr.sprite = sprites[1];
+                break;
+            case ColorAttribute.COLOR_TYPE.ORANGE:
+                sr.sprite = sprites[2];
+                break;
+            case ColorAttribute.COLOR_TYPE.YELLOW:
+                sr.sprite = sprites[3];
+                break;
+            case ColorAttribute.COLOR_TYPE.LAST:
+                break;
+            default:
+                break;
+        }
     }
 
     private void Update()
@@ -44,32 +70,10 @@ public class ElementalProyectile : MonoBehaviour
     {
         direction = dir;
         damage = _damage;
-        element = _element;
+        colorType = _element;
         player = _player;
         rigid.velocity = direction * speed;
-        ChangeElementColor();
-    }
-
-    private void ChangeElementColor()
-    {
-        Color c = Color.white;
-        switch(element)
-        {
-            case ColorAttribute.COLOR_TYPE.ORANGE:
-                c = Color.yellow;
-                break;
-            case ColorAttribute.COLOR_TYPE.MAGENTA:
-                c = Color.red;
-                break;
-            case ColorAttribute.COLOR_TYPE.GREEN:
-                c = Color.magenta;
-                break;
-            case ColorAttribute.COLOR_TYPE.YELLOW:
-                c = Color.green;
-                break;
-        }
-        spriteRenderer.color = c;
-        main.startColor = new ParticleSystem.MinMaxGradient(c);
+        UpdateColor();
     }
 
     public int GetDamage()
@@ -81,14 +85,14 @@ public class ElementalProyectile : MonoBehaviour
     {
         if(collision.tag == "Enemy" && !onGround)
         {
-            damage = CalculateElementalDamage(damage, element, collision.GetComponent<Enemy>().element);
+            damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             Destroy(gameObject);
         }
         if(collision.tag == "Balloon" && !onGround)
         {            
-            collision.GetComponent<Balloon>().TakeDamage(element);
+            collision.GetComponent<Balloon>().TakeDamage(colorType);
             Destroy(gameObject);
         }
         if(collision.tag == "Ground")
@@ -108,7 +112,7 @@ public class ElementalProyectile : MonoBehaviour
 
     private int CalculateElementalDamage(int damage, ColorAttribute.COLOR_TYPE playerOrb, ColorAttribute.COLOR_TYPE enemyOrb)
     {
-        float pureDamage = damage;        
+        float pureDamage = damage;
         if(playerOrb == enemyOrb)
         {
             pureDamage *= 0.6f;
@@ -122,6 +126,11 @@ public class ElementalProyectile : MonoBehaviour
             pureDamage = 1;
         }
         return (int)pureDamage;
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
 }

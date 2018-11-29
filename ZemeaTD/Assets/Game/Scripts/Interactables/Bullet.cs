@@ -8,8 +8,14 @@ public class Bullet : MonoBehaviour {
     public float speed = 50f;
     public Vector2 direction;
     public int damage = 10;
-    private int deathTime = 5;
+    private int deathTime = 25;
     private float timer;
+    private Rigidbody2D rigid;
+
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void Update () {
@@ -62,6 +68,12 @@ public class Bullet : MonoBehaviour {
             case TypeOf.Enemy:
                 if (collision.gameObject.tag == "Rampart")
                     Destroy(this.gameObject);
+                if (collision.tag == "Tower")
+                {
+                    collision.GetComponent<Tower>().TakeDamage(damage);
+                    rigid.velocity = new Vector2();
+                    rigid.gravityScale = 0;
+                }
                 break;
         }        
     }    

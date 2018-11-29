@@ -22,7 +22,7 @@ public class Target : MonoBehaviour {
     {
         if (collision.tag == "Bullet")
         {
-            if(CheckColor(collision.GetComponent<ElementalProyectile>().element))
+            if(CheckColor(collision.GetComponent<ElementalProyectile>().colorType))
             {
                 hitConta++;
                 RandomColor();
