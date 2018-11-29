@@ -34,17 +34,17 @@ public class Target : MonoBehaviour {
         }
     }
 
-    private bool CheckColor(ElementalOrb.ELEMENT_TYPE element)
+    private bool CheckColor(ColorAttribute.COLOR_TYPE element)
     {
         switch(element)
         {
-            case ElementalOrb.ELEMENT_TYPE.WATER:
+            case ColorAttribute.COLOR_TYPE.GREEN:
                 return (rend.sprite == colorSprites[1]);
-            case ElementalOrb.ELEMENT_TYPE.FIRE:
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
                 return (rend.sprite == colorSprites[2]);
-            case ElementalOrb.ELEMENT_TYPE.EARTH:
+            case ColorAttribute.COLOR_TYPE.ORANGE:
                 return (rend.sprite == colorSprites[3]);
-            case ElementalOrb.ELEMENT_TYPE.NONE:
+            case ColorAttribute.COLOR_TYPE.YELLOW:
                 return (rend.sprite == colorSprites[0]);
         }
         return false;

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyActions(Enemy e);
     public static EnemyActions Death;
     public EnemyMovementBehaviour movementBehaviour;
-    public ElementalOrb.ELEMENT_TYPE element;
+    public ColorAttribute.COLOR_TYPE element;
     public int damage;
     public int health = 100;
     public int healthMultiplier = 1;
@@ -24,21 +24,21 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
-        element = ElementalOrb.ELEMENT_TYPE.NONE;
+        element = ColorAttribute.COLOR_TYPE.YELLOW;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = sprites[0];
-        element = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
+        element = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
         if (sr)
         {
             switch (element)
             {
-                case ElementalOrb.ELEMENT_TYPE.WATER:
+                case ColorAttribute.COLOR_TYPE.GREEN:
                     sr.sprite = sprites[1];
                     break;
-                case ElementalOrb.ELEMENT_TYPE.FIRE:
+                case ColorAttribute.COLOR_TYPE.MAGENTA:
                     sr.sprite = sprites[2];
                     break;
-                case ElementalOrb.ELEMENT_TYPE.EARTH:
+                case ColorAttribute.COLOR_TYPE.ORANGE:
                     sr.sprite = sprites[3];
                     break;
             }

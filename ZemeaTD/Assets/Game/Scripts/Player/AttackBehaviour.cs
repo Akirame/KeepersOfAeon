@@ -10,7 +10,7 @@ public class AttackBehaviour : MonoBehaviour {
     public GameObject crosshair;
     public GameObject bullet;
     public Transform crossPos;
-    public ElementalOrb currentElement;
+    public ColorAttribute colorOrb;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
@@ -18,7 +18,7 @@ public class AttackBehaviour : MonoBehaviour {
     private float timer;
     public float timeBetweenAttacks = 0.2f;
     public float minAttackSpeed = 0.01f;
-    public ElementalOrb element;
+    public ColorAttribute currentColor;
     private CharacterController2D player;
     private float rAxis = 0f;
     private float lAxis = 0f;
@@ -30,7 +30,6 @@ public class AttackBehaviour : MonoBehaviour {
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
         timer = timeBetweenAttacks;
-        
     }
     private void Update()
     {
@@ -39,12 +38,12 @@ public class AttackBehaviour : MonoBehaviour {
 
         if(rAxis >= 1f && !triggerTouched)
         {
-            element.CicleUpElement();
+            currentColor.CicleUpColor();
             triggerTouched = true;
         }        
         if(lAxis >= 1f && !triggerTouched)
         {
-            element.CicleDownElement();
+            currentColor.CicleDownColor();
             triggerTouched = true;
         }
         if(lAxis == 0f && rAxis == 0f)
@@ -114,7 +113,7 @@ public class AttackBehaviour : MonoBehaviour {
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
-        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, element.elementType, this.gameObject);
+        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject);
         timer = 0;
     }
 
@@ -144,8 +143,8 @@ public class AttackBehaviour : MonoBehaviour {
         angleAttack = Vector3.zero;
     }
 
-    public void ChangeElement(ElementalOrb element)
+    public void ChangeElement(ColorAttribute element)
     {
-        currentElement = element;
+        colorOrb = element;
     }
 }

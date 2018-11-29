@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElementalProyectile : MonoBehaviour
 {
 
-    public ElementalOrb.ELEMENT_TYPE element;
+    public ColorAttribute.COLOR_TYPE element;
     public float speed = 100f;
     private Vector2 direction;
     public int damage = 10;
@@ -40,7 +40,7 @@ public class ElementalProyectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 dir, int _damage, ElementalOrb.ELEMENT_TYPE _element, GameObject _player)
+    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player)
     {
         direction = dir;
         damage = _damage;
@@ -55,16 +55,16 @@ public class ElementalProyectile : MonoBehaviour
         Color c = Color.white;
         switch(element)
         {
-            case ElementalOrb.ELEMENT_TYPE.EARTH:
+            case ColorAttribute.COLOR_TYPE.ORANGE:
                 c = Color.yellow;
                 break;
-            case ElementalOrb.ELEMENT_TYPE.FIRE:
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
                 c = Color.red;
                 break;
-            case ElementalOrb.ELEMENT_TYPE.WATER:
+            case ColorAttribute.COLOR_TYPE.GREEN:
                 c = Color.magenta;
                 break;
-            case ElementalOrb.ELEMENT_TYPE.NONE:
+            case ColorAttribute.COLOR_TYPE.YELLOW:
                 c = Color.green;
                 break;
         }
@@ -106,7 +106,7 @@ public class ElementalProyectile : MonoBehaviour
         go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
     }
 
-    private int CalculateElementalDamage(int damage, ElementalOrb.ELEMENT_TYPE playerOrb, ElementalOrb.ELEMENT_TYPE enemyOrb)
+    private int CalculateElementalDamage(int damage, ColorAttribute.COLOR_TYPE playerOrb, ColorAttribute.COLOR_TYPE enemyOrb)
     {
         float pureDamage = damage;        
         if(playerOrb == enemyOrb)

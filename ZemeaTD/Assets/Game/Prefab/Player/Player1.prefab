@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 114924432345436090}
   - component: {fileID: 95123728444204304}
   m_Layer: 11
-  m_Name: OrbSelected
+  m_Name: ColorSelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,8 +222,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847843429043412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 3.4, z: 0}
-  m_LocalScale: {x: 32.463223, y: 32.463223, z: 0}
+  m_LocalPosition: {x: 1.3, y: 6.4, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 0}
   m_Children:
   - {fileID: 224614486703228722}
   m_Father: {fileID: 224203892810780562}
@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521620813128664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.58881, y: -25.851816, z: -0.12082801}
+  m_LocalPosition: {x: -6.3, y: -25.37, z: -0.12082801}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4009917127418316}
@@ -437,10 +437,10 @@ MonoBehaviour:
   crosshair: {fileID: 1363246121291928}
   bullet: {fileID: 1405494552224080, guid: 09c89852b68c6294db82b016de1fe97d, type: 2}
   crossPos: {fileID: 4262421900324820}
-  currentElement: {fileID: 0}
+  currentColor: {fileID: 0}
   timeBetweenAttacks: 0.2
   minAttackSpeed: 0.01
-  element: {fileID: 114924432345436090}
+  colorOrb: {fileID: 0}
 --- !u!114 &114180918593307384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -546,9 +546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '99
-
-'
+  m_Text: 1
 --- !u!114 &114924432345436090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -560,13 +558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 861cfa0faf88c8941b57f5b9745149a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 2
+  colorType: 0
+  equipedColors: 0000000002000000
   c: {r: 0, g: 0, b: 0, a: 0}
-  orbSprites:
-  - {fileID: 21300000, guid: 66ac11e40bc3ed94da9ff899c21e38ff, type: 3}
-  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
-  - {fileID: 21300000, guid: 6288d1826c8ba904286d527167ec35a8, type: 3}
+  colorSprites:
   - {fileID: 21300000, guid: af96d64179e3e0846917c0361b3d9b9f, type: 3}
+  - {fileID: 21300000, guid: c4c546ed490f5f445830e6158ebc6be7, type: 3}
 --- !u!114 &114929190876019798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10019,12 +10016,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: 62afda915745bd845ab47324825e6a3d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 26f2c1cda5e2c474caefc9c21b903693, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.49, y: 0.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10070,7 +10067,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.59}
+  m_Size: {x: 0.49, y: 0.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -10145,7 +10142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.008, y: -0.146}
+  m_AnchoredPosition: {x: -0.008, y: -0.021}
   m_SizeDelta: {x: 398.3187, y: 116.0595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224689875037245648

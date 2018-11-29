@@ -6,31 +6,31 @@ public class Balloon : MonoBehaviour
 {
     public delegate void BalloonActions(Balloon b);
     public BalloonActions onDeath;
-    public ElementalOrb.ELEMENT_TYPE balloonElement;
+    public ColorAttribute.COLOR_TYPE balloonElement;
     public SpriteRenderer sr;
     public Sprite[] sprites;
 
     private void Start()
     {
-        balloonElement = (ElementalOrb.ELEMENT_TYPE)UnityEngine.Random.Range(0, 3);
+        balloonElement = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
         sr = GetComponent<SpriteRenderer>();
         switch(balloonElement)
         {
-            case ElementalOrb.ELEMENT_TYPE.WATER:
+            case ColorAttribute.COLOR_TYPE.GREEN:
                 sr.sprite = sprites[1];
                 break;
-            case ElementalOrb.ELEMENT_TYPE.FIRE:
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
                 sr.sprite = sprites[2];
                 break;
-            case ElementalOrb.ELEMENT_TYPE.EARTH:
+            case ColorAttribute.COLOR_TYPE.ORANGE:
                 sr.sprite = sprites[3];
                 break;
-            case ElementalOrb.ELEMENT_TYPE.NONE:
+            case ColorAttribute.COLOR_TYPE.YELLOW:
                 sr.sprite = sprites[0];
                 break;
         }
     }
-    public void TakeDamage(ElementalOrb.ELEMENT_TYPE element)
+    public void TakeDamage(ColorAttribute.COLOR_TYPE element)
     {
         if(element == balloonElement)
             onDeath(this);
