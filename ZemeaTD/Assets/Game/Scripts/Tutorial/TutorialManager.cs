@@ -31,11 +31,13 @@ public class TutorialManager : MonoBehaviour {
         {
             selectCount++;
         }
-        timer += Time.deltaTime;
-        if (timer >= timeBetweenTutorials)
+        if (tutorialIdx == 4)
         {
-            timer = 0;
-            ChangeToNextTutorial();
+            timer += Time.deltaTime;
+            if (timer >= timeBetweenTutorials)
+            {
+                ChangeToNextTutorial();
+            }
         }
         if (Input.GetKeyDown(KeyCode.F5) || selectCount > 5)
         {
@@ -53,7 +55,7 @@ public class TutorialManager : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void ChangeToNextTutorial()
+    public void ChangeToNextTutorial()
     {
         tutorialIdx++;
         if (tutorialIdx < tutorials.Length)

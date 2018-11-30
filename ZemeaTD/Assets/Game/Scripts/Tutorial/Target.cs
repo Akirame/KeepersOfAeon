@@ -39,13 +39,13 @@ public class Target : MonoBehaviour {
         switch(element)
         {
             case ColorAttribute.COLOR_TYPE.GREEN:
-                return (rend.sprite == colorSprites[1]);
-            case ColorAttribute.COLOR_TYPE.MAGENTA:
-                return (rend.sprite == colorSprites[2]);
-            case ColorAttribute.COLOR_TYPE.ORANGE:
-                return (rend.sprite == colorSprites[3]);
-            case ColorAttribute.COLOR_TYPE.YELLOW:
                 return (rend.sprite == colorSprites[0]);
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
+                return (rend.sprite == colorSprites[1]);
+            case ColorAttribute.COLOR_TYPE.ORANGE:
+                return (rend.sprite == colorSprites[2]);
+            case ColorAttribute.COLOR_TYPE.YELLOW:
+                return (rend.sprite == colorSprites[3]);
         }
         return false;
     }
