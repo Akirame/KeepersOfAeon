@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -50,10 +51,11 @@ public class GameManager : MonoBehaviour {
         winGame = false;
         tutorialDone = true;
     }
+
     private void GameWon(LightBehaviour l)
     {
-        loader.LoadScene("FinalScreen");
         winGame = true;
+        loader.LoadScene("FinalScreen");
     }
 
     private void LevelUpPlayers()
@@ -78,9 +80,4 @@ public class GameManager : MonoBehaviour {
         player1Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
         player2Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
     }
-
-    //private void OnDestroy()
-    //{
-    //    ResetCharactersData();
-    //}
 }

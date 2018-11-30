@@ -16,6 +16,7 @@ public class UI_FinalScreen : MonoBehaviour {
 
     private void Start()
     {
+        print(GameManager.Get().winGame);
         if (GameManager.Get().winGame)
         {
             victoryPanel.SetActive(true);

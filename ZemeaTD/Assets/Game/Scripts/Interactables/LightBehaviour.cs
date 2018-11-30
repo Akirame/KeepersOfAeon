@@ -22,7 +22,7 @@ public class LightBehaviour : MonoBehaviour
     {
         if (DebugScreen.GetInstance())
         {
-            DebugScreen.GetInstance().AddButton("Win", LightOn);
+            DebugScreen.GetInstance().AddButton("Win", CompleteLight);
         }
         LightUICanvas.maxLightValue = maxLight;
     }
@@ -54,6 +54,7 @@ public class LightBehaviour : MonoBehaviour
             LightUICanvas.UpdateTexts(lightValue);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.tag == "Player")
             lightOn = true;
@@ -63,10 +64,11 @@ public class LightBehaviour : MonoBehaviour
             lightOn = false;
     }
 
-    public void LightOn()
+    public void CompleteLight()
     {
         lightValue = maxLight * 2;
     }
+
     private void ActivateLightAfterTutorial(Target t)
     {
         inTutorial = false;
