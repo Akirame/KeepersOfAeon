@@ -24,20 +24,20 @@ public class Enemy : MonoBehaviour
         movementBehaviour = GetComponent<EnemyMovementBehaviour>();
         element = ColorAttribute.COLOR_TYPE.YELLOW;
         sr = GetComponent<SpriteRenderer>();
-        sr.sprite = sprites[0];
+        sr.sprite = sprites[3];
         element = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
         if (sr)
         {
             switch (element)
             {
                 case ColorAttribute.COLOR_TYPE.GREEN:
-                    sr.sprite = sprites[1];
+                    sr.sprite = sprites[0];
                     break;
                 case ColorAttribute.COLOR_TYPE.MAGENTA:
-                    sr.sprite = sprites[2];
+                    sr.sprite = sprites[1];
                     break;
                 case ColorAttribute.COLOR_TYPE.ORANGE:
-                    sr.sprite = sprites[3];
+                    sr.sprite = sprites[2];
                     break;
             }
 

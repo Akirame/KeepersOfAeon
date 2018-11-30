@@ -7,10 +7,16 @@ public class RepairShop : MonoBehaviour {
     public Rampart shield;
     public ParticleSystem particles;
     public GameObject repairIcon;
+    private List<GameObject> playerList;
 
-    private void Update() {
+    private void Start()
+    {
+        playerList = new List<GameObject>();
+    }
+    private void Update() {            
+        repairOn = (playerList.Count > 0) ? true : false;
         if(repairOn) {
-            shield.RepairRampart();
+            shield.RepairRampart(playerList.Count);
             if(!particles.isEmitting)
                 particles.Play();
         }
@@ -31,11 +37,11 @@ public class RepairShop : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.tag == "Player")
-            repairOn = true;
+            playerList.Add(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if(collision.gameObject.tag == "Player")
-            repairOn = false;
+            playerList.Remove(collision.gameObject);
     }
 }

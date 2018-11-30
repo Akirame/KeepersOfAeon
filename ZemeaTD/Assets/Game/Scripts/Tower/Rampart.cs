@@ -101,9 +101,9 @@ public class Rampart : MonoBehaviour
         CheckAlive();
     }
 
-    public void RepairRampart() {
+    public void RepairRampart(int multiplier) {
         if(shield < maxShield) {
-            shield += healthPerSecond * Time.deltaTime;
+            shield += healthPerSecond * Time.deltaTime * multiplier;
             CheckAlive();
         }
     }
