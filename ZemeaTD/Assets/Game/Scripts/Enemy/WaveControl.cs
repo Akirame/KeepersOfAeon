@@ -91,8 +91,6 @@ public class WaveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-            TrySpawnMeteorite();
         CheckOnTutorial();
         if (gameStarted)
         {
