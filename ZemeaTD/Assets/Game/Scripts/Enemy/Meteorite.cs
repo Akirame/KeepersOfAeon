@@ -9,6 +9,8 @@ public class Meteorite : MonoBehaviour {
     public int health = 50;
     public int experience = 100;
     public int damage = 50;
+    public AudioClip sound;
+    private AudioSource aSource;
     private float rotationSpeed;
     private Vector2 direction;
     private Vector2 velocity;
@@ -20,6 +22,9 @@ public class Meteorite : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rid = GetComponent<Rigidbody2D>();
+        aSource = GetComponent<AudioSource>();
+        aSource.clip = sound;
+        aSource.Play();
         CalculateDirection();
         Movement();
         EnableWarning();
@@ -56,10 +61,13 @@ public class Meteorite : MonoBehaviour {
         if (transform.position.x < 0)
         {
             direction.x = UnityEngine.Random.Range(0.8f,1f);
+            aSource.panStereo = -0.7f;
         }
         else
         {
             direction.x = UnityEngine.Random.Range(-0.8f,-1f);
+            aSource.panStereo = 0.7f;
+
         }
         direction.y = -1;
     }

@@ -8,6 +8,7 @@ public class Item : MonoBehaviour {
     public static ItemActions RalenticeConsume;
     public static ItemActions ItemConsumed;
     public float lifeTime = 8;
+    public AudioClip sound;
     private float timer = 0;
 
     public enum TypeOfItem
@@ -33,7 +34,7 @@ public class Item : MonoBehaviour {
                 break;
             case TypeOfItem.RalenticeEnemies:
                 RalenticeConsume(this);
-                break;                            
+                break;
         }
         ItemConsumed(this);
     }

@@ -12,10 +12,12 @@ public class ItemManager : MonoBehaviour
     public float width = 1;
     private float timer = 0;
     private bool canSpawnItems = false;
+    private AudioSource aSource;
 
     private void Start()
     {
         Item.ItemConsumed += DestroyItem;
+        aSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -48,6 +50,7 @@ public class ItemManager : MonoBehaviour
 
     private void DestroyItem(Item i)
     {
+        aSource.PlayOneShot(i.sound);
         Destroy(i.gameObject);
     }
 

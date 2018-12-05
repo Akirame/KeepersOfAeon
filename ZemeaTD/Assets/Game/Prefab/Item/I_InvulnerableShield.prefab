@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 8
+  sound: {fileID: 8300000, guid: 5e671d29af79bbb4591221b9d9e6b758, type: 3}
   itemType: 0
 --- !u!212 &212044625556151674
 SpriteRenderer:

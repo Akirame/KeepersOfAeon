@@ -18,7 +18,7 @@ TagManager:
   - Ground
   - Explosion
   - OneWay
-  - Balloon
+  - EnemyManager
   layers:
   - Default
   - TransparentFX

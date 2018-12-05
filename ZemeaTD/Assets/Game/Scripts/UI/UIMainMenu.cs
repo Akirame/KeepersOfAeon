@@ -13,9 +13,11 @@ public class UIMainMenu : MonoBehaviour
     public GameObject Orbs;
     public Text versionText;
     public GameObject currentPanel;
+    private AudioSource aSource;
 
     private void Start()
-    {        
+    {
+        aSource = GetComponent<AudioSource>();
         versionText.text = "v" + Application.version;
         currentPanel = mainMenuCanvas;
         StartCoroutine(FocusOnButton());

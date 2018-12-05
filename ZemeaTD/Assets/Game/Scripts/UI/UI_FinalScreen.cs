@@ -7,20 +7,23 @@ public class UI_FinalScreen : MonoBehaviour {
 
     public GameObject victoryPanel;
     public GameObject defeatPanel;
+    public AudioClip victorySound;
+    private AudioSource aSource;
 
     private void Awake()
     {
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
+        aSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        print(GameManager.Get().winGame);
         if (GameManager.Get().winGame)
         {
             victoryPanel.SetActive(true);
             FocusOnButton(victoryPanel);
+            aSource.PlayOneShot(victorySound);
         }
         else
         {
