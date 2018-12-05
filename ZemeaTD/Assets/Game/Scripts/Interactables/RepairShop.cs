@@ -1,37 +1,66 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RepairShop : MonoBehaviour {
+
     public bool repairOn = false;
     public Rampart shield;
     public ParticleSystem particles;
     public GameObject repairIcon;
+    public AudioClip repairClip;
+    private float audioVolume;
+    private AudioSource aSource;
     private List<GameObject> playerList;
+    private const float volumeDecreaseFactor = 0.4f;
+    private float volumeDecrease;
 
     private void Start()
     {
         playerList = new List<GameObject>();
+        aSource = GetComponent<AudioSource>();
+        aSource.clip = repairClip;
+        audioVolume = aSource.volume;
     }
-    private void Update() {            
+    private void Update() {
         repairOn = (playerList.Count > 0) ? true : false;
         if(repairOn) {
+            PlayRepairAudio();
             shield.RepairRampart(playerList.Count);
             if(!particles.isEmitting)
                 particles.Play();
         }
         else
         {
-            if(particles.isEmitting)
+            if (particles.isEmitting)
+            {
                 particles.Stop();
+            }
+            if (aSource.isPlaying)
+            {
+                if (aSource.volume <= 0)
+                {
+                    volumeDecrease = 0;
+                    aSource.Stop();
+                }
+                else
+                {
+                    volumeDecrease += Time.deltaTime;
+                    aSource.volume = Mathf.Lerp(0.3f, 0.0f, volumeDecrease * volumeDecreaseFactor);
+                }
+
+            }
         }
-        if (shield.shield < shield.maxShield)
+        repairIcon.SetActive(shield.shield < shield.maxShield);
+    }
+
+    private void PlayRepairAudio()
+    {
+        if (!aSource.isPlaying)
         {
-            repairIcon.SetActive(true);
-        }
-        else
-        {
-            repairIcon.SetActive(false);
+            aSource.volume = audioVolume;
+            aSource.Play();
         }
     }
 

@@ -61,6 +61,9 @@ public class WaveControl : MonoBehaviour
 
     private int currentSpawnPoint = 0;
 
+    public AudioClip hordeSound;
+    private AudioSource aSource;
+
     // Use this for initialization
     void Start()
     {
@@ -76,6 +79,7 @@ public class WaveControl : MonoBehaviour
         Item.RalenticeConsume += RalenticeEnemies;
         chanceOfHardRound = initialChanceOfHardRound;
         timerWaves = timeBetweenWaves;
+        aSource = GetComponent<AudioSource>();
     }
 
     private void NextWave()
@@ -158,6 +162,8 @@ public class WaveControl : MonoBehaviour
 
     private void TrySpawnHorde()
     {
+        aSource.clip = hordeSound;
+        aSource.PlayDelayed(2f);
         StartCoroutine(SpawnHorde());
     }
 

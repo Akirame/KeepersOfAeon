@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour
         {
             if(health <= 0)
                 health = 0;
-            healthText.text = health.ToString() + "/" + maxHealth.ToString();
+            healthText.text = (health * 100 / maxHealth).ToString() + " %";
         }
         if (DebugScreen.GetInstance())
         {
@@ -59,7 +59,8 @@ public class Tower : MonoBehaviour
         if (healthText)
         {
             CancelInvoke();
-            healthText.text = health.ToString() + "/" + maxHealth.ToString();
+            healthText.text = (health * 100 / maxHealth).ToString() + " %";
+
             healthBar.fillAmount = (float)health / maxHealth;
             InvokeRepeating("LowBackHealth", 1.5f, 0.05f);
         }
@@ -85,6 +86,9 @@ public class Tower : MonoBehaviour
     private void RepairTower()
     {
         health = 100;
+        healthText.text = (health * 100 / maxHealth).ToString() + " %";
+
+
     }
 
     private void TowerInvulnerable()

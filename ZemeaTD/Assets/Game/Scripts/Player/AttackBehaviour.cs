@@ -15,6 +15,8 @@ public class AttackBehaviour : MonoBehaviour {
     public float minAttackSpeed = 0.01f;
     public ColorAttribute currentColor;
     public Sprite[] aimSprites;
+    public AudioClip[] audioClips;
+    private AudioSource aSource;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
@@ -32,6 +34,7 @@ public class AttackBehaviour : MonoBehaviour {
         bulletsContainer = new GameObject("BulletsContainer");
         player = GetComponent<CharacterController2D>();
         timer = timeBetweenAttacks;
+        aSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -119,6 +122,13 @@ public class AttackBehaviour : MonoBehaviour {
         CalculatePlayerDamage();
         b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject);
         timer = 0;
+        PlayRandomSound();
+    }
+
+    private void PlayRandomSound()
+    {
+        AudioClip ac = audioClips[UnityEngine.Random.Range(0, audioClips.Length)];
+        aSource.PlayOneShot(ac);
     }
 
     private void CalculatePlayerDamage()
