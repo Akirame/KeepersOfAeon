@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public PlayerLevel player1Level;
     public PlayerLevel player2Level;
     public bool tutorialDone = false;
+    private AudioSource aSource;
 
     private void Start()
     {
@@ -42,11 +43,12 @@ public class GameManager : MonoBehaviour {
             DebugScreen.GetInstance().AddButton("ResetGameScene", ResetGame);
             DebugScreen.GetInstance().AddButton("Add Players Level", LevelUpPlayers);
         }
+        aSource = GetComponent<AudioSource>();
+        AudioManager.Get().AddMusic(aSource);
     }
 
     private void ResetGame()
     {
-        ResetCharactersData();
         loader.LoadSceneQuick("SampleScene");
         winGame = false;
         tutorialDone = true;
@@ -73,11 +75,5 @@ public class GameManager : MonoBehaviour {
     {
         loader.LoadSceneQuick("FinalScreen");
         winGame = false;
-    }
-
-    private void ResetCharactersData()
-    {
-        player1Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
-        player2Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
     }
 }

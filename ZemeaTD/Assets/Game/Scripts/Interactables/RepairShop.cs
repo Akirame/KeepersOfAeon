@@ -21,6 +21,7 @@ public class RepairShop : MonoBehaviour {
         playerList = new List<GameObject>();
         aSource = GetComponent<AudioSource>();
         aSource.clip = repairClip;
+        AudioManager.Get().AddSound(aSource);
         audioVolume = aSource.volume;
     }
     private void Update() {

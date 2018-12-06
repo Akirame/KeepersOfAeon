@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
     private bool gamePaused = false;
     private float timeScale;
 
+
     private void Start() {
         timeScale = Time.timeScale;
         SetAllCanvas(true, false);

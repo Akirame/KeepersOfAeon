@@ -27,6 +27,8 @@ public class AttackBehaviour : MonoBehaviour {
     private float lAxis = 0f;
     private bool triggerTouched = false;
     private bool shooted = false;
+    private float criticalChance;
+    private bool criticalAttack;
 
     private void Start()
     {
@@ -35,6 +37,8 @@ public class AttackBehaviour : MonoBehaviour {
         player = GetComponent<CharacterController2D>();
         timer = timeBetweenAttacks;
         aSource = GetComponent<AudioSource>();
+        AudioManager.Get().AddSound(aSource);
+        criticalChance = player.playerData.criticalChance;
     }
     private void Update()
     {
@@ -116,11 +120,12 @@ public class AttackBehaviour : MonoBehaviour {
 
     private void Shoot()
     {
+        criticalAttack = false;
         shooted = true;
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
-        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject);
+        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack);
         timer = 0;
         PlayRandomSound();
     }
@@ -134,6 +139,12 @@ public class AttackBehaviour : MonoBehaviour {
     private void CalculatePlayerDamage()
     {
         playerDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
+        float chance = UnityEngine.Random.Range(0f, 1f);
+        if (criticalChance > chance)
+        {
+            playerDamage *= 2;
+            criticalAttack = true;
+        }
     }
 
     private void CalculateAttackSpeed()

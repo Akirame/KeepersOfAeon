@@ -17,3 +17,4 @@ MonoBehaviour:
   jumpForce: 70
   minDamage: 10
   maxDamage: 12
+  criticalChance: 0.8

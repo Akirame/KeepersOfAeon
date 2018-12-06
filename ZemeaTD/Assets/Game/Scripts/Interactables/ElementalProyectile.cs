@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ElementalProyectile : MonoBehaviour
-{    
+{
     public ColorAttribute.COLOR_TYPE colorType;
     public float speed = 100f;
     private Vector2 direction;
-    public int damage = 10;    
+    public int damage = 10;
     public SpriteRenderer sr;
     public GameObject player;
     public PopText popText;
@@ -20,17 +20,19 @@ public class ElementalProyectile : MonoBehaviour
     private float groundTimer;
     private Animator anim;
     private float lifeTimer;
+    private bool critical;
+    
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         ps = GetComponentInChildren<ParticleSystem>();
         main = ps.main;
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();        
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
-        lifeTimer = UnityEngine.Random.Range(30.0f, 100.0f);        
+        lifeTimer = UnityEngine.Random.Range(30.0f, 100.0f);
     }
 
     private void UpdateColor()
@@ -72,13 +74,13 @@ public class ElementalProyectile : MonoBehaviour
         {
             groundTimer += Time.deltaTime;
             if (rigid.velocity.y != 0)
-            {                
+            {
                 if (groundTimer > UnityEngine.Random.Range(0, 0.15f))
                 {
                     rigid.velocity = new Vector2();
                     rigid.gravityScale = 0;
                     ps.gameObject.SetActive(false);
-                }                                
+                }
             }
             if(groundTimer >= lifeTimer)
             {
@@ -87,13 +89,14 @@ public class ElementalProyectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player)
+    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player, bool _critical)
     {
         direction = dir;
         damage = _damage;
         colorType = _element;
         player = _player;
         rigid.velocity = direction * speed;
+        critical = _critical;
         UpdateColor();
     }
 
@@ -112,7 +115,7 @@ public class ElementalProyectile : MonoBehaviour
             Destroy(gameObject);
         }
         if(collision.tag == "Balloon" && !onGround)
-        {            
+        {
             collision.GetComponent<Balloon>().TakeDamage(colorType);
             Destroy(gameObject);
         }
@@ -126,6 +129,11 @@ public class ElementalProyectile : MonoBehaviour
     {
         GameObject go = Instantiate(popText.gameObject, transform.position, Quaternion.identity, transform.parent);
         go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
+        if (critical)
+        {
+            go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.red);
+
+        }
     }
 
     private int CalculateElementalDamage(int damage, ColorAttribute.COLOR_TYPE playerOrb, ColorAttribute.COLOR_TYPE enemyOrb)
