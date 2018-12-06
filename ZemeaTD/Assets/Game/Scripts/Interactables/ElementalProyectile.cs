@@ -20,6 +20,7 @@ public class ElementalProyectile : MonoBehaviour
     private bool onGround = false;
     private ParticleSystem ps;
     private float groundTimer;
+    private bool critical;
 
 
     private void Awake()
@@ -84,13 +85,14 @@ public class ElementalProyectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player)
+    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player, bool _critical)
     {
         direction = dir;
         damage = _damage;
         colorType = _element;
         player = _player;
         rigid.velocity = direction * speed;
+        critical = _critical;
         UpdateColor();
     }
 
@@ -123,6 +125,11 @@ public class ElementalProyectile : MonoBehaviour
     {
         GameObject go = Instantiate(popText.gameObject, transform.position, Quaternion.identity, transform.parent);
         go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
+        if (critical)
+        {
+            go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.red);
+
+        }
     }
 
     private int CalculateElementalDamage(int damage, ColorAttribute.COLOR_TYPE playerOrb, ColorAttribute.COLOR_TYPE enemyOrb)

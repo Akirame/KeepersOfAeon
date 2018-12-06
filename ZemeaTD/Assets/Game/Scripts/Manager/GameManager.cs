@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour {
 
     private void ResetGame()
     {
-        ResetCharactersData();
         loader.LoadSceneQuick("SampleScene");
         winGame = false;
         tutorialDone = true;
@@ -76,11 +75,5 @@ public class GameManager : MonoBehaviour {
     {
         loader.LoadSceneQuick("FinalScreen");
         winGame = false;
-    }
-
-    private void ResetCharactersData()
-    {
-        player1Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
-        player2Level.gameObject.GetComponent<CharacterController2D>().playerData.ResetStats();
     }
 }

@@ -34,7 +34,6 @@ public class CharacterController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         lookingRight = true;
         psDust.Stop();
-        playerData.SaveInitialValues();
     }
 
     private void Update()
