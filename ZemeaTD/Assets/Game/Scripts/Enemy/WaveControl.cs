@@ -78,13 +78,9 @@ public class WaveControl : MonoBehaviour
         }
         Item.RalenticeConsume += RalenticeEnemies;
         chanceOfHardRound = initialChanceOfHardRound;
-        timerWaves = timeBetweenWaves;
-<<<<<<< HEAD
-        aSource = GetComponent<AudioSource>();        
-=======
+        timerWaves = timeBetweenWaves;        
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
->>>>>>> 015f40744196356496434bc252aaf453b2a0f39a
     }
 
     private void NextWave()
