@@ -35,6 +35,7 @@ public class AttackBehaviour : MonoBehaviour {
         player = GetComponent<CharacterController2D>();
         timer = timeBetweenAttacks;
         aSource = GetComponent<AudioSource>();
+        AudioManager.Get().AddSound(aSource);
     }
     private void Update()
     {

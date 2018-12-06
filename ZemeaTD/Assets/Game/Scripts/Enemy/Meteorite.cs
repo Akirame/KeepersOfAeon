@@ -28,7 +28,8 @@ public class Meteorite : MonoBehaviour {
         CalculateDirection();
         Movement();
         EnableWarning();
-	}
+        AudioManager.Get().AddSound(aSource);
+    }
 
     private void Update()
     {

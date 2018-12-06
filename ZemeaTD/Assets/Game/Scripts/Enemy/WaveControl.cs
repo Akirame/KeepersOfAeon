@@ -80,6 +80,7 @@ public class WaveControl : MonoBehaviour
         chanceOfHardRound = initialChanceOfHardRound;
         timerWaves = timeBetweenWaves;
         aSource = GetComponent<AudioSource>();
+        AudioManager.Get().AddSound(aSource);
     }
 
     private void NextWave()
