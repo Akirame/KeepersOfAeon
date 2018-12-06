@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ElementalProyectile : MonoBehaviour
-{
-
+{    
     public ColorAttribute.COLOR_TYPE colorType;
     public float speed = 100f;
     private Vector2 direction;
-    public int damage = 10;
-    public int lifeTime = 50;
+    public int damage = 10;    
     public SpriteRenderer sr;
     public GameObject player;
     public PopText popText;
@@ -20,14 +18,19 @@ public class ElementalProyectile : MonoBehaviour
     private bool onGround = false;
     private ParticleSystem ps;
     private float groundTimer;
-
-
+    private Animator anim;
+    private float lifeTimer;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         ps = GetComponentInChildren<ParticleSystem>();
         main = ps.main;
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();        
+    }
+    private void Start()
+    {
+        lifeTimer = UnityEngine.Random.Range(30.0f, 100.0f);        
     }
 
     private void UpdateColor()
@@ -67,19 +70,19 @@ public class ElementalProyectile : MonoBehaviour
         }
         else
         {
+            groundTimer += Time.deltaTime;
             if (rigid.velocity.y != 0)
-            {
-                groundTimer += Time.deltaTime;
+            {                
                 if (groundTimer > UnityEngine.Random.Range(0, 0.15f))
                 {
                     rigid.velocity = new Vector2();
                     rigid.gravityScale = 0;
                     ps.gameObject.SetActive(false);
-                }
-                if (groundTimer >= lifeTime)
-                {
-                    Destroy(gameObject);
-                }
+                }                                
+            }
+            if(groundTimer >= lifeTimer)
+            {
+                anim.SetTrigger("Disappear");
             }
         }
     }
@@ -145,7 +148,10 @@ public class ElementalProyectile : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        DestroyProyectile();
+    }
+    public void DestroyProyectile()
+    {
         Destroy(gameObject);
     }
-
 }

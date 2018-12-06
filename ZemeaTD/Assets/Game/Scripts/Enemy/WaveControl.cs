@@ -22,7 +22,7 @@ public class WaveControl : MonoBehaviour
     }
     #endregion
     public delegate void WaveControlActions(WaveControl wc);
-    public static WaveControlActions HordeIncoming;
+    public static WaveControlActions HordeIncoming;    
     public Enemy[] enemyPrefab;
     public Transform[] spawnPoints;
     public GameObject enemiesParent;
@@ -79,7 +79,7 @@ public class WaveControl : MonoBehaviour
         Item.RalenticeConsume += RalenticeEnemies;
         chanceOfHardRound = initialChanceOfHardRound;
         timerWaves = timeBetweenWaves;
-        aSource = GetComponent<AudioSource>();
+        aSource = GetComponent<AudioSource>();        
     }
 
     private void NextWave()
