@@ -12,23 +12,25 @@ public class Balloon : MonoBehaviour
 
     private void Start()
     {
-        balloonElement = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
+        //balloonElement = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
+        balloonElement = ColorAttribute.COLOR_TYPE.GREEN;
         sr = GetComponent<SpriteRenderer>();
-        switch(balloonElement)
-        {
-            case ColorAttribute.COLOR_TYPE.GREEN:
-                sr.sprite = sprites[0];
-                break;
-            case ColorAttribute.COLOR_TYPE.MAGENTA:
-                sr.sprite = sprites[1];
-                break;
-            case ColorAttribute.COLOR_TYPE.ORANGE:
-                sr.sprite = sprites[2];
-                break;
-            case ColorAttribute.COLOR_TYPE.YELLOW:
-                sr.sprite = sprites[4];
-                break;
-        }
+        sr.sprite = sprites[0];
+        //switch(balloonElement)
+        //{
+        //    case ColorAttribute.COLOR_TYPE.GREEN:
+        //        sr.sprite = sprites[0];
+        //        break;
+        //    case ColorAttribute.COLOR_TYPE.MAGENTA:
+        //        sr.sprite = sprites[1];
+        //        break;
+        //    case ColorAttribute.COLOR_TYPE.ORANGE:
+        //        sr.sprite = sprites[2];
+        //        break;
+        //    case ColorAttribute.COLOR_TYPE.YELLOW:
+        //        sr.sprite = sprites[4];
+        //        break;
+        //}
     }
     public void TakeDamage(ColorAttribute.COLOR_TYPE element)
     {

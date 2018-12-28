@@ -107,7 +107,7 @@ public class ElementalProyectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy" && !onGround)
+        if(collision.tag == "Enemy" && !onGround && collision.GetComponent<Enemy>().IsAlive())
         {
             damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);

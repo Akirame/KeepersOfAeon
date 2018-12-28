@@ -14,35 +14,39 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private float timer;
     private int movementDirection;
     private int knockbackForce = 2;
+    private Enemy enem;
 
 
     private void Start()
-    {        
+    {
+        enem = GetComponent<Enemy>();
         rig = GetComponent<Rigidbody2D>();
         SetDirection();
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (enem.IsAlive())
         {
-            if (isKnockback)
+            if (canMove)
             {
-                velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
-                timer += Time.deltaTime;
-                if (timer > knockbackTime)
+                if (isKnockback)
                 {
-                    timer = 0;
-                    isKnockback = false;
+                    velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
+                    timer += Time.deltaTime;
+                    if (timer > knockbackTime)
+                    {
+                        timer = 0;
+                        isKnockback = false;
+                    }
                 }
+                else
+                    velocity.x = speed * movementDirection * Time.deltaTime;
+                rig.velocity = new Vector2(velocity.x, rig.velocity.y);
             }
             else
-                velocity.x = speed * movementDirection * Time.deltaTime;
-            rig.velocity = new Vector2(velocity.x,rig.velocity.y);
+                rig.velocity = Vector2.zero;
         }
-        else
-            rig.velocity = Vector2.zero;
-
     }
 
 

@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticles;
     protected Rampart rampart;
     private SpriteRenderer sr;
+    private bool isAlive = true;
 
     protected virtual void Start()
     {
@@ -45,7 +46,6 @@ public class Enemy : MonoBehaviour
         tag = "Enemy";
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
-
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -84,21 +84,34 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int bulletDamage, GameObject player)
     {
-        StopCoroutine("FlickerEffect");
-        StartCoroutine("FlickerEffect");
-        health -= bulletDamage;
-        movementBehaviour.KnockBack();
-        if (health <= 0)
+        if (isAlive)
+        {
+            StopCoroutine("FlickerEffect");
+            StartCoroutine("FlickerEffect");
+            health -= bulletDamage;
+            movementBehaviour.KnockBack();
+            if (health <= 0)
+            {
+                isAlive = false;
+            }
+        }
+        else
         {
             if (player)
             {
                 PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
                 playerLevel.AddExperience(experience);
             }
-            Death(this);
-            Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
+            Kill();
         }
-    }    
+
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
+    }
+
     public void Kill()
     {
         Death(this);
