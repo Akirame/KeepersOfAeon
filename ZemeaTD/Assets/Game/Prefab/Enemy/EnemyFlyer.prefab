@@ -248,7 +248,7 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 7
-  health: 15
+  health: 20
   healthMultiplier: 1
   experience: 100
   sprites:

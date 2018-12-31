@@ -51,7 +51,10 @@ public class ItemManager : MonoBehaviour
 
     private void DestroyItem(Item i)
     {
-        aSource.PlayOneShot(i.sound);
+        if (i.consumed)
+        {
+            aSource.PlayOneShot(i.sound);
+        }
         Destroy(i.gameObject);
     }
 

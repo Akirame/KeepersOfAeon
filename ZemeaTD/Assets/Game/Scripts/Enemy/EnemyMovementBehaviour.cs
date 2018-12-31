@@ -26,27 +26,25 @@ public class EnemyMovementBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enem.IsAlive())
+        if (canMove)
         {
-            if (canMove)
+            print(1);
+            if (isKnockback)
             {
-                if (isKnockback)
+                velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
+                timer += Time.deltaTime;
+                if (timer > knockbackTime)
                 {
-                    velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
-                    timer += Time.deltaTime;
-                    if (timer > knockbackTime)
-                    {
-                        timer = 0;
-                        isKnockback = false;
-                    }
+                    timer = 0;
+                    isKnockback = false;
                 }
-                else
-                    velocity.x = speed * movementDirection * Time.deltaTime;
-                rig.velocity = new Vector2(velocity.x, rig.velocity.y);
             }
             else
-                rig.velocity = Vector2.zero;
+                velocity.x = speed * movementDirection * Time.deltaTime;
+            rig.velocity = new Vector2(velocity.x, rig.velocity.y);
         }
+        else
+            rig.velocity = Vector2.zero;
     }
 
 
