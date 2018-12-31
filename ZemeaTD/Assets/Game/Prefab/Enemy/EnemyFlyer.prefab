@@ -248,7 +248,7 @@ MonoBehaviour:
   movementBehaviour: {fileID: 0}
   element: 0
   damage: 7
-  health: 7
+  health: 15
   healthMultiplier: 1
   experience: 100
   sprites:
@@ -275,7 +275,6 @@ MonoBehaviour:
   maxDistanceUpDown: 5
   minDistanceUpDown: 1
   rotateAngle: 5
-  deathTime: 10
   balloonsGroup:
   - {fileID: 114163716524329372}
   - {fileID: 114855048414180132}

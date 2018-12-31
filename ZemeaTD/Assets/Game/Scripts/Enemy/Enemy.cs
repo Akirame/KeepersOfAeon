@@ -93,6 +93,7 @@ public class Enemy : MonoBehaviour
             if (health <= 0)
             {
                 isAlive = false;
+                Kill();
             }
         }
         else
@@ -102,7 +103,6 @@ public class Enemy : MonoBehaviour
                 PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
                 playerLevel.AddExperience(experience);
             }
-            Kill();
         }
 
     }
