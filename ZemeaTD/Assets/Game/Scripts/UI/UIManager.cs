@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public GameObject UIGame;
     public GameObject UIPause;
+    public GameObject UILoadingScreen;
     public GameObject ControlPanel;
     private bool gamePaused = false;
     private float timeScale;
@@ -15,6 +16,11 @@ public class UIManager : MonoBehaviour {
     private void Start() {
         timeScale = Time.timeScale;
         SetAllCanvas(true, false);
+        Time.timeScale = 0;
+        UIGame.SetActive(false);
+        UIPause.SetActive(false);
+        UILoadingScreen.GetComponent<UILoadingScreen>().SetOnGame();
+        UILoadingScreen.SetActive(true);
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape) || (Input.GetButtonDown("Pause")))
@@ -22,6 +28,12 @@ public class UIManager : MonoBehaviour {
                 PauseGame();
             else
                 UnpauseGame();
+        if (Input.GetButtonDown("Select"))
+        {
+            UIGame.SetActive(true);
+            Destroy(UILoadingScreen);
+            Time.timeScale = timeScale;
+        }
     }
     private void PauseGame() {
         Time.timeScale = 0f;
