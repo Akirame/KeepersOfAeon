@@ -4,34 +4,18 @@ public class PopText : MonoBehaviour {
 
     public TextMesh popText;
     public int alphaTime;
-    private Vector3 finalPos;
     private float timer;
-    private TextMesh text;
-    private float alphaDecrementer = 1;
 
     private void Start()
     {
-        popText = GetComponent<TextMesh>();
-        text = GetComponentInChildren<TextMesh>();
-        finalPos.x = Random.Range(-5, 5);
-        finalPos.y = 10;
-        finalPos += transform.position;
+        popText = GetComponentInChildren<TextMesh>();
+        transform.position = transform.position + new Vector3(Random.Range(-5f, 5f),0,0);
     }
 
-    private void Update()
+    public void CreateCriticalText(string text)
     {
-        transform.position = Vector2.MoveTowards(transform.position, finalPos, 1);
-        timer += Time.deltaTime;
-        if (timer > alphaTime)
-        {
-            alphaDecrementer -= Time.deltaTime;
-            text.color = new Color(0, 0, 0, alphaDecrementer);
-            transform.localScale += new Vector3(1.5f, 1.5f, 1.5f) * Time.deltaTime;
-        }
-        if (text.color.a <= 0.1)
-        {
-            DestroyText();
-        }
+        CreateText(text, Color.red);
+        popText.characterSize *= 1.2f;
     }
 
     public void CreateText(string text, Color colorText)

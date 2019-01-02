@@ -131,7 +131,7 @@ public class ElementalProyectile : MonoBehaviour
         go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
         if (critical)
         {
-            go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.red);
+            go.GetComponent<PopText>().CreateCriticalText(bulletDamage.ToString());
 
         }
     }

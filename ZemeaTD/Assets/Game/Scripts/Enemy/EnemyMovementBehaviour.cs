@@ -28,7 +28,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     {
         if (canMove)
         {
-            print(1);
             if (isKnockback)
             {
                 velocity.x = speed / 2 * -movementDirection * Time.deltaTime;
