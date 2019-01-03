@@ -4,12 +4,13 @@ public class PopText : MonoBehaviour {
 
     public TextMesh popText;
     public int alphaTime;
+    public float offsetXPosition = 5f;
     private float timer;
 
     private void Start()
     {
         popText = GetComponentInChildren<TextMesh>();
-        transform.position = transform.position + new Vector3(Random.Range(-5f, 5f),0,0);
+        transform.position = transform.position + new Vector3(Random.Range(-offsetXPosition, offsetXPosition),0,0);
     }
 
     public void CreateCriticalText(string text)
