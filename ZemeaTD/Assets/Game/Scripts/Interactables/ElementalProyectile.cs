@@ -116,7 +116,7 @@ public class ElementalProyectile : MonoBehaviour
         }
         if(collision.tag == "Balloon" && !onGround)
         {
-            collision.GetComponent<Balloon>().TakeDamage(colorType);
+            collision.GetComponent<Balloon>().TakeDamage(colorType,player);
             Destroy(gameObject);
         }
         if(collision.tag == "Ground")
@@ -132,7 +132,6 @@ public class ElementalProyectile : MonoBehaviour
         if (critical)
         {
             go.GetComponent<PopText>().CreateCriticalText(bulletDamage.ToString());
-
         }
     }
 

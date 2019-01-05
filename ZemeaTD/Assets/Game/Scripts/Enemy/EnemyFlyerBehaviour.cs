@@ -17,9 +17,10 @@ public class EnemyFlyerBehaviour : MonoBehaviour
     private float rotation;
     private int dirRotation = 1;
     public List<Balloon> balloonsGroup;
+    private GameObject playerAttacking;
 
     private void Start()
-    {       
+    {
         centerPos = Random.Range(15f, 50f);
         distanceUpDown = Random.Range(minDistanceUpDown, maxDistanceUpDown);
         speedUpDown = Random.Range(minSpeedUpDown, maxSpeedUpDown);
@@ -58,6 +59,7 @@ public class EnemyFlyerBehaviour : MonoBehaviour
     }
     private void BalloonDestroyed(Balloon b)
     {
+        playerAttacking = b.player;
         balloonsGroup.Remove(b);
         Destroy(b.gameObject);
     }
@@ -70,7 +72,7 @@ public class EnemyFlyerBehaviour : MonoBehaviour
             rid.velocity = new Vector2();
             rid.gravityScale = 0;
             onGround = true;
-            GetComponent<Enemy>().Kill();
+            GetComponent<Enemy>().KillByPlayer(playerAttacking);
         }
     }
 }

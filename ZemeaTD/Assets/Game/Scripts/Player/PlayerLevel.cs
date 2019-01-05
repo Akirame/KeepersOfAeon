@@ -38,14 +38,15 @@ public class PlayerLevel : MonoBehaviour
 
     private void SetFlip()
     {
-        bool facingRight = gameObject.GetComponent<CharacterController2D>().lookingRight;                
+        float xScale = Mathf.Abs(levelCanvas.transform.localScale.x);
+        bool facingRight = gameObject.GetComponent<CharacterController2D>().lookingRight;
         if(facingRight)
         {
-            levelCanvas.transform.localScale = new Vector2(0.08f, 0.08f);
+            levelCanvas.transform.localScale = new Vector2(xScale, levelCanvas.transform.localScale.y);
         }
         else
         {
-            levelCanvas.transform.localScale = new Vector2(-0.08f, 0.08f);
+            levelCanvas.transform.localScale = new Vector2(-xScale, levelCanvas.transform.localScale.y);
         }
 
     }

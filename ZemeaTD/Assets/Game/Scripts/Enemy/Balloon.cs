@@ -9,6 +9,7 @@ public class Balloon : MonoBehaviour
     public ColorAttribute.COLOR_TYPE balloonElement;
     public SpriteRenderer sr;
     public Sprite[] sprites;
+    public GameObject player;
 
     private void Start()
     {
@@ -32,8 +33,9 @@ public class Balloon : MonoBehaviour
         //        break;
         //}
     }
-    public void TakeDamage(ColorAttribute.COLOR_TYPE element)
+    public void TakeDamage(ColorAttribute.COLOR_TYPE element, GameObject _player)
     {
+        player = _player;
         if(element == balloonElement)
             onDeath(this);
     }

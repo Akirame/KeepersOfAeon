@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347248784181244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -94.82884, y: 17.42763, z: -0.734375}
+  m_LocalPosition: {x: -103.5, y: 26.666859, z: -0.734375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4690396434028570}
@@ -234,6 +234,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 92b164bb4e1ce944488c11bdc1b66233, type: 3}
   - {fileID: 21300000, guid: 4cd5017ae94146846a43609a5ac2610f, type: 3}
   - {fileID: 21300000, guid: bf41d1a7bbb5b3649b1569f8d9445e88, type: 3}
+  player: {fileID: 0}
 --- !u!114 &114207528155512960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,6 +258,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 93ea97ac71bbf3b42a955f78371f7b94, type: 3}
   - {fileID: 21300000, guid: 29a485a1b33b75e4f9cf5076cbca6a4d, type: 3}
   deathParticles: {fileID: 1556593431079730, guid: 036bb481f39c9d84fbd578bcbb91e93a,
+    type: 2}
+  expParticles: {fileID: 1350733238902194, guid: 980c466a6c165ca449cbdbbf4bf5907b,
     type: 2}
   timeToAttack: 2
 --- !u!114 &114349914651108044
@@ -310,6 +313,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 92b164bb4e1ce944488c11bdc1b66233, type: 3}
   - {fileID: 21300000, guid: 4cd5017ae94146846a43609a5ac2610f, type: 3}
   - {fileID: 21300000, guid: bf41d1a7bbb5b3649b1569f8d9445e88, type: 3}
+  player: {fileID: 0}
 --- !u!212 &212117244216248810
 SpriteRenderer:
   m_ObjectHideFlags: 1

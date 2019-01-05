@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public int experience = 50;
     public Sprite[] sprites;
     public GameObject deathParticles;
+    public GameObject expParticles;
     protected Rampart rampart;
     private SpriteRenderer sr;
     private bool isAlive = true;
@@ -71,7 +72,7 @@ public class Enemy : MonoBehaviour
         {
             if (i % 2 == 0)
             {
-               sr.material.SetFloat("_FlashAmount", 0.7f);
+                sr.material.SetFloat("_FlashAmount", 0.7f);
             }
             else
             {
@@ -92,24 +93,24 @@ public class Enemy : MonoBehaviour
             movementBehaviour.KnockBack();
             if (health <= 0)
             {
-                isAlive = false;
-                Kill();
+                KillByPlayer(player);
             }
         }
-        else
-        {
-            if (player)
-            {
-                PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
-                playerLevel.AddExperience(experience);
-            }
-        }
-
     }
 
     public bool IsAlive()
     {
         return isAlive;
+    }
+
+    public void KillByPlayer(GameObject player)
+    {
+        PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
+        playerLevel.AddExperience(experience);
+        GameObject ep = Instantiate(expParticles, transform.position, Quaternion.identity, transform.parent);
+        ep.GetComponent<ExpParticles>().target = player.transform;
+        Death(this);
+        Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
     }
 
     public void Kill()

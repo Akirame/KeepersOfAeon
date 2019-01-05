@@ -210,7 +210,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7d578e3e3084dd54fa0fd2fb7149e137, type: 3}
   deathParticles: {fileID: 1556593431079730, guid: 036bb481f39c9d84fbd578bcbb91e93a,
     type: 2}
-  sr: {fileID: 0}
+  expParticles: {fileID: 1350733238902194, guid: 980c466a6c165ca449cbdbbf4bf5907b,
+    type: 2}
   timeToAttack: 2
   detector: {fileID: 114271218249390874}
   bullet: {fileID: 114058871533682056, guid: 8819a96739fe36746b2b0b7a86d5226a, type: 2}
