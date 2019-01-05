@@ -147,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
     {
         Vector2 minSpriteSize = new Vector2(0, -spriteRend.size.y / 2);
         Vector2 floorContact = (Vector2)transform.position + minSpriteSize;
-        RaycastHit2D hit = Physics2D.Raycast(floorContact, Vector2.down, 2f, floorLayer);                
+        RaycastHit2D hit = Physics2D.Raycast(floorContact, Vector2.down, 3f, floorLayer);
         if (hit)
         {
             if(hit.transform.gameObject.tag == "OneWay" && (Input.GetAxis(inputControl.axisY) + Input.GetAxis(inputControl.axisYKey) > 0) && Input.GetButtonDown(inputControl.jump))
@@ -209,13 +209,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void SetFacingRight(bool faceRight)
     {
+        float xScale = Mathf.Abs(transform.localScale.x);
         if (faceRight)
         {
-            transform.localScale = new Vector2(0.8f, transform.localScale.y);
+            transform.localScale = new Vector2(xScale, transform.localScale.y);
         }
         else
         {
-            transform.localScale = new Vector2(-0.8f, transform.localScale.y);
+            transform.localScale = new Vector2(-xScale, transform.localScale.y);
         }
         lookingRight = faceRight;
     }

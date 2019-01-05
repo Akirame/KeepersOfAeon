@@ -16,7 +16,7 @@ public class ExpParticles : MonoBehaviour {
         print(_attractorTransform.transform.position);
     }
 
-    public void LateUpdate()
+    private void Update()
     {
         if (_particleSystem.isPlaying)
         {
@@ -29,6 +29,11 @@ public class ExpParticles : MonoBehaviour {
             }
             _particleSystem.SetParticles(_particles, length);
         }
+    }
+
+    public void LateUpdate()
+    {
+
 
     }
 }
