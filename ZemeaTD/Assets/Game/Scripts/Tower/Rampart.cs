@@ -10,13 +10,13 @@ public class Rampart : MonoBehaviour
     public float healthPerSecond;
     public Image shieldBar;
     public ParticleSystem[] shieldParticles;
-    private CircleCollider2D coll;
+    private CapsuleCollider2D coll;
     private bool activateCollision = false;
     private bool canBeHurt = true;
 
 	void Start ()
     {        
-        coll = GetComponent<CircleCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
         Item.InvulnerableConsume += ShieldInvulnerable;
 	}
 
@@ -86,7 +86,7 @@ public class Rampart : MonoBehaviour
         {
             if (!collision.GetComponent<EnemyRanged>())
             {
-                Attacked(collision.GetComponent<Enemy>().damage);                
+                Attacked(collision.GetComponent<Enemy>().damage);
             }
         }
         if (collision.gameObject.tag == "EnemyBullet")
