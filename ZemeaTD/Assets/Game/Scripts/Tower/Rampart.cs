@@ -91,7 +91,7 @@ public class Rampart : MonoBehaviour
         }
         if (collision.gameObject.tag == "EnemyBullet")
         {
-            Attacked(collision.GetComponent<Bullet>().GetDamage());
+            Attacked(collision.GetComponent<EnemyBullet>().GetDamage());
         }
     }
 

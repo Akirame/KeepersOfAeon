@@ -6,7 +6,7 @@ public class EnemyRanged : Enemy
 {
     public float timeToAttack;
     public RangeDetector detector;
-    public Bullet bullet;
+    public EnemyBullet bullet;
     private float timer;
     private bool isAttacking;
     private float throwOffset = 20f;
@@ -59,11 +59,8 @@ public class EnemyRanged : Enemy
     private void Attack()
     {
         GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
-
         Vector2 bulletDirection = rampart.transform.position - transform.position + new Vector3(0, UnityEngine.Random.Range(0,throwOffset));
-        b.GetComponent<Bullet>().SetDamage(damage);
-        b.GetComponent<Bullet>().SetType(Bullet.TypeOf.Enemy);
-        b.GetComponent<Bullet>().Shoot(bulletDirection.normalized);
+        b.GetComponent<EnemyBullet>().Shoot(bulletDirection.normalized, damage);
         timer = 0;
     }
 
