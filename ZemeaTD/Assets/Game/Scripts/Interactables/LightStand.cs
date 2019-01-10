@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightBehaviour :MonoBehaviour
+public class LightStand :MonoBehaviour
 {
 
-    public delegate void LightAction(LightBehaviour l);
+    public delegate void LightAction(LightStand l);
     public static LightAction LightFinished;
 
     private bool lightOn = false;
@@ -77,7 +77,7 @@ public class LightBehaviour :MonoBehaviour
         lightValue = maxLight * 2;
     }
 
-    private void ActivateLightAfterTutorial(Target t)
+    private void ActivateLightAfterTutorial(TutorialTarget t)
     {
         inTutorial = false;
     }

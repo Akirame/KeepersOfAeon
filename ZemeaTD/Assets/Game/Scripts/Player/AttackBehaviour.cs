@@ -125,7 +125,7 @@ public class AttackBehaviour : MonoBehaviour {
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
         CalculatePlayerDamage();
-        b.GetComponent<ElementalProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack);
+        b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack);
         timer = 0;
         PlayRandomSound();
     }

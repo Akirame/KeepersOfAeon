@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour {
+public class TutorialTarget : MonoBehaviour {
 
     public WaveControl waveControl;
     public GameObject tutorial;
@@ -22,7 +22,7 @@ public class Target : MonoBehaviour {
     {
         if (collision.tag == "Bullet")
         {
-            if(CheckColor(collision.GetComponent<ElementalProyectile>().colorType))
+            if(CheckColor(collision.GetComponent<ColorProyectile>().colorType))
             {
                 hitConta++;
                 RandomColor();

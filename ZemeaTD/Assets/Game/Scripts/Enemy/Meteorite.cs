@@ -83,7 +83,7 @@ public class Meteorite : MonoBehaviour {
         }
         if (collision.tag == "Bullet")
         {
-            TakeDamage(collision.GetComponent<ElementalProyectile>().GetDamage());
+            TakeDamage(collision.GetComponent<ColorProyectile>().GetDamage());
             Destroy(collision.gameObject);
         }
         if (collision.tag == "Tower")

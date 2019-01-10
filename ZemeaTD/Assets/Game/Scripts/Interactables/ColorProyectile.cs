@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalProyectile : MonoBehaviour
+public class ColorProyectile : MonoBehaviour
 {
     public ColorAttribute.COLOR_TYPE colorType;
     public float speed = 100f;

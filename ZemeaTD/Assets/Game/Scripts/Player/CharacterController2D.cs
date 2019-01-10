@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };    
+    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };
     public CharacterData playerData;
     public PLAYER_STATES currentState;
     public LayerMask floorLayer;
@@ -106,10 +106,6 @@ public class CharacterController2D : MonoBehaviour
                 {
                     currentState = PLAYER_STATES.Idle;
                 }
-                break;
-            case PLAYER_STATES.Attack:
-                break;
-            case PLAYER_STATES.OnAction:
                 break;
             default:
                 break;

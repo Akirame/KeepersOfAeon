@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
     {
         loader = LoaderManager.Get();
         Tower.TowerDestroyed += GameOver;
-        LightBehaviour.LightFinished += GameWon;
+        LightStand.LightFinished += GameWon;
         if (DebugScreen.GetInstance())
         {
             DebugScreen.GetInstance().AddButton("ResetGameScene", ResetGame);
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         tutorialDone = true;
     }
 
-    private void GameWon(LightBehaviour l)
+    private void GameWon(LightStand l)
     {
         winGame = true;
         loader.LoadScene("FinalScreen");
