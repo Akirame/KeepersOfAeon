@@ -19,6 +19,7 @@ TagManager:
   - Explosion
   - OneWay
   - EnemyManager
+  - Balloon
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - ElementalOrb
   - Player
   - ElementalArcanum
-  - 
+  - FakeGround
   - 
   - 
   - 
