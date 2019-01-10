@@ -8,8 +8,7 @@ public class ItemManager : MonoBehaviour
 
     public Item[] items;
     public float spawnTime = 5f;
-    public float height = 1;
-    public float width = 1;
+    private RectTransform rectTransform;
     private float timer = 0;
     private bool canSpawnItems = false;
     private AudioSource aSource;
@@ -19,6 +18,8 @@ public class ItemManager : MonoBehaviour
         Item.ItemConsumed += DestroyItem;
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
+        rectTransform = GetComponent<RectTransform>();
+
     }
 
     private void Update()
@@ -60,7 +61,9 @@ public class ItemManager : MonoBehaviour
 
     private void SpawnItem()
     {
-        Vector3 newPos = new Vector3(UnityEngine.Random.Range(-width/2, width/2), UnityEngine.Random.Range(-height/2, height/2),1);
+        float halfRectWidth = rectTransform.rect.width / 2;
+        float halfRectHeight = rectTransform.rect.height / 2;
+        Vector3 newPos = new Vector3(UnityEngine.Random.Range(-halfRectWidth, halfRectWidth), UnityEngine.Random.Range(-halfRectHeight, halfRectHeight),1);
         Vector3 finalPos = transform.position + newPos;
         Instantiate(items[UnityEngine.Random.Range(0, items.Length)].gameObject, finalPos,Quaternion.identity,transform);
     }

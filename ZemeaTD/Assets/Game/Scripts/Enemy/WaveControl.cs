@@ -22,51 +22,59 @@ public class WaveControl : MonoBehaviour
     }
     #endregion
     public delegate void WaveControlActions(WaveControl wc);
-    public static WaveControlActions HordeIncoming;    
-    public Enemy[] enemyPrefab;
-    public Transform[] spawnPoints;
-    public GameObject enemiesParent;
-    public Text waveTimeText;
+    public static WaveControlActions HordeIncoming;
 
+    [Header("-Current wave-")]
+    public int currentWave;
+
+    [Header("-Enemy List-")]
+    public Enemy[] enemyPrefab;
+    private List<int> hordeWave;
+    private List<GameObject> enemyList;
+    private List<int> enemyTypeList;
+    private GameObject enemiesParent;
+
+    [Header("-Spawn Point List-")]
+    public Transform[] spawnPoints;
+    private int currentSpawnPoint = 0;
+
+    [Header("-Enemy Count For Wave-")]
     public int meleeCount;
     public int rangeCount;
     public int flyCount;
     public int enemyCount;
+    public int totalEnemyCount;
+    public int enemyIncrementFactor = 2;
 
-    public int currentWave;
+    [Header("-Wave Timers-")]
     public int timeBetweenWaves;
     public float timeBetweenEnemies;
-
-    public GameObject miniBoss;
-    public int waveMiniBoss;
-
-    public int enemyIncrementFactor = 2;
-    public int totalEnemyCount;
     public int timeForFirstWave = 30;
-    public bool gameStarted = false;
-    private List<GameObject> enemyList;
-    private List<int> enemyTypeList;
     private float timerWaves;
     private float timerEnemies;
-    private bool canSpawn = false;
 
-    public float hordeTime = 10f;
+    [Header("-Boss Vars-")]
+    public GameObject[] bossList;
+    public int waveMiniBoss;
+
+    [Header("-Hard Round Vars-")]
     public float percentHordeSpawnRate = 5f;
-    private List<int> hordeWave;
-
-    public GameObject meteorite;
-
-    private float chanceOfHardRound;
     public float initialChanceOfHardRound = 0.2f;
+    public GameObject meteorite;
+    private float chanceOfHardRound;
 
-    private int currentSpawnPoint = 0;
-
+    [Header("-Misc Vars-")]
+    public bool gameStarted = false;
+    public Text waveTimeText;
     public AudioClip hordeSound;
+    private bool canSpawn = false;
     private AudioSource aSource;
+
 
     // Use this for initialization
     void Start()
     {
+        enemiesParent = GameObject.Find("Enemies");
         enemyTypeList = new List<int>();
         hordeWave = new List<int>();
         enemyList = new List<GameObject>();
@@ -149,7 +157,7 @@ public class WaveControl : MonoBehaviour
     {
         CleanWave();
         SpawnWave();
-        TrySpawnMiniBoss();
+        TrySpawnBoss();
         timerWaves = timeBetweenWaves;
     }
 
@@ -168,12 +176,12 @@ public class WaveControl : MonoBehaviour
         StartCoroutine(SpawnHorde());
     }
 
-    private void TrySpawnMiniBoss()
+    private void TrySpawnBoss()
     {
         if (currentWave % waveMiniBoss == 0)
         {
             Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-            GameObject enemy = Instantiate(miniBoss, t.position + new Vector3(0, 20, 0), Quaternion.identity, enemiesParent.transform);
+            GameObject enemy = Instantiate(bossList[UnityEngine.Random.Range(0,bossList.Length)], t.position + new Vector3(0, 20, 0), Quaternion.identity, enemiesParent.transform);
             enemyList.Add(enemy);
         }
     }

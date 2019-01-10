@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4336586198399672}
   m_Layer: 0
-  m_Name: Balcony1
+  m_Name: Balcony
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

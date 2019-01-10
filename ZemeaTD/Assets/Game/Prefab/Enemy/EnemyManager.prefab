@@ -154,7 +154,9 @@ MonoBehaviour:
   currentWave: 0
   timeBetweenWaves: 5
   timeBetweenEnemies: 1.5
-  miniBoss: {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 2}
+  bossList:
+  - {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 2}
+  - {fileID: 1694321192491562, guid: 901e470210680a846b1e2cc9dc650d05, type: 2}
   waveMiniBoss: 5
   enemyIncrementFactor: 2
   totalEnemyCount: 0
@@ -164,4 +166,4 @@ MonoBehaviour:
   percentHordeSpawnRate: 5
   meteorite: {fileID: 1778556972971096, guid: 06002bc78aeaeb346a3cbbaab39396fb, type: 2}
   initialChanceOfHardRound: 0.9
-  hardRoundIncrementFactor: 0.1
+  hordeSound: {fileID: 0}
