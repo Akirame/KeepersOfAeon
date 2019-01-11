@@ -7,6 +7,7 @@ public class Item : MonoBehaviour {
     public static ItemActions InvulnerableConsume;
     public static ItemActions RalenticeConsume;
     public static ItemActions ItemConsumed;
+    public static ItemActions ChickenConsumed;
     public float lifeTime = 8;
     public AudioClip sound;
     public bool consumed = false;
@@ -16,6 +17,7 @@ public class Item : MonoBehaviour {
     {
       InvulnerableShield,
       RalenticeEnemies,
+      Chicken,
     }
     public TypeOfItem itemType;
 
@@ -27,7 +29,7 @@ public class Item : MonoBehaviour {
             ItemConsumed(this);
     }
     protected  void ConsumeItem()
-    {
+    {        
         switch(itemType)
         {
             case TypeOfItem.InvulnerableShield:
@@ -35,6 +37,9 @@ public class Item : MonoBehaviour {
                 break;
             case TypeOfItem.RalenticeEnemies:
                 RalenticeConsume(this);
+                break;
+            case TypeOfItem.Chicken:
+                ChickenConsumed(this);                
                 break;
         }
         consumed = true;

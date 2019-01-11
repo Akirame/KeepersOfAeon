@@ -61,10 +61,16 @@ public class ItemManager : MonoBehaviour
 
     private void SpawnItem()
     {
-        float halfRectWidth = rectTransform.rect.width / 2;
-        float halfRectHeight = rectTransform.rect.height / 2;
-        Vector3 newPos = new Vector3(UnityEngine.Random.Range(-halfRectWidth, halfRectWidth), UnityEngine.Random.Range(-halfRectHeight, halfRectHeight),1);
-        Vector3 finalPos = transform.position + newPos;
-        Instantiate(items[UnityEngine.Random.Range(0, items.Length)].gameObject, finalPos,Quaternion.identity,transform);
+        int randomItemIndex = UnityEngine.Random.Range(0, items.Length);
+        int iterations;
+        iterations = randomItemIndex == items.Length - 1 ? 2 : 1;
+        for(int i = 0; i < iterations; i++)
+        {
+            float halfRectWidth = rectTransform.rect.width / 2;
+            float halfRectHeight = rectTransform.rect.height / 2;
+            Vector3 newPos = new Vector3(UnityEngine.Random.Range(-halfRectWidth, halfRectWidth), UnityEngine.Random.Range(-halfRectHeight, halfRectHeight), 1);
+            Vector3 finalPos = transform.position + newPos;
+            Instantiate(items[randomItemIndex].gameObject, finalPos, Quaternion.identity, transform);
+        }
     }
 }

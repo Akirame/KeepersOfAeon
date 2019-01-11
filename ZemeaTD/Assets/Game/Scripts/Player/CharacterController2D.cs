@@ -10,6 +10,7 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask floorLayer;
     public InputControl inputControl;
     public SpriteRenderer spriteRend;
+    public Sprite[] sprites;
     public bool canJump = true;
     public bool dobleJump = false;
     public bool lookingRight;
@@ -22,6 +23,11 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 movement;
     private float changuiTime = 0.162f;
     private float timerChangui;
+    private float timer = 0;
+    private float chickenTimer = 7.6666666f;
+    private bool chickenOn = false;
+    public AudioClip chickenSound;
+    private AudioSource aSource;
 
     private void Start()
     {
@@ -34,12 +40,31 @@ public class CharacterController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         lookingRight = true;
         psDust.Stop();
+        Item.ChickenConsumed += TurnIntoChicken;
+        aSource = GetComponent<AudioSource>();
+        AudioManager.Get().AddSound(aSource);
     }
-
+    private void OnDestroy()
+    {
+        Item.ChickenConsumed -= TurnIntoChicken;
+    }
     private void Update()
     {
         StateController();
         StateBehaviour();
+        if(chickenOn)
+        {
+            if(timer < chickenTimer)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                chickenOn = false;
+                spriteRend.sprite = sprites[0];
+                timer = 0;
+            }
+        }
     }
 
     public void StateBehaviour()
@@ -191,7 +216,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void SetAttackMode(bool val)
     {
-        if (val)
+        if (val && !chickenOn)
         {
             currentState = PLAYER_STATES.Attack;
             GetComponent<AttackBehaviour>().SetVisibilityCrosshair(true);
@@ -216,5 +241,12 @@ public class CharacterController2D : MonoBehaviour
         }
         lookingRight = faceRight;
     }
-
+    public void TurnIntoChicken(Item item)
+    {        
+        spriteRend.sprite = sprites[1];
+        if(currentState == PLAYER_STATES.Attack)
+        SetAttackMode(false);
+        chickenOn = true;
+        aSource.PlayOneShot(chickenSound);
+    }
 }
