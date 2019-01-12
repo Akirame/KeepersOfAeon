@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public enum PLAYER_STATES { Idle, Running, Jump, Attack, OnAction };
-    public CharacterData playerData;
+    public enum PLAYER_STATES { Idle, Running, Jump, Attack};
+    [Header("Player State")]
     public PLAYER_STATES currentState;
-    public LayerMask floorLayer;
+
+    [Header("Player Data")]
+    public CharacterData playerData;
     public InputControl inputControl;
-    public SpriteRenderer spriteRend;
-    public Sprite[] sprites;
+
+    [Header("Movement Vars")]
     public bool canJump = true;
     public bool dobleJump = false;
     public bool lookingRight;
+
+    [Header("Misc Vars")]
+    public Sprite[] sprites;
+    public LayerMask floorLayer;
     public ParticleSystem psDust;
+    public AudioClip chickenSound;
+
+    private SpriteRenderer spriteRend;
     private bool canMove = true;
     private bool onFloor = false;
     private Rigidbody2D rig;
@@ -26,7 +35,6 @@ public class CharacterController2D : MonoBehaviour
     private float timer = 0;
     private float chickenTimer = 7.6666666f;
     private bool chickenOn = false;
-    public AudioClip chickenSound;
     private AudioSource aSource;
 
     private void Start()
@@ -34,6 +42,7 @@ public class CharacterController2D : MonoBehaviour
         var playerData2 = Instantiate(playerData);
         playerData = playerData2;
         rig = GetComponent<Rigidbody2D>();
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
         SetAttackMode(false);
         inputControl = GetComponent<InputControl>();
         attackComponent = GetComponent<AttackBehaviour>();

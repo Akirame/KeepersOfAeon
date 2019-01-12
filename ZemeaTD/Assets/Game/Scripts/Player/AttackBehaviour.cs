@@ -5,17 +5,27 @@ using UnityEngine;
 
 public class AttackBehaviour : MonoBehaviour {
 
+    [Header("Angle Vars")]
     public float maxAngleAttack = 65f; 
     public float angleAttackSpeed = 120f;
-    public GameObject crosshair;
-    public GameObject bullet;
+
+    [Header("Crosshair Vars")]
     public Transform crossPos;
-    public ColorAttribute colorOrb;
+    public GameObject crosshair;
+
+    [Header("Attack Speed Vars")]
     public float timeBetweenAttacks = 0.2f;
     public float minAttackSpeed = 0.01f;
+
+    [Header("Color Attribute Vars")]
+    public ColorAttribute colorOrb;
     public ColorAttribute currentColor;
+
+    [Header("Misc Vars")]
     public Sprite[] aimSprites;
     public AudioClip[] audioClips;
+    public GameObject bullet;
+
     private AudioSource aSource;
     private Vector3 angleAttack;
     private InputControl inputPlayer;
