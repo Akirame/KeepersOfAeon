@@ -100,7 +100,6 @@ public class Meteorite : MonoBehaviour {
         {
             GameManager.Get().player1Level.AddExperience(experience);
             GameManager.Get().player2Level.AddExperience(experience);
-
             Destroy(gameObject);
         }
     }

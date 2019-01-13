@@ -15,8 +15,9 @@ public class LightStand :MonoBehaviour
     public float lightValue = 0f;
     public float lightPerSecond = 0.3f;
     public float maxLight = 100;
-    public ParticleSystem particles;
     public UILight LightUICanvas;
+    private ParticleSystem particles;
+    private ParticleSystem.EmissionModule em;
 
     private void Start()
     {
@@ -26,6 +27,8 @@ public class LightStand :MonoBehaviour
         }
         LightUICanvas.maxLightValue = maxLight;
         playerList = new List<GameObject>();
+        particles = GetComponentInChildren<ParticleSystem>();
+        em = particles.emission;
     }
 
     private void Update()
@@ -56,6 +59,7 @@ public class LightStand :MonoBehaviour
             if(!particles.isEmitting)
                 particles.Play();
             lightValue += lightPerSecond * Time.deltaTime;
+            em.rateOverTime = (int)lightValue;
             LightUICanvas.UpdateTexts(lightValue);
         }
     }

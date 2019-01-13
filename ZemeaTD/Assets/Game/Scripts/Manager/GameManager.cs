@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
         }
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddMusic(aSource);
+        player1Level = GameObject.Find("Player1").GetComponent<PlayerLevel>();
+        player2Level = GameObject.Find("Player2").GetComponent<PlayerLevel>();
     }
 
     private void ResetGame()
