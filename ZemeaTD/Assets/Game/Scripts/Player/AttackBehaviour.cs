@@ -30,7 +30,7 @@ public class AttackBehaviour : MonoBehaviour {
     private Vector3 angleAttack;
     private InputControl inputPlayer;
     private GameObject bulletsContainer;
-    private int playerDamage;
+    public int playerDamage;
     private float timer;
     private CharacterController2D player;
     private float rAxis = 0f;
@@ -39,6 +39,11 @@ public class AttackBehaviour : MonoBehaviour {
     private bool shooted = false;
     private float criticalChance;
     private bool criticalAttack;
+    public enum TypeOfShoot { Normal,MachineGun,ChargeShot};
+
+    public TypeOfShoot shootType = TypeOfShoot.Normal;
+    private float chargeShotMax = 5f;
+    private float chargeShotCounter = 1f;
 
     private void Start()
     {
@@ -111,10 +116,35 @@ public class AttackBehaviour : MonoBehaviour {
 
         CalculateAttackSpeed();
 
-        if (Input.GetButton(inputPlayer.attackButton) && !shooted)
+        switch(shootType)
         {
-            Shoot();
-        }
+            case TypeOfShoot.Normal:
+                if(Input.GetButtonDown(inputPlayer.attackButton) && !shooted)
+                {
+                    Shoot();
+                }
+                break;
+            case TypeOfShoot.MachineGun:
+                if(Input.GetButton(inputPlayer.attackButton) && !shooted)
+                {
+                    Shoot();
+                }
+                break;
+            case TypeOfShoot.ChargeShot:
+                if(Input.GetButton(inputPlayer.attackButton) && !shooted)
+                {
+                    if(chargeShotCounter < chargeShotMax)
+                        chargeShotCounter += 0.50f * Time.deltaTime;
+                    else
+                        chargeShotCounter = chargeShotMax;
+                }
+                else if(Input.GetButtonUp(inputPlayer.attackButton) && !shooted)
+                {                    
+                        Shoot();
+                        chargeShotCounter = 1f;
+                }
+                break;
+        }   
 
         if (shooted)
         {
@@ -134,7 +164,7 @@ public class AttackBehaviour : MonoBehaviour {
         shooted = true;
         GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
         Vector2 bulletDirection = crossPos.position - transform.position;
-        CalculatePlayerDamage();
+        CalculatePlayerDamage();        
         b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack);
         timer = 0;
         PlayRandomSound();
@@ -148,7 +178,10 @@ public class AttackBehaviour : MonoBehaviour {
 
     private void CalculatePlayerDamage()
     {
-        playerDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
+        if(shootType == TypeOfShoot.ChargeShot)
+            playerDamage = (int)(10 * chargeShotCounter);
+        else
+            playerDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
         float chance = UnityEngine.Random.Range(0f, 1f);
         if (criticalChance > chance)
         {
