@@ -41,9 +41,12 @@ public class AttackBehaviour : MonoBehaviour {
     private bool criticalAttack;
     public enum TypeOfShoot { Normal,MachineGun,ChargeShot};
 
+    [Header("Weapons Modifier")]
     public TypeOfShoot shootType = TypeOfShoot.Normal;
-    private float chargeShotMax = 5f;
-    private float chargeShotCounter = 1f;
+    public float chargeShotMax = 5f;
+    public float chargeShotCounter = 1f;
+    public bool penetratingBullets = false;
+    public int shootQuantity = 1;
 
     private void Start()
     {
@@ -162,11 +165,16 @@ public class AttackBehaviour : MonoBehaviour {
     {
         criticalAttack = false;
         shooted = true;
-        GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
-        Vector2 bulletDirection = crossPos.position - transform.position;
-        CalculatePlayerDamage();        
-        b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack);
-        timer = 0;
+        CalculatePlayerDamage();
+        for(int i = 0; i < shootQuantity; i++)
+        {
+            Debug.Log("holi");
+            GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
+            Vector2 bulletDirection = crossPos.position - transform.position;
+            bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
+            b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBullets);
+        }
+        timer = 0; 
         PlayRandomSound();
     }
 

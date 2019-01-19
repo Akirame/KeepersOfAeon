@@ -21,7 +21,8 @@ public class ColorProyectile : MonoBehaviour
     private Animator anim;
     private float lifeTimer;
     private bool critical;
-    
+    private bool penetrating;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -89,7 +90,7 @@ public class ColorProyectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player, bool _critical)
+    public void Shoot(Vector2 dir, int _damage, ColorAttribute.COLOR_TYPE _element, GameObject _player, bool _critical,bool penetrate)
     {
         direction = dir;
         damage = _damage;
@@ -97,6 +98,7 @@ public class ColorProyectile : MonoBehaviour
         player = _player;
         rigid.velocity = direction * speed;
         critical = _critical;
+        penetrating = penetrate;
         UpdateColor();
     }
 
@@ -112,11 +114,13 @@ public class ColorProyectile : MonoBehaviour
             damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().element);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
+            if(!penetrating)
             Destroy(gameObject);
         }
         if(collision.tag == "Balloon" && !onGround)
         {
             collision.GetComponent<Balloon>().TakeDamage(colorType,player);
+            if(!penetrating)
             Destroy(gameObject);
         }
         if(collision.tag == "Ground")
