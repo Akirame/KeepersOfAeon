@@ -9846,6 +9846,11 @@ Prefab:
       propertyPath: chickenSound
       value: 
       objectReference: {fileID: 8300000, guid: ff3713b527592f644bdeafe9b583fee0, type: 3}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: shootType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0

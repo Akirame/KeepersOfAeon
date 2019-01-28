@@ -168,7 +168,6 @@ public class AttackBehaviour : MonoBehaviour {
         CalculatePlayerDamage();
         for(int i = 0; i < shootQuantity; i++)
         {
-            Debug.Log("holi");
             GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
             bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
@@ -186,16 +185,28 @@ public class AttackBehaviour : MonoBehaviour {
 
     private void CalculatePlayerDamage()
     {
-        if(shootType == TypeOfShoot.ChargeShot)
-            playerDamage = (int)(10 * chargeShotCounter);
-        else
-            playerDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
+        int baseDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
+        playerDamage = baseDamage * ChargeShootMultiplier() * CriticalMultiplier();
+    }
+
+    private int CriticalMultiplier()
+    {
         float chance = UnityEngine.Random.Range(0f, 1f);
+        int criticalMultiplier = 1;
         if (criticalChance > chance)
         {
-            playerDamage *= 2;
+            criticalMultiplier = 2;
             criticalAttack = true;
         }
+        return criticalMultiplier;
+    }
+
+    private int ChargeShootMultiplier()
+    {
+        int multiplier = 1;
+        if (shootType == TypeOfShoot.ChargeShot)
+            multiplier = (int)chargeShotCounter;
+        return multiplier;
     }
 
     private void CalculateAttackSpeed()
