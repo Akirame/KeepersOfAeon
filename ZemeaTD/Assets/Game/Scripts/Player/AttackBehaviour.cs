@@ -5,17 +5,24 @@ using UnityEngine;
 
 public class AttackBehaviour : MonoBehaviour {
 
-    [Header("Angle Vars")]
-    public float maxAngleAttack = 65f; 
+
+    [Header("Attack Vars")]
+    public float timeBetweenAttacks = 0.2f;
+    public float minAttackSpeed = 0.01f;
+    public int playerDamage;
+    public float maxAngleAttack = 65f;
     public float angleAttackSpeed = 120f;
+    public GameObject bullet;
+    private Vector3 angleAttack;
+    private GameObject bulletsContainer;
+    private bool shooted = false;
+    private float criticalChance;
+    private bool criticalAttack;
+
 
     [Header("Crosshair Vars")]
     public Transform crossPos;
     public GameObject crosshair;
-
-    [Header("Attack Speed Vars")]
-    public float timeBetweenAttacks = 0.2f;
-    public float minAttackSpeed = 0.01f;
 
     [Header("Color Attribute Vars")]
     public ColorAttribute colorOrb;
@@ -24,21 +31,16 @@ public class AttackBehaviour : MonoBehaviour {
     [Header("Misc Vars")]
     public Sprite[] aimSprites;
     public AudioClip[] audioClips;
-    public GameObject bullet;
-
     private AudioSource aSource;
-    private Vector3 angleAttack;
-    private InputControl inputPlayer;
-    private GameObject bulletsContainer;
-    public int playerDamage;
     private float timer;
+
+    [Header("Controllers Vars")]
+    private InputControl inputPlayer;
     private CharacterController2D player;
     private float rAxis = 0f;
     private float lAxis = 0f;
     private bool triggerTouched = false;
-    private bool shooted = false;
-    private float criticalChance;
-    private bool criticalAttack;
+
     public enum TypeOfShoot { Normal,MachineGun,ChargeShot};
 
     [Header("Weapons Modifier")]
@@ -47,6 +49,12 @@ public class AttackBehaviour : MonoBehaviour {
     public float chargeShotCounter = 1f;
     public bool penetratingBullets = false;
     public int shootQuantity = 1;
+
+    [Header("Item Modifier")]
+    public float lifetimeItemDamageBonus;
+    public int itemDamageBonus = 1;
+    private bool doubleDamage = false;
+    private float itemDamageBonusTimer;
 
     private void Start()
     {
@@ -57,7 +65,11 @@ public class AttackBehaviour : MonoBehaviour {
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
         criticalChance = player.playerData.criticalChance;
+        Item.DamageConsumed += GetDoubleDamage;
     }
+
+
+
     private void Update()
     {
         rAxis = Input.GetAxis(inputPlayer.RTrigger);
@@ -77,6 +89,18 @@ public class AttackBehaviour : MonoBehaviour {
         }
         if(lAxis == 0f && rAxis == 0f)
             triggerTouched = false;
+
+        if (doubleDamage)
+        {
+            itemDamageBonusTimer += Time.deltaTime;
+            if (itemDamageBonusTimer >= lifetimeItemDamageBonus)
+            {
+                itemDamageBonusTimer = 0;
+                doubleDamage = false;
+                itemDamageBonus = 1;
+            }
+        }
+
     }
 
     public void AttackControl()
@@ -186,7 +210,7 @@ public class AttackBehaviour : MonoBehaviour {
     private void CalculatePlayerDamage()
     {
         int baseDamage = UnityEngine.Random.Range(player.playerData.minDamage, player.playerData.maxDamage);
-        playerDamage = baseDamage * ChargeShootMultiplier() * CriticalMultiplier();
+        playerDamage = baseDamage * ChargeShootMultiplier() * CriticalMultiplier() * itemDamageBonus;
     }
 
     private int CriticalMultiplier()
@@ -256,6 +280,13 @@ public class AttackBehaviour : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    private void GetDoubleDamage(Item i)
+    {
+        itemDamageBonus = 2;
+        doubleDamage = true;
+        itemDamageBonusTimer = 0;
     }
 
 }

@@ -281,6 +281,11 @@ Prefab:
       propertyPath: chickenSound
       value: 
       objectReference: {fileID: 8300000, guid: ff3713b527592f644bdeafe9b583fee0, type: 3}
+    - target: {fileID: 114603955414067010, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: lifetimeItemDamageBonus
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
@@ -4279,6 +4284,7 @@ MonoBehaviour:
   - {fileID: 114249453283745312, guid: fa76c1e82f4728d45b335ba597b794ed, type: 2}
   - {fileID: 114859943621475672, guid: 538e488668f72b242bd3040abaac148c, type: 2}
   - {fileID: 114859943621475672, guid: f8fb731c4048c914cbf644d3a6b19be3, type: 2}
+  - {fileID: 114672158862376938, guid: f2d06aa2a40e1ff42a8077156906456d, type: 2}
   spawnTime: 5
 --- !u!224 &523354798
 RectTransform:
@@ -9850,6 +9856,11 @@ Prefab:
         type: 2}
       propertyPath: shootType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: lifetimeItemDamageBonus
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
