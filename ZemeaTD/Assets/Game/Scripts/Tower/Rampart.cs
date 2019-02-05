@@ -11,12 +11,14 @@ public class Rampart : MonoBehaviour
     public Image shieldBar;
     public ParticleSystem[] shieldParticles;
     private CapsuleCollider2D coll;
+    private Animator anim;
     private bool activateCollision = false;
     private bool canBeHurt = true;
 
 	void Start ()
     {        
         coll = GetComponent<CapsuleCollider2D>();
+        anim = GetComponent<Animator>();
         Item.InvulnerableConsume += ShieldInvulnerable;
 	}
 
@@ -31,7 +33,7 @@ public class Rampart : MonoBehaviour
             Attacked(50);
         }
         shieldBar.fillAmount = (float)shield / maxShield;
-    }    
+    }
     public void Attacked(int damage)
     {
         if(canBeHurt)
@@ -45,18 +47,21 @@ public class Rampart : MonoBehaviour
     {
         return (shield > 0);
     }
+
     IEnumerator CanBeHurtOff()
     {
-        canBeHurt = false;
-        shieldBar.color = Color.yellow;
+        canBeHurt = !canBeHurt;
+        anim.SetBool("invulnerable", !canBeHurt);
         yield return new WaitForSeconds(10);
-        shieldBar.color = Color.white;
-        canBeHurt = true;
+        canBeHurt = !canBeHurt;
+        anim.SetBool("invulnerable", !canBeHurt);
     }
+
     public void ShieldInvulnerable(Item i)
     {
         StartCoroutine(CanBeHurtOff());
     }
+
     private void CheckAlive() {
         if(IsAlive()) {
             if (activateCollision)

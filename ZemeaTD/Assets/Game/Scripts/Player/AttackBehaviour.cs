@@ -68,7 +68,10 @@ public class AttackBehaviour : MonoBehaviour {
         Item.DamageConsumed += GetDoubleDamage;
     }
 
-
+    private void OnDestroy()
+    {
+        Item.DamageConsumed -= GetDoubleDamage;
+    }
 
     private void Update()
     {
