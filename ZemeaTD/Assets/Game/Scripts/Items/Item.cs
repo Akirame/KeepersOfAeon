@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Item : MonoBehaviour {
     public static ItemActions DamageConsumed;
     public float lifeTime = 8;
     public AudioClip sound;
-    public bool consumed = false;
+    private bool consumed = false;
     private float timer = 0;
 
     public enum TypeOfItem
@@ -39,6 +40,7 @@ public class Item : MonoBehaviour {
                 break;
             case TypeOfItem.RalenticeEnemies:
                 RalenticeConsume(this);
+                CreateIceExplosion();
                 break;
             case TypeOfItem.Chicken:
                 ChickenConsumed(this);
@@ -51,9 +53,19 @@ public class Item : MonoBehaviour {
         ItemConsumed(this);
     }
 
+    private void CreateIceExplosion()
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
             ConsumeItem();
+    }
+
+    public bool WasConsumed()
+    {
+        return consumed;
     }
 }

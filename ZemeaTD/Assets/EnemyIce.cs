@@ -37,6 +37,7 @@ public class EnemyIce : MonoBehaviour {
     public void SetOrderingLayer(int l)
     {
         orderingLayer = l;
+        sr.sortingOrder = orderingLayer;
     }
 
     public void Activate(bool v)

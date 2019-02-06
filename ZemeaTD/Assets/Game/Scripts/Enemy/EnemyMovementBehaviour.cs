@@ -15,12 +15,10 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private float timer;
     private int movementDirection;
     private int knockbackForce = 2;
-    private Enemy enem;
 
 
     private void Start()
     {
-        enem = GetComponent<Enemy>();
         rig = GetComponent<Rigidbody2D>();
         SetDirection();
     }

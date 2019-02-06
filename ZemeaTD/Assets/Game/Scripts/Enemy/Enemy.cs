@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
     protected Rampart rampart;
     protected int orderingLayer;
     private SpriteRenderer sr;
-    private bool isAlive = true;
 
     protected virtual void Start()
     {

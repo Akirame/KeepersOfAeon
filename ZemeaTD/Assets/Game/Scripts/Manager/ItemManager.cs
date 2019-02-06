@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour
 
     private void DestroyItem(Item i)
     {
-        if (i.consumed)
+        if (i.WasConsumed())
         {
             aSource.PlayOneShot(i.sound);
         }
