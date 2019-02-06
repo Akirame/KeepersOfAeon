@@ -8,6 +8,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public Vector2 velocity = new Vector2();
     public float speed = 200;
     public float knockbackTime = 0.2f;
+    public EnemyIce ice;
     private bool isKnockback = false;
     private bool canMove = true;
     private Rigidbody2D rig;
@@ -44,6 +45,10 @@ public class EnemyMovementBehaviour : MonoBehaviour
         }
         else
             rig.velocity = Vector2.zero;
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            RalenticeMovement();
+        }
     }
 
 
@@ -60,6 +65,11 @@ public class EnemyMovementBehaviour : MonoBehaviour
         transform.localScale = new Vector3(movementDirection, 1, 1);
     }
 
+    internal void Initialize(int ordLayer)
+    {
+        ice.SetOrderingLayer(ordLayer);
+    }
+
     public void SetCanMove(bool val)
     {
         canMove = val;
@@ -68,13 +78,16 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private IEnumerator RalenticeSpeed()
     {
         speed /= 4;
+        ice.Activate(true);
         yield return new WaitForSeconds(10);
         speed *= 4;
     }
+
     public void RalenticeMovement()
     {
         StartCoroutine(RalenticeSpeed());
     }
+
     public void KnockBack()
     {
         rig.AddForce(new Vector2(knockbackForce * -movementDirection, 0), ForceMode2D.Impulse);

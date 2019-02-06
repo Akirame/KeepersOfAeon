@@ -86,7 +86,7 @@ public class WaveControl : MonoBehaviour
         }
         Item.RalenticeConsume += RalenticeEnemies;
         chanceOfHardRound = initialChanceOfHardRound;
-        timerWaves = timeBetweenWaves;        
+        timerWaves = timeBetweenWaves;
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
     }
@@ -322,6 +322,7 @@ public class WaveControl : MonoBehaviour
         enemyCount += hordeWave.Count;
         totalEnemyCount = enemyCount;
     }
+
     private void RalenticeEnemies(Item it)
     {
         for (int i = 0; i < enemyList.Count; i++)

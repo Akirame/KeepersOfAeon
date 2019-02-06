@@ -111,7 +111,7 @@ public class ColorProyectile : MonoBehaviour
     {
         if(collision.tag == "Enemy" && !onGround && collision.GetComponent<Enemy>().IsAlive())
         {
-            damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().element);
+            damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().color);
             collision.GetComponent<Enemy>().TakeDamage(damage, player);
             PopDamageText(damage);
             if(!penetrating)
