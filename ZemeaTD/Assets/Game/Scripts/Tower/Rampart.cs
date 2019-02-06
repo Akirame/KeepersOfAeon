@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +11,12 @@ public class Rampart : MonoBehaviour
     public float healthPerSecond;
     public Image shieldBar;
     public ParticleSystem[] shieldParticles;
+    public float invulnerableTime = 7;
     private CapsuleCollider2D coll;
     private Animator anim;
     private bool activateCollision = false;
     private bool canBeHurt = true;
+    private float timer;
 
 	void Start ()
     {        
@@ -32,8 +35,29 @@ public class Rampart : MonoBehaviour
         {            
             Attacked(50);
         }
+        CheckCanBeHurt();
+        UpdateShieldFill();
+    }
+
+    private void UpdateShieldFill()
+    {
         shieldBar.fillAmount = (float)shield / maxShield;
     }
+
+    private void CheckCanBeHurt()
+    {
+        if (!canBeHurt)
+        {
+            timer += Time.deltaTime;
+            if (timer >= invulnerableTime)
+            {
+                timer = 0;
+                canBeHurt = !canBeHurt;
+                anim.SetBool("invulnerable", !canBeHurt);
+            }
+        }
+    }
+
     public void Attacked(int damage)
     {
         if(canBeHurt)
@@ -48,18 +72,11 @@ public class Rampart : MonoBehaviour
         return (shield > 0);
     }
 
-    IEnumerator CanBeHurtOff()
-    {
-        canBeHurt = !canBeHurt;
-        anim.SetBool("invulnerable", !canBeHurt);
-        yield return new WaitForSeconds(10);
-        canBeHurt = !canBeHurt;
-        anim.SetBool("invulnerable", !canBeHurt);
-    }
-
     public void ShieldInvulnerable(Item i)
     {
-        StartCoroutine(CanBeHurtOff());
+        timer = 0;
+        canBeHurt = !canBeHurt;
+        anim.SetBool("invulnerable", !canBeHurt);
     }
 
     private void CheckAlive() {
