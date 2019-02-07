@@ -75,7 +75,7 @@ public class Rampart : MonoBehaviour
     public void ShieldInvulnerable(Item i)
     {
         timer = 0;
-        canBeHurt = !canBeHurt;
+        canBeHurt = false;
         anim.SetBool("invulnerable", !canBeHurt);
     }
 
