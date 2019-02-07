@@ -23,6 +23,7 @@ public class EnemyIce : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.sprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
         ps.Pause();
+        ps.gameObject.SetActive(false);
         Activate(true);
     }
 
@@ -60,6 +61,7 @@ public class EnemyIce : MonoBehaviour
 
     private void StartParticles()
     {
+        ps.gameObject.SetActive(true);
         ps.Play();
     }
 

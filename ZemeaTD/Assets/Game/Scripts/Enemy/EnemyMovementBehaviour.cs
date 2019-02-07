@@ -74,6 +74,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
         GameObject ice = Instantiate(Resources.Load("Effects/EnemyIce",typeof(GameObject)), transform.position, Quaternion.identity, transform) as GameObject;
         EnemyIce enemyIce = ice.GetComponent<EnemyIce>();
         enemyIce.SetSortingOrder(sr.sortingOrder);
+        CameraShake.GetInstance().Shake(0.5f, 0.5f);
         yield return new WaitForSeconds(enemyIce.iceDuration);
         speed *= 4;
     }

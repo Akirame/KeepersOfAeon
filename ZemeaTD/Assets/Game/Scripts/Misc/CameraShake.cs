@@ -23,8 +23,8 @@ public class CameraShake : MonoBehaviour {
 
     #endregion
 
-    public float totalShakeTime = 0.5f;
-    public float shakeAmt = 0;
+    public float totalShakeTime;
+    public float shakeAmount;
     public Camera mainCamera;
     private bool shaking = false;
     private float timer = 0;
@@ -35,28 +35,22 @@ public class CameraShake : MonoBehaviour {
         {
             if (timer < totalShakeTime)
             {
-                Shake();
                 timer += Time.deltaTime;
+                Vector2 newPos = new Vector2(Random.insideUnitSphere.x * shakeAmount, Random.insideUnitSphere.y * 1f + 1.78f);
+                transform.position = newPos;
             }
             else
             {
+                shaking = false;
                 transform.position = Vector3.zero;
                 timer = 0;
-                shaking = false;
             }
         }
     }
 
-    public void ShakeOnce()
-    {
-        if (!shaking)
-            shaking = true;
-    }
-
-    private void Shake() {
-        if(shakeAmt > 0) {
-            Vector2 newPos = new Vector2(Random.insideUnitSphere.x * shakeAmt, Random.insideUnitSphere.y * 1f + 1.78f);
-            transform.position = newPos;
-        }
+    public void Shake(float _shakeAmount, float _shakeTime) {
+        totalShakeTime = _shakeTime;
+        shakeAmount = _shakeAmount;
+        shaking = true;
     }
 }
