@@ -46,8 +46,7 @@ public class Enemy : MonoBehaviour
         }
         tag = "Enemy";
         orderingLayer = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        movementBehaviour.Initialize(orderingLayer);
-        GetComponent<SpriteRenderer>().sortingOrder = orderingLayer;
+        sr.sortingOrder = orderingLayer;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

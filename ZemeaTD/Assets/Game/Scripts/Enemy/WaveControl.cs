@@ -84,7 +84,6 @@ public class WaveControl : MonoBehaviour
             DebugScreen.GetInstance().AddButton("Kill All Enemies", KillAllEnemies);
             DebugScreen.GetInstance().AddButton("NextWave", NextWave);
         }
-        Item.RalenticeConsume += RalenticeEnemies;
         chanceOfHardRound = initialChanceOfHardRound;
         timerWaves = timeBetweenWaves;
         aSource = GetComponent<AudioSource>();
@@ -97,10 +96,6 @@ public class WaveControl : MonoBehaviour
         timerWaves = 0;
     }
 
-    private void OnDestroy()
-    {
-        Item.RalenticeConsume -= RalenticeEnemies;
-    }
     // Update is called once per frame
     void Update()
     {
@@ -323,7 +318,7 @@ public class WaveControl : MonoBehaviour
         totalEnemyCount = enemyCount;
     }
 
-    private void RalenticeEnemies(Item it)
+    public void RalenticeEnemies()
     {
         for (int i = 0; i < enemyList.Count; i++)
             enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();

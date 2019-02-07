@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5167d42cae60fc948b38b7ce2e5fb031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceExplosion: {fileID: 114201688413680646, guid: f4f32dbaf31e9ad4fb7c3344dccee0bf,
+    type: 2}
   lifeTime: 8
   sound: {fileID: 8300000, guid: 5e671d29af79bbb4591221b9d9e6b758, type: 3}
   itemType: 1

@@ -6,10 +6,10 @@ using UnityEngine;
 public class Item : MonoBehaviour {
     public delegate void ItemActions(Item i);
     public static ItemActions InvulnerableConsume;
-    public static ItemActions RalenticeConsume;
     public static ItemActions ItemConsumed;
     public static ItemActions ChickenConsumed;
     public static ItemActions DamageConsumed;
+    public IceExplosion iceExplosion;
     public float lifeTime = 8;
     public AudioClip sound;
     private bool consumed = false;
@@ -39,7 +39,6 @@ public class Item : MonoBehaviour {
                 InvulnerableConsume(this);
                 break;
             case TypeOfItem.RalenticeEnemies:
-                RalenticeConsume(this);
                 CreateIceExplosion();
                 break;
             case TypeOfItem.Chicken:
@@ -55,7 +54,7 @@ public class Item : MonoBehaviour {
 
     private void CreateIceExplosion()
     {
-        throw new NotImplementedException();
+        Instantiate(iceExplosion.gameObject, transform.position, Quaternion.identity, transform.parent);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

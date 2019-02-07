@@ -8,17 +8,17 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public Vector2 velocity = new Vector2();
     public float speed = 200;
     public float knockbackTime = 0.2f;
-    public EnemyIce ice;
     private bool isKnockback = false;
     private bool canMove = true;
     private Rigidbody2D rig;
     private float timer;
     private int movementDirection;
     private int knockbackForce = 2;
-
+    private SpriteRenderer sr;
 
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         rig = GetComponent<Rigidbody2D>();
         SetDirection();
     }
@@ -63,11 +63,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
         transform.localScale = new Vector3(movementDirection, 1, 1);
     }
 
-    internal void Initialize(int ordLayer)
-    {
-        ice.SetOrderingLayer(ordLayer);
-    }
-
     public void SetCanMove(bool val)
     {
         canMove = val;
@@ -76,8 +71,10 @@ public class EnemyMovementBehaviour : MonoBehaviour
     private IEnumerator RalenticeSpeed()
     {
         speed /= 4;
-        ice.Activate(true);
-        yield return new WaitForSeconds(10);
+        GameObject ice = Instantiate(Resources.Load("Effects/EnemyIce",typeof(GameObject)), transform.position, Quaternion.identity, transform) as GameObject;
+        EnemyIce enemyIce = ice.GetComponent<EnemyIce>();
+        enemyIce.SetSortingOrder(sr.sortingOrder);
+        yield return new WaitForSeconds(enemyIce.iceDuration);
         speed *= 4;
     }
 
