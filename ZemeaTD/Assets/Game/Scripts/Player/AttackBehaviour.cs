@@ -44,6 +44,7 @@ public class AttackBehaviour : MonoBehaviour {
     public enum TypeOfShoot { Normal,MachineGun,ChargeShot};
 
     [Header("Weapons Modifier")]
+    public Transform weaponPos;
     public TypeOfShoot shootType = TypeOfShoot.Normal;
     public float chargeShotMax = 5f;
     public float chargeShotCounter = 1f;
@@ -195,7 +196,7 @@ public class AttackBehaviour : MonoBehaviour {
         CalculatePlayerDamage();
         for(int i = 0; i < shootQuantity; i++)
         {
-            GameObject b = Instantiate(bullet, transform.position, transform.rotation, bulletsContainer.transform);
+            GameObject b = Instantiate(bullet, weaponPos.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
             bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
             b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBullets);
