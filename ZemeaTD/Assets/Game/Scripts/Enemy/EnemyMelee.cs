@@ -7,10 +7,12 @@ public class EnemyMelee : Enemy
     public float timeToAttack;
     private float timer;
     private bool isAttacking;
+    private Animator anim;
 
     protected override void Start()
     {
         base.Start();
+        anim = GetComponent<Animator>();
         timer = 0;
     }
     private void Update()
@@ -22,6 +24,7 @@ public class EnemyMelee : Enemy
                 if (timer >= timeToAttack)
                 {
                     rampart.Attacked(damage);
+                    CameraShake.GetInstance().Shake(0.02f, 0.01f);
                     timer = 0;
                 }
             }
@@ -34,7 +37,7 @@ public class EnemyMelee : Enemy
 
     public void EnemyBossShake()
     {
-        CameraShake.GetInstance().Shake(0.5f, 0.5f);
+        CameraShake.GetInstance().Shake(0.02f, 0.05f);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -44,6 +47,7 @@ public class EnemyMelee : Enemy
         {
             rampart = collision.GetComponent<Rampart>();
             movementBehaviour.SetCanMove(false);
+            anim.enabled = false;
         }
     }
 }

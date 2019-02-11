@@ -60,7 +60,6 @@ public class WaveControl : MonoBehaviour
     [Header("-Hard Round Vars-")]
     public float percentHordeSpawnRate = 5f;
     public float initialChanceOfHardRound = 0.2f;
-    public GameObject meteorite;
     private float chanceOfHardRound;
 
     [Header("-Misc Vars-")]
@@ -125,34 +124,14 @@ public class WaveControl : MonoBehaviour
         float randomChance = UnityEngine.Random.Range(0f, 1f);
         if (randomChance < chanceOfHardRound)
         {
-            int enemyToSpawn = UnityEngine.Random.Range(0, 2);
-            switch (enemyToSpawn)
-            {
-                case 0:
-                    TrySpawnHorde();
-                    break;
-                case 1:
-                    TrySpawnMeteorite();
-                    break;
-                default:
-                    break;
-            }
+            TrySpawnHorde();
         }
-    }
-
-    private void TrySpawnMeteorite()
-    {
-        Transform t = spawnPoints[currentSpawnPoint];
-        NextSpawnPoint();
-        Vector3 pos = t.position + new Vector3(0, meteorite.transform.position.y, 0);
-        Instantiate(meteorite, pos, Quaternion.identity, enemiesParent.transform);
     }
 
     private void PrepareNewWave()
     {
         CleanWave();
         SpawnWave();
-        TrySpawnBoss();
         timerWaves = timeBetweenWaves;
     }
 
@@ -173,7 +152,7 @@ public class WaveControl : MonoBehaviour
 
     private void TrySpawnBoss()
     {
-        if (currentWave % waveMiniBoss == 0)
+        if (currentWave % waveMiniBoss == 0)// && currentWave != 0)
         {
             Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
             GameObject enemy = Instantiate(bossList[UnityEngine.Random.Range(0,bossList.Length)], t.position + new Vector3(0, 20, 0), Quaternion.identity, enemiesParent.transform);
@@ -192,6 +171,7 @@ public class WaveControl : MonoBehaviour
     private void SpawnWave()
     {
         GenerateEnemyList();
+        TrySpawnBoss();
         StopCoroutine(SpawnEnemyList());
         StartCoroutine(SpawnEnemyList());
         canSpawn = false;
