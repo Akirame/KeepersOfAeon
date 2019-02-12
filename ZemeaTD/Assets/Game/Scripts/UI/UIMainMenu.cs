@@ -7,10 +7,8 @@ using UnityEngine.UI;
 public class UIMainMenu : MonoBehaviour  
 {
     public GameObject mainMenuCanvas;
-    public GameObject howToPlayCanvas;
     public GameObject creditsCanvas;
-    public GameObject Objectives;
-    public GameObject Orbs;
+    public GameObject colorPickCanvas;
     public Text versionText;
     public GameObject currentPanel;
     private AudioSource aSource;
@@ -23,15 +21,10 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(FocusOnButton());
     }
     public void PlayButtonPressed() {
-        Orbs.SetActive(true);
-        currentPanel = Orbs;
+        currentPanel = colorPickCanvas;
         StartCoroutine(FocusOnButton());
     }
-    public void HowToPlayButtonPressed() {
-        howToPlayCanvas.SetActive(true);
-        currentPanel = howToPlayCanvas;
-        StartCoroutine(FocusOnButton());
-    }
+
     public void CreditsButtonpressed() {
         creditsCanvas.SetActive(true);
         currentPanel = creditsCanvas;
@@ -45,18 +38,12 @@ public class UIMainMenu : MonoBehaviour
         currentPanel = mainMenuCanvas;
         StartCoroutine(FocusOnButton());
     }
-    public void NextOrbsButtonPressed()
-    {
-        Orbs.SetActive(false);
-        Objectives.SetActive(true);
-        currentPanel = Objectives;
-        StartCoroutine(FocusOnButton());
 
-    }
     public void NextButtonPressed()
     {
         LoaderManager.Get().LoadScene("SampleScene");
     }
+
     IEnumerator FocusOnButton()
     {
         yield return new WaitForEndOfFrame();
