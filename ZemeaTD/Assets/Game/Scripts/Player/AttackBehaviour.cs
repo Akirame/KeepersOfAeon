@@ -18,6 +18,7 @@ public class AttackBehaviour : MonoBehaviour {
     private bool shooted = false;
     private float criticalChance;
     private bool criticalAttack;
+    public GameObject boulder;
 
 
     [Header("Crosshair Vars")]
@@ -50,6 +51,7 @@ public class AttackBehaviour : MonoBehaviour {
     public float chargeShotCounter = 1f;
     public bool penetratingBullets = false;
     public int shootQuantity = 1;
+    public bool boulderOn = false;
 
     [Header("Item Modifier")]
     public float lifetimeItemDamageBonus;
@@ -193,13 +195,19 @@ public class AttackBehaviour : MonoBehaviour {
     {
         criticalAttack = false;
         shooted = true;
-        CalculatePlayerDamage();
+        CalculatePlayerDamage();        
         for(int i = 0; i < shootQuantity; i++)
         {
             GameObject b = Instantiate(bullet, weaponPos.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
             bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
             b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBullets);
+        }
+        if(UnityEngine.Random.Range(0f,1f) > 0.7f && boulderOn)
+        {
+            Vector2 bulletDirection = crossPos.position - transform.position;
+            GameObject g = Instantiate(boulder, weaponPos.position, transform.rotation, bulletsContainer.transform);
+            g.GetComponent<Boulder>().Shoot(bulletDirection.normalized, playerDamage, this.gameObject);
         }
         timer = 0; 
         PlayRandomSound();
