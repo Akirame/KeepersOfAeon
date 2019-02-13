@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRanged : Enemy
+public class EnemyRangedBehavior : Enemy
 {
     public float timeToAttack;
     public RangeDetector detector;
     public EnemyBullet bullet;
     private float timer;
-    private bool isAttacking;
     private float throwOffset = 20f;
 
     protected override void Start()
@@ -28,13 +27,16 @@ public class EnemyRanged : Enemy
         if (rampart)
             if (rampart.IsAlive())
             {
-                if (timer < timeToAttack)
+                if (canAttack)
                 {
-                    timer += Time.deltaTime;
-                }
-                else
-                {
-                    Attack();
+                    if (timer < timeToAttack)
+                    {
+                        timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        Attack();
+                    }
                 }
             }
             else
@@ -49,6 +51,7 @@ public class EnemyRanged : Enemy
         rampart = d.GetRampart();
         movementBehaviour.SetCanMove(false);
     }
+
     private void OffRange(RangeDetector d)
     {
         rampart = d.GetRampart();

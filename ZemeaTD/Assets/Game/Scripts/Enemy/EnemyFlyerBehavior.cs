@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFlyerBehaviour : MonoBehaviour
+public class EnemyFlyerBehavior : MonoBehaviour
 {        
     public float maxSpeedUpDown = 4f;
     public float minSpeedUpDown = 2f;
@@ -37,7 +37,7 @@ public class EnemyFlyerBehaviour : MonoBehaviour
         if(balloonsGroup.Count <= 0 && flying)
         {
             flying = false;
-            GetComponent<EnemyMovementBehaviour>().enabled = flying;
+            GetComponent<EnemyMovementBehavior>().enabled = flying;
         }
     }
     private void LateUpdate()

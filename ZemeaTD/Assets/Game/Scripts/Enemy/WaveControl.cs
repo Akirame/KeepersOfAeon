@@ -152,7 +152,7 @@ public class WaveControl : MonoBehaviour
 
     private void TrySpawnBoss()
     {
-        if (currentWave % waveMiniBoss == 0)// && currentWave != 0)
+        if (currentWave % waveMiniBoss == 0 && currentWave != 0)
         {
             Transform t = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
             GameObject enemy = Instantiate(bossList[UnityEngine.Random.Range(0,bossList.Length)], t.position + new Vector3(0, 20, 0), Quaternion.identity, enemiesParent.transform);
@@ -301,6 +301,6 @@ public class WaveControl : MonoBehaviour
     public void RalenticeEnemies()
     {
         for (int i = 0; i < enemyList.Count; i++)
-            enemyList[i].GetComponent<EnemyMovementBehaviour>().RalenticeMovement();
+            enemyList[i].GetComponent<EnemyMovementBehavior>().RalenticeMovement();
     }
 }

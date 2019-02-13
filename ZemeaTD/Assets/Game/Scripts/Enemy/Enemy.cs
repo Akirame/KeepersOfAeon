@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public delegate void EnemyActions(Enemy e);
     public static EnemyActions Death;
-    public EnemyMovementBehaviour movementBehaviour;
+    public EnemyMovementBehavior movementBehaviour;
     public ColorAttribute.COLOR_TYPE color;
     public int damage;
     public int health = 100;
@@ -17,13 +17,15 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public GameObject deathParticles;
     public GameObject expParticles;
+    protected bool canAttack = true;
+    private float timer;
     protected Rampart rampart;
     protected int orderingLayer;
     private SpriteRenderer sr;
 
     protected virtual void Start()
     {
-        movementBehaviour = GetComponent<EnemyMovementBehaviour>();
+        movementBehaviour = GetComponent<EnemyMovementBehavior>();
         color = ColorAttribute.COLOR_TYPE.YELLOW;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = sprites[3];
@@ -47,6 +49,24 @@ public class Enemy : MonoBehaviour
         tag = "Enemy";
         orderingLayer = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         sr.sortingOrder = orderingLayer;
+    }
+
+    private void Update()
+    {
+        CheckCanAttack();
+    }
+
+    private void CheckCanAttack()
+    {
+        if (!canAttack)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                canAttack = true;
+                timer = 0;
+            }
+        }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -119,4 +139,11 @@ public class Enemy : MonoBehaviour
         Death(this);
         Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
     }
+
+    public void SetCanAttack(bool val, float time)
+    {
+        canAttack = val;
+        timer = time;
+    }
+
 }

@@ -106,7 +106,7 @@ public class Rampart : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (!collision.GetComponent<EnemyRanged>())
+            if (!collision.GetComponent<EnemyRangedBehavior>())
             {
                 Attacked(collision.GetComponent<Enemy>().damage);
             }

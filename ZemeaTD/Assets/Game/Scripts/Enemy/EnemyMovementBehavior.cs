@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovementBehaviour : MonoBehaviour
+public class EnemyMovementBehavior : MonoBehaviour
 {
     public Vector2 velocity = new Vector2();
     public float speed = 200;
@@ -74,6 +74,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
         GameObject ice = Instantiate(Resources.Load("Effects/EnemyIce",typeof(GameObject)), transform.position, Quaternion.identity, transform) as GameObject;
         EnemyIce enemyIce = ice.GetComponent<EnemyIce>();
         enemyIce.SetSortingOrder(sr.sortingOrder);
+        GetComponent<Enemy>().SetCanAttack(false, enemyIce.iceDuration);
         CameraShake.GetInstance().Shake(0.5f, 0.5f);
         yield return new WaitForSeconds(enemyIce.iceDuration);
         speed *= 4;

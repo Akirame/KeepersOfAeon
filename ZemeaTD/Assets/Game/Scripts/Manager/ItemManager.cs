@@ -19,7 +19,6 @@ public class ItemManager : MonoBehaviour
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
         rectTransform = GetComponent<RectTransform>();
-
     }
 
     private void Update()
