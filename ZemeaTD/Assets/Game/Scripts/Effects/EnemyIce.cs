@@ -65,4 +65,9 @@ public class EnemyIce : MonoBehaviour
         ps.Play();
     }
 
+    internal void ResetTime()
+    {
+        timer = 0;
+        anim.SetBool("activated", true);
+    }
 }

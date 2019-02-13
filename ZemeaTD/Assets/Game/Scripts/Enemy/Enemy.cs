@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
                     sr.sprite = sprites[2];
                     break;
             }
-
         }
         tag = "Enemy";
         orderingLayer = Mathf.RoundToInt(transform.position.y * 100f) * -1;

@@ -8,6 +8,8 @@ public class EnemyMovementBehavior : MonoBehaviour
     public Vector2 velocity = new Vector2();
     public float speed = 200;
     public float knockbackTime = 0.2f;
+    private bool onIceState = false;
+    private float iceTimer;
     private bool isKnockback = false;
     private bool canMove = true;
     private Rigidbody2D rig;
@@ -47,6 +49,18 @@ public class EnemyMovementBehavior : MonoBehaviour
         {
             RalenticeMovement();
         }
+
+        if (onIceState)
+        {
+            iceTimer -= Time.deltaTime;
+            if (iceTimer <= 0)
+            {
+                onIceState = false;
+                iceTimer = 0;
+                speed *= 4;
+            }
+        }
+
     }
 
 
@@ -68,21 +82,25 @@ public class EnemyMovementBehavior : MonoBehaviour
         canMove = val;
     }
 
-    private IEnumerator RalenticeSpeed()
-    {
-        speed /= 4;
-        GameObject ice = Instantiate(Resources.Load("Effects/EnemyIce",typeof(GameObject)), transform.position, Quaternion.identity, transform) as GameObject;
-        EnemyIce enemyIce = ice.GetComponent<EnemyIce>();
-        enemyIce.SetSortingOrder(sr.sortingOrder);
-        GetComponent<Enemy>().SetCanAttack(false, enemyIce.iceDuration);
-        CameraShake.GetInstance().Shake(0.5f, 0.5f);
-        yield return new WaitForSeconds(enemyIce.iceDuration);
-        speed *= 4;
-    }
-
     public void RalenticeMovement()
     {
-        StartCoroutine(RalenticeSpeed());
+        if (!onIceState)
+        {
+            onIceState = true;
+            GameObject ice = Instantiate(Resources.Load("Effects/EnemyIce", typeof(GameObject)), transform.position, Quaternion.identity, transform) as GameObject;
+            EnemyIce enemyIce = ice.GetComponent<EnemyIce>();
+            enemyIce.SetSortingOrder(sr.sortingOrder);
+            iceTimer = enemyIce.iceDuration;
+            speed /= 4;
+            GetComponent<Enemy>().SetCanAttack(false, enemyIce.iceDuration);
+        }
+        else
+        {
+            EnemyIce enemyIce = GetComponentInChildren<EnemyIce>();
+            enemyIce.ResetTime();
+            iceTimer = enemyIce.iceDuration;
+            GetComponent<Enemy>().SetCanAttack(false, enemyIce.iceDuration);
+        }
     }
 
     public void KnockBack()
