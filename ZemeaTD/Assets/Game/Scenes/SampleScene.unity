@@ -398,6 +398,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1525426437712928, guid: 1564a021ae82be145b95524af11e9fdb,
         type: 2}
+    - target: {fileID: 114603955414067010, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 2}
+      propertyPath: hommingMissile
+      value: 
+      objectReference: {fileID: 1140792749603858, guid: 6ca7b43aea9a4704e938161860b1cad0,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 2}
   m_IsPrefabAsset: 0
@@ -10201,6 +10207,17 @@ Prefab:
       value: 
       objectReference: {fileID: 1525426437712928, guid: 1564a021ae82be145b95524af11e9fdb,
         type: 2}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: hommingMissile
+      value: 
+      objectReference: {fileID: 1140792749603858, guid: 6ca7b43aea9a4704e938161860b1cad0,
+        type: 2}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 2}
+      propertyPath: hommingOn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28fe3c3ceec95b745b86eb244c9847f5, type: 2}
   m_IsPrefabAsset: 0

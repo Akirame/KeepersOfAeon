@@ -57,10 +57,6 @@ public class ColorProyectile : MonoBehaviour
                 sr.sprite = sprites[3];
                 c = Color.yellow;
                 break;
-            case ColorAttribute.COLOR_TYPE.LAST:
-                break;
-            default:
-                break;
         }
         main.startColor = c;
     }
@@ -95,7 +91,7 @@ public class ColorProyectile : MonoBehaviour
         direction = dir;
         damage = _damage;
         colorType = _element;
-        player = _player;
+        player = _player;        
         rigid.velocity = direction * speed;
         critical = _critical;
         penetrating = penetrate;

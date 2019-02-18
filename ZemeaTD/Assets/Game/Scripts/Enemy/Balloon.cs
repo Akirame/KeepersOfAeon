@@ -13,25 +13,23 @@ public class Balloon : MonoBehaviour
 
     private void Start()
     {
-        //balloonElement = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);
-        balloonElement = ColorAttribute.COLOR_TYPE.GREEN;
+        balloonElement = (ColorAttribute.COLOR_TYPE)UnityEngine.Random.Range(0, 3);      
         sr = GetComponent<SpriteRenderer>();
-        sr.sprite = sprites[0];
-        //switch(balloonElement)
-        //{
-        //    case ColorAttribute.COLOR_TYPE.GREEN:
-        //        sr.sprite = sprites[0];
-        //        break;
-        //    case ColorAttribute.COLOR_TYPE.MAGENTA:
-        //        sr.sprite = sprites[1];
-        //        break;
-        //    case ColorAttribute.COLOR_TYPE.ORANGE:
-        //        sr.sprite = sprites[2];
-        //        break;
-        //    case ColorAttribute.COLOR_TYPE.YELLOW:
-        //        sr.sprite = sprites[4];
-        //        break;
-        //}
+        switch(balloonElement)
+        {
+            case ColorAttribute.COLOR_TYPE.GREEN:
+                sr.sprite = sprites[0];
+                break;
+            case ColorAttribute.COLOR_TYPE.MAGENTA:
+                sr.sprite = sprites[1];
+                break;
+            case ColorAttribute.COLOR_TYPE.ORANGE:
+                sr.sprite = sprites[2];
+                break;
+            case ColorAttribute.COLOR_TYPE.YELLOW:
+                sr.sprite = sprites[4];
+                break;
+        }
     }
     public void TakeDamage(ColorAttribute.COLOR_TYPE element, GameObject _player)
     {
@@ -39,4 +37,9 @@ public class Balloon : MonoBehaviour
         if(element == balloonElement)
             onDeath(this);
     }
+    public void TakeBoulderDamage()
+    {
+        onDeath(this);
+    }
 }
+

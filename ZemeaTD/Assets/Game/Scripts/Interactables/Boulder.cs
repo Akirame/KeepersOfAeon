@@ -69,8 +69,7 @@ public class Boulder :MonoBehaviour
         }
         if(collision.tag == "Ground")
         {            
-            onGround = true;
-            Debug.Log("holi");
+            onGround = true;            
         }
     }
 

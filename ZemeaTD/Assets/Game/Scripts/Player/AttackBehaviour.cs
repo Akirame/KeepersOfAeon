@@ -19,7 +19,7 @@ public class AttackBehaviour : MonoBehaviour {
     private float criticalChance;
     private bool criticalAttack;
     public GameObject boulder;
-
+    public GameObject hommingMissile;
 
     [Header("Crosshair Vars")]
     public Transform crossPos;
@@ -52,6 +52,7 @@ public class AttackBehaviour : MonoBehaviour {
     public bool penetratingBullets = false;
     public int shootQuantity = 1;
     public bool boulderOn = false;
+    public bool hommingOn = true;
 
     [Header("Item Modifier")]
     public float lifetimeItemDamageBonus;
@@ -209,7 +210,13 @@ public class AttackBehaviour : MonoBehaviour {
             GameObject g = Instantiate(boulder, weaponPos.position, transform.rotation, bulletsContainer.transform);
             g.GetComponent<Boulder>().Shoot(bulletDirection.normalized, playerDamage, this.gameObject);
         }
-        timer = 0; 
+        if(UnityEngine.Random.Range(0f, 1f) > 0.1f && hommingOn)
+        {
+            GameObject g = Instantiate(hommingMissile, weaponPos.position, transform.rotation, bulletsContainer.transform);
+            Vector2 bulletDirection = crossPos.position - transform.position;            
+            g.GetComponent<HommingMissile>().Shoot(bulletDirection.normalized, currentColor.colorType, this.gameObject);
+        }
+            timer = 0; 
         PlayRandomSound();
     }
 
