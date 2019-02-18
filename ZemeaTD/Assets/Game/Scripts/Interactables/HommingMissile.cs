@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HommingMissile :MonoBehaviour
+public class HommingMissile : MonoBehaviour
 {
 
     public float speed = 7;
@@ -49,20 +49,20 @@ public class HommingMissile :MonoBehaviour
                 dir.Normalize();
                 float value = Vector3.Cross(dir, transform.right).z;
                 rigid.angularVelocity = rotatingSpeed * value;
-                rigid.velocity = transform.right * speed;                
+                rigid.velocity = transform.right * speed;
             }
             else
-            {                
-                transform.right = rigid.velocity;                
+            {
+                transform.right = rigid.velocity;
             }
-        }        
+        }
     }
 
     public void Shoot(Vector2 direction,ColorAttribute.COLOR_TYPE _element, GameObject _player)
     {        
         shoot = true;
         colorType = _element;
-        player = _player;        
+        player = _player;
         dir = direction;
         rigid.velocity = dir * speed;
         UpdateColor();
