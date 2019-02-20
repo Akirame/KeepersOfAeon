@@ -151,11 +151,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   damage: 10
-  player: {fileID: 0}
   popText: {fileID: 114323807975107020, guid: de7b5cb421b49604084ffa69e86ecc55, type: 2}
+  player: {fileID: 0}
+  sr: {fileID: 212549450055190264}
   desacceleration: 10
   dustParticles: {fileID: 198528041406952866}
-  sp: {fileID: 212549450055190264}
 --- !u!198 &198528041406952866
 ParticleSystem:
   m_ObjectHideFlags: 1

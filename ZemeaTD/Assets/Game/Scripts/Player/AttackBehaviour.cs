@@ -196,7 +196,8 @@ public class AttackBehaviour : MonoBehaviour {
     {
         criticalAttack = false;
         shooted = true;
-        CalculatePlayerDamage();        
+        CalculatePlayerDamage();
+        //Normal Shoot        
         for(int i = 0; i < shootQuantity; i++)
         {
             GameObject b = Instantiate(bullet, weaponPos.position, transform.rotation, bulletsContainer.transform);
@@ -204,19 +205,22 @@ public class AttackBehaviour : MonoBehaviour {
             bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
             b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBullets);
         }
+        //Boulder Shoot       
         if(UnityEngine.Random.Range(0f,1f) > 0.7f && boulderOn)
         {
             Vector2 bulletDirection = crossPos.position - transform.position;
             GameObject g = Instantiate(boulder, weaponPos.position, transform.rotation, bulletsContainer.transform);
             g.GetComponent<Boulder>().Shoot(bulletDirection.normalized, playerDamage, this.gameObject);
-        }
+        }        
+        //Homming Shoot
+       
         if(UnityEngine.Random.Range(0f, 1f) > 0.1f && hommingOn)
         {
             GameObject g = Instantiate(hommingMissile, weaponPos.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;            
             g.GetComponent<HommingMissile>().Shoot(bulletDirection.normalized, currentColor.colorType, this.gameObject);
         }
-            timer = 0; 
+        timer = 0; 
         PlayRandomSound();
     }
 

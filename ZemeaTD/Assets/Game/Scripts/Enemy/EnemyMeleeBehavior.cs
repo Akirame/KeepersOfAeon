@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class EnemyMeleeBehavior : Enemy
 {
-    public float timeToAttack;
-    private float timer;
-
-    protected override void Start()
-    {
-        base.Start();
-        timer = 0;
-    }
+    public float timeToAttack;    
     private void Update()
     {
         if (rampart)

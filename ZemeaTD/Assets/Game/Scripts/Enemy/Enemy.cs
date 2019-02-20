@@ -18,13 +18,14 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticles;
     public GameObject expParticles;
     protected bool canAttack = true;
-    private float timer;
+    protected float timer;
     protected Rampart rampart;
     protected int orderingLayer;
     private SpriteRenderer sr;
 
     protected virtual void Start()
     {
+        timer = 0; 
         movementBehaviour = GetComponent<EnemyMovementBehavior>();
         color = ColorAttribute.COLOR_TYPE.YELLOW;
         sr = GetComponent<SpriteRenderer>();

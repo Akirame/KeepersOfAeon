@@ -6,14 +6,12 @@ public class EnemyRangedBehavior : Enemy
 {
     public float timeToAttack;
     public RangeDetector detector;
-    public EnemyBullet bullet;
-    private float timer;
+    public EnemyBullet bullet;    
     private float throwOffset = 20f;
 
     protected override void Start()
     {
-        base.Start();
-        timer = 0;
+        base.Start();        
         detector.RampartOnRange += OnRange;
         detector.RampartOffRange += OffRange;
     }

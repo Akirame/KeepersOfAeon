@@ -2,37 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HommingMissile :MonoBehaviour
+public class HommingMissile : Proyectile
 {
 
-    public float speed = 7;
+    public ColorAttribute.COLOR_TYPE colorType;
     public float rotatingSpeed = 200;
     public GameObject target;    
-    public ColorAttribute.COLOR_TYPE colorType;
-    public int damage = 10;
-    public PopText popText;
-    public GameObject player;
     public Sprite[] sprites;
     public CircleCollider2D detector;
-    public SpriteRenderer sr;
-    public Rigidbody2D rigid;
     private bool shoot = false;
     private bool targetLockOn = false;
-    private float lifeTimer = 3f;
     private float timer = 0;
-    private Vector2 dir;
+    private BoxCollider2D boxCollider;
 
-    void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+    private void Start()
     {        
-        rigid = GetComponent<Rigidbody2D>();
-        sr = this.GetComponent<SpriteRenderer>();
+        speed = 40f;
+        damage = 10;        
+        lifeTimer = 3f;
     }
     private void Update()
     {
         if(timer < lifeTimer)
             timer += Time.deltaTime;
         else
-            Destroy(this.gameObject);
+            DestroyProyectile();
         if(!target.gameObject)
         {            
             targetLockOn = false;
@@ -43,11 +42,11 @@ public class HommingMissile :MonoBehaviour
     {        
         if(shoot)
         {
-            if(targetLockOn)
+            if(targetLockOn && target)
             {
-                dir = (Vector2)transform.position - (Vector2)target.transform.position;
-                dir.Normalize();
-                float value = Vector3.Cross(dir, transform.right).z;
+                direction = (Vector2)transform.position - (Vector2)target.transform.position;
+                direction.Normalize();
+                float value = Vector3.Cross(direction, transform.right).z;
                 rigid.angularVelocity = rotatingSpeed * value;
                 rigid.velocity = transform.right * speed;                
             }
@@ -58,16 +57,15 @@ public class HommingMissile :MonoBehaviour
         }        
     }
 
-    public void Shoot(Vector2 direction,ColorAttribute.COLOR_TYPE _element, GameObject _player)
+    public void Shoot(Vector2 directionection,ColorAttribute.COLOR_TYPE _element, GameObject _player)
     {        
         shoot = true;
         colorType = _element;
         player = _player;        
-        dir = direction;
-        rigid.velocity = dir * speed;
+        direction = directionection;
+        rigid.velocity = direction * speed;
         UpdateColor();
     }
-
 
     private void UpdateColor()
     {
@@ -106,12 +104,6 @@ public class HommingMissile :MonoBehaviour
         return (int)pureDamage;
     }
 
-    private void PopDamageText(int bulletDamage)
-    {
-        GameObject go = Instantiate(popText.gameObject, transform.position, Quaternion.identity, transform.parent);
-        go.GetComponent<PopText>().CreateText(bulletDamage.ToString(), Color.black);
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(!targetLockOn)
@@ -125,26 +117,21 @@ public class HommingMissile :MonoBehaviour
         }
         else
         {
-            if(collision.tag == "Enemy" && collision.GetComponent<Enemy>().IsAlive())
+            if(collision.IsTouching(boxCollider))
             {
-                damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().color);
-                collision.GetComponent<Enemy>().TakeDamage(damage, player);
-                PopDamageText(damage);
-                Destroy(gameObject);
-            }
-            if(collision.tag == "Balloon")
-            {
-                collision.GetComponent<Balloon>().TakeDamage(colorType, player);
-                Destroy(gameObject);
+                if(collision.tag == "Enemy" && collision.GetComponent<Enemy>().IsAlive())
+                {
+                    damage = CalculateElementalDamage(damage, colorType, collision.GetComponent<Enemy>().color);
+                    collision.GetComponent<Enemy>().TakeDamage(damage, player);
+                    PopDamageText(damage);
+                    Destroy(gameObject);
+                }
+                if(collision.tag == "Balloon")
+                {
+                    collision.GetComponent<Balloon>().TakeDamage(colorType, player);
+                    Destroy(gameObject);
+                }
             }
         }
-    }
-    private void OnBecameInvisible()
-    {
-        DestroyProyectile();
-    }
-    public void DestroyProyectile()
-    {
-        Destroy(gameObject);
     }
 }
