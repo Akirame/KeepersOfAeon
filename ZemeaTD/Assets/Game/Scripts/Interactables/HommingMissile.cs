@@ -7,7 +7,7 @@ public class HommingMissile : Proyectile
 
     public ColorAttribute.COLOR_TYPE colorType;
     public float rotatingSpeed = 200;
-    public GameObject target;    
+    public GameObject target;
     public Sprite[] sprites;
     public CircleCollider2D detector;
     private bool shoot = false;
@@ -21,9 +21,9 @@ public class HommingMissile : Proyectile
         boxCollider = GetComponent<BoxCollider2D>();
     }
     private void Start()
-    {        
+    {
         speed = 40f;
-        damage = 10;        
+        damage = 10;
         lifeTimer = 3f;
     }
     private void Update()
@@ -33,13 +33,13 @@ public class HommingMissile : Proyectile
         else
             DestroyProyectile();
         if(!target.gameObject)
-        {            
+        {
             targetLockOn = false;
             detector.enabled = true;
         }
-    }    
+    }
     void FixedUpdate()
-    {        
+    {
         if(shoot)
         {
             if(targetLockOn && target)
@@ -48,20 +48,20 @@ public class HommingMissile : Proyectile
                 direction.Normalize();
                 float value = Vector3.Cross(direction, transform.right).z;
                 rigid.angularVelocity = rotatingSpeed * value;
-                rigid.velocity = transform.right * speed;                
+                rigid.velocity = transform.right * speed;
             }
             else
-            {                
-                transform.right = rigid.velocity;                
+            {
+                transform.right = rigid.velocity;
             }
-        }        
+        }
     }
 
     public void Shoot(Vector2 directionection,ColorAttribute.COLOR_TYPE _element, GameObject _player)
-    {        
+    {
         shoot = true;
         colorType = _element;
-        player = _player;        
+        player = _player;
         direction = directionection;
         rigid.velocity = direction * speed;
         UpdateColor();
@@ -70,7 +70,7 @@ public class HommingMissile : Proyectile
     private void UpdateColor()
     {
         switch(colorType)
-        {            
+        {
             case ColorAttribute.COLOR_TYPE.GREEN:
                 sr.sprite = sprites[0];
                 break;
@@ -83,7 +83,7 @@ public class HommingMissile : Proyectile
             case ColorAttribute.COLOR_TYPE.YELLOW:
                 sr.sprite = sprites[3];
                 break;
-        }        
+        }
     }
 
     private int CalculateElementalDamage(int damage, ColorAttribute.COLOR_TYPE playerOrb, ColorAttribute.COLOR_TYPE enemyOrb)
