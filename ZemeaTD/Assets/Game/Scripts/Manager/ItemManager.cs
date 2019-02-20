@@ -15,9 +15,11 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
+        
         Item.ItemConsumed += DestroyItem;
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
+        Debug.Log(aSource);
         rectTransform = GetComponent<RectTransform>();
     }
 
@@ -71,5 +73,9 @@ public class ItemManager : MonoBehaviour
             Vector3 finalPos = transform.position + newPos;
             Instantiate(items[randomItemIndex].gameObject, finalPos, Quaternion.identity, transform);
         }
+    }
+    private void OnDestroy()
+    {
+        Item.ItemConsumed -= DestroyItem;
     }
 }

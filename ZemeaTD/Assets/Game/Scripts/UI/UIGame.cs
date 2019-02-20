@@ -93,4 +93,8 @@ public class UIGame : MonoBehaviour
     {
         anim.SetTrigger("horde");
     }
+    private void OnDestroy()
+    {
+        WaveControl.HordeIncoming -= HordeIncomingTrigger;
+    }
 }
