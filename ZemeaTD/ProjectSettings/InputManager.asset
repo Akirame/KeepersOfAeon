@@ -7,10 +7,10 @@ InputManager:
   m_Axes:
   - serializedVersion: 3
     m_Name: P1_Horizontal
-    descriptiveName: 
+    descriptiveName: P1_Horizontal
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
@@ -25,8 +25,8 @@ InputManager:
     m_Name: P1_Vertical
     descriptiveName: P1_Vertical
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: s
+    positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
@@ -185,8 +185,8 @@ InputManager:
     m_Name: P1_VerticalKey
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: w
-    positiveButton: s
+    negativeButton: s
+    positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
@@ -281,8 +281,8 @@ InputManager:
     m_Name: P2_Vertical
     descriptiveName: P2_Vertical
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
@@ -297,8 +297,8 @@ InputManager:
     m_Name: P2_Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
@@ -377,8 +377,8 @@ InputManager:
     m_Name: P2_VerticalKey
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: up
-    positiveButton: down
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 2
