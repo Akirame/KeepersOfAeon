@@ -22,6 +22,7 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask floorLayer;
     public ParticleSystem psDust;
     public AudioClip chickenSound;
+    public ParticleSystem chickenPs;
 
     private SpriteRenderer spriteRend;
     private bool canMove = true;
@@ -251,7 +252,8 @@ public class CharacterController2D : MonoBehaviour
         lookingRight = faceRight;
     }
     public void TurnIntoChicken(Item item)
-    {        
+    {
+        chickenPs.Play();
         spriteRend.sprite = sprites[1];
         if(currentState == PLAYER_STATES.Attack)
         SetAttackMode(false);
