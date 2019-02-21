@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/LoadingScreen.unity
     guid: 5714f0b680dda7a4fa0572f321ba4797
   - enabled: 1
+    path: Assets/Game/Scenes/ColorSelectionScreen.unity
+    guid: 4836fc7875518cd44a0d415caa101dae
+  - enabled: 1
     path: Assets/Game/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1

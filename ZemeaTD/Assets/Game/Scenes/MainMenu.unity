@@ -127,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuCanvas: {fileID: 1011369302}
   creditsCanvas: {fileID: 1624612475}
-  colorPickCanvas: {fileID: 0}
   versionText: {fileID: 1781666877}
   currentPanel: {fileID: 0}
 --- !u!4 &107384974
@@ -851,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1011369303
 RectTransform:
   m_ObjectHideFlags: 0

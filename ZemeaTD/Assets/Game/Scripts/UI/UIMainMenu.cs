@@ -8,7 +8,6 @@ public class UIMainMenu : MonoBehaviour
 {
     public GameObject mainMenuCanvas;
     public GameObject creditsCanvas;
-    public GameObject colorPickCanvas;
     public Text versionText;
     public GameObject currentPanel;
     private AudioSource aSource;
@@ -21,8 +20,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(FocusOnButton());
     }
     public void PlayButtonPressed() {
-        currentPanel = colorPickCanvas;
-        StartCoroutine(FocusOnButton());
+        LoaderManager.Get().LoadScene("ColorSelectionScreen");
     }
 
     public void CreditsButtonpressed() {
