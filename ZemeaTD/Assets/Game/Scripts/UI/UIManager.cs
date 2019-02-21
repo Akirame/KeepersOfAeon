@@ -77,9 +77,4 @@ public class UIManager : MonoBehaviour {
         b.GetComponent<Button>().Select();
         EventSystem.current.SetSelectedGameObject(b,null);
     }
-
-    public void OnExitPauseButton()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
 }

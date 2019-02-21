@@ -9,13 +9,14 @@ public class UI_FinalScreen : MonoBehaviour {
     public GameObject defeatPanel;
     public AudioClip victorySound;
     private AudioSource aSource;
+    private Animator anim;
 
     private void Awake()
     {
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
         aSource = GetComponent<AudioSource>();
-        GameManager.Get().winGame = false;
+        anim = GetComponent<Animator>();
         GameManager.Get().tutorialDone = true;
     }
 
@@ -26,11 +27,13 @@ public class UI_FinalScreen : MonoBehaviour {
             victoryPanel.SetActive(true);
             FocusOnButton(victoryPanel);
             aSource.PlayOneShot(victorySound);
+            anim.SetTrigger("victory");
         }
         else
         {
             defeatPanel.SetActive(true);
             FocusOnButton(defeatPanel);
+            anim.SetTrigger("defeat");
         }
     }
 
