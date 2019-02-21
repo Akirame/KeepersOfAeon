@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
 
@@ -27,6 +28,12 @@ public class AudioManager : MonoBehaviour {
 
     public List<AudioSource> soundSources;
     public List<AudioSource> musicSources;
+    public Sprite onSound;
+    public Sprite offSound;
+    public Sprite onMusic;
+    public Sprite offMusic;
+    public Image imageSound;
+    public Image imageMusic;
     private bool soundsActivated = true;
     private bool musicActivated = true;
 
@@ -60,6 +67,10 @@ public class AudioManager : MonoBehaviour {
     public void SetOnOffSounds()
     {
         soundsActivated = !soundsActivated;
+        if (soundsActivated)
+            imageSound.sprite = onSound;
+        else
+            imageSound.sprite = offSound;
         foreach (AudioSource aSource in soundSources)
         {
             aSource.mute = !soundsActivated;
@@ -69,6 +80,10 @@ public class AudioManager : MonoBehaviour {
     public void SetOnOffMusic()
     {
         musicActivated = !musicActivated;
+        if (musicActivated)
+            imageMusic.sprite = onMusic;
+        else
+            imageMusic.sprite = offMusic;
         foreach (AudioSource aSource in musicSources)
         {
             aSource.mute = !musicActivated;

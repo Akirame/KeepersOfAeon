@@ -19,7 +19,6 @@ public class ItemManager : MonoBehaviour
         Item.ItemConsumed += DestroyItem;
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
-        Debug.Log(aSource);
         rectTransform = GetComponent<RectTransform>();
     }
 

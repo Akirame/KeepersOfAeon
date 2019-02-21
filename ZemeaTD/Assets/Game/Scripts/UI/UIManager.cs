@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -75,5 +76,10 @@ public class UIManager : MonoBehaviour {
         GameObject b = currentPanel.GetComponentInChildren<Button>().gameObject;
         b.GetComponent<Button>().Select();
         EventSystem.current.SetSelectedGameObject(b,null);
+    }
+
+    public void OnExitPauseButton()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
