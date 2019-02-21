@@ -16,9 +16,11 @@ public class ColorSelectionScene : MonoBehaviour
     private int p2Index = 0;
     private int orbIndex = 0;
     private bool orbsCompleted = false;
+    private Animator anim;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         InitializeOrbs();
     }
 
@@ -107,6 +109,11 @@ public class ColorSelectionScene : MonoBehaviour
     public void OnStartButtonClicked()
     {
         GameManager.Get().SetPlayerOrbs(orbsNamesP1, orbsNamesP2);
+        anim.SetTrigger("startButton");
+    }
+
+    public void LoadGame()
+    {
         LoaderManager.Get().LoadScene("SampleScene");
     }
 

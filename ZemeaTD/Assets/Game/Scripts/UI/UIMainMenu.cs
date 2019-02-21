@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour  
@@ -11,16 +11,18 @@ public class UIMainMenu : MonoBehaviour
     public Text versionText;
     public GameObject currentPanel;
     private AudioSource aSource;
+    private Animator anim;
 
     private void Start()
     {
         aSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
         versionText.text = "v" + Application.version;
         currentPanel = mainMenuCanvas;
         StartCoroutine(FocusOnButton());
     }
     public void PlayButtonPressed() {
-        LoaderManager.Get().LoadScene("ColorSelectionScreen");
+        anim.SetTrigger("playButton");
     }
 
     public void CreditsButtonpressed() {
@@ -37,11 +39,6 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(FocusOnButton());
     }
 
-    public void NextButtonPressed()
-    {
-        LoaderManager.Get().LoadScene("SampleScene");
-    }
-
     IEnumerator FocusOnButton()
     {
         yield return new WaitForEndOfFrame();
@@ -49,4 +46,10 @@ public class UIMainMenu : MonoBehaviour
         b.GetComponent<Button>().Select();
         EventSystem.current.SetSelectedGameObject(b,null);
     }
+
+    public void GoToColorSelectionScreen()
+    {
+        SceneManager.LoadScene("ColorSelectionScreen");
+    }
+
 }
