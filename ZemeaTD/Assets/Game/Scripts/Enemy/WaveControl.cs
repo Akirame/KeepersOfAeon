@@ -58,6 +58,7 @@ public class WaveControl : MonoBehaviour
     public int waveMiniBoss;
 
     [Header("-Hard Round Vars-")]
+    public int initialWaveToStartHordes;
     public float percentHordeSpawnRate = 5f;
     public float initialChanceOfHardRound = 0.2f;
     private float chanceOfHardRound;
@@ -121,10 +122,13 @@ public class WaveControl : MonoBehaviour
 
     private void CheckIfHardRound()
     {
-        float randomChance = UnityEngine.Random.Range(0f, 1f);
-        if (randomChance < chanceOfHardRound)
+        if (currentWave >= initialWaveToStartHordes)
         {
-            TrySpawnHorde();
+            float randomChance = UnityEngine.Random.Range(0f, 1f);
+            if (randomChance < chanceOfHardRound)
+            {
+                TrySpawnHorde();
+            }
         }
     }
 

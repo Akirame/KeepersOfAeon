@@ -67,8 +67,11 @@ public class GameManager : MonoBehaviour {
 
     private void GiveOrbsToPlayers()
     {
-        player1.GetComponentInChildren<ColorAttribute>().EquipColors(p1Orbs);
-        player2.GetComponentInChildren<ColorAttribute>().EquipColors(p2Orbs);
+        if (p1Orbs.Capacity > 0 && p2Orbs.Capacity > 0)
+        {
+            player1.GetComponentInChildren<ColorAttribute>().EquipColors(p1Orbs);
+            player2.GetComponentInChildren<ColorAttribute>().EquipColors(p2Orbs);
+        }
     }
 
     private void ResetGame()
