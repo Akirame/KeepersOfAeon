@@ -27,11 +27,10 @@ public class LoaderManager : MonoBehaviour
     public float loadingProgress;
     public float timeLoading;
     public float minTimeToLoad = 2;
-
     private Scene currentScene;
 
     public void LoadScene(string sceneName)
-    {        
+    {
         SceneManager.LoadScene("LoadingScreen");
         StartCoroutine(AsynchronousLoad(sceneName));
     }
@@ -47,7 +46,6 @@ public class LoaderManager : MonoBehaviour
         yield return null;
         AsyncOperation ao = SceneManager.LoadSceneAsync(scene);
         ao.allowSceneActivation = false;
-
         while (!ao.isDone)
         {
             timeLoading += Time.deltaTime;

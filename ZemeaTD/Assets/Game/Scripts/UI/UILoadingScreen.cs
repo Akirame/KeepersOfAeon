@@ -9,6 +9,12 @@ public class UILoadingScreen : MonoBehaviour
     public Text loadingText;
     public Text pressText;
     public bool onGame = false;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public void SetVisible(bool show)
     {
@@ -20,7 +26,10 @@ public class UILoadingScreen : MonoBehaviour
         int loadingVal = (int)(LoaderManager.Get().loadingProgress * 100);
         loadingText.text = "Loading " + loadingVal;
         if (LoaderManager.Get().loadingProgress >= 1 && !onGame)
-            Destroy(this.gameObject);
+        {
+            if (anim)
+                anim.SetTrigger("loadingComplete");
+        }
     }
 
     public void SetOnGame()
@@ -28,6 +37,11 @@ public class UILoadingScreen : MonoBehaviour
         onGame = true;
         loadingText.gameObject.SetActive(false);
         pressText.gameObject.SetActive(true);
+    }
+
+    public void OnAnimationFinished()
+    {
+        Destroy(this.gameObject);
     }
 
 }

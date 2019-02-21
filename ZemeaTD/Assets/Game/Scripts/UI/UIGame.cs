@@ -50,8 +50,8 @@ public class UIGame : MonoBehaviour
 
     internal void DisableWarnings()
     {
-        rightWarning.SetActive(false);
-        leftWarning.SetActive(false);
+        //rightWarning.SetActive(false);
+        //leftWarning.SetActive(false);
     }
 
     private void Update()
