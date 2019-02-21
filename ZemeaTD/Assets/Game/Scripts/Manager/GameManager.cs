@@ -1,13 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     #region Singleton
     public static GameManager instance;
-    private LoaderManager loader;
-    public bool winGame = false;
 
     public static GameManager Get()
     {
@@ -28,12 +28,27 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    public PlayerLevel player1Level;
-    public PlayerLevel player2Level;
+    public List<string> p1Orbs;
+    public List<string> p2Orbs;
+    public bool onGameScene = false;
+    public GameObject player1;
+    public GameObject player2;
     public bool tutorialDone = false;
+    public bool winGame = false;
+    private LoaderManager loader;
     private AudioSource aSource;
+    private bool isInitialized = false;
 
-    private void Start()
+    private void Update()
+    {
+        if (!isInitialized && onGameScene)
+        {
+            Initialize();
+            isInitialized = true;
+        }
+    }
+
+    private void Initialize()
     {
         loader = LoaderManager.Get();
         Tower.TowerDestroyed += GameOver;
@@ -45,8 +60,15 @@ public class GameManager : MonoBehaviour {
         }
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddMusic(aSource);
-        player1Level = GameObject.Find("Player1").GetComponent<PlayerLevel>();
-        player2Level = GameObject.Find("Player2").GetComponent<PlayerLevel>();
+        player1 = GameObject.Find("Player1");
+        player2 = GameObject.Find("Player2");
+        GiveOrbsToPlayers();
+    }
+
+    private void GiveOrbsToPlayers()
+    {
+        player1.GetComponentInChildren<ColorAttribute>().EquipColors(p1Orbs);
+        player2.GetComponentInChildren<ColorAttribute>().EquipColors(p2Orbs);
     }
 
     private void ResetGame()
@@ -64,8 +86,8 @@ public class GameManager : MonoBehaviour {
 
     private void LevelUpPlayers()
     {
-        player1Level.LevelUpPlayer();
-        player2Level.LevelUpPlayer();
+        player1.GetComponent<PlayerLevel>().LevelUpPlayer();
+        player2.GetComponent<PlayerLevel>().LevelUpPlayer();
     }
 
     public void ToMainMenu()
@@ -77,5 +99,11 @@ public class GameManager : MonoBehaviour {
     {
         loader.LoadSceneQuick("FinalScreen");
         winGame = false;
+    }
+
+    internal void SetPlayerOrbs(List<string> orbsP1, List<string> orbsP2)
+    {
+        p1Orbs = orbsP1;
+        p2Orbs = orbsP2;
     }
 }

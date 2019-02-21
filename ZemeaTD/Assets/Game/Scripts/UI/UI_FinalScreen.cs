@@ -46,7 +46,7 @@ public class UI_FinalScreen : MonoBehaviour {
     {
         yield return new WaitForEndOfFrame();
         GameObject b = currentPanel.GetComponentInChildren<Button>().gameObject;
-        b.GetComponent<Button>().Select();        
+        b.GetComponent<Button>().Select();
         EventSystem.current.SetSelectedGameObject(b,null);
     }
 }

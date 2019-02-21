@@ -112,7 +112,7 @@ public class AttackBehaviour : MonoBehaviour {
 
     public void AttackControl()
     {
-        if(Input.GetAxis(inputPlayer.axisY) < 0 || Input.GetAxis(inputPlayer.axisYKey) < 0)
+        if(Input.GetAxis(inputPlayer.axisY) < 0 || Input.GetAxis(inputPlayer.axisYKey) > 0)
         {
             if(IsFacingRight())
             {
@@ -121,10 +121,9 @@ public class AttackBehaviour : MonoBehaviour {
             else
             {
                 angleAttack.z -= Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY) + Input.GetAxis(inputPlayer.axisYKey));
-                print(Math.Abs(Input.GetAxis(inputPlayer.axisYKey)));
             }
         }
-        else if(Input.GetAxis(inputPlayer.axisY) > 0 || Input.GetAxis(inputPlayer.axisYKey) > 0)
+        else if(Input.GetAxis(inputPlayer.axisY) > 0 || Input.GetAxis(inputPlayer.axisYKey) < 0)
         {
             if(IsFacingRight())
             {
@@ -133,8 +132,6 @@ public class AttackBehaviour : MonoBehaviour {
             else
             {
                 angleAttack.z += Time.deltaTime * angleAttackSpeed * Math.Abs(Input.GetAxis(inputPlayer.axisY) + Input.GetAxis(inputPlayer.axisYKey));
-                print(Math.Abs(Input.GetAxis(inputPlayer.axisYKey)));
-
             }
         }
         if(angleAttack.z > maxAngleAttack)

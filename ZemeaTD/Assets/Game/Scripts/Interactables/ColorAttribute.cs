@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorAttribute :MonoBehaviour
 {
@@ -25,12 +26,10 @@ public class ColorAttribute :MonoBehaviour
 
     private void Start()
     {
-        currentColor = (int)equipedColors[conta];
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        colorType = (COLOR_TYPE)currentColor;
-        anim.Play("Idle",0, UnityEngine.Random.Range(0, anim.GetCurrentAnimatorStateInfo(0).length));
         UpdateColor();
+        anim.Play("Idle",0, UnityEngine.Random.Range(0, anim.GetCurrentAnimatorStateInfo(0).length));
     }
 
     public void CicleUpColor()
@@ -39,8 +38,6 @@ public class ColorAttribute :MonoBehaviour
             conta++;
         else
             conta = 0;
-        currentColor = (int)equipedColors[conta];
-        colorType = (COLOR_TYPE)currentColor;
         UpdateColor();
     }
 
@@ -50,14 +47,14 @@ public class ColorAttribute :MonoBehaviour
             conta--;
         else
             conta = 1;
-        currentColor = (int)equipedColors[conta];
-        colorType = (COLOR_TYPE)currentColor;
         UpdateColor();
     }
 
     public void UpdateColor()
     {
-        switch(colorType)
+        currentColor = (int)equipedColors[conta];
+        colorType = (COLOR_TYPE)currentColor;
+        switch (colorType)
         {
             case COLOR_TYPE.GREEN:
                 c = Color.green;
@@ -76,6 +73,36 @@ public class ColorAttribute :MonoBehaviour
                 rend.sprite = colorSprites[3];
                 break;
         }
+    }
+
+    public void EquipColors(List<string> playerOrbs)
+    {
+        equipedColors[0] = GetColorTypeByString(playerOrbs[0]);
+        equipedColors[1] = GetColorTypeByString(playerOrbs[1]);
+        UpdateColor();
+    }
+
+    public COLOR_TYPE GetColorTypeByString(string v)
+    {
+        COLOR_TYPE colorOrb = COLOR_TYPE.LAST;
+        switch (v.ToUpper())
+        {
+            case "ORBE_GREEN":
+                colorOrb = COLOR_TYPE.GREEN;
+                break;
+            case "ORBE_MAGENTA":
+                colorOrb = COLOR_TYPE.MAGENTA;
+                break;
+            case "ORBE_ORANGE":
+                colorOrb = COLOR_TYPE.ORANGE;
+                break;
+            case "ORBE_YELLOW":
+                colorOrb = COLOR_TYPE.YELLOW;
+                break;
+            default:
+                break;
+        }
+        return colorOrb;
     }
 
     public Color GetProyectileRawColor()
