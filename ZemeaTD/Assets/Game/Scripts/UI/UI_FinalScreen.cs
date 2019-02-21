@@ -15,6 +15,8 @@ public class UI_FinalScreen : MonoBehaviour {
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
         aSource = GetComponent<AudioSource>();
+        GameManager.Get().winGame = false;
+        GameManager.Get().tutorialDone = true;
     }
 
     private void Start()
@@ -39,7 +41,7 @@ public class UI_FinalScreen : MonoBehaviour {
 
     public void RestartPressed()
     {
-        LoaderManager.Get().LoadSceneQuick("SampleScene");
+        LoaderManager.Get().LoadSceneQuick("ColorSelectionScreen");
     }
 
     IEnumerator FocusOnButton(GameObject currentPanel)

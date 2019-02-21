@@ -13,7 +13,10 @@ public class TutorialManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ActivateFirstTutorial();
+        if (!GameManager.Get().tutorialDone)
+            ActivateFirstTutorial();
+        else
+            TutorialEnd();
     }
 
     private void ActivateFirstTutorial()
