@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerLevel : MonoBehaviour
 {
     public delegate void PlayerLevelAnimation(PlayerLevel pl);
-    public PlayerLevelAnimation OnLevelUp;
+    public static PlayerLevelAnimation OnLevelUp;
     public int playerLevel = 1;
     public int playerExperience = 0;
     public int expNeededPerLevel = 300;
@@ -17,6 +17,7 @@ public class PlayerLevel : MonoBehaviour
     //public Text levelUpText;
     public Text levelVisor;
     public Canvas levelCanvas;
+    public bool upgradeLevel = false;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerLevel : MonoBehaviour
 
     public void LevelUpPlayer()
     {
+        upgradeLevel = true;
+        OnLevelUp(this);
         playerLevel++;
         levelVisor.text = playerLevel.ToString();
         GetComponent<CharacterController2D>().playerData.LevelUp();
