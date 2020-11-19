@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour {
     public List<string> p1Orbs;
     public List<string> p2Orbs;
     public bool onGameScene = false;
-    public GameObject player1;
-    public GameObject player2;
+    public GameObject mage;
+    public GameObject archer;
     public bool tutorialDone = false;
     public bool winGame = false;
     private LoaderManager loader;
@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour {
         if (!isInitialized && onGameScene)
         {
             Initialize();
-            isInitialized = true;
         }
     }
 
@@ -60,17 +59,18 @@ public class GameManager : MonoBehaviour {
         }
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddMusic(aSource);
-        player1 = GameObject.Find("Player1");
-        player2 = GameObject.Find("Player2");
+        mage = GameObject.Find("Mage");
+        archer = GameObject.Find("Archer");
         GiveOrbsToPlayers();
+        isInitialized = true;
     }
 
     private void GiveOrbsToPlayers()
     {
         if (p1Orbs.Capacity > 0 && p2Orbs.Capacity > 0)
         {
-            player1.GetComponentInChildren<ColorAttribute>().EquipColors(p1Orbs);
-            player2.GetComponentInChildren<ColorAttribute>().EquipColors(p2Orbs);
+            mage.GetComponentInChildren<ColorAttribute>().EquipColors(p1Orbs);
+            archer.GetComponentInChildren<ColorAttribute>().EquipColors(p2Orbs);
         }
     }
 
@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour {
 
     private void LevelUpPlayers()
     {
-        player1.GetComponent<PlayerLevel>().LevelUpPlayer();
-        player2.GetComponent<PlayerLevel>().LevelUpPlayer();
+        mage.GetComponent<PlayerLevel>().LevelUpPlayer();
+        archer.GetComponent<PlayerLevel>().LevelUpPlayer();
     }
 
     public void ToMainMenu()

@@ -26,7 +26,7 @@ public class CharacterController2D : MonoBehaviour
 
     private SpriteRenderer spriteRend;
     private bool canMove = true;
-    private bool onFloor = false;
+    public bool onFloor = false;
     private Rigidbody2D rig;
     private AttackBehaviour attackComponent;
     private Animator anim;
@@ -115,30 +115,21 @@ public class CharacterController2D : MonoBehaviour
         switch (currentState)
         {
             case PLAYER_STATES.Idle:
-                if (onFloor)
-                {
-                    if (rig.velocity.x != 0)
-                        currentState = PLAYER_STATES.Running;
-                }
-                else
-                {
+                if(!onFloor){
                     currentState = PLAYER_STATES.Jump;
                 }
+                if (rig.velocity.x != 0)
+                    currentState = PLAYER_STATES.Running;
                 break;
             case PLAYER_STATES.Running:
-                if (onFloor)
-                {
-                    if (rig.velocity.x == 0)
-                        currentState = PLAYER_STATES.Idle;
-                }
-                else
-                {
+                if (!onFloor){
                     currentState = PLAYER_STATES.Jump;
                 }
+                if (Mathf.Abs(rig.velocity.x) <= 0.1)
+                    currentState = PLAYER_STATES.Idle;
                 break;
             case PLAYER_STATES.Jump:
-                if (onFloor)
-                {
+                if (onFloor){
                     currentState = PLAYER_STATES.Idle;
                 }
                 break;
@@ -149,29 +140,13 @@ public class CharacterController2D : MonoBehaviour
 
     private void Movement()
     {
-        if (canMove)
-        {
-            float movSpeed;
-            if (onFloor)
-            {
-                movSpeed = playerData.floorSpeed;
-            }
-            else
-            {
-                movSpeed = playerData.airSpeed;
-            }
-            movement.x = (Input.GetAxis(inputControl.axisH) + Input.GetAxis(inputControl.axisHKey));
-            rig.velocity = new Vector2(movSpeed * Time.deltaTime * movement.x,rig.velocity.y);
-            if (movement.x > 0)
-            {
-                SetFacingRight(true);
-            }
-            else if(movement.x < 0)
-            {
-                SetFacingRight(false);
-            }
-            anim.SetFloat("axis", Mathf.Abs(movement.x));
+        float movSpeed = onFloor ? playerData.floorSpeed : playerData.airSpeed;
+        movement.x = (Input.GetAxis(inputControl.axisH) + Input.GetAxis(inputControl.axisHKey));
+        rig.velocity = new Vector2(movSpeed * Time.deltaTime * movement.x, rig.velocity.y);
+        if(movement.magnitude > 0.1){
+            SetFacingRight(movement.x > 0.1);
         }
+        anim.SetFloat("axis", Mathf.Abs(movement.x));
     }
 
     public void GroundControl()
@@ -204,14 +179,13 @@ public class CharacterController2D : MonoBehaviour
     {
         if(onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
         {
-            onFloor = false;
             dobleJump = true;
-            rig.velocity = new Vector2(0, playerData.jumpForce);
+            rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
             psDust.Play();
         }
         else if(!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
         {
-            rig.velocity = new Vector2(0, playerData.jumpForce);
+            rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
             dobleJump = false;
             psDust.Play();
         }
@@ -241,16 +215,10 @@ public class CharacterController2D : MonoBehaviour
     public void SetFacingRight(bool faceRight)
     {
         float xScale = Mathf.Abs(transform.localScale.x);
-        if (faceRight)
-        {
-            transform.localScale = new Vector2(xScale, transform.localScale.y);
-        }
-        else
-        {
-            transform.localScale = new Vector2(-xScale, transform.localScale.y);
-        }
+        transform.localScale = new Vector2(faceRight ? xScale : -xScale, transform.localScale.y);
         lookingRight = faceRight;
     }
+
     public void TurnIntoChicken(Item item)
     {
         chickenPs.Play();
