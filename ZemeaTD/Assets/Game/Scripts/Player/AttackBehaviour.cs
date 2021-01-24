@@ -43,14 +43,14 @@ public class AttackBehaviour : MonoBehaviour {
     private float lAxis = 0f;
     private bool triggerTouched = false;
 
-    public enum TypeOfShoot { Normal, MachineGun, ChargeShot, Boulder, Homming};
+    public enum TypeOfShoot { Normal, MachineGun, ChargeShot, Boulder, Homming, Penetrating};
 
     [Header("Weapons Modifier")]
     public Transform weaponPos;
     public TypeOfShoot shootType = TypeOfShoot.Normal;
     public float chargeShotMax = 5f;
     public float chargeShotCounter = 1f;
-    public bool penetratingBullets = false;
+    public bool penetratingBulletsOn = false;
     public int shootQuantity = 1;
     public bool boulderOn = false;
     public bool hommingOn = true;
@@ -170,6 +170,7 @@ public class AttackBehaviour : MonoBehaviour {
             case TypeOfShoot.Normal:
             case TypeOfShoot.Boulder:
             case TypeOfShoot.Homming:
+            case TypeOfShoot.Penetrating:
                 if(Input.GetButtonDown(inputPlayer.attackButton) && !shooted)
                 {
                     Shoot();
@@ -220,7 +221,8 @@ public class AttackBehaviour : MonoBehaviour {
             GameObject b = Instantiate(bullet, weaponPos.position, transform.rotation, bulletsContainer.transform);
             Vector2 bulletDirection = crossPos.position - transform.position;
             bulletDirection = new Vector2(bulletDirection.x, (bulletDirection.y + UnityEngine.Random.Range(-1f, 1f)));
-            b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBullets);
+            b.transform.localScale = new Vector3(b.transform.localScale.x * chargeShotCounter, b.transform.localScale.y * chargeShotCounter,1);
+            b.GetComponent<ColorProyectile>().Shoot(bulletDirection.normalized, playerDamage, currentColor.colorType, this.gameObject, criticalAttack, penetratingBulletsOn);
         }
         //Boulder Shoot       
         if(UnityEngine.Random.Range(0f,1f) > 0.7f && boulderOn)
@@ -330,10 +332,11 @@ public class AttackBehaviour : MonoBehaviour {
     }
     private void OnWeaponPoweUpGet(Item i)
     {
-        shootType = (TypeOfShoot)UnityEngine.Random.Range((int)TypeOfShoot.Normal, (int)TypeOfShoot.Homming + 1);
+        shootType = TypeOfShoot.ChargeShot;
         Debug.Log(shootType);
         boulderOn = shootType == TypeOfShoot.Boulder ? true : false;
         hommingOn = shootType == TypeOfShoot.Homming ? true : false;
+        penetratingBulletsOn = (shootType == TypeOfShoot.Penetrating || shootType == TypeOfShoot.ChargeShot) ? true : false;
 
         weaponPowerUp = true;
         WeaponPowerUpTimer = 0f;

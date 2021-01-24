@@ -175,6 +175,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114323807975107020, guid: de7b5cb421b49604084ffa69e86ecc55,
         type: 3}
+    - target: {fileID: 114603955414067010, guid: 28b47e07610b96941967a4adecfcda4f,
+        type: 3}
+      propertyPath: lifetimeItemWeaponPowerUp
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b47e07610b96941967a4adecfcda4f, type: 3}
 --- !u!1 &24464001
@@ -4241,7 +4246,7 @@ MonoBehaviour:
   minItemSpawnTime: 5
   maxItemSpawnTime: 10
   itemSpawnTime: 0
-  minWeaponSpawnTime: 25
+  minWeaponSpawnTime: 30
   maxWeaponSpawnTime: 45
   weaponSpawnTime: 0
 --- !u!224 &523354798
@@ -9969,6 +9974,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114323807975107020, guid: de7b5cb421b49604084ffa69e86ecc55,
         type: 3}
+    - target: {fileID: 114173939661080800, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 3}
+      propertyPath: lifetimeItemWeaponPowerUp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 114929190876019798, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 3}
       propertyPath: m_Enabled
