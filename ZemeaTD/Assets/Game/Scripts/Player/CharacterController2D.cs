@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Movement Vars")]
     public bool canJump = true;
-    public bool dobleJump = false;
+    public bool doubleJump = false;
     public bool lookingRight;
 
     [Header("Misc Vars")]
@@ -179,18 +179,18 @@ public class CharacterController2D : MonoBehaviour
     {
         if(onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
         {
-            dobleJump = true;
+            doubleJump = true;
             rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
             psDust.Play();
         }
-        else if(!onFloor && Input.GetButtonDown(inputControl.jump) && dobleJump)
+        else if(!onFloor && Input.GetButtonDown(inputControl.jump) && doubleJump)
         {
             rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
-            dobleJump = false;
+            doubleJump = false;
             psDust.Play();
         }
-        else if(dobleJump && onFloor)
-            dobleJump = false;
+        else if(doubleJump && onFloor)
+            doubleJump = false;
     }
 
     public void SetCanMove(bool setMove)

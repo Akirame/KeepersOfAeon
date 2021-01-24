@@ -59,7 +59,7 @@ public class EnemyRangedBehavior : Enemy
 
     private void Attack()
     {
-        GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
+        GameObject b = Instantiate(bullet.gameObject, transform.position, Quaternion.identity,this.transform);
         Vector2 bulletDirection = rampart.transform.position - transform.position + new Vector3(0, UnityEngine.Random.Range(0,throwOffset));
         b.GetComponent<EnemyBullet>().Shoot(bulletDirection.normalized, damage);
         timer = 0;

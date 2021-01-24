@@ -34,6 +34,7 @@ public class AttackBehaviour : MonoBehaviour {
     public AudioClip[] audioClips;
     private AudioSource aSource;
     private float timer;
+    public PopText popText;
 
     [Header("Controllers Vars")]
     private InputControl inputPlayer;
@@ -42,7 +43,7 @@ public class AttackBehaviour : MonoBehaviour {
     private float lAxis = 0f;
     private bool triggerTouched = false;
 
-    public enum TypeOfShoot { Normal,MachineGun,ChargeShot};
+    public enum TypeOfShoot { Normal, MachineGun, ChargeShot, Boulder, Homming};
 
     [Header("Weapons Modifier")]
     public Transform weaponPos;
@@ -55,10 +56,13 @@ public class AttackBehaviour : MonoBehaviour {
     public bool hommingOn = true;
 
     [Header("Item Modifier")]
-    public float lifetimeItemDamageBonus;
+    public float lifetimeItemDamageBonus = 5;
+    private float itemDamageBonusTimer;
     public int itemDamageBonus = 1;
     private bool doubleDamage = false;
-    private float itemDamageBonusTimer;
+    public float lifetimeItemWeaponPowerUp = 20;
+    private float WeaponPowerUpTimer;
+    private bool weaponPowerUp = false;
 
     private void Start()
     {
@@ -69,12 +73,14 @@ public class AttackBehaviour : MonoBehaviour {
         aSource = GetComponent<AudioSource>();
         AudioManager.Get().AddSound(aSource);
         criticalChance = player.playerData.criticalChance;
-        Item.DamageConsumed += GetDoubleDamage;
+        Item.DamageConsumed += OnDoubleDamageGet;
+        Item.WeaponPowerUpConsumed += OnWeaponPoweUpGet;
     }
 
     private void OnDestroy()
     {
-        Item.DamageConsumed -= GetDoubleDamage;
+        Item.DamageConsumed -= OnDoubleDamageGet;
+        Item.WeaponPowerUpConsumed -= OnWeaponPoweUpGet;
     }
 
     private void Update()
@@ -105,6 +111,19 @@ public class AttackBehaviour : MonoBehaviour {
                 itemDamageBonusTimer = 0;
                 doubleDamage = false;
                 itemDamageBonus = 1;
+            }
+        }
+
+        if (weaponPowerUp)
+        {
+            WeaponPowerUpTimer += Time.deltaTime;
+            if (WeaponPowerUpTimer >= lifetimeItemWeaponPowerUp)
+            {
+                WeaponPowerUpTimer = 0;
+                weaponPowerUp = false;
+                shootType = TypeOfShoot.Normal;
+                boulderOn = false;
+                hommingOn = false;
             }
         }
 
@@ -149,6 +168,8 @@ public class AttackBehaviour : MonoBehaviour {
         switch(shootType)
         {
             case TypeOfShoot.Normal:
+            case TypeOfShoot.Boulder:
+            case TypeOfShoot.Homming:
                 if(Input.GetButtonDown(inputPlayer.attackButton) && !shooted)
                 {
                     Shoot();
@@ -301,11 +322,26 @@ public class AttackBehaviour : MonoBehaviour {
         }
     }
 
-    private void GetDoubleDamage(Item i)
+    private void OnDoubleDamageGet(Item i)
     {
         itemDamageBonus = 2;
         doubleDamage = true;
-        itemDamageBonusTimer = 0;
+        itemDamageBonusTimer = 0f;
     }
+    private void OnWeaponPoweUpGet(Item i)
+    {
+        shootType = (TypeOfShoot)UnityEngine.Random.Range((int)TypeOfShoot.Normal, (int)TypeOfShoot.Homming + 1);
+        Debug.Log(shootType);
+        boulderOn = shootType == TypeOfShoot.Boulder ? true : false;
+        hommingOn = shootType == TypeOfShoot.Homming ? true : false;
 
+        weaponPowerUp = true;
+        WeaponPowerUpTimer = 0f;
+        PopLabel(shootType.ToString());
+    }
+    private void PopLabel(string label)
+    {
+        GameObject go = Instantiate(popText.gameObject, transform.position, Quaternion.identity, transform.parent);
+        go.GetComponent<PopText>().CreateText(label, Color.white);
+    }
 }

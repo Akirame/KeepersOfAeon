@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
     public delegate void ItemActions(Item i);
-    public static ItemActions InvulnerableConsume;
+    public static ItemActions InvulnerableConsumed;
     public static ItemActions ItemConsumed;
     public static ItemActions ChickenConsumed;
     public static ItemActions DamageConsumed;
+    public static ItemActions WeaponPowerUpConsumed;
     public IceExplosion iceExplosion;
     public float lifeTime = 8;
     public AudioClip sound;
@@ -20,7 +21,8 @@ public class Item : MonoBehaviour {
       InvulnerableShield,
       RalenticeEnemies,
       Chicken,
-      DoubleDamage
+      DoubleDamage,
+      WeaponPowerUp
     }
     public TypeOfItem itemType;
 
@@ -31,12 +33,12 @@ public class Item : MonoBehaviour {
         else
             ItemConsumed(this);
     }
-    protected  void ConsumeItem()
+    protected void ConsumeItem()
     {        
         switch(itemType)
         {
             case TypeOfItem.InvulnerableShield:
-                InvulnerableConsume(this);
+                InvulnerableConsumed(this);
                 break;
             case TypeOfItem.RalenticeEnemies:
                 CreateIceExplosion();
@@ -46,6 +48,9 @@ public class Item : MonoBehaviour {
                 break;
             case TypeOfItem.DoubleDamage:
                 DamageConsumed(this);
+                break;
+            case TypeOfItem.WeaponPowerUp:
+                WeaponPowerUpConsumed(this);
                 break;
         }
         consumed = true;

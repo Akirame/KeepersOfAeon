@@ -22,12 +22,12 @@ public class Rampart : MonoBehaviour
     {        
         coll = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
-        Item.InvulnerableConsume += ShieldInvulnerable;
+        Item.InvulnerableConsumed += ShieldInvulnerable;
 	}
 
     private void OnDestroy()
     {
-        Item.InvulnerableConsume -= ShieldInvulnerable;
+        Item.InvulnerableConsumed -= ShieldInvulnerable;
     }
     private void Update()
     {
