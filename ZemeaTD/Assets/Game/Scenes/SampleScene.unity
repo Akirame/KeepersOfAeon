@@ -15729,12 +15729,12 @@ PrefabInstance:
     - target: {fileID: 7138688565588527311, guid: d86dcf995ac1f08489201a8f9ade06f9,
         type: 3}
       propertyPath: startingHazardsSpawnTime
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7138688565588527311, guid: d86dcf995ac1f08489201a8f9ade06f9,
         type: 3}
       propertyPath: startingChanceOfSpawn
-      value: 80
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8191910656572497406, guid: d86dcf995ac1f08489201a8f9ade06f9,
         type: 3}
