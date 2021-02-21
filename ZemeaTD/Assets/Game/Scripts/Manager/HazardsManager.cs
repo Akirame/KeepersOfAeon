@@ -30,7 +30,7 @@ public class HazardsManager : MonoBehaviour
 
     void Update()
     {
-        if(UnactiveHazards.Count > 0)
+        if(UnactiveHazards.Count > 0 && WaveControl.GetInstance().IsWaveActive())
         if(currentTimer >= currentHazardsSpawnTime)
         {
             currentTimer = 0f;

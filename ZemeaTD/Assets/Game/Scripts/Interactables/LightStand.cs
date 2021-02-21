@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightStand :MonoBehaviour
+public class LightStand : MonoBehaviour
 {
 
     public delegate void LightAction(LightStand l);
@@ -18,6 +18,9 @@ public class LightStand :MonoBehaviour
     public UILight LightUICanvas;
     private ParticleSystem particles;
     private ParticleSystem.EmissionModule em;
+    private Animator lightAnimator;
+
+    public bool ultiAvailable = false;
 
     private void Start()
     {
@@ -29,6 +32,11 @@ public class LightStand :MonoBehaviour
         playerList = new List<GameObject>();
         particles = GetComponentInChildren<ParticleSystem>();
         em = particles.emission;
+        lightAnimator = GetComponent<Animator>();
+        if (DebugScreen.GetInstance())
+        {
+            DebugScreen.GetInstance().AddButton("Activate Ultimate", DebugSetUltimateAvailable);
+        }
     }
 
     private void Update()
@@ -42,6 +50,17 @@ public class LightStand :MonoBehaviour
             particles.Stop();
         if(lightValue >= maxLight)
             LightFinished(this);
+
+        if(ultiAvailable)
+        {
+            foreach(GameObject player in playerList)
+            {                
+                if (Input.GetButtonDown(player.GetComponent<InputControl>().attackButton))
+                {
+                    lightAnimator.SetTrigger("OnUltimateLight");
+                }
+            }
+        }
     }
 
     private void CheckOnTutorial()
@@ -84,5 +103,23 @@ public class LightStand :MonoBehaviour
     private void ActivateLightAfterTutorial(TutorialTarget t)
     {
         inTutorial = false;
+    }
+
+    public void SetUltimateAvailable(bool value)
+    {
+        ultiAvailable = value;
+        lightAnimator.SetBool("UltiAvailable", ultiAvailable);
+    }
+
+    public void DebugSetUltimateAvailable()
+    {
+        ultiAvailable = !ultiAvailable;
+        lightAnimator.SetBool("UltiAvailable", ultiAvailable);
+    }
+
+    public void OnUltimateLight()
+    {
+        SetUltimateAvailable(false);
+        WaveControl.GetInstance().KillAllEnemiesOnScreen();
     }
 }

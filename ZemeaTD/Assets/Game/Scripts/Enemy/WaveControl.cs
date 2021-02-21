@@ -64,7 +64,7 @@ public class WaveControl : MonoBehaviour
     private float chanceOfHardRound;
 
     [Header("-Misc Vars-")]
-    public bool gameStarted = false;
+    public bool isWaveActive = false;
     public Text waveTimeText;
     public AudioClip hordeSound;
     private bool canSpawn = false;
@@ -99,8 +99,7 @@ public class WaveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckOnTutorial();
-        if (gameStarted)
+        if (GameManager.Get().tutorialDone)
         {
             if (canSpawn)
             {
@@ -139,14 +138,6 @@ public class WaveControl : MonoBehaviour
         timerWaves = timeBetweenWaves;
     }
 
-    private void CheckOnTutorial()
-    {
-        if (GameManager.Get().tutorialDone && !gameStarted)
-        {
-            gameStarted = true;
-        }
-    }
-
     private void TrySpawnHorde()
     {
         aSource.clip = hordeSound;
@@ -169,6 +160,7 @@ public class WaveControl : MonoBehaviour
         if (enemyCount <= 0)
         {
             canSpawn = true;
+            isWaveActive = false;
         }
     }
 
@@ -179,6 +171,7 @@ public class WaveControl : MonoBehaviour
         StopCoroutine(SpawnEnemyList());
         StartCoroutine(SpawnEnemyList());
         canSpawn = false;
+        isWaveActive = true;
         currentWave++;
     }
 
@@ -269,6 +262,14 @@ public class WaveControl : MonoBehaviour
         CleanWave();
     }
 
+    public void KillAllEnemiesOnScreen()
+    {
+        for (int i = enemyList.Count - 1; i >= 0; i--)
+        {
+            if(enemyList[i].GetComponent<Renderer>().isVisible)
+                enemyList[i].GetComponent<Enemy>().Kill();
+        }
+    }
     private void CleanWave()
     {
         enemyTypeList.Clear();
@@ -307,4 +308,6 @@ public class WaveControl : MonoBehaviour
         for (int i = 0; i < enemyList.Count; i++)
             enemyList[i].GetComponent<EnemyMovementBehavior>().RalenticeMovement();
     }
+
+    public bool IsWaveActive() {return isWaveActive;}
 }
