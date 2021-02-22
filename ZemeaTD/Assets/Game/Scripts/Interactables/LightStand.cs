@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightStand :MonoBehaviour
+public class LightStand : MonoBehaviour
 {
 
     public delegate void LightAction(LightStand l);
@@ -19,6 +19,14 @@ public class LightStand :MonoBehaviour
     private ParticleSystem particles;
     private ParticleSystem.EmissionModule em;
 
+    private Animator lightAnimator;
+    public List<GameObject> lightStones;
+    private const int lightStonesCount = 10;
+    public bool ultimateLightAvailable = false;
+    private float maxUltimateLightCharge = 25f;
+    public float currentUltimateLightCharge = 0f;
+    public int currentLightsOn = 0;
+
     private void Start()
     {
         if(DebugScreen.GetInstance())
@@ -29,9 +37,19 @@ public class LightStand :MonoBehaviour
         playerList = new List<GameObject>();
         particles = GetComponentInChildren<ParticleSystem>();
         em = particles.emission;
+        lightAnimator = GetComponent<Animator>();
+        if (DebugScreen.GetInstance())
+        {
+            DebugScreen.GetInstance().AddButton("Activate Ultimate", DebugSetUltimateAvailable);
+        }
+        lightStones = new List<GameObject>();
+        for(int i = 1; i <= lightStonesCount;i++)
+        {
+            lightStones.Add(transform.Find("LightStand").transform.Find("L"+ i).gameObject);
+        }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         lightOn = (playerList.Count > 0) ? true : false;
         CheckOnTutorial();
@@ -42,6 +60,17 @@ public class LightStand :MonoBehaviour
             particles.Stop();
         if(lightValue >= maxLight)
             LightFinished(this);
+
+        if(ultimateLightAvailable)
+        {
+            foreach(GameObject player in playerList)
+            {                
+                if (Input.GetButtonDown(player.GetComponent<InputControl>().attackButton))
+                {
+                    lightAnimator.SetTrigger("OnUltimateLight");
+                }
+            }
+        }
     }
 
     private void CheckOnTutorial()
@@ -61,6 +90,24 @@ public class LightStand :MonoBehaviour
             lightValue += lightPerSecond * Time.deltaTime;
             em.rateOverTime = (int)lightValue;
             LightUICanvas.UpdateTexts(lightValue);
+            
+            if(!ultimateLightAvailable)
+            {
+                if(currentUltimateLightCharge < maxUltimateLightCharge)
+                {
+                    currentUltimateLightCharge += lightPerSecond * Time.deltaTime;
+                    currentLightsOn = ((int)currentUltimateLightCharge * (int)lightStonesCount) / (int)maxUltimateLightCharge;
+
+                    for(int i = 0; i < currentLightsOn;i++)
+                    {
+                        lightStones[i].GetComponent<SpriteRenderer>().color = new Color(1f,0f,1f,1f);
+                    }
+                }
+                else
+                {
+                    SetUltimateAvailable(true);
+                }
+            }
         }
     }
 
@@ -84,5 +131,32 @@ public class LightStand :MonoBehaviour
     private void ActivateLightAfterTutorial(TutorialTarget t)
     {
         inTutorial = false;
+    }
+
+    public void SetUltimateAvailable(bool value)
+    {
+        ultimateLightAvailable = value;
+        lightAnimator.SetBool("UltiAvailable", ultimateLightAvailable);
+        if(ultimateLightAvailable)
+        {
+            foreach(GameObject light in lightStones)
+            {
+                currentUltimateLightCharge = 0f;
+                currentLightsOn = 0;
+                light.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+            }
+        }
+    }
+
+    public void DebugSetUltimateAvailable()
+    {
+        ultimateLightAvailable = !ultimateLightAvailable;
+        lightAnimator.SetBool("UltiAvailable", ultimateLightAvailable);
+    }
+
+    public void OnUltimateLight()
+    {
+        SetUltimateAvailable(false);
+        WaveControl.GetInstance().KillAllEnemiesOnScreen();
     }
 }

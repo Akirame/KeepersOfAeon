@@ -27,7 +27,7 @@ public class TutorialTarget : MonoBehaviour {
                 hitConta++;
                 RandomColor();
             }
-            if (!waveControl.gameStarted && hitConta > 3)
+            if (!GameManager.Get().tutorialDone && hitConta > 3)
             {
                 tutorial.GetComponent<TutorialManager>().TutorialEnd();
             }

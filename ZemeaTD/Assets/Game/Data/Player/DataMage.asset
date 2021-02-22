@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7815aac8e27359c41a8b85d2f095904f, type: 3}
   m_Name: DataMage
   m_EditorClassIdentifier: 
-  floorSpeed: 5000
-  airSpeed: 4000
+  floorSpeed: 3500
+  airSpeed: 3200
   attackSpeed: 4
   jumpForce: 100
   minDamage: 10

@@ -62,7 +62,7 @@ public class ItemManager : MonoBehaviour
 
     private void CheckCanSpawn()
     {
-        if (GameManager.Get().tutorialDone && !canSpawnItems)
+        if (GameManager.Get().tutorialDone && !canSpawnItems && WaveControl.GetInstance().IsWaveActive())
         {
             canSpawnItems = true;
         }
