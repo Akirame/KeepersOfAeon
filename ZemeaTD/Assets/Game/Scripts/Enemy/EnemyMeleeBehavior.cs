@@ -16,7 +16,7 @@ public class EnemyMeleeBehavior : Enemy
                     if (timer >= timeToAttack)
                     {
                         rampart.Attacked(damage);
-                        CameraShake.GetInstance().Shake(0.02f, 0.01f);
+                        CameraShake.GetInstance().Shake(0.001f, 0.01f);
                         timer = 0;
                     }
                 }

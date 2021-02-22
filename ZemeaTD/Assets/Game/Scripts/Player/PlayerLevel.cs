@@ -29,7 +29,7 @@ public class PlayerLevel : MonoBehaviour
     public void LevelUpPlayer()
     {
         upgradeLevel = true;
-        OnLevelUp(this);
+        //OnLevelUp(this);
         playerLevel++;
         levelVisor.text = playerLevel.ToString();
         GetComponent<CharacterController2D>().playerData.LevelUp();

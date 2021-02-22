@@ -4,17 +4,18 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7815aac8e27359c41a8b85d2f095904f, type: 3}
   m_Name: DataMage
   m_EditorClassIdentifier: 
-  floorSpeed: 1400
-  airSpeed: 1600
+  floorSpeed: 5000
+  airSpeed: 4000
   attackSpeed: 4
-  jumpForce: 70
+  jumpForce: 100
   minDamage: 10
   maxDamage: 12
   criticalChance: 0.8

@@ -43,8 +43,10 @@ public class WaveControl : MonoBehaviour
     public int rangeCount;
     public int flyCount;
     public int enemyCount;
+    public int roundToSpawnRanged;
+    public int roundToSpawnFlyer;
     public int totalEnemyCount;
-    public int enemyIncrementFactor = 2;
+    public float enemyIncrementFactor = 2;
 
     [Header("-Wave Timers-")]
     public int timeBetweenWaves;
@@ -70,6 +72,7 @@ public class WaveControl : MonoBehaviour
     private bool canSpawn = false;
     private AudioSource aSource;
 
+    private enum EnemyType{ Melee, Ranged, Flyer, Last};
 
     // Use this for initialization
     void Start()
@@ -109,7 +112,6 @@ public class WaveControl : MonoBehaviour
                 if (timerWaves <= 0)
                 {
                     PrepareNewWave();
-                    CheckIfHardRound();
                 }
             }
             else
@@ -225,27 +227,42 @@ public class WaveControl : MonoBehaviour
     private void EnemyKilled(Enemy e)
     {
         enemyList.Remove(e.gameObject);
-        Destroy(e.gameObject);
         enemyCount--;
+        Destroy(e.gameObject);
     }
 
     private void GenerateEnemyList()
     {
-        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
-        {
-            enemyTypeList.Add(0);
-        }
-        for (int i = 0; i < rangeCount + (int)((enemyIncrementFactor * currentWave / 3) * 3); i++)
-        {
-            enemyTypeList.Add(1);
-        }
-        for (int i = 0; i < flyCount + (int)((enemyIncrementFactor * currentWave / 5) * 3); i++)
-        {
-            enemyTypeList.Add(2);
-        }
+        AddMeleeEnemies();
+        AddRangedEnemies();
+        AddFlyerEnemies();
+        CheckIfHardRound();
         RandomizeEnemyList();
         enemyCount = enemyTypeList.Count;
         totalEnemyCount = enemyCount;
+    }
+
+    private void AddMeleeEnemies(){
+        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        {
+            enemyTypeList.Add((int)EnemyType.Melee);
+        }
+    }
+
+    private void AddRangedEnemies(){
+        if (currentWave < roundToSpawnRanged){ return;}
+        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        {
+            enemyTypeList.Add((int)EnemyType.Ranged);
+        }
+    }
+
+    private void AddFlyerEnemies(){
+        if (currentWave < roundToSpawnFlyer){ return;}
+        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        {
+            enemyTypeList.Add((int)EnemyType.Flyer);
+        }
     }
 
     private void RandomizeEnemyList()
@@ -279,17 +296,17 @@ public class WaveControl : MonoBehaviour
     private void GenerateHordeWave()
     {
         hordeWave.Clear();
-        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave); i++)
+        for (int i = 0; i < meleeCount; i++)
         {
-            hordeWave.Add(0);
+            hordeWave.Add((int)EnemyType.Melee);
         }
-        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave / 3); i++)
+        for (int i = 0; i < rangeCount; i++)
         {
-            hordeWave.Add(1);
+            hordeWave.Add((int)EnemyType.Ranged);
         }
-        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave / 5); i++)
+        for (int i = 0; i < flyCount; i++)
         {
-            hordeWave.Add(2);
+            hordeWave.Add((int)EnemyType.Flyer);
         }
         for (int i = 0; i < hordeWave.Count; i++)
         {

@@ -1,38 +1,49 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class ExpParticles : MonoBehaviour
-{
-    ParticleSystem ps;
-    ParticleSystem.Particle[] m_Particles;
-    public Transform target;
-    public float speed = 5f;
-    int numParticlesAlive;
-    float timer;
-    public float chaseTime = 1;
-    void Start()
-    {
-        ps = GetComponent<ParticleSystem>();
-        if (!GetComponent<Transform>())
-        {
-            GetComponent<Transform>();
-        }
-    }
-    void Update()
-    {
+public class ExpParticles : MonoBehaviour {
+	public Transform target;
+
+	private ParticleSystem system;
+
+	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+
+	int count;
+
+    public float chaseTime = 0.5f;
+    public float timer;
+
+	void Start() {
+		if (system == null)
+			system = GetComponent<ParticleSystem>();
+
+		if (system == null){
+			this.enabled = false;
+		}else{
+			system.Play();
+		}
+	}
+	void Update(){
+		
         timer += Time.deltaTime;
         if (timer >= chaseTime)
         {
-            m_Particles = new ParticleSystem.Particle[ps.main.maxParticles];
-            numParticlesAlive = ps.GetParticles(m_Particles);
-            float step = speed * Time.deltaTime;
-            for (int i = 0; i < numParticlesAlive; i++)
+            count = system.GetParticles(particles);
+
+            for (int i = 0; i < count; i++)
             {
-                m_Particles[i].position = Vector3.LerpUnclamped(m_Particles[i].position, target.position, step);
+                ParticleSystem.Particle particle = particles[i];
+
+                Vector3 v1 = system.transform.TransformPoint(particle.position);
+                Vector3 v2 = target.transform.position;
+                Vector3 tarPosi = (v2 - v1) *  (particle.remainingLifetime / particle.startLifetime);
+                particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
+                particles[i] = particle;
             }
-            ps.SetParticles(m_Particles, numParticlesAlive);
+
+            system.SetParticles(particles, count);
         }
 
-    }
-}
 
+	}
+}
