@@ -12,6 +12,8 @@ public class EnemyBullet : MonoBehaviour {
     private float timer;
     private Rigidbody2D rigid;
 
+    private bool isAttached = false;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -23,7 +25,10 @@ public class EnemyBullet : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        transform.right = rigid.velocity;
+        if (!isAttached)
+        {
+            transform.right = rigid.velocity;
+        }
     }
     private void OnBecameInvisible()
     {
@@ -48,21 +53,21 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.tag == "Rampart")
         {
-            Destroy(this.gameObject);
             GameObject bp = Instantiate(bulletParticles, posParticles.position, Quaternion.identity, transform.parent);
             if (direction.x < 0)
             {
                 bp.transform.localScale = new Vector3(-1, 1, 1);
             }
+            Destroy(this.gameObject);
         }
         if (collision.tag == "Tower")
         {
             collision.GetComponent<Tower>().TakeDamage(damage);
             rigid.velocity = new Vector2();
             rigid.gravityScale = 0;
+            isAttached = true;
         }
     }    
 }

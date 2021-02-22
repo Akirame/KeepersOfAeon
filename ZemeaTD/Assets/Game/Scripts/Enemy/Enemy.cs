@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public ColorAttribute.COLOR_TYPE color;
     public int damage;
     public int health = 100;
-    public int healthMultiplier = 1;
+    public float healthMultiplier = 1;
     public int experience = 50;
     public Sprite[] sprites;
     public GameObject deathParticles;
@@ -73,9 +73,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Tower")
         {
-            Death(this);
             collision.GetComponent<Tower>().TakeDamage(damage);
             Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
+            Death(this);
         }
     }
 
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int bulletDamage, GameObject player)
     {
-        if (IsAlive())
+        if (health > 0)
         {
             StopCoroutine("FlickerEffect");
             StartCoroutine("FlickerEffect");
@@ -117,6 +117,7 @@ public class Enemy : MonoBehaviour
                 KillByPlayer(player);
             }
         }
+
     }
 
     public bool IsAlive()
@@ -130,14 +131,13 @@ public class Enemy : MonoBehaviour
         playerLevel.AddExperience(experience);
         GameObject ep = Instantiate(expParticles, transform.position, Quaternion.identity, transform.parent);
         ep.GetComponent<ExpParticles>().target = player.transform;
-        Death(this);
-        Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
+        Kill();
     }
 
     public void Kill()
     {
-        Death(this);
         Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
+        Death(this);
     }
 
     public void SetCanAttack(bool val, float time)
