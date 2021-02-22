@@ -138,7 +138,6 @@ public class Enemy : MonoBehaviour
     {
         Instantiate(deathParticles, transform.position, Quaternion.identity, transform.parent);
         Death(this);
-        Destroy(this.gameObject);
     }
 
     public void SetCanAttack(bool val, float time)

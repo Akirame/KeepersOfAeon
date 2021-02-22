@@ -168,10 +168,7 @@ public class WaveControl : MonoBehaviour
 
     private void CheckEnemyCount()
     {
-        if (enemyCount <= 0)
-        {
-            canSpawn = true;
-        }
+        canSpawn = enemyCount <= 0;
     }
 
     private void SpawnWave()
