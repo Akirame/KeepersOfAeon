@@ -14,6 +14,7 @@ public class HazardSquare : MonoBehaviour
     private Tower tower;
     private float currentTime = 0f;
     private UnityEngine.UI.Image radialTimer;
+    private GameObject promptButton;
     private GameObject ElementsGroup;
     private float hp = 100;
     private List<GameObject> players;
@@ -24,6 +25,7 @@ public class HazardSquare : MonoBehaviour
         tower = (Tower)GameObject.FindObjectOfType(typeof(Tower));
         ElementsGroup = transform.Find("ElementsGroup").gameObject;
         radialTimer = ElementsGroup.transform.Find("Canvas").Find("HazardTimer").GetComponent<UnityEngine.UI.Image>();
+        promptButton = ElementsGroup.transform.Find("Canvas").Find("PromptButton").gameObject;
         players = new List<GameObject>();
         animator = ElementsGroup.GetComponent<Animator>();
     }
@@ -78,6 +80,7 @@ public class HazardSquare : MonoBehaviour
         if (collision.tag == "Player")
         {
             players.Add(collision.gameObject);
+            promptButton.SetActive(true);
         }
     }
 
@@ -86,6 +89,8 @@ public class HazardSquare : MonoBehaviour
         if (collision.tag == "Player")
         {
             players.Remove(collision.gameObject);
+            if(players.Count <= 0 )
+                promptButton.SetActive(false);
         }
     }
 }
