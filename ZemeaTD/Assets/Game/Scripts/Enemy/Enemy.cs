@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public GameObject deathParticles;
     public GameObject expParticles;
+    public ParticleSystem hitParticles;
     protected bool canAttack = true;
     protected float timer;
     protected Rampart rampart;
@@ -108,6 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (health > 0)
         {
+            hitParticles.Play();
             StopCoroutine("FlickerEffect");
             StartCoroutine("FlickerEffect");
             health -= bulletDamage;

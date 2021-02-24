@@ -9,23 +9,24 @@ public class LightStand : MonoBehaviour
     public delegate void LightAction(LightStand l);
     public static LightAction LightFinished;
 
-    private bool lightOn = false;
-    private bool inTutorial = true;
     private List<GameObject> playerList;
     public float lightValue = 0f;
     public float lightPerSecond = 0.3f;
     public float maxLight = 100;
     public UILight LightUICanvas;
+
     private ParticleSystem particles;
     private ParticleSystem.EmissionModule em;
-
+    private bool lightOn = false;
+    private bool inTutorial = true;
     private Animator lightAnimator;
-    public List<GameObject> lightStones;
+    private List<GameObject> lightStones;    
+    private GameObject promptButton;
     private const int lightStonesCount = 10;
-    public bool ultimateLightAvailable = false;
+    private bool ultimateLightAvailable = false;
     private float maxUltimateLightCharge = 25f;
-    public float currentUltimateLightCharge = 0f;
-    public int currentLightsOn = 0;
+    private float currentUltimateLightCharge = 0f;
+    private int currentLightsOn = 0;
 
     private void Start()
     {
@@ -46,7 +47,8 @@ public class LightStand : MonoBehaviour
         for(int i = 1; i <= lightStonesCount;i++)
         {
             lightStones.Add(transform.Find("LightStand").transform.Find("L"+ i).gameObject);
-        }
+        }        
+        promptButton = transform.Find("Canvas").Find("PromptButton").gameObject;
     }
 
     private void LateUpdate()
@@ -114,13 +116,19 @@ public class LightStand : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
+        {
             playerList.Add(collision.gameObject);
+            if(ultimateLightAvailable)
+                promptButton.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
             playerList.Remove(collision.gameObject);
+        if(playerList.Count <= 0)
+            promptButton.SetActive(false);
     }
 
     public void CompleteLight()
@@ -136,7 +144,7 @@ public class LightStand : MonoBehaviour
     public void SetUltimateAvailable(bool value)
     {
         ultimateLightAvailable = value;
-        lightAnimator.SetBool("UltiAvailable", ultimateLightAvailable);
+        lightAnimator.SetBool("UltiAvailable", value);
         if(ultimateLightAvailable)
         {
             foreach(GameObject light in lightStones)
@@ -146,12 +154,15 @@ public class LightStand : MonoBehaviour
                 light.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
             }
         }
+
+        promptButton.SetActive(playerList.Count > 0 ? value : false);
     }
 
     public void DebugSetUltimateAvailable()
     {
         ultimateLightAvailable = !ultimateLightAvailable;
         lightAnimator.SetBool("UltiAvailable", ultimateLightAvailable);
+        promptButton.SetActive(playerList.Count > 0 ? ultimateLightAvailable : false);
     }
 
     public void OnUltimateLight()

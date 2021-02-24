@@ -30,7 +30,7 @@ public class TutorialManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetButtonDown("Select"))
+        if (Input.GetButtonDown("Back"))
         {
             selectCount++;
         }

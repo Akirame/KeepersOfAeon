@@ -31,8 +31,8 @@ public class CharacterController2D : MonoBehaviour
     private AttackBehaviour attackComponent;
     private Animator anim;
     private Vector2 movement;
-    private float changuiTime = 0.162f;
-    private float timerChangui;
+    private float coyoteTime = 0.162f;
+    private float coyoteTimer;
     private float timer = 0;
     private float chickenTimer = 7.6666666f;
     private bool chickenOn = false;
@@ -163,34 +163,35 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             onFloor = true;
-            timerChangui = 0;
+            canJump = onFloor;
+            doubleJump = false;
+            coyoteTimer = 0;
         }
         else
         {
-            timerChangui += Time.deltaTime;
-            if (timerChangui > changuiTime)
+            coyoteTime += Time.deltaTime;
+            if (coyoteTimer > coyoteTime)
             {
-                onFloor = false;
+                canJump = false;
             }
         }
     }
 
     public void JumpBehaviour()
     {
-        if(onFloor && Input.GetButtonDown(inputControl.jump) && canJump)
+        if (Input.GetButtonDown(inputControl.jump) && canJump)
         {
             doubleJump = true;
             rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
             psDust.Play();
         }
-        else if(!onFloor && Input.GetButtonDown(inputControl.jump) && doubleJump)
+        if (Input.GetButtonDown(inputControl.jump) && doubleJump)
         {
-            rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
+            canJump = false;
             doubleJump = false;
+            rig.velocity = new Vector2(rig.velocity.x, playerData.jumpForce);
             psDust.Play();
         }
-        else if(doubleJump && onFloor)
-            doubleJump = false;
     }
 
     public void SetCanMove(bool setMove)
