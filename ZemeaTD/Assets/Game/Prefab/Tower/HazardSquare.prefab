@@ -280,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   explosionTime: 10
-  explosionDamage: 10
+  explosionDamage: 5
   damagePerButtonHit: 5
 --- !u!61 &1350574368410509603
 BoxCollider2D:

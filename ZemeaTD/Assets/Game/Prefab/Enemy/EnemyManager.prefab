@@ -62,18 +62,18 @@ MonoBehaviour:
   roundToSpawnRanged: 4
   roundToSpawnFlyer: 7
   totalEnemyCount: 0
-  enemyIncrementFactor: 1.2
-  timeBetweenWaves: 8
-  timeBetweenEnemies: 1.5
+  enemyIncrementFactor: 1.5
+  timeBetweenWaves: 12
+  timeBetweenEnemies: 2
   timeForFirstWave: 1
   bossList:
   - {fileID: 1538042493107528, guid: ab67f7916e36f454998b68e1da9df638, type: 3}
   - {fileID: 1694321192491562, guid: 901e470210680a846b1e2cc9dc650d05, type: 3}
   waveMiniBoss: 5
-  initialWaveToStartHordes: 2
+  initialWaveToStartHordes: 5
   percentHordeSpawnRate: 5
-  initialChanceOfHardRound: 0.5
-  gameStarted: 0
+  initialChanceOfHardRound: 0.3
+  isWaveActive: 0
   waveTimeText: {fileID: 0}
   hordeSound: {fileID: 8300000, guid: 63b07d9c86242cc4a971bee01ce7f3a9, type: 3}
 --- !u!82 &82659891776366396

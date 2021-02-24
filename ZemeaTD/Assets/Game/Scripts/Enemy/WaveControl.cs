@@ -232,7 +232,7 @@ public class WaveControl : MonoBehaviour
     }
 
     private void AddMeleeEnemies(){
-        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        for (int i = 0; i < meleeCount + (int)(enemyIncrementFactor * currentWave); i++)
         {
             enemyTypeList.Add((int)EnemyType.Melee);
         }
@@ -240,7 +240,7 @@ public class WaveControl : MonoBehaviour
 
     private void AddRangedEnemies(){
         if (currentWave < roundToSpawnRanged){ return;}
-        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        for (int i = 0; i < rangeCount + (int)(enemyIncrementFactor * currentWave); i++)
         {
             enemyTypeList.Add((int)EnemyType.Ranged);
         }
@@ -248,7 +248,7 @@ public class WaveControl : MonoBehaviour
 
     private void AddFlyerEnemies(){
         if (currentWave < roundToSpawnFlyer){ return;}
-        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave * 3); i++)
+        for (int i = 0; i < flyCount + (int)(enemyIncrementFactor * currentWave); i++)
         {
             enemyTypeList.Add((int)EnemyType.Flyer);
         }

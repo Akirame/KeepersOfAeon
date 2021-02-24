@@ -690,39 +690,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 3}
-      propertyPath: waveMiniBoss
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
       propertyPath: waveTimeText
       value: 
       objectReference: {fileID: 2066794305}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: timeBetweenEnemies
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: rangeCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: flyCount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: meleeCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: timeBetweenWaves
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 3}
       propertyPath: meteorite
@@ -731,18 +701,8 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
         type: 3}
-      propertyPath: initialChanceOfHardRound
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: hordeSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 63b07d9c86242cc4a971bee01ce7f3a9, type: 3}
-    - target: {fileID: 114849525397464028, guid: 6db1b0dd039e4454aa40c07c355d6350,
-        type: 3}
-      propertyPath: initialWaveToStartHordes
-      value: 5
+      propertyPath: enemyIncrementFactor
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db1b0dd039e4454aa40c07c355d6350, type: 3}
@@ -8375,6 +8335,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackShield
       objectReference: {fileID: 0}
+    - target: {fileID: 1052891035104302, guid: 4260acfae5d726d4f946c533316e4791, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742406592712052, guid: 4260acfae5d726d4f946c533316e4791, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1798237341610420, guid: 4260acfae5d726d4f946c533316e4791, type: 3}
       propertyPath: m_Name
       value: FrontShield
@@ -8445,6 +8413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114882099687122534, guid: 4260acfae5d726d4f946c533316e4791,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4260acfae5d726d4f946c533316e4791, type: 3}
@@ -10037,6 +10010,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212123322381284016, guid: 28fe3c3ceec95b745b86eb244c9847f5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 223603649306523702, guid: 28fe3c3ceec95b745b86eb244c9847f5,
         type: 3}
       propertyPath: m_Enabled
