@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyMeleeBehavior : Enemy
 {
-    public float timeToAttack;    
+    public float timeToAttack;
+    public bool enableShake = false;  
     private void Update()
     {
         if (rampart)
@@ -16,7 +17,10 @@ public class EnemyMeleeBehavior : Enemy
                     if (timer >= timeToAttack)
                     {
                         rampart.Attacked(damage);
-                        CameraShake.GetInstance().Shake(0.001f, 0.01f);
+                        if (enableShake)
+                        {
+                           CameraShake.GetInstance().Shake(0.001f, 0.01f); 
+                        }
                         timer = 0;
                     }
                 }
@@ -26,11 +30,6 @@ public class EnemyMeleeBehavior : Enemy
                 rampart = null;
                 movementBehaviour.SetCanMove(true);
             }
-    }
-
-    public void EnemyBossShake()
-    {
-        CameraShake.GetInstance().Shake(0.02f, 0.05f);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
